@@ -1,0 +1,554 @@
+{
+ "types": [
+  {
+   "id": "desc",
+   "name": "記述統計の比較",
+   "en": "Descriptive statistics: compare two groups",
+   "look": "Excel の Descriptive Statistics 表が2列並んでいて「compare」「central tendency, spread and shape」と聞かれる。",
+   "steps": [
+    "見出しを3つ作る：Central tendency / Spread / Shape",
+    "中心：Mean と Median を比較。差がある理由（歪み）にも触れる。Mode が #N/A ならその理由",
+    "散らばり：SD（必須）、Range（Max/Min）、IQR、平均が違えば CV で比較",
+    "形：Skewness の符号 → positively / negatively skewed、mean と median の大小で裏付け。Kurtosis が大きい → 裾が重い（外れ値が多い）",
+    "すべて単位付き・文脈の言葉で"
+   ],
+   "template": "<p><b>Central tendency:</b> The mean [variable] is higher/lower for [group A] ([value + unit]) than for [group B] ([value]). The medians are [similar/different] ([value] vs [value]), so half of [units] had [variable] above about [median].</p>\n<p><b>Spread:</b> [Group A] is more variable: its standard deviation is [value], meaning [variable] deviates from the mean by about [value] on average, compared with [value] for [group B]. Its range is also wider ([min] to [max]).</p>\n<p><b>Shape:</b> Both distributions are [positively/negatively] skewed (skewness [value]), with the mean [above/below] the median and a long tail to the [right/left].</p>",
+   "pitfalls": [
+    "SD を「平均からの典型的なズレ」と<b>解釈</b>せずに数字だけ並べる",
+    "平均が違うのに SD だけで「どちらがバラつく」と結論（→ CV を使う）",
+    "skew の向きを逆に書く（マイナス＝左＝negatively）",
+    "0.0549 を「5.49%」と書くのはOK、ただし差は percentage points"
+   ],
+   "samples": [
+    "s1q1a",
+    "s2q1b"
+   ],
+   "weeks": [
+    3
+   ]
+  },
+  {
+   "id": "shape",
+   "name": "分布の形（ヒストグラム・度数多角形）",
+   "en": "Shape: histogram / frequency polygon",
+   "look": "ヒストグラムや percent frequency polygon の図があり「describe the distribution / shape」「why do they look different」。",
+   "steps": [
+    "Skewness：裾が長い側（右＝positive, 左＝negative）",
+    "Modality：山の数（unimodal / bimodal）と山の位置",
+    "Outliers：離れた棒や点があるか",
+    "数値表があれば mean と median の大小で歪みを裏付け",
+    "図の違いを聞かれたら → bin（class interval）の幅・範囲の違い。生データの mode と図の山（modal class）は別物"
+   ],
+   "template": "<p>The distribution of [variable] is [unimodal/bimodal], with a peak at around [value]. It is [positively/negatively] skewed, with a long tail to the [right/left] (the mean [value] is [above/below] the median [value]). There [is/are] [an] outlier[s] at around [value].</p>",
+   "pitfalls": [
+    "山の数・歪み・外れ値のどれかを書き忘れる",
+    "bin の違いを「データが違う」と説明する（データは同じ）"
+   ],
+   "samples": [
+    "s1q1b1",
+    "s1q1b2",
+    "s2q1a",
+    "s2q1c"
+   ],
+   "weeks": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "scatter",
+   "name": "散布図と相関",
+   "en": "Scatter plot & correlation",
+   "look": "散布図＋「Is there a relationship / direction / linear?」、相関係数 r の解釈、外れ値を除いた r の変化。",
+   "steps": [
+    "関係あり/なし → パターンがあるか",
+    "向き → X が増えると Y は増える（positive）/ 減る（negative）",
+    "線形か → 曲がっていないか",
+    "r の解釈 → 向き＋強さ（|r| が 1 に近いほど強い）",
+    "外れ値の影響 → 共分散の式 Σ(Xi − X̄)(Yi − Ȳ) で説明。左下・右上の点は積がプラス → r を大きくする"
+   ],
+   "template": "<p>Yes, there is a relationship, because the points show a clear [upward/downward] pattern. The relationship is [positive/negative]: as [X] increases, [Y] tends to [increase/decrease]. It is approximately linear, because there is no obvious curvature.</p>\n<p>A correlation of [r] indicates a [strong/moderate/weak], [positive/negative] linear relationship between [X] and [Y].</p>",
+   "pitfalls": [
+    "相関＝因果と書く（correlation does not imply causation）",
+    "理由（because）を書かない",
+    "外れ値の説明を「傾きが変わるから」で済ませる（最大1点）"
+   ],
+   "samples": [
+    "s1q1c1",
+    "s1q1c2",
+    "s1q1c3",
+    "s1q1c4"
+   ],
+   "weeks": [
+    2,
+    8
+   ]
+  },
+  {
+   "id": "prob",
+   "name": "クロス表と確率・独立性",
+   "en": "Contingency tables, probability & independence",
+   "look": "pivot table / Table A〜D があり、proportion, probability, given, independent, report を聞かれる。",
+   "steps": [
+    "周辺確率 P(A) ＝ A の合計 ÷ 総数",
+    "同時確率 P(A and B) ＝ セル ÷ 総数",
+    "条件付き P(A | B) ＝ セル ÷ <b>B の合計</b>（column % / row % 表はこれ）",
+    "独立 ⇔ P(A | B) = P(A)。条件付き確率同士ではなく<b>周辺確率と比べる</b>",
+    "排反（mutually exclusive）⇔ 同時に起こらない（セルが 0）",
+    "レポート：独立ならどうなるか → 数値で比較 → 結論"
+   ],
+   "template": "<p>If [A] and [B] were independent, the probability of [A] would be the same in every [B group] and equal to the marginal probability P([A]) = [value]. However, P([A] | [B1]) = [value] and P([A] | [B2]) = [value], which are clearly different from [value]. Therefore [A] and [B] are not independent: [B] affects [A].</p>",
+   "pitfalls": [
+    "同時確率の分母を条件側の合計にしてしまう",
+    "条件付き確率が2つ似ているだけで独立と判断（Sample 1 Q3(iv) の罠）",
+    "independent と mutually exclusive を混同"
+   ],
+   "samples": [
+    "s1q3a1",
+    "s1q3a2",
+    "s1q3a3",
+    "s1q3a4",
+    "s2q2cd",
+    "s2q2e",
+    "s2q2fg",
+    "s2q2h"
+   ],
+   "weeks": [
+    2,
+    4
+   ]
+  },
+  {
+   "id": "normal",
+   "name": "正規分布と標本平均の分布",
+   "en": "Normal distribution & sampling distribution",
+   "look": "母平均と母標準偏差が与えられ、P(X > a)、パーセンタイル、標本平均 x̄ の確率を聞かれる。",
+   "steps": [
+    "X ~ N(μ, σ) を書く",
+    "z = (x − μ) / σ に代入した式を書く",
+    "P(Z > z) = 1 − P(Z < z) の形にする（電卓なしなので式で止めてOK）",
+    "パーセンタイル：x = μ + z × σ（99th → z = 2.33、1st → z = −2.33、5th → −1.645）",
+    "標本平均：SE = σ / √n を使う。z = (x̄ − μ) / (σ / √n)",
+    "期待値（mean）は「平均的に〜」と解釈"
+   ],
+   "template": "<p>Let X = [variable], X ~ N([μ], [σ]). P(X &gt; [a]) = P(Z &gt; ([a] − [μ]) / [σ]) = 1 − P(Z &lt; [z]).</p>\n<p>For the sample mean of n = [n]: X̄ ~ N([μ], [σ]/√[n]), so P(X̄ &gt; [a]) = P(Z &gt; ([a] − [μ]) / ([σ]/√[n])).</p>",
+   "pitfalls": [
+    "標本平均なのに σ / √n にしない",
+    "不等号の向き（more than → >）",
+    "ありえない値（Bert の 145,000 km）は z が極端 → 確率ほぼ0 と説明"
+   ],
+   "samples": [],
+   "weeks": [
+    5
+   ]
+  },
+  {
+   "id": "ci",
+   "name": "信頼区間",
+   "en": "Confidence intervals",
+   "look": "「Give / interpret a 95% (99%) confidence interval」。回帰出力の Lower 95% / Upper 95%、または x̄, s, n から作る。",
+   "steps": [
+    "回帰係数の CI → Lower 95% と Upper 95% をそのまま読む",
+    "平均の CI → x̄ ± t × s / √n の式を書く",
+    "定型文で解釈：We are 95% confident that the true (population) … lies between … and …",
+    "何の区間か（切片なら X = 0 のときの Y の平均）を文脈で",
+    "判断：区間に基準値（0、8% など）が入るか → 入れば「その値の可能性を否定できない」",
+    "n ↑ → SE ↓ → 区間が狭い。信頼度 ↑（95→99%）→ 区間が広い"
+   ],
+   "template": "<p>We are 95% confident that the true (population) [mean / effect of X on Y] lies between [lower + unit] and [upper + unit]. Since the interval [includes / does not include] [benchmark], [conclusion in context].</p>",
+   "pitfalls": [
+    "「95% の確率で μ が区間に入る」「データの95%が区間にある」と書く",
+    "単位を書き忘れる（0.5 点）",
+    "切片の CI で X = 0 という条件を書かない"
+   ],
+   "samples": [
+    "s1q2a3"
+   ],
+   "weeks": [
+    6,
+    11
+   ]
+  },
+  {
+   "id": "test",
+   "name": "仮説検定（4ステップ）",
+   "en": "Hypothesis testing",
+   "look": "「Perform a hypothesis test」「Is there evidence that …」「p-value approach / critical value approach」。",
+   "steps": [
+    "Step 1: H0: β1 = 0（μ = μ0）、H1 は問題文の言葉で決める → more/positive/stronger/exceeds は「>」、less/negative/underperform は「<」、any impact/effect/differ は「≠」",
+    "Step 2: α（指定がなければ 0.05）",
+    "Step 3: p値。片側なら Excel の p ÷ 2（係数の符号が H1 と同じ向きのとき）。critical value 法なら t Stat と t-crit を比較",
+    "Step 4: 判断（reject / do not reject H0）＋文脈の結論：There is (in)sufficient evidence at the [α] level that …",
+    "片側で係数の符号が H1 と逆 → 検定するまでもなく棄却できない（W8 Part 3）"
+   ],
+   "template": "<p>H<sub>0</sub>: β<sub>1</sub> = 0 ([X] has no effect on [Y])<br>H<sub>1</sub>: β<sub>1</sub> [&gt; / &lt; / ≠] 0 ([X] has a [positive / negative / an] effect on [Y])</p>\n<p>α = [0.05]</p>\n<p>p-value = [p from output] [/ 2 = value] (one-sided)</p>\n<p>Since p-value = [value] [&lt; / &gt;] α = [value], we [reject / do not reject] H<sub>0</sub>. There is [sufficient / insufficient] evidence at the [5]% level that [claim in context].</p>",
+   "pitfalls": [
+    "片側なのに ÷2 を忘れる（Sample で毎回出る）",
+    "H0 / H1 を b（推定値）で書く → β（母数）で書く",
+    "accept H0 と書く",
+    "結論を文脈なしで「reject H0」だけで終える",
+    "critical value の符号（左片側はマイナス）"
+   ],
+   "samples": [
+    "s1q2b2",
+    "s1q4b",
+    "s2q3b",
+    "s2q4d",
+    "s1q5b"
+   ],
+   "weeks": [
+    7,
+    8,
+    9
+   ]
+  },
+  {
+   "id": "errors",
+   "name": "第1種・第2種の過誤",
+   "en": "Type I & Type II errors",
+   "look": "「Explain Type I / II error」「Which error could have been made?」",
+   "steps": [
+    "Type I：H0 が正しいのに棄却（確率 = α）",
+    "Type II：H0 が誤りなのに棄却しない",
+    "検定で reject した → Type I の可能性 / do not reject → Type II の可能性",
+    "必ず文脈の言葉で言い換える",
+    "α を下げる → Type I ↓ だが Type II ↑。両方なくすには母集団全部を調べるしかない"
+   ],
+   "template": "<p>A Type [II] error could have been made, because we [did not reject] H<sub>0</sub>. In this context, it means that [the true situation in words], but our test failed to find sufficient evidence of it.</p>",
+   "pitfalls": [
+    "定義だけ書いて文脈の説明がない",
+    "棄却したのに Type II と答える"
+   ],
+   "samples": [
+    "s1q4c1",
+    "s1q4c2"
+   ],
+   "weeks": [
+    7
+   ]
+  },
+  {
+   "id": "slr",
+   "name": "単回帰：式・係数の解釈",
+   "en": "Simple regression: equation & interpretation",
+   "look": "SUMMARY OUTPUT が1つの X で、「write the estimated equation」「interpret the coefficients」。",
+   "steps": [
+    "推定式：Ŷ = b0 + b1 X（ハット付き、誤差項なし、変数名は問題の言葉）",
+    "切片：X = 0 のときの Y の予測値（on average）。X = 0 が現実的でなければ meaningful でないと一言",
+    "傾き：X が 1 単位増えると Y は b1 だけ変化（on average）",
+    "単位を正確に：RM、minutes、percentage points、per 1000 births、$1000 単位なら換算",
+    "大きさ（practical significance）も聞かれたら：係数が小さければ実質的な影響は小さい"
+   ],
+   "template": "<p>Ŷ = [b0] + [b1] X</p>\n<p><b>Intercept:</b> The model predicts that when [X] is zero, [Y] is [b0 + unit], on average.</p>\n<p><b>Slope:</b> The model predicts that for each additional [unit of X], [Y] [increases/decreases] by [|b1| + unit], on average.</p>",
+   "pitfalls": [
+    "on average を忘れる",
+    "単位が違う（GDP の係数 −0.00489 は $1 あたり → $1000 あたり 4.89）",
+    "推定式に e を書く / ハットを付けない"
+   ],
+   "samples": [
+    "s1q2a1",
+    "s1q2a2",
+    "s2q3a"
+   ],
+   "weeks": [
+    8
+   ]
+  },
+  {
+   "id": "mlr",
+   "name": "重回帰：解釈・予測・有意性・符号",
+   "en": "Multiple regression",
+   "look": "X が2つ以上。「interpret」「write an equation to predict」「which are significant」「are the signs as expected」。",
+   "steps": [
+    "解釈：holding all other variables constant または Take two … identical except …",
+    "予測：係数に値を代入した式（単位に注意：0.02 か 2 か）",
+    "有意性：各 p 値を α = 0.01 / 0.05 / 0.10 と比較して整理",
+    "符号：予想通りか＋経済的・常識的な理由。予想外なら考えられる理由（除外変数など）",
+    "統計的有意 ≠ 実質的な重要性（係数の大きさ・SD も考える）"
+   ],
+   "template": "<p>Holding [other variables] constant, a one-unit increase in [X] is associated with a [b + unit] [increase/decrease] in [Y], on average.</p>\n<p>Prediction: Ŷ = [b0] + [b1]([x1]) + [b2]([x2]) + …</p>\n<p>At the 5% level, [X1] and [X2] are significant (p = …, … &lt; 0.05), but [X3] is not (p = … &gt; 0.05). At the 10% level, …</p>",
+   "pitfalls": [
+    "「他を一定」を書かない（単回帰と同じ解釈になってしまう）",
+    "代入する値の単位ミス",
+    "有意性を t Stat の大きさだけで語る（p 値で判断）"
+   ],
+   "samples": [
+    "s1q5a",
+    "s1q5b",
+    "s1q5c",
+    "s2q4a",
+    "s2q4b"
+   ],
+   "weeks": [
+    9,
+    11
+   ]
+  },
+  {
+   "id": "dummy",
+   "name": "ダミー変数",
+   "en": "Dummy variables",
+   "look": "X が 0/1（Low income, Firefox, metropolitan, 州など）。",
+   "steps": [
+    "基準カテゴリー（ダミーが全部 0 のグループ）を特定する。カテゴリー数 − 1 個のダミーが入る",
+    "切片 ＝ 基準グループの平均（他の X が 0 のとき）",
+    "ダミー係数 ＝ 基準グループとの差（higher/lower than [base], on average）",
+    "グループの平均 ＝ 切片 ＋ 係数（Week 10：回帰の予測値＝グループ平均と一致）",
+    "複数ダミーの順位：係数の大小で並べる（基準は 0）",
+    "有意性：その差が 0 と違うか（片側なら p ÷ 2）"
+   ],
+   "template": "<p><b>Intercept:</b> [Base group] are predicted to have [Y] of [b0 + unit], on average.</p>\n<p><b>[Dummy]:</b> [Group] are predicted to have [Y] [|b| + unit] [higher/lower] than [base group], on average (holding other variables constant).</p>",
+   "pitfalls": [
+    "比較対象（基準グループ）を書かない",
+    "全カテゴリー分ダミーを入れる（ダミーの罠）",
+    "差を percent と書く（率の差は percentage points）"
+   ],
+   "samples": [
+    "s1q4a",
+    "s1q6a",
+    "s1q6b2",
+    "s2q4a",
+    "s2q4c"
+   ],
+   "weeks": [
+    10,
+    11
+   ]
+  },
+  {
+   "id": "fit",
+   "name": "R² と回帰の標準誤差",
+   "en": "R-squared & standard error of regression",
+   "look": "「Interpret the R Square」「Interpret the Standard Error of the model」「Is it a good model?」",
+   "steps": [
+    "R²：R² × 100% of the variation in [Y] is explained by the model",
+    "良いモデルか：高ければ fit が良いと言えるが、R² だけで因果や正しさは保証されない",
+    "SE：モデルの予測は典型的に ± SE だけ外れる（Y の単位で）",
+    "SE は Y の平均と比較して精度を判断（大きければ不正確）"
+   ],
+   "template": "<p>R² = [value]: [value × 100]% of the variation in [Y] is explained by the model. This is relatively [high/low], so …</p>\n<p>The standard error of [value] means the model's predictions of [Y] are typically in error by about [value + unit]. Compared with the mean of [Y] ([value]), this is [large/small], so the predictions are [not very / quite] accurate.</p>",
+   "pitfalls": [
+    "R² を「X が Y を 65% 決める」「相関」と言い換える",
+    "SE を係数の Standard Error と混同"
+   ],
+   "samples": [
+    "s1q5d",
+    "s1q5e"
+   ],
+   "weeks": [
+    8,
+    10
+   ]
+  },
+  {
+   "id": "report",
+   "name": "短いレポート問題",
+   "en": "Write a short report",
+   "look": "「Write a short report on …」。配点が大きい（10点）。",
+   "steps": [
+    "① 基準グループ／全体像を数値で",
+    "② 各係数（または条件付き確率）を数値＋単位＋on average で",
+    "③ 有意性（p 値）",
+    "④ グループ間の比較・順位",
+    "⑤ 問いに対する結論（はい/いいえ＋根拠）"
+   ],
+   "template": "<p>[Base group] … [b0]. [Group 1] … [b1] percentage points higher than [base], on average, and this difference is significant (p = …). [Group 2] … Since [b1] &gt; [b2], … Overall, there is [strong / weak] evidence that [answer to the question].</p>",
+   "pitfalls": [
+    "係数を並べるだけで結論がない",
+    "数値を「meaningful に」入れていない（問題文で要求されている）"
+   ],
+   "samples": [
+    "s1q6a",
+    "s2q2h"
+   ],
+   "weeks": [
+    10,
+    11
+   ]
+  },
+  {
+   "id": "concept",
+   "name": "用語・サンプリングの概念",
+   "en": "Concepts: data, sampling & bias",
+   "look": "population / sample、parameter / statistic、data type、primary / secondary、bias、representativeness。",
+   "steps": [
+    "定義を1文 → 例を1つ（具体的に）",
+    "代表性：ランダムでないサンプルは母集団を代表しない → bias → 結論を一般化できない",
+    "Non-response / selection bias：抜け落ちたグループが系統的に違うことを説明",
+    "Data type：qualitative（nominal / ordinal）vs quantitative（discrete / continuous）、cross-sectional vs time series"
+   ],
+   "template": "<p>[Term] is … For example, … This matters because …</p>",
+   "pitfalls": [
+    "例を書かない",
+    "bias の「なぜ偏るか」を書かない"
+   ],
+   "samples": [
+    "s1q3a5",
+    "s2q2a",
+    "s2q2b",
+    "s2q5a",
+    "s2q5b",
+    "s2q5c",
+    "s2q5d"
+   ],
+   "weeks": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": "nonlin",
+   "name": "変数の変換・2次式・成長予測",
+   "en": "Transformed variables, quadratics & growth",
+   "look": "Y を引き算した変数、income² が入るモデル、成長率で将来値を予測。",
+   "steps": [
+    "Y − X を X で回帰 → 傾きは元の傾き − 1（Sample 1 Q2(b)）",
+    "2次式 Y = b0 + b1X + b2X²：個々の係数は「他を一定」で解釈できない。形（U字／逆U字）と turning point x* = −b1 / (2b2) で説明",
+    "変化量：Ŷ(X2) − Ŷ(X1) を式で",
+    "成長予測：Pop × (1 + g)<sup>k</sup>"
+   ],
+   "template": "<p>Because X² is included, we cannot hold X² constant while changing X. The negative coefficient on X and positive coefficient on X² mean [Y] first falls and then rises as [X] increases, with a turning point at X = −b1 / (2b2) ≈ [value].</p>",
+   "pitfalls": [
+    "2次式の係数を単独で解釈する",
+    "成長予測を単利（1.2 + 1.2 × 0.025 × 10）で書く"
+   ],
+   "samples": [
+    "s1q2b1",
+    "s1q6b1",
+    "s1q6b2"
+   ],
+   "weeks": [
+    10
+   ]
+  }
+ ],
+ "rules": [
+  [
+   "on average を付ける",
+   "係数・切片・SD・SE の解釈には必ず <b>on average</b>。無いと減点（Sample 1 で最大 1.5/2 点）。"
+  ],
+  [
+   "percentage points と percent",
+   "率（%）の差や変化は <b>percentage points</b>。1.73% → 2.73% は「1 percentage point 増」。Q6 で percent と書くと各 0.5 点減点。"
+  ],
+  [
+   "単位と文脈",
+   "数字だけ書かない。0.0549 → 5.49 percentage points、43.84 → RM43.84、per 100,000 vehicles など、<b>問題の言葉と単位</b>で書く。"
+  ],
+  [
+   "重回帰は「他を一定」",
+   "<b>holding all other variables constant</b> か <b>Take two … that are identical except …</b> の型を必ず使う。"
+  ],
+  [
+   "ダミーは基準と比べる",
+   "切片＝基準グループの平均、ダミー係数＝<b>基準グループとの差</b>。比較対象（compared with …）を必ず書く。"
+  ],
+  [
+   "検定は4ステップ",
+   "① H0 / H1（β で書く）② α ③ p値（片側なら ÷2）④ 判断＋文脈の結論（sufficient / insufficient evidence）。"
+  ],
+  [
+   "accept H0 と書かない",
+   "棄却しないときは <b>do not reject H0</b>。「H0 が正しい」とは言えない。"
+  ],
+  [
+   "計算は式で止める",
+   "電卓なし。<b>数値を代入した式</b>を書けば満点（Sample 1 の注意書き）。分数のままでもOK。"
+  ],
+  [
+   "CI の定型文",
+   "<b>We are 95% confident that the true (population) … is between A and B.</b> 何の値か（切片なら X = 0 のとき）を文脈で。"
+  ],
+  [
+   "理由まで書く",
+   "「Yes / positive / linear」だけでは半分。<b>because …</b> で根拠を足す。配点は答え1：理由1が多い。"
+  ]
+ ],
+ "formulas": [
+  [
+   "Coefficient of variation",
+   "CV = s / x̄ × 100%",
+   "平均が違うグループのバラつきを比べるとき"
+  ],
+  [
+   "Interquartile range",
+   "IQR = Q3 − Q1",
+   "真ん中50%の幅。外れ値に強い"
+  ],
+  [
+   "Range",
+   "Range = Max − Min",
+   "外れ値に弱い"
+  ],
+  [
+   "z-score",
+   "z = (x − μ) / σ",
+   "正規分布の確率を Z 表に直す"
+  ],
+  [
+   "Standard error of x̄",
+   "SE(x̄) = σ / √n （σ不明なら s / √n）",
+   "n が大きいほど小さい"
+  ],
+  [
+   "z for x̄",
+   "z = (x̄ − μ) / (σ / √n)",
+   "標本平均の確率"
+  ],
+  [
+   "CI for μ",
+   "x̄ ± t<sub>α/2, n−1</sub> × s / √n",
+   "σ既知なら z を使う。95%の z = 1.96、99%は 2.576"
+  ],
+  [
+   "Test statistic (mean)",
+   "t = (x̄ − μ<sub>0</sub>) / (s / √n)",
+   "σ既知なら z"
+  ],
+  [
+   "Test statistic (β)",
+   "t = b<sub>j</sub> / SE(b<sub>j</sub>)",
+   "Excel の t Stat 列"
+  ],
+  [
+   "CI for β",
+   "b<sub>j</sub> ± t<sub>α/2</sub> × SE(b<sub>j</sub>)",
+   "Excel の Lower / Upper 95%"
+  ],
+  [
+   "One-sided p-value",
+   "p<sub>one</sub> = p<sub>Excel</sub> / 2",
+   "係数の符号が H1 と同じ向きのときだけ。逆向きなら 1 − p/2"
+  ],
+  [
+   "Conditional probability",
+   "P(A | B) = P(A and B) / P(B)",
+   "クロス表なら セル ÷ 条件側の合計"
+  ],
+  [
+   "Independence",
+   "P(A | B) = P(A)",
+   "条件付き確率 ＝ 周辺確率 なら独立"
+  ],
+  [
+   "Mutually exclusive",
+   "P(A and B) = 0",
+   "同時に起こらない"
+  ],
+  [
+   "Prediction",
+   "ŷ = b<sub>0</sub> + b<sub>1</sub>x<sub>1</sub> + b<sub>2</sub>x<sub>2</sub> + …",
+   "単位に合わせて代入（0.02 か 2 か）"
+  ],
+  [
+   "Compound growth",
+   "Pop<sub>t+k</sub> = Pop<sub>t</sub> × (1 + g)<sup>k</sup>",
+   "Sample 1 Q6(b)"
+  ],
+  [
+   "Quadratic turning point",
+   "x* = −b<sub>1</sub> / (2b<sub>2</sub>)",
+   "Week 10 Engel's Law"
+  ]
+ ]
+}

@@ -1,0 +1,1653 @@
+{
+ "id": "unit-11",
+ "title": "重回帰",
+ "slot": [
+  "F"
+ ],
+ "goalSample": [
+  "s1q5a",
+  "s1q5b",
+  "s1q5c",
+  "s2q4a",
+  "s2q4b"
+ ],
+ "lessons": [
+  {
+   "id": "u11-l1",
+   "title": "重回帰：他を一定にしたときの効果",
+   "steps": [
+    {
+     "type": "explain",
+     "body": "<p><b>重回帰（multiple regression）</b>は X を2つ以上入れた回帰。Ŷ = b<sub>0</sub> + b<sub>1</sub>X<sub>1</sub> + b<sub>2</sub>X<sub>2</sub> + …</p><p>一番大事なのは、各係数が「<b>他の X を一定にしたとき</b>（holding all other variables constant）」の効果だということ。</p><p>例：子どもの読書スコア（100点満点）。</p><ul><li>Week 8（単回帰）：TV 1時間あたり −0.331 点</li><li>Week 9（母親の読書スコアも入れた重回帰）：TV 1時間あたり <b>−0.067 点</b>、しかも 1% でも 5% でも有意でなくなった</li></ul><p>なぜ？ TV をよく見る子の家庭は、母親の読書スコアも低い傾向がある。単回帰では「母親の影響」まで TV のせいにしていた（<b>除外変数</b>の問題）。母親のスコアを一定にすると、TV 自体の効果はとても小さい。</p>",
+     "exhibit": {
+      "reg": {
+       "title": "Week 9 Q1 — Dep: Child's reading score (out of 100)",
+       "stats": [
+        [
+         "Multiple R",
+         "0.508079123"
+        ],
+        [
+         "R Square",
+         "!0.258144396"
+        ],
+        [
+         "Adjusted R Square",
+         "0.257401426"
+        ],
+        [
+         "Standard Error",
+         "21.01279642"
+        ],
+        [
+         "Observations",
+         "2000"
+        ]
+       ],
+       "anova": [
+        [
+         "Regression",
+         "2",
+         "306823.8318",
+         "153411.9",
+         "347.4493",
+         "3.27E-130"
+        ],
+        [
+         "Residual",
+         "1997",
+         "881750.6137",
+         "441.5376"
+        ],
+        [
+         "Total",
+         "1999",
+         "1188574.446"
+        ]
+       ],
+       "coef": [
+        [
+         "Intercept",
+         "12.72815481",
+         "1.528828788",
+         "8.325429",
+         "1.54E-16",
+         "9.7298883",
+         "15.726421"
+        ],
+        [
+         "Hours TV",
+         "!-0.0674604",
+         "0.041024838",
+         "-1.64438",
+         "!0.100255",
+         "-0.147916",
+         "0.0129956"
+        ],
+        [
+         "Mother's Reading Score",
+         "!0.581618505",
+         "0.023262854",
+         "25.00203",
+         "!2.9E-120",
+         "0.5359965",
+         "0.6272405"
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "type": "check",
+     "question": {
+      "id": "u11-l1-c1",
+      "level": 1,
+      "kind": "choice",
+      "prompt": "Week 9 の Hours TV の係数 −0.0675 の意味は？",
+      "options": [
+       "母親の読書スコアが同じなら、TV が1時間増えると子どもの読書スコアは平均 0.067 点下がる",
+       "TV が1時間増えると、母親の読書スコアが 0.067 点下がる",
+       "TV が1時間増えると、子どもの読書スコアは必ず 0.067 点下がる",
+       "TV と読書スコアの相関は −0.067"
+      ],
+      "answer": 0,
+      "source": {
+       "file": "ETW1001_W9_Tutorial.pdf",
+       "where": "Q1"
+      },
+      "feedback": {
+       "correct": "正解。重回帰の係数＝他の X（母親のスコア）を一定にしたときの効果。",
+       "wrong": {
+        "1": "Y は子どもの読書スコア。母親のスコアは X の1つ。",
+        "2": "回帰は平均的な関係。「必ず」ではなく on average。",
+        "3": "係数は相関係数ではない。"
+       },
+       "thinking": [
+        "① 係数 = X が1増えたときの Y の平均的な変化",
+        "② 重回帰なので「他を一定」"
+       ],
+       "related": {
+        "answerType": "mlr"
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "u11-l2",
+   "title": "解釈の2つの型",
+   "steps": [
+    {
+     "type": "explain",
+     "body": "<p>重回帰の係数は、次の<b>どちらかの型</b>で書きます。どちらでも満点。</p><p><b>型A：holding … constant</b></p><div class=\"tmpl\" lang=\"en\">Holding [other variables] constant, each additional [unit of X] is associated with a [|b| + unit] increase/decrease in [Y], on average.</div><p style=\"margin-top:10px\"><b>型B：Take two …</b></p><div class=\"tmpl\" lang=\"en\">Take two [units] that are identical except that one has one more [unit of X]. The model predicts that [that one] has [|b| + unit] higher/lower [Y], on average.</div><p style=\"margin-top:10px\">例（Week 9 Q2、家賃）：Holding the number of bathrooms constant, each extra bedroom increases weekly rent by $190.37, on average.</p>",
+     "exhibit": {
+      "reg": {
+       "title": "Week 9 Q2 — Dep: Weekly rent ($) / Exp: beds, baths",
+       "stats": [
+        [
+         "Multiple R",
+         "0.840366018"
+        ],
+        [
+         "R Square",
+         "0.706215044"
+        ],
+        [
+         "Adjusted R Square",
+         "0.702758751"
+        ],
+        [
+         "Standard Error",
+         "143.0367696"
+        ],
+        [
+         "Observations",
+         "173"
+        ]
+       ],
+       "anova": [
+        [
+         "Regression",
+         "2",
+         "8360874.797",
+         "4180437.399",
+         "204.3272726",
+         "6.06055E-46"
+        ],
+        [
+         "Residual",
+         "170",
+         "3478117.966",
+         "20459.51745"
+        ],
+        [
+         "Total",
+         "172",
+         "11838992.76"
+        ]
+       ],
+       "coef": [
+        [
+         "Intercept",
+         "!195.6819601",
+         "35.77533798",
+         "5.469744554",
+         "1.5883E-07",
+         "125.0608452",
+         "266.303075"
+        ],
+        [
+         "beds",
+         "!190.3711999",
+         "11.90915933",
+         "15.9852761",
+         "1.05763E-35",
+         "166.8623204",
+         "213.8800794"
+        ],
+        [
+         "baths",
+         "!113.7225809",
+         "23.86377274",
+         "4.765490443",
+         "4.02285E-06",
+         "66.61509482",
+         "160.830067"
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "type": "explain",
+     "body": "<p><b>切片</b>は「すべての X が 0」のときの予測値。現実にありえるか一言添えると高評価。</p><ul><li>家賃：寝室0・浴室0の物件 → $195.68/週。でも寝室も浴室も無い家はほぼ無い → <b>あまり意味がない</b>。</li><li>Week 9 Q3（南アフリカ）：教育0年・経験0年 → −1,896.55 Rand。所得がマイナスはありえない → 意味がない。</li></ul><p class=\"small muted\">注意：W9 Excel の解答は切片を「−1,877 Rand」と書いているが、出力は −1,896.55（§8.3）。</p>"
+    },
+    {
+     "type": "check",
+     "question": {
+      "id": "u11-l2-c1",
+      "level": 1,
+      "kind": "choice",
+      "prompt": "家賃モデルの baths の係数 113.72 の解釈として正しいのは？",
+      "options": [
+       "寝室の数が同じなら、浴室が1つ多いと週の家賃は平均 $113.72 高い",
+       "浴室が1つ多いと、寝室も平均 113.72 増える",
+       "浴室が1つの家の家賃は $113.72",
+       "寝室の数に関係なく、浴室が1つ多いと家賃は必ず $113.72 高い"
+      ],
+      "answer": 0,
+      "source": {
+       "file": "ETW1001_W9_Tutorial.pdf",
+       "where": "Q2"
+      },
+      "feedback": {
+       "correct": "正解。他（beds）を一定 ＋ 単位（$/週）＋ on average。",
+       "wrong": {
+        "1": "Y は家賃。寝室の数ではない。",
+        "2": "それは「1つの家の家賃」ではない。切片 + 係数でも寝室を考える必要がある。",
+        "3": "「必ず」ではなく on average。また「関係なく」ではなく「同じなら（一定）」。"
+       },
+       "thinking": [
+        "① baths の係数",
+        "② beds を一定",
+        "③ $113.72 per week、on average"
+       ],
+       "related": {
+        "answerType": "mlr"
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "u11-l3",
+   "title": "予測の式（単位の罠）",
+   "steps": [
+    {
+     "type": "explain",
+     "body": "<p>予測は「<b>係数 × 値</b>」を足すだけ。電卓なしなので<b>数値を代入した式</b>を書けば満点（Sample 1 の注意書き）。</p><p>一番の罠は<b>変数の単位</b>。Sample 1 Q5：</p><ul><li>所得成長率は小数（0.02 = 2%）→ 「2% growth」は <b>0.02</b></li><li>インフレ率 zero → <b>0</b></li><li>人口増加率は % で入っている → 「1% pa」は <b>1</b></li><li>就学率は % → 「100%」は <b>100</b></li></ul><div class=\"tmpl\" lang=\"en\">Predicted growth = −0.0328 + 0.978244(0.02) − 0.02204(0) + 0.004895(1) + 0.000305(100)</div><p style=\"margin-top:10px\">どの単位かは、<b>記述統計や係数の大きさ</b>から判断します。分からなければ問題文の説明を読む。</p>",
+     "exhibit": {
+      "reg": {
+       "title": "Sample 1 Q5 — Dep: Income growth, Bottom 20% (4 explanatory variables)",
+       "stats": [
+        [
+         "Multiple R",
+         "0.807"
+        ],
+        [
+         "R Square",
+         "0.6513"
+        ],
+        [
+         "Adjusted R Square",
+         "0.6460"
+        ],
+        [
+         "Standard Error",
+         "0.03268"
+        ],
+        [
+         "Observations",
+         "269"
+        ]
+       ],
+       "anova": [
+        [
+         "Regression",
+         "4",
+         "0.5266",
+         "0.1317",
+         "123.27",
+         "3.49E-59"
+        ],
+        [
+         "Residual",
+         "264",
+         "0.2819",
+         "0.00107"
+        ],
+        [
+         "Total",
+         "268",
+         "0.8086"
+        ]
+       ],
+       "coef": [
+        [
+         "Intercept",
+         "!-0.0328",
+         "0.013283",
+         "-2.469",
+         "0.0142",
+         "-0.05895",
+         "-0.00665"
+        ],
+        [
+         "Avg Income Growth, Overall",
+         "!0.978244",
+         "0.053324",
+         "18.345",
+         "5E-49",
+         "0.8732",
+         "1.0832"
+        ],
+        [
+         "Inflation Rate",
+         "!-0.02204",
+         "0.013094",
+         "-1.683",
+         "0.0935",
+         "-0.04782",
+         "0.00374"
+        ],
+        [
+         "Population Growth Rate",
+         "!0.004895",
+         "0.001857",
+         "2.636",
+         "0.0089",
+         "0.00124",
+         "0.00855"
+        ],
+        [
+         "Primary School Enrolment (%)",
+         "!0.000305",
+         "0.000125",
+         "2.437",
+         "0.0155",
+         "5.87E-05",
+         "0.000552"
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "type": "check",
+     "question": {
+      "id": "u11-l3-c1",
+      "level": 1,
+      "kind": "choice",
+      "prompt": "家賃モデル（Ŷ = 195.68 + 190.37 beds + 113.72 baths）。<b>寝室2・浴室1</b>の物件を借り、2部屋目を週 $150 で又貸しする。実質の週コストの式は？",
+      "options": [
+       "195.68 + 190.37 × 2 + 113.72 × 1 − 150",
+       "195.68 + 190.37 + 113.72 − 150",
+       "195.68 + 190.37 × 2 + 113.72 × 1 + 150",
+       "190.37 × 2 + 113.72 × 1 − 150"
+      ],
+      "answer": 0,
+      "source": {
+       "file": "W09 Tutorial exercise - Part 2 (solution).pdf",
+       "where": "Q2(iii)"
+      },
+      "feedback": {
+       "correct": "正解。≈ $540.1。寝室1・浴室1（195.68 + 190.37 + 113.72 ≈ $499.8）の方が安い。",
+       "wrong": {
+        "1": "寝室は 2 なので 190.37 × 2。",
+        "2": "又貸しの収入はコストから引く（−150）。",
+        "3": "切片を忘れている。"
+       },
+       "thinking": [
+        "① 切片 + 各係数 × 値",
+        "② beds = 2、baths = 1",
+        "③ 又貸し収入 $150 を引く"
+       ],
+       "related": {
+        "answerType": "mlr"
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "u11-l4",
+   "title": "有意水準ごとの判断と符号の妥当性",
+   "steps": [
+    {
+     "type": "explain",
+     "body": "<p><b>「Which variables are significant?」</b>と聞かれたら、有意水準ごとに分けて書く（Sample 1 Q5b）。</p><table class=\"plain\"><tr><td>Overall growth</td><td>p ≈ 5E-49</td><td>1%・5%・10% で有意</td></tr><tr><td>Population growth</td><td>p = 0.0089</td><td>1%・5%・10% で有意</td></tr><tr><td>Enrolment</td><td>p = 0.0155</td><td>5%・10% で有意（1% では有意でない）</td></tr><tr><td>Inflation</td><td>p = 0.0935</td><td>10% でだけ有意</td></tr></table><p style=\"margin-top:10px\">理由は必ず「<b>p-value &lt; α だから</b>」と書く。</p>"
+    },
+    {
+     "type": "explain",
+     "body": "<p><b>「Do the signs make sense?」</b>：常識・理論で予想する符号と比べ、<b>理由</b>を書く（Sample 1 Q5c、各2点）。</p><ul><li>Overall growth（+）：経済全体が伸びれば貧困層も雇用・賃金が増える → <b>期待どおり</b></li><li>Inflation（−）：物価が上がると実質所得が下がり、貧困層は資産で守れない → <b>期待どおり</b></li><li>Population growth（+）：扶養家族が増えると1人あたりの所得は下がりそう → <b>予想外</b>（若い労働力の増加などが理由かも）</li><li>Enrolment（+）：教育でスキル・仕事が増える → <b>期待どおり</b></li></ul><p>符号が予想と逆でも、<b>有意でなければ</b>「証拠は弱い」と添える（Sample 2 Q4 の Pages viewed、p = 0.81）。</p>"
+    },
+    {
+     "type": "check",
+     "question": {
+      "id": "u11-l4-c1",
+      "level": 1,
+      "kind": "choice",
+      "prompt": "Sample 1 Q5：<b>1%</b> の有意水準で有意な変数は？",
+      "exhibit": {
+       "ref": "u11-l3"
+      },
+      "options": [
+       "Overall growth と Population growth",
+       "Overall growth、Population growth、Enrolment",
+       "4つすべて",
+       "Overall growth だけ"
+      ],
+      "answer": 0,
+      "source": {
+       "file": "Sample paper 1 solution.pdf",
+       "where": "Q5(b)"
+      },
+      "feedback": {
+       "correct": "正解。5E-49 と 0.0089 は 0.01 未満。Enrolment（0.0155）は 1% では有意でない。",
+       "wrong": {
+        "1": "Enrolment の p = 0.0155 &gt; 0.01。",
+        "2": "Inflation（0.0935）と Enrolment（0.0155）は 0.01 より大きい。",
+        "3": "Population growth の p = 0.0089 &lt; 0.01 も有意。"
+       },
+       "thinking": [
+        "① 各変数の P-value を読む",
+        "② 0.01 と比べる"
+       ],
+       "related": {
+        "sample": "s1q5b",
+        "answerType": "mlr"
+       }
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "questions": [
+  {
+   "id": "u11-q01",
+   "level": 3,
+   "kind": "fillChips",
+   "prompt": "Week 9 Q2：家賃モデルの beds の係数を解釈しよう。",
+   "exhibit": {
+    "ref": "u11-l2"
+   },
+   "template": "Holding the number of [1] constant, each extra [2] increases weekly rent by [3], [4].",
+   "chips": {
+    "1": [
+     "bathrooms",
+     "bedrooms",
+     "houses"
+    ],
+    "2": [
+     "bedroom",
+     "bathroom",
+     "dollar"
+    ],
+    "3": [
+     "$190.37",
+     "$113.72",
+     "$195.68"
+    ],
+    "4": [
+     "on average",
+     "always",
+     "exactly"
+    ]
+   },
+   "answer": {
+    "1": "bathrooms",
+    "2": "bedroom",
+    "3": "$190.37",
+    "4": "on average"
+   },
+   "source": {
+    "file": "W09 Tutorial exercise - Part 2 (solution).pdf",
+    "where": "Q2(ii)"
+   },
+   "feedback": {
+    "correct": "正解。重回帰は「他を一定」＋ 単位 ＋ on average。",
+    "wrong": {
+     "1:bedrooms": "一定にするのは「他の」変数（bathrooms）。",
+     "1:houses": "一定にするのは他の説明変数（bathrooms）。",
+     "2:bathroom": "beds の係数なので bedroom。",
+     "3:$113.72": "それは baths の係数。",
+     "3:$195.68": "それは切片。",
+     "4:always": "回帰は平均的な関係 → on average。",
+     "4:exactly": "回帰は平均的な関係 → on average。"
+    },
+    "thinking": [
+     "① 他の変数（baths）を一定",
+     "② X の単位（bedroom）",
+     "③ $190.37 per week",
+     "④ on average"
+    ],
+    "examTemplate": "Holding the number of bathrooms constant, each extra bedroom increases weekly rent by $190.37, on average.",
+    "related": {
+     "lesson": "u11-l2",
+     "answerType": "mlr"
+    }
+   }
+  },
+  {
+   "id": "u11-q02",
+   "level": 2,
+   "kind": "tapCell",
+   "prompt": "Week 9 Q1：「母親の読書スコア」が子どものスコアに影響するかの検定に使う p 値をタップしよう。",
+   "exhibit": {
+    "ref": "u11-l1"
+   },
+   "answer": "coef:2:3",
+   "source": {
+    "file": "ETW1001_W9_Tutorial.pdf",
+    "where": "Q1"
+   },
+   "feedback": {
+    "correct": "正解。Mother's Reading Score の行 × P-value = 2.9E-120（とても小さい → 有意）。",
+    "wrong": {
+     "coef:1:3": "それは Hours TV の P-value。",
+     "coef:2:0": "それは係数そのもの。",
+     "coef:0:3": "それは切片の P-value。"
+    },
+    "thinking": [
+     "① 行：Mother's Reading Score",
+     "② 列：P-value"
+    ],
+    "related": {
+     "lesson": "u11-l1"
+    }
+   }
+  },
+  {
+   "id": "u11-q03",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "TV の係数が、単回帰（Week 8：−0.331）から重回帰（Week 9：−0.067）で小さくなったのはなぜ？",
+   "options": [
+    "母親の読書スコアを一定にしたから。単回帰では、母親の影響の一部を TV の効果と取り違えていた",
+    "サンプルが小さくなったから",
+    "重回帰では係数がいつも小さくなるから",
+    "TV の時間の単位が変わったから"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "ETW1001_W8_Tutorial.pdf Q2 / ETW1001_W9_Tutorial.pdf Q1",
+    "where": "Hours TV の係数の比較"
+   },
+   "feedback": {
+    "correct": "正解。除外変数（omitted variable）：TV の時間と母親のスコアが関係していると、単回帰の係数にその影響が混ざる。",
+    "wrong": {
+     "1": "どちらも n = 2000。",
+     "2": "大きくなることもある。何を一定にしたかで変わる。",
+     "3": "どちらも hours per week。"
+    },
+    "thinking": [
+     "① 重回帰の係数 = 他を一定にした効果",
+     "② 単回帰では他の要因が混ざる",
+     "③ 母親のスコアが入ると TV の効果は小さくなった"
+    ],
+    "related": {
+     "lesson": "u11-l1",
+     "answerType": "mlr"
+    }
+   }
+  },
+  {
+   "id": "u11-q04",
+   "level": 3,
+   "kind": "fillChips",
+   "prompt": "Sample 1 Q5(a)：2% 成長、インフレ率ゼロ、就学率 100%、人口増加率年 1% の国の予測式を完成させよう。",
+   "exhibit": {
+    "ref": "u11-l3"
+   },
+   "template": "−0.0328 + 0.978244([1]) − 0.02204([2]) + 0.004895([3]) + 0.000305([4])",
+   "chips": {
+    "1": [
+     "0.02",
+     "2",
+     "0.2"
+    ],
+    "2": [
+     "0",
+     "1"
+    ],
+    "3": [
+     "1",
+     "0.01"
+    ],
+    "4": [
+     "100",
+     "1"
+    ]
+   },
+   "answer": {
+    "1": "0.02",
+    "2": "0",
+    "3": "1",
+    "4": "100"
+   },
+   "source": {
+    "file": "Sample paper 1 solution.pdf",
+    "where": "Q5(a)"
+   },
+   "feedback": {
+    "correct": "正解。変数ごとに単位が違う。成長率は小数、人口増加率と就学率は %。",
+    "wrong": {
+     "1:2": "所得成長率は小数で入っている（0.02 = 2%）。",
+     "1:0.2": "0.2 は 20%。2% は 0.02。",
+     "2:1": "インフレ率ゼロ → 0。",
+     "3:0.01": "人口増加率は % の値で入っている（1% → 1）。",
+     "4:1": "就学率は % の値（100% → 100）。"
+    },
+    "thinking": [
+     "① 各変数の単位を確認",
+     "② 成長率：小数",
+     "③ 人口増加率・就学率：%"
+    ],
+    "mistakes": [
+     "全部を小数にする／全部を % にする"
+    ],
+    "examTemplate": "Predicted growth = −0.0328 + 0.978244(0.02) − 0.02204(0) + 0.004895(1) + 0.000305(100)",
+    "related": {
+     "lesson": "u11-l3",
+     "sample": "s1q5a",
+     "answerType": "mlr"
+    }
+   }
+  },
+  {
+   "id": "u11-q05",
+   "level": 1,
+   "kind": "multi",
+   "prompt": "Sample 1 Q5：<b>5%</b> の有意水準で有意な変数を<b>すべて</b>選ぼう。",
+   "exhibit": {
+    "ref": "u11-l3"
+   },
+   "options": [
+    "Avg Income Growth, Overall（p ≈ 5E-49）",
+    "Inflation Rate（p = 0.0935）",
+    "Population Growth Rate（p = 0.0089）",
+    "Primary School Enrolment（p = 0.0155）"
+   ],
+   "answer": [
+    0,
+    2,
+    3
+   ],
+   "source": {
+    "file": "Sample paper 1 solution.pdf",
+    "where": "Q5(b)"
+   },
+   "feedback": {
+    "correct": "正解。3つは p &lt; 0.05。Inflation は 0.0935 &gt; 0.05 で 5% では有意でない（10% なら有意）。",
+    "wrong": {
+     "1": "0.0935 &gt; 0.05。10% なら有意。",
+     "miss:0": "5E-49 はとても小さい → 有意。",
+     "miss:2": "0.0089 &lt; 0.05 → 有意。",
+     "miss:3": "0.0155 &lt; 0.05 → 有意。"
+    },
+    "thinking": [
+     "① P-value 列を読む",
+     "② 0.05 と比べる",
+     "③ 10% と 1% でどう変わるかも書く"
+    ],
+    "related": {
+     "lesson": "u11-l4",
+     "sample": "s1q5b",
+     "answerType": "mlr"
+    }
+   }
+  },
+  {
+   "id": "u11-q06",
+   "level": 4,
+   "kind": "buildSentence",
+   "prompt": "Week 9 Q3（南アフリカ、40歳男性、月収 Rand）：Years Education の係数 288.16 を「Take two」の型で解釈しよう。",
+   "exhibit": {
+    "reg": {
+     "title": "Week 9 Q3 — Dep: Monthly income (Rand) / Exp: Years Education, Years Experience",
+     "stats": [
+      [
+       "Multiple R",
+       "0.36967"
+      ],
+      [
+       "R Square",
+       "0.136656"
+      ],
+      [
+       "Adjusted R Square",
+       "0.135792"
+      ],
+      [
+       "Standard Error",
+       "2985.315848"
+      ],
+      [
+       "Observations",
+       "2000"
+      ]
+     ],
+     "anova": [
+      [
+       "Regression",
+       "2",
+       "2817114445",
+       "1408557222",
+       "158.04979",
+       "1.90E-64"
+      ],
+      [
+       "Residual",
+       "1997",
+       "17797485097",
+       "8912110.714"
+      ],
+      [
+       "Total",
+       "1999",
+       "20614599542"
+      ]
+     ],
+     "coef": [
+      [
+       "Intercept",
+       "!-1896.54886",
+       "247.877047",
+       "-7.651168",
+       "3.08E-14",
+       "-2382.673578",
+       "-1410.424141"
+      ],
+      [
+       "Years Education",
+       "!288.161957",
+       "17.82137",
+       "16.169461",
+       "!2.32E-55",
+       "253.21153",
+       "323.112384"
+      ],
+      [
+       "Years Experience",
+       "!91.105048",
+       "9.363191",
+       "9.730128",
+       "6.81E-22",
+       "72.7424",
+       "109.467695"
+      ]
+     ]
+    }
+   },
+   "chips": [
+    "Take two men",
+    "with the same years of experience,",
+    "but one has one more year of education.",
+    "The model predicts that the man with more education",
+    "earns R288.16 more per month",
+    "than the other,",
+    "on average.",
+    "earns R91.11 more per month"
+   ],
+   "answer": [
+    [
+     "Take two men",
+     "with the same years of experience,",
+     "but one has one more year of education.",
+     "The model predicts that the man with more education",
+     "earns R288.16 more per month",
+     "than the other,",
+     "on average."
+    ]
+   ],
+   "source": {
+    "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx",
+    "where": "Part 2&3 Q5"
+   },
+   "feedback": {
+    "correct": "正解。「同じ経験年数、教育だけ1年違う」で他を一定を表している。",
+    "thinking": [
+     "① 他の変数（experience）を同じにする",
+     "② 教育が1年多い",
+     "③ R288.16 per month、on average"
+    ],
+    "mistakes": [
+     "91.11（経験の係数）と取り違える"
+    ],
+    "related": {
+     "lesson": "u11-l2",
+     "answerType": "mlr"
+    }
+   }
+  },
+  {
+   "id": "u11-q07",
+   "level": 3,
+   "kind": "fillChips",
+   "prompt": "Week 9 Q3：教育年数も経験年数も<b>標本平均</b>（教育 8.37 年、経験 17.66 年）の人の月収の予測式。",
+   "exhibit": {
+    "ref": "u11-q06"
+   },
+   "template": "Income-hat = −1896.55 + 288.16([1]) + 91.11([2])",
+   "chips": {
+    "1": [
+     "8.37",
+     "3.79",
+     "17.66"
+    ],
+    "2": [
+     "17.66",
+     "18",
+     "7.21"
+    ]
+   },
+   "answer": {
+    "1": "8.37",
+    "2": "17.66"
+   },
+   "source": {
+    "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx",
+    "where": "Part 2&3 Q8(a)（平均：教育 8.37、経験 17.6625）"
+   },
+   "feedback": {
+    "correct": "正解。予測値 ≈ 2,124.5 Rand で、標本の平均月収（2,124.51）と一致する（回帰は平均の点を通る）。",
+    "wrong": {
+     "1:3.79": "3.79 は教育年数の標準偏差。",
+     "1:17.66": "それは経験の平均。",
+     "2:18": "W9 Excel の解答文は 18 と丸めているが、平均は 17.66。",
+     "2:7.21": "7.21 は経験年数の標準偏差。"
+    },
+    "thinking": [
+     "① 各係数に、その変数の値を掛ける",
+     "② 平均は平均、SD は SD"
+    ],
+    "related": {
+     "lesson": "u11-l3",
+     "answerType": "mlr"
+    }
+   }
+  },
+  {
+   "id": "u11-q08",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "Sample 2 Q4：Pages Viewed の係数は −0.14（p = 0.81）。符号について正しいのは？",
+   "exhibit": {
+    "reg": {
+     "title": "Sample 2 Model 2 — Dep: Sales (RM) / base browser = Chrome",
+     "stats": [
+      [
+       "R Square",
+       "0.444"
+      ],
+      [
+       "Standard Error",
+       "25.163"
+      ],
+      [
+       "Observations",
+       "50"
+      ]
+     ],
+     "coef": [
+      [
+       "Intercept",
+       "53.33",
+       "10.87",
+       "4.90",
+       "0.00",
+       "31.43",
+       "75.23"
+      ],
+      [
+       "Time (min)",
+       "1.81",
+       "0.66",
+       "2.72",
+       "0.01",
+       "0.47",
+       "3.14"
+      ],
+      [
+       "Pages Viewed",
+       "!-0.14",
+       "0.56",
+       "-0.24",
+       "!0.81",
+       "-1.26",
+       "0.99"
+      ],
+      [
+       "Internet Explorer",
+       "-14.14",
+       "10.75",
+       "-1.32",
+       "0.19",
+       "-35.79",
+       "7.51"
+      ],
+      [
+       "Firefox",
+       "-8.39",
+       "11.56",
+       "-0.73",
+       "0.47",
+       "-31.67",
+       "14.90"
+      ]
+     ]
+    }
+   },
+   "options": [
+    "多くのページを見る人は買う気があるはずなのでプラスを予想 → マイナスは予想外。ただし有意でないので、ページ数が売上に影響する証拠はない",
+    "マイナスは予想どおり。ページを見るほど買わなくなるのが普通",
+    "p = 0.81 なので、ページ数は売上を 81% 下げる",
+    "マイナスなので、ページ数は売上に強く影響する"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "seed/samples.json",
+    "where": "s2q4b（Sample 2 Q4(iii)）"
+   },
+   "feedback": {
+    "correct": "正解。予想 → 結果 → 有意性の順で書く。",
+    "wrong": {
+     "1": "普通はページを多く見る人ほど興味がある → プラスを予想。",
+     "2": "p 値は効果の大きさではない。",
+     "3": "符号は向き。強さや有意性は p 値で判断（0.81 → 有意でない）。"
+    },
+    "thinking": [
+     "① 常識で符号を予想（+）",
+     "② 実際の符号（−）と比べる",
+     "③ p 値で有意かを確認"
+    ],
+    "related": {
+     "lesson": "u11-l4",
+     "sample": "s2q4b",
+     "answerType": "mlr"
+    }
+   }
+  },
+  {
+   "id": "u11-q09",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "Sample 1 Q5：R Square = 0.6513 の解釈は？",
+   "exhibit": {
+    "ref": "u11-l3"
+   },
+   "options": [
+    "下位20% の所得成長率の変動の 65.13% が、4つの説明変数で説明される",
+    "予測の 65.13% が正しい",
+    "所得成長率は平均 65.13% 上がる",
+    "説明変数と Y の相関が 0.6513"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "Sample paper 1 solution.pdf",
+    "where": "Q5(d)"
+   },
+   "feedback": {
+    "correct": "正解。R² ＝ Y の変動のうちモデルで説明できる割合。",
+    "wrong": {
+     "1": "R² は「正解率」ではない。",
+     "2": "R² は係数ではない。",
+     "3": "相関（Multiple R）は 0.807。R² はその2乗。"
+    },
+    "thinking": [
+     "① R Square を読む",
+     "② 「variation in Y explained by the model」の型"
+    ],
+    "examTemplate": "R² = 0.6513: 65.13% of the variation in the income growth rate of the bottom 20% is explained by the model.",
+    "related": {
+     "sample": "s1q5d",
+     "answerType": "fit"
+    }
+   }
+  },
+  {
+   "id": "u11-q10",
+   "level": 4,
+   "kind": "order",
+   "prompt": "Week 11 Q1(vii)：VIC の農村に住む、親が30歳の世帯の予測月収。式の項を<b>出てくる順</b>に並べよう（基準 = SA、農村 = metropolitan 0）。",
+   "exhibit": {
+    "reg": {
+     "title": "Week 11 Q1 — Dep: Monthly household income ($) / base state = SA",
+     "stats": [
+      [
+       "Multiple R",
+       "0.266247"
+      ],
+      [
+       "R Square",
+       "0.070888"
+      ],
+      [
+       "Adjusted R Square",
+       "0.06917"
+      ],
+      [
+       "Standard Error",
+       "984.6445"
+      ],
+      [
+       "Observations",
+       "3795"
+      ]
+     ],
+     "anova": [
+      [
+       "Regression",
+       "7",
+       "2.8E+08",
+       "40018256",
+       "41.27615",
+       "2.21E-56"
+      ],
+      [
+       "Residual",
+       "3787",
+       "3.67E+09",
+       "969524.8"
+      ],
+      [
+       "Total",
+       "3794",
+       "3.95E+09"
+      ]
+     ],
+     "coef": [
+      [
+       "Intercept",
+       "-41.1506",
+       "121.6782",
+       "-0.33819",
+       "0.735237",
+       "-279.712",
+       "197.4105"
+      ],
+      [
+       "Age of parent",
+       "38.44664",
+       "3.198763",
+       "12.01922",
+       "1.1E-32",
+       "32.17517",
+       "44.71811"
+      ],
+      [
+       "NSW",
+       "!309.6974",
+       "67.04946",
+       "4.61894",
+       "3.99E-06",
+       "178.2409",
+       "441.154"
+      ],
+      [
+       "VIC",
+       "!183.027",
+       "68.36177",
+       "2.677329",
+       "0.007453",
+       "48.99753",
+       "317.0564"
+      ],
+      [
+       "QLD",
+       "!238.8327",
+       "70.34352",
+       "3.395234",
+       "0.000693",
+       "100.9178",
+       "376.7475"
+      ],
+      [
+       "WA",
+       "!246.4551",
+       "77.78384",
+       "3.168461",
+       "0.001545",
+       "93.95281",
+       "398.9573"
+      ],
+      [
+       "TAS/NT/ACT",
+       "!197.0507",
+       "87.72541",
+       "2.246222",
+       "0.024747",
+       "25.05712",
+       "369.0444"
+      ],
+      [
+       "metropolitan",
+       "312.7948",
+       "34.03536",
+       "9.190289",
+       "6.3E-20",
+       "246.0654",
+       "379.5242"
+      ]
+     ]
+    }
+   },
+   "items": [
+    "+ 183.03(1)",
+    "−41.15",
+    "+ 312.79(0)",
+    "+ 38.45(30)"
+   ],
+   "answer": [
+    "−41.15",
+    "+ 38.45(30)",
+    "+ 183.03(1)",
+    "+ 312.79(0)"
+   ],
+   "source": {
+    "file": "Week 11 Solution.pdf",
+    "where": "Q1(vii)"
+   },
+   "feedback": {
+    "correct": "正解。切片 → 年齢 × 30 → VIC ダミー = 1 → metropolitan = 0（他の州ダミーはすべて 0）。",
+    "thinking": [
+     "① 切片",
+     "② Age of parent × 30",
+     "③ VIC = 1（他の州は 0）",
+     "④ 農村なので metropolitan = 0"
+    ],
+    "mistakes": [
+     "公式解答の 38.47 は誤記。出力表は 38.44664 ≈ 38.45"
+    ],
+    "examTemplate": "Income-hat = −41.15 + 38.45(30) + 183.03(1) + 312.79(0)",
+    "related": {
+     "lesson": "u11-l3",
+     "answerType": "mlr"
+    }
+   }
+  },
+  {
+   "id": "u11-q11",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "Sample 1 Q5：Population growth rate の係数は +0.0049（p = 0.0089）。符号の評価として最も良いのは？",
+   "exhibit": {
+    "ref": "u11-l3"
+   },
+   "options": [
+    "予想外。人口が増えると扶養家族が増え1人あたり所得は下がりそう。若い労働力の増加など、モデルに無い要因を反映しているかもしれない",
+    "予想どおり。人口が増えれば所得も必ず増える",
+    "有意なので、符号は必ず正しい",
+    "係数が小さいので、符号は気にしなくてよい"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "Sample paper 1 solution.pdf",
+    "where": "Q5(c)"
+   },
+   "feedback": {
+    "correct": "正解。予想（−）と結果（+）が違う → 予想外 → 考えられる理由。",
+    "wrong": {
+     "1": "人口増加は扶養家族の増加などで、1人あたりの所得を下げると考えるのが普通。",
+     "2": "有意かどうかと、理論的に妥当かは別。",
+     "3": "Sample 1 Q5c は符号の妥当性に各2点。理由を書く。"
+    },
+    "thinking": [
+     "① 理論で符号を予想",
+     "② 実際の符号と比べる",
+     "③ 違えば「unexpected」＋ 理由"
+    ],
+    "related": {
+     "lesson": "u11-l4",
+     "sample": "s1q5c",
+     "answerType": "mlr"
+    }
+   }
+  },
+  {
+   "id": "u11-q12",
+   "level": 2,
+   "kind": "tapCell",
+   "prompt": "Week 9 Q3：「教育年数が月収に<b>プラス</b>の影響があるか」（5%）を p 値法で検定する。使うセルをタップしよう（このあと ÷2 する）。",
+   "exhibit": {
+    "ref": "u11-q06"
+   },
+   "answer": "coef:1:3",
+   "source": {
+    "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx",
+    "where": "Part 2&3 Q7（p = 2.32E-55 / 2）"
+   },
+   "feedback": {
+    "correct": "正解。2.32E-55 ÷ 2 = 1.16E-55 &lt; 0.05 → reject。教育は月収にプラスの影響がある十分な証拠がある。",
+    "wrong": {
+     "coef:2:3": "それは Years Experience の P-value。",
+     "coef:1:2": "それは t Stat（critical value 法で使う）。",
+     "coef:1:0": "それは係数。"
+    },
+    "thinking": [
+     "① 行：Years Education",
+     "② 列：P-value",
+     "③ 片側・同じ向き → ÷2"
+    ],
+    "related": {
+     "answerType": "test"
+    }
+   }
+  },
+  {
+   "id": "u11-q13",
+   "level": 5,
+   "kind": "written",
+   "marks": 3,
+   "marksEstimated": true,
+   "prompt": "Y = child's reading score out of 100, X1 = hours of screen time in an average week, X2 = mother's reading score out of 100. Interpret the coefficient of Mother's Reading Score in this model. Is the magnitude of this value what you would have expected? Explain.",
+   "exhibit": {
+    "ref": "u11-l1"
+   },
+   "source": {
+    "file": "ETW1001_W9_Tutorial.pdf",
+    "where": "Q1(a)（解答：W09 Tutorial exercise - Part 2 (solution).pdf）"
+   },
+   "answerSource": "official+edited",
+   "modelAnswer": "<p>Take two children who watch the same amount of TV per week, but one child's mother scored one mark more on her reading test than the other mother. The model predicts that this child scores 0.582 marks more on their reading test, on average.</p><p>Yes, this is what we would expect. A positive value makes sense because a mother's reading ability is passed on through genetics and the home environment (e.g. reading together). But it should be less than one-to-one (0.582 &lt; 1), because the mother's ability only partly determines the child's reading ability.</p>",
+   "rubric": [
+    {
+     "label": "他を一定（TV の時間が同じ）",
+     "marks": 1,
+     "keywords": [
+      [
+       "same amount of tv",
+       "same hours",
+       "holding",
+       "constant",
+       "same tv"
+      ]
+     ]
+    },
+    {
+     "label": "母親が1点高いと子どもは 0.582 点高い、on average",
+     "marks": 1,
+     "keywords": [
+      [
+       "0.58"
+      ],
+      [
+       "on average"
+      ]
+     ]
+    },
+    {
+     "label": "期待どおり：プラスだが 1 未満（理由つき）",
+     "marks": 1,
+     "keywords": [
+      [
+       "expect",
+       "makes sense",
+       "reasonable"
+      ],
+      [
+       "less than one",
+       "less than 1",
+       "<1",
+       "partial",
+       "partly",
+       "one-to-one",
+       "one to one",
+       "genetic"
+      ]
+     ]
+    }
+   ],
+   "feedback": {
+    "thinking": [
+     "① 他の変数（TV）を同じにする",
+     "② 母親のスコア +1 → 子ども +0.582",
+     "③ 符号（+）と大きさ（&lt; 1）を常識で評価"
+    ],
+    "related": {
+     "lesson": "u11-l2",
+     "answerType": "mlr"
+    }
+   }
+  },
+  {
+   "id": "u11-q14",
+   "level": 5,
+   "kind": "written",
+   "marks": 6,
+   "marksEstimated": true,
+   "prompt": "Weekly rent ($) is regressed on the number of bedrooms (beds) and the number of bathrooms (baths). (a) Explain what the intercept measures and discuss whether it is meaningful. (b) Interpret the coefficient on beds. (c) You can either (1) rent a one-bedroom, one-bathroom property, or (2) rent a two-bedroom, one-bathroom property and rent out the second room for $150 per week. Show how you would use the model to calculate the predicted cost of each and determine which is likely to be cheaper.",
+   "exhibit": {
+    "ref": "u11-l2"
+   },
+   "source": {
+    "file": "ETW1001_W9_Tutorial.pdf",
+    "where": "Q2（解答：W09 Tutorial exercise - Part 2 (solution).pdf）"
+   },
+   "answerSource": "official+edited",
+   "warn": "公式解答は切片を「$195」と書いていますが、出力は 195.68（$195.68）です。",
+   "modelAnswer": "<p>(a) The intercept is the predicted weekly rent for a property with zero bedrooms and zero bathrooms: $195.68 per week. This is not particularly meaningful, as almost all homes have at least one bedroom and one bathroom.</p><p>(b) Holding the number of bathrooms constant, each extra bedroom increases weekly rent by $190.37, on average.</p><p>(c) Option 1: 195.68 + 190.37(1) + 113.72(1) ≈ $499.8 per week.</p><p>Option 2: 195.68 + 190.37(2) + 113.72(1) − 150 ≈ $540.1 per week.</p><p>Option 1 (the one-bedroom, one-bathroom property) is predicted to be cheaper.</p>",
+   "rubric": [
+    {
+     "label": "(a) 切片：寝室0・浴室0の家賃 $195.68",
+     "marks": 1,
+     "keywords": [
+      [
+       "195.6",
+       "195.7"
+      ],
+      [
+       "zero",
+       "no bedroom",
+       "0 bed",
+       "no bed"
+      ]
+     ]
+    },
+    {
+     "label": "(a) あまり意味がない（理由つき）",
+     "marks": 1,
+     "keywords": [
+      [
+       "not meaningful",
+       "not particularly meaningful",
+       "not very meaningful",
+       "meaningless",
+       "not realistic",
+       "unrealistic",
+       "no sense",
+       "not make sense"
+      ]
+     ]
+    },
+    {
+     "label": "(b) 浴室の数を一定、寝室1つで $190.37、on average",
+     "marks": 2,
+     "keywords": [
+      [
+       "190.37"
+      ],
+      [
+       "bathroom",
+       "holding",
+       "constant",
+       "same"
+      ],
+      [
+       "on average"
+      ]
+     ]
+    },
+    {
+     "label": "(c) 2つの式（−150 を含む）",
+     "marks": 1,
+     "keywords": [
+      [
+       "190.37(2)",
+       "190.37×2",
+       "190.37*2",
+       "190.37 × 2",
+       "2(190.37)",
+       "190.37 x 2"
+      ],
+      [
+       "150"
+      ]
+     ]
+    },
+    {
+     "label": "(c) 結論：option 1 が安い",
+     "marks": 1,
+     "keywords": [
+      [
+       "option 1",
+       "first option",
+       "(1)",
+       "one-bedroom",
+       "one bedroom",
+       "option (1)"
+      ],
+      [
+       "cheaper",
+       "cheapest",
+       "less"
+      ]
+     ]
+    }
+   ],
+   "feedback": {
+    "thinking": [
+     "① 切片 = すべての X が 0",
+     "② 現実にありえるか判断",
+     "③ beds の係数：baths を一定",
+     "④ 予測：係数 × 値、又貸しは −150"
+    ],
+    "related": {
+     "lesson": "u11-l3",
+     "answerType": "mlr"
+    }
+   }
+  },
+  {
+   "id": "u11-q15",
+   "level": 5,
+   "kind": "written",
+   "marks": 5,
+   "prompt": "The model includes the metropolitan dummy, age of the parent, and state dummies (base: SA). (vi) Interpret the coefficient of 'age of parent'. [3 marks] (vii) Take a rural household located in Victoria, with a parent who is 30 years old. What does the model predict their income will be? Show the equation without calculating it. [2 marks]",
+   "exhibit": {
+    "reg": {
+     "title": "Week 11 Q1 — Dep: Monthly household income ($) / base state = SA",
+     "stats": [
+      [
+       "Multiple R",
+       "0.266247"
+      ],
+      [
+       "R Square",
+       "0.070888"
+      ],
+      [
+       "Adjusted R Square",
+       "0.06917"
+      ],
+      [
+       "Standard Error",
+       "984.6445"
+      ],
+      [
+       "Observations",
+       "3795"
+      ]
+     ],
+     "anova": [
+      [
+       "Regression",
+       "7",
+       "2.8E+08",
+       "40018256",
+       "41.27615",
+       "2.21E-56"
+      ],
+      [
+       "Residual",
+       "3787",
+       "3.67E+09",
+       "969524.8"
+      ],
+      [
+       "Total",
+       "3794",
+       "3.95E+09"
+      ]
+     ],
+     "coef": [
+      [
+       "Intercept",
+       "-41.1506",
+       "121.6782",
+       "-0.33819",
+       "0.735237",
+       "-279.712",
+       "197.4105"
+      ],
+      [
+       "Age of parent",
+       "38.44664",
+       "3.198763",
+       "12.01922",
+       "1.1E-32",
+       "32.17517",
+       "44.71811"
+      ],
+      [
+       "NSW",
+       "!309.6974",
+       "67.04946",
+       "4.61894",
+       "3.99E-06",
+       "178.2409",
+       "441.154"
+      ],
+      [
+       "VIC",
+       "!183.027",
+       "68.36177",
+       "2.677329",
+       "0.007453",
+       "48.99753",
+       "317.0564"
+      ],
+      [
+       "QLD",
+       "!238.8327",
+       "70.34352",
+       "3.395234",
+       "0.000693",
+       "100.9178",
+       "376.7475"
+      ],
+      [
+       "WA",
+       "!246.4551",
+       "77.78384",
+       "3.168461",
+       "0.001545",
+       "93.95281",
+       "398.9573"
+      ],
+      [
+       "TAS/NT/ACT",
+       "!197.0507",
+       "87.72541",
+       "2.246222",
+       "0.024747",
+       "25.05712",
+       "369.0444"
+      ],
+      [
+       "metropolitan",
+       "312.7948",
+       "34.03536",
+       "9.190289",
+       "6.3E-20",
+       "246.0654",
+       "379.5242"
+      ]
+     ]
+    }
+   },
+   "source": {
+    "file": "Week 11 Questions.pdf",
+    "where": "Q1(vi)(vii)（解答：Week 11 Solution.pdf）"
+   },
+   "answerSource": "official+edited",
+   "warn": "公式解答は年齢の係数を「$38.47」と書いていますが、出力表は 38.44664（≈ $38.45）です。表の値を使ってください。",
+   "modelAnswer": "<p>(vi) Take two households from the same state and the same region (metropolitan or rural), but one has a parent who is one year older than the other. The model predicts that the household with the older parent has a monthly income $38.45 higher, on average.</p><p>(vii) Income-hat = −41.15 + 38.45(30) + 183.03(1) + 312.79(0)</p><p>(All other state dummies are 0; metropolitan = 0 because the household is rural.)</p>",
+   "rubric": [
+    {
+     "label": "(vi) 他を一定（同じ州・同じ地域）",
+     "marks": 1,
+     "keywords": [
+      [
+       "same state",
+       "holding",
+       "constant",
+       "identical"
+      ]
+     ]
+    },
+    {
+     "label": "(vi) 親が1歳上だと月収 $38.45 高い",
+     "marks": 1,
+     "keywords": [
+      [
+       "38.4"
+      ],
+      [
+       "one year",
+       "1 year",
+       "additional year",
+       "extra year",
+       "each year",
+       "one more year"
+      ]
+     ]
+    },
+    {
+     "label": "(vi) on average",
+     "marks": 1,
+     "keywords": [
+      [
+       "on average"
+      ]
+     ]
+    },
+    {
+     "label": "(vii) 切片 + 年齢 × 30 + VIC × 1",
+     "marks": 1,
+     "keywords": [
+      [
+       "-41.15"
+      ],
+      [
+       "(30)",
+       "×30",
+       "*30",
+       "x 30",
+       "× 30"
+      ],
+      [
+       "183.03"
+      ]
+     ]
+    },
+    {
+     "label": "(vii) metropolitan = 0（農村）",
+     "marks": 1,
+     "keywords": [
+      [
+       "312.79(0)",
+       "312.79 × 0",
+       "312.79×0",
+       "metropolitan = 0",
+       "metropolitan=0",
+       "metropolitan is 0",
+       "rural"
+      ]
+     ]
+    }
+   ],
+   "forbidden": [
+    {
+     "pattern": "38.47",
+     "message": "出力表の値は 38.45（38.47 は公式解答の誤記）"
+    }
+   ],
+   "feedback": {
+    "thinking": [
+     "① 他を一定の型で年齢を解釈",
+     "② 予測：切片 + 38.45 × 30 + VIC の係数",
+     "③ 農村なので metropolitan = 0"
+    ],
+    "related": {
+     "lesson": "u11-l3",
+     "answerType": "mlr"
+    }
+   }
+  }
+ ]
+}

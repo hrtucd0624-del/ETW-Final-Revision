@@ -1,0 +1,1397 @@
+{
+ "id": "unit-10",
+ "title": "単回帰②：係数の検定",
+ "slot": [
+  "D"
+ ],
+ "goalSample": [
+  "s2q3b",
+  "s1q2b2",
+  "s1q4b"
+ ],
+ "lessons": [
+  {
+   "id": "u10-l1",
+   "title": "係数の検定で何を確かめる？",
+   "steps": [
+    {
+     "type": "explain",
+     "body": "<p>回帰の傾き b<sub>1</sub> は<b>標本</b>（手元のデータ）から計算した値。本当に知りたいのは<b>母集団</b>の傾き β<sub>1</sub> です。</p><p>「X は Y に影響するか？」＝「β<sub>1</sub> は 0 ではないか？」を確かめるのが係数の検定。</p><ul><li><b>H<sub>0</sub>: β<sub>1</sub> = 0</b>（影響なし）← いつもこれ</li><li><b>H<sub>1</sub></b>：問題文の言葉で決める（≠ 0、&gt; 0、&lt; 0）</li></ul><p>例：Week 8 のオーストラリアのデータ（1978〜2009年の四半期、128期）。Y = インフレ率（%）、X = 失業率（%）。</p>",
+     "exhibit": {
+      "reg": {
+       "title": "Week 8 Part 1 — Dep: Inflation rate (%) / Exp: Unemployment rate (%)",
+       "stats": [
+        [
+         "Multiple R",
+         "0.0619"
+        ],
+        [
+         "R Square",
+         "0.00383"
+        ],
+        [
+         "Adjusted R Square",
+         "-0.00408"
+        ],
+        [
+         "Standard Error",
+         "3.3084"
+        ],
+        [
+         "Observations",
+         "128"
+        ]
+       ],
+       "anova": [
+        [
+         "Regression",
+         "1",
+         "5.2993",
+         "5.2993",
+         "0.4841",
+         "0.4878"
+        ],
+        [
+         "Residual",
+         "126",
+         "1379.1607",
+         "10.9457"
+        ],
+        [
+         "Total",
+         "127",
+         "1384.46"
+        ]
+       ],
+       "coef": [
+        [
+         "Intercept",
+         "5.7667",
+         "1.2270",
+         "4.6997",
+         "6.72E-06",
+         "3.3384",
+         "8.1949"
+        ],
+        [
+         "unemployment",
+         "!-0.1151",
+         "!0.1654",
+         "!-0.6958",
+         "!0.4878",
+         "-0.4424",
+         "0.2122"
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "type": "explain",
+     "body": "<p>検定は<b>4ステップ</b>で書きます（答案の鉄則）。</p><ol><li><b>H<sub>0</sub> と H<sub>1</sub></b> を β で書く（文脈の言葉も添える）</li><li><b>有意水準 α</b>（問題文の 1%、5% …）</li><li><b>検定統計量 or p 値</b>：t Stat = 係数 ÷ SE（−0.1151 ÷ 0.1654 ≈ −0.696）、Excel の P-value は<b>両側</b></li><li><b>判断と結論</b>：p &lt; α なら reject H<sub>0</sub> → sufficient evidence。p &gt; α なら do not reject H<sub>0</sub> → insufficient evidence。<b>accept H<sub>0</sub> とは書かない</b></li></ol><p>上の例（両側、5%）：p = 0.4878 &gt; 0.05 → do not reject H<sub>0</sub>。失業率とインフレ率に関係があるという十分な証拠はない。</p>"
+    },
+    {
+     "type": "check",
+     "question": {
+      "id": "u10-l1-c1",
+      "level": 1,
+      "kind": "choice",
+      "prompt": "Week 8 Part 1 で「失業率とインフレ率に<b>関係があるか</b>」を検定する。H<sub>1</sub> は？",
+      "options": [
+       "H<sub>1</sub>: β<sub>1</sub> ≠ 0",
+       "H<sub>1</sub>: β<sub>1</sub> &gt; 0",
+       "H<sub>1</sub>: β<sub>1</sub> &lt; 0",
+       "H<sub>1</sub>: β<sub>1</sub> = 0"
+      ],
+      "answer": 0,
+      "source": {
+       "file": "ETW1001_Week 8_Excel Solution.xlsx",
+       "where": "Part 1 (b)"
+      },
+      "feedback": {
+       "correct": "正解。「関係があるか」「影響があるか（any impact）」は向きを決めていないので両側（≠）。",
+       "wrong": {
+        "1": "&gt; は「正の関係」「増える」と言われたとき（片側）。",
+        "2": "&lt; は「負の関係」「減る」と言われたとき（片側）。",
+        "3": "= 0 は H<sub>0</sub>。"
+       },
+       "thinking": [
+        "① 問題文の言葉を見る：relationship / any impact",
+        "② 向きの指定なし → 両側 → ≠"
+       ],
+       "related": {
+        "answerType": "test"
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "u10-l2",
+   "title": "両側か片側か、p 値を2で割るか",
+   "steps": [
+    {
+     "type": "explain",
+     "body": "<p>H<sub>1</sub> の向きは<b>問題文の言葉</b>で決まります。</p><table class=\"plain\"><tr><td>any impact / relationship / affect</td><td>H<sub>1</sub>: β ≠ 0（両側）</td></tr><tr><td>positive / increase / more than / stronger</td><td>H<sub>1</sub>: β &gt; 0（右片側）</td></tr><tr><td>negative / decrease / trade-off / less</td><td>H<sub>1</sub>: β &lt; 0（左片側）</td></tr></table><p style=\"margin-top:10px\">Excel の P-value は<b>両側</b>。片側検定では：</p><ul><li>係数の符号が H<sub>1</sub> と<b>同じ向き</b> → <b>p ÷ 2</b></li><li>係数の符号が H<sub>1</sub> と<b>逆</b> → 棄却できない（次のレッスン）</li></ul><p>例：Sample 2 Model 1、「時間は売上に<b>プラスの</b>影響があるか」→ H<sub>1</sub>: β<sub>1</sub> &gt; 0。係数 1.681 はプラスなので p = 3.42E-07 ÷ 2 = 1.71E-07 &lt; 0.01 → reject H<sub>0</sub>。</p>"
+    },
+    {
+     "type": "explain",
+     "body": "<p><b>critical value（臨界値）法</b>でも同じ結論になります。問題文が critical value を指定したらこちらで。</p><ul><li>両側：|t Stat| &gt; |t<sub>crit</sub>| なら reject</li><li>左片側（H<sub>1</sub>: β &lt; 0）：t Stat &lt; −t<sub>crit</sub> なら reject</li><li>右片側（H<sub>1</sub>: β &gt; 0）：t Stat &gt; t<sub>crit</sub> なら reject</li></ul><p>例：Week 8 乳児死亡率（1%、t<sub>crit</sub> = −2.614）。t = −10.573 → |−10.573| &gt; 2.614 → reject H<sub>0</sub>。GDP は乳児死亡率に影響するという十分な証拠がある。</p><p class=\"small muted\">注意：Week 8 QA Q1(b) は α = 0.05 と書いているが、問題は 1% なので <b>α = 0.01</b> が正しい。</p>"
+    },
+    {
+     "type": "check",
+     "question": {
+      "id": "u10-l2-c1",
+      "level": 1,
+      "kind": "choice",
+      "prompt": "Sample 2 Model 1：H<sub>1</sub>: β<sub>1</sub> &gt; 0、Time の係数 1.681、Excel の P-value = 3.42E-07。片側の p 値は？",
+      "options": [
+       "3.42E-07 ÷ 2 = 1.71E-07",
+       "3.42E-07 そのまま",
+       "3.42E-07 × 2",
+       "1 − 3.42E-07"
+      ],
+      "answer": 0,
+      "source": {
+       "file": "Solution  Paper 2_Set 2.pdf",
+       "where": "Q3(iii)"
+      },
+      "feedback": {
+       "correct": "正解。係数がプラス（H<sub>1</sub> と同じ向き）なので、両側の p 値を 2 で割る。",
+       "wrong": {
+        "1": "Excel の P-value は両側の値。片側検定では 2 で割る。",
+        "2": "2倍にはしない。片側は両側の半分。",
+        "3": "これは係数の符号が H<sub>1</sub> と逆のときの考え方に近い（Unit 10 レッスン3）。今回は同じ向き。"
+       },
+       "thinking": [
+        "① H<sub>1</sub>: β &gt; 0 → 片側",
+        "② 係数 +1.681 は H<sub>1</sub> と同じ向き",
+        "③ p ÷ 2"
+       ],
+       "related": {
+        "sample": "s2q3b",
+        "answerType": "test"
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "u10-l3",
+   "title": "Phillips curve と stagflation：符号が逆のとき",
+   "steps": [
+    {
+     "type": "explain",
+     "body": "<p>Week 8 では同じ出力で3つの検定をします（係数 −0.1151、P-value 0.4878）。</p><ol><li><b>関係はあるか</b>（両側）：H<sub>1</sub>: β<sub>1</sub> ≠ 0。p = 0.4878 &gt; 0.05 → do not reject。</li><li><b>Phillips curve</b>（失業率が下がるとインフレ率が上がる＝<b>負の関係</b>）：H<sub>1</sub>: β<sub>1</sub> &lt; 0。係数はマイナス（同じ向き）→ p = 0.4878 ÷ 2 = 0.2439 &gt; 0.05 → do not reject。トレードオフの十分な証拠はない。</li><li><b>Stagflation</b>（インフレと失業が同じ向きに動く＝<b>正の関係</b>）：H<sub>1</sub>: β<sub>1</sub> &gt; 0。でも係数は<b>マイナス</b>！</li></ol>"
+    },
+    {
+     "type": "explain",
+     "body": "<p><b>係数の符号が H<sub>1</sub> と逆</b>のとき：</p><ul><li>データは「どちらかといえば負の関係」を示しているので、正の関係の証拠には<b>絶対にならない</b>。</li><li>だから<b>計算しなくても do not reject H<sub>0</sub></b> と分かる。</li><li>片側 p 値は 1 − 0.4878 ÷ 2 ≈ 0.756（0.5 より大きい）。2 で割った 0.2439 を使うのは<b>間違い</b>。</li></ul><div class=\"tmpl\" lang=\"en\">The estimated coefficient is negative, which is the opposite direction to H<sub>1</sub>: β<sub>1</sub> &gt; 0. So the data cannot provide evidence of a positive relationship, and we do not reject H<sub>0</sub> without needing to calculate the p-value.</div>"
+    },
+    {
+     "type": "check",
+     "question": {
+      "id": "u10-l3-c1",
+      "level": 1,
+      "kind": "choice",
+      "prompt": "Stagflation の検定（H<sub>1</sub>: β<sub>1</sub> &gt; 0）。係数 = −0.1151、Excel の P-value = 0.4878。正しい判断は？",
+      "options": [
+       "係数の符号が H<sub>1</sub> と逆なので、do not reject H<sub>0</sub>（計算するまでもない）",
+       "p = 0.4878 ÷ 2 = 0.2439 &lt; 0.5 なので reject H<sub>0</sub>",
+       "p = 0.2439 &gt; 0.05 だが、片側なので reject H<sub>0</sub>",
+       "係数がマイナスなので、正の関係が証明された"
+      ],
+      "answer": 0,
+      "source": {
+       "file": "ETW1001_Week 8_Excel Solution.xlsx",
+       "where": "Part 3 (c)"
+      },
+      "feedback": {
+       "correct": "正解。符号が逆向き → 正の関係の証拠にはならない。",
+       "wrong": {
+        "1": "比べる相手は α（0.05）。しかも符号が逆向きのときは ÷2 した値を使わない。",
+        "2": "片側でも p &gt; α なら棄却できない。",
+        "3": "マイナスの係数は負の関係を示す。正の関係の証拠ではない。"
+       },
+       "thinking": [
+        "① H<sub>1</sub> の向き（&gt; 0）",
+        "② 係数の符号（−）",
+        "③ 逆向き → do not reject"
+       ],
+       "related": {
+        "answerType": "test"
+       }
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "questions": [
+  {
+   "id": "u10-q01",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "Phillips curve は「失業率が下がるとインフレ率が上がる（トレードオフ）」という理論。Y = インフレ率、X = 失業率で、Phillips curve を支持するかを検定するときの H<sub>1</sub> は？",
+   "options": [
+    "H<sub>1</sub>: β<sub>1</sub> &lt; 0",
+    "H<sub>1</sub>: β<sub>1</sub> &gt; 0",
+    "H<sub>1</sub>: β<sub>1</sub> ≠ 0",
+    "H<sub>1</sub>: β<sub>0</sub> &lt; 0"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "ETW1001_Week 8_Excel Solution.xlsx",
+    "where": "Part 2 (a)"
+   },
+   "feedback": {
+    "correct": "正解。X が下がると Y が上がる＝逆向きに動く＝負の関係 → β<sub>1</sub> &lt; 0。",
+    "wrong": {
+     "1": "&gt; 0 は「同じ向きに動く」（stagflation）のとき。",
+     "2": "理論が向きを決めているので片側検定。≠ は向きが分からないとき。",
+     "3": "検定するのは傾き β<sub>1</sub>。切片 β<sub>0</sub> ではない。"
+    },
+    "thinking": [
+     "① 理論を「X と Y の向き」に直す",
+     "② 逆向き → 負 → &lt; 0"
+    ],
+    "mistakes": [
+     "Phillips curve（負）と stagflation（正）を逆にする"
+    ],
+    "related": {
+     "lesson": "u10-l3",
+     "answerType": "test"
+    }
+   }
+  },
+  {
+   "id": "u10-q02",
+   "level": 2,
+   "kind": "tapCell",
+   "prompt": "Week 8 Part 1：失業率がインフレ率に影響するか（両側、5%）を p 値法で検定する。α と比べる値をタップしよう。",
+   "exhibit": {
+    "ref": "u10-l1"
+   },
+   "answer": "coef:1:3",
+   "source": {
+    "file": "ETW1001_Week 8_Excel Solution.xlsx",
+    "where": "Part 1"
+   },
+   "feedback": {
+    "correct": "正解。unemployment の行 × P-value 列 = 0.4878（両側なのでそのまま使う）。",
+    "wrong": {
+     "coef:0:3": "それは切片の P-value。検定するのは失業率（傾き）。",
+     "coef:1:2": "それは t Stat。critical value 法なら使うが、p 値法では P-value。",
+     "coef:1:0": "それは係数そのもの。",
+     "anova:0:4": "それは ANOVA の Significance F（モデル全体の検定）。単回帰では傾きの P-value と同じ値になるが、試験では係数の表の P-value を使う。"
+    },
+    "thinking": [
+     "① 行：検定したい変数（unemployment）",
+     "② 列：P-value",
+     "③ 両側なのでそのまま α と比べる"
+    ],
+    "related": {
+     "lesson": "u10-l1"
+    }
+   }
+  },
+  {
+   "id": "u10-q03",
+   "level": 3,
+   "kind": "fillChips",
+   "prompt": "Phillips curve の検定（H<sub>1</sub>: β<sub>1</sub> &lt; 0、α = 0.05）。p 値法の文を完成させよう。",
+   "exhibit": {
+    "ref": "u10-l1"
+   },
+   "template": "The one-sided p-value is [1] / 2 = [2]. Since [2] [3] 0.05, we [4] H0.",
+   "chips": {
+    "1": [
+     "0.4878",
+     "0.6958",
+     "6.72E-06"
+    ],
+    "2": [
+     "0.2439",
+     "0.9756",
+     "0.4878"
+    ],
+    "3": [
+     ">",
+     "<"
+    ],
+    "4": [
+     "do not reject",
+     "reject",
+     "accept"
+    ]
+   },
+   "answer": {
+    "1": "0.4878",
+    "2": "0.2439",
+    "3": ">",
+    "4": "do not reject"
+   },
+   "source": {
+    "file": "ETW1001_Week 8_Excel Solution.xlsx",
+    "where": "Part 2"
+   },
+   "feedback": {
+    "correct": "正解。係数がマイナス（H<sub>1</sub> と同じ向き）なので ÷2。0.2439 &gt; 0.05 → do not reject。",
+    "wrong": {
+     "1:0.6958": "0.6958 は t Stat の絶対値。p 値は P-value 列。",
+     "1:6.72E-06": "それは切片の P-value。",
+     "2:0.9756": "÷2 ではなく ×2 してしまっている。",
+     "2:0.4878": "片側検定なので 2 で割る。",
+     "3:<": "0.2439 は 0.05 より大きい。",
+     "4:reject": "p &gt; α なら棄却しない。",
+     "4:accept": "「accept H0」とは書かない。do not reject H0。"
+    },
+    "thinking": [
+     "① 係数 −0.1151、H<sub>1</sub>: β &lt; 0 → 同じ向き",
+     "② p = 0.4878 ÷ 2 = 0.2439",
+     "③ 0.2439 &gt; 0.05 → do not reject"
+    ],
+    "examTemplate": "Since the one-sided p-value (0.4878 / 2 = 0.2439) &gt; α = 0.05, we do not reject H<sub>0</sub>. There is insufficient evidence at the 5% level of a trade-off (negative relationship) between inflation and unemployment.",
+    "related": {
+     "lesson": "u10-l2",
+     "answerType": "test"
+    }
+   }
+  },
+  {
+   "id": "u10-q04",
+   "level": 4,
+   "kind": "order",
+   "prompt": "係数の仮説検定（p 値法）の答案を、正しい順に並べよう。",
+   "answer": [
+    "H0: β1 = 0 と H1（≠ / > / <）を文脈つきで書く",
+    "有意水準 α を書く（例：α = 0.05）",
+    "P-value を書く（片側で符号が同じ向きなら ÷2）",
+    "p と α を比べて reject / do not reject H0",
+    "文脈の言葉で結論（sufficient / insufficient evidence that …）"
+   ],
+   "source": {
+    "file": "seed/answer-types.json",
+    "where": "test（仮説検定の4ステップ）"
+   },
+   "feedback": {
+    "correct": "これが4ステップ（＋結論）。毎回この順で書けば部分点を落とさない。",
+    "thinking": [
+     "① 仮説 → ② α → ③ p 値 → ④ 判断 → ⑤ 結論"
+    ],
+    "mistakes": [
+     "結論を「reject H0」だけで終わらせる（文脈の結論が無いと減点）",
+     "α を書き忘れる"
+    ],
+    "related": {
+     "lesson": "u10-l1",
+     "answerType": "test"
+    }
+   }
+  },
+  {
+   "id": "u10-q05",
+   "level": 3,
+   "kind": "fillChips",
+   "prompt": "Week 8 乳児死亡率（Q1(b)）：GDP は乳児死亡率に影響するか。critical value 法、<b>1%</b>（t<sub>crit</sub> = −2.614）。",
+   "exhibit": {
+    "reg": {
+     "title": "Week 8 Table 1 — Dep: Infant Mortality Rate / Exp: Real GDP per capita",
+     "stats": [
+      [
+       "Multiple R",
+       "0.678561"
+      ],
+      [
+       "R Square",
+       "0.460445"
+      ],
+      [
+       "Adjusted R Square",
+       "0.456327"
+      ],
+      [
+       "Standard Error",
+       "29.22538"
+      ],
+      [
+       "Observations",
+       "133"
+      ]
+     ],
+     "anova": [
+      [
+       "Regression",
+       "1",
+       "95484.85",
+       "95484.85",
+       "111.7929",
+       "2.85E-19"
+      ],
+      [
+       "Residual",
+       "131",
+       "111890.1",
+       "854.1229"
+      ],
+      [
+       "Total",
+       "132",
+       "207375"
+      ]
+     ],
+     "coef": [
+      [
+       "Intercept",
+       "!70.7372",
+       "3.492166",
+       "20.25597",
+       "3.49E-42",
+       "63.82887",
+       "77.64553"
+      ],
+      [
+       "Real GDP per Capita",
+       "!-0.00489",
+       "0.000463",
+       "-10.5732",
+       "2.85E-19",
+       "-0.00581",
+       "-0.00398"
+      ]
+     ]
+    },
+    "note": "（出力は Unit 9 と同じ：Real GDP per Capita の t Stat = −10.5732）"
+   },
+   "template": "H0: β1 = 0, H1: β1 [1] 0, α = [2]. Since |−10.573| [3] |−2.614|, we [4] H0.",
+   "chips": {
+    "1": [
+     "≠",
+     "<",
+     ">"
+    ],
+    "2": [
+     "0.01",
+     "0.05",
+     "0.10"
+    ],
+    "3": [
+     ">",
+     "<"
+    ],
+    "4": [
+     "reject",
+     "do not reject"
+    ]
+   },
+   "answer": {
+    "1": "≠",
+    "2": "0.01",
+    "3": ">",
+    "4": "reject"
+   },
+   "source": {
+    "file": "ETW1001_Week 8_QA.pdf",
+    "where": "Q1(b)"
+   },
+   "feedback": {
+    "correct": "正解。「any impact at all」→ 両側。|t| が臨界値より大きい → reject。",
+    "wrong": {
+     "1:<": "問題文は「any impact」（影響があるか）なので両側。",
+     "1:>": "問題文は「any impact」なので両側。",
+     "2:0.05": "問題は 1% の水準。Week 8 QA の「α = 0.05」は誤り（§8.3）。",
+     "2:0.10": "問題は 1% の水準。",
+     "3:<": "10.573 は 2.614 より大きい。",
+     "4:do not reject": "|t| &gt; |t<sub>crit</sub>| なら棄却する。"
+    },
+    "thinking": [
+     "① any impact → ≠",
+     "② α = 0.01",
+     "③ |t Stat| と |t<sub>crit</sub>| を比べる",
+     "④ 大きければ reject"
+    ],
+    "examTemplate": "Since |t| = 10.573 &gt; 2.614, we reject H<sub>0</sub>. There is sufficient evidence at the 1% level that real GDP per capita has an impact on infant mortality.",
+    "related": {
+     "lesson": "u10-l2",
+     "answerType": "test"
+    }
+   }
+  },
+  {
+   "id": "u10-q06",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "t Stat はどうやって計算されている？（Week 8 Part 1：係数 −0.1151、SE 0.1654、t Stat −0.6958）",
+   "exhibit": {
+    "ref": "u10-l1"
+   },
+   "options": [
+    "t = 係数 ÷ Standard Error = −0.1151 ÷ 0.1654",
+    "t = 係数 × Standard Error",
+    "t = Standard Error ÷ 係数",
+    "t = 係数 ÷ 回帰の Standard Error（3.3084）"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "seed/answer-types.json",
+    "where": "formulas: Test statistic (β)"
+   },
+   "feedback": {
+    "correct": "正解。H<sub>0</sub>: β = 0 のもとで t = (b − 0) ÷ SE(b)。",
+    "wrong": {
+     "1": "掛けるのではなく割る。",
+     "2": "逆。係数 ÷ SE。",
+     "3": "使うのは係数の表の Standard Error（その係数の SE）。上の 3.3084 は回帰の SE（予測誤差）で別物。"
+    },
+    "thinking": [
+     "① 係数の行の Coefficients",
+     "② 同じ行の Standard Error",
+     "③ 割り算"
+    ],
+    "mistakes": [
+     "係数の SE と回帰の SE を取り違える"
+    ],
+    "related": {
+     "lesson": "u10-l1",
+     "answerType": "test"
+    }
+   }
+  },
+  {
+   "id": "u10-q07",
+   "level": 1,
+   "kind": "multi",
+   "prompt": "Sample 1 Q4：Low income ダミーの係数 0.0111、P-value 0.1272。「低所得国の下位20%の所得成長は<b>より強い</b>か」を検定する。正しいものを<b>すべて</b>選ぼう。",
+   "exhibit": {
+    "reg": {
+     "title": "Sample 1 Q4 — Dep: Income growth, Bottom 20% / Exp: Low income dummy",
+     "stats": [
+      [
+       "Multiple R",
+       "0.0932"
+      ],
+      [
+       "R Square",
+       "0.00869"
+      ],
+      [
+       "Adjusted R Square",
+       "0.00498"
+      ],
+      [
+       "Standard Error",
+       "0.0420"
+      ],
+      [
+       "Observations",
+       "269"
+      ]
+     ],
+     "coef": [
+      [
+       "Intercept",
+       "0.014223",
+       "0.002768",
+       "5.139",
+       "5.35E-07",
+       "0.008774",
+       "0.019673"
+      ],
+      [
+       "Low income",
+       "!0.011121",
+       "0.007269",
+       "1.530",
+       "!0.1272",
+       "-0.00319",
+       "0.025434"
+      ]
+     ]
+    }
+   },
+   "options": [
+    "H<sub>1</sub>: β<sub>1</sub> &gt; 0（片側）",
+    "片側 p 値 = 0.1272 ÷ 2 = 0.0636",
+    "5% では reject H<sub>0</sub>",
+    "10% なら reject H<sub>0</sub>",
+    "p 値が 0.05 より大きいので H<sub>0</sub> が正しいと証明された"
+   ],
+   "answer": [
+    0,
+    1,
+    3
+   ],
+   "source": {
+    "file": "Sample paper 1 solution.pdf",
+    "where": "Q4(b)"
+   },
+   "feedback": {
+    "correct": "正解。0.0636 は 0.05 より大きく 0.10 より小さい → 有意水準で結論が変わる。",
+    "wrong": {
+     "2": "0.0636 &gt; 0.05 なので 5% では棄却できない。",
+     "4": "棄却できない＝H<sub>0</sub> が正しいという意味ではない。「証拠が不十分」なだけ。",
+     "miss:0": "「stronger（より強い）」→ 正の向き → H<sub>1</sub>: β<sub>1</sub> &gt; 0。",
+     "miss:1": "係数 +0.0111 は H<sub>1</sub> と同じ向き → ÷2。",
+     "miss:3": "0.0636 &lt; 0.10 なので、10% なら棄却できる。"
+    },
+    "thinking": [
+     "① stronger → &gt; 0",
+     "② 同じ向き → ÷2 = 0.0636",
+     "③ 5%：0.0636 &gt; 0.05 → do not reject",
+     "④ 10%：0.0636 &lt; 0.10 → reject"
+    ],
+    "mistakes": [
+     "÷2 を忘れて 0.1272 と比べる（Sample 1 で p ÷2 は 1 点）"
+    ],
+    "related": {
+     "sample": "s1q4b",
+     "answerType": "test"
+    }
+   }
+  },
+  {
+   "id": "u10-q08",
+   "level": 4,
+   "kind": "buildSentence",
+   "prompt": "Sample 2 Q3(iii) の結論文を組み立てよう（p = 1.71E-07 &lt; 0.01 → reject H<sub>0</sub>）。",
+   "chips": [
+    "There is sufficient evidence",
+    "at the 1% level",
+    "that time spent viewing the pages",
+    "has a positive impact",
+    "on sales of the online product.",
+    "There is insufficient evidence",
+    "proves that"
+   ],
+   "answer": [
+    [
+     "There is sufficient evidence",
+     "at the 1% level",
+     "that time spent viewing the pages",
+     "has a positive impact",
+     "on sales of the online product."
+    ]
+   ],
+   "source": {
+    "file": "Solution  Paper 2_Set 2.pdf",
+    "where": "Q3(iii)"
+   },
+   "feedback": {
+    "correct": "正解。reject H<sub>0</sub> → sufficient evidence ＋ 水準 ＋ 文脈。",
+    "thinking": [
+     "① reject → sufficient evidence",
+     "② 有意水準を書く",
+     "③ H<sub>1</sub> の内容を文脈の言葉で"
+    ],
+    "mistakes": [
+     "prove（証明）と書く — 統計では「証拠がある」まで",
+     "有意水準を書かない"
+    ],
+    "examTemplate": "There is sufficient evidence at the 1% level that time spent viewing the pages has a positive impact on sales of the online product.",
+    "related": {
+     "sample": "s2q3b",
+     "answerType": "test"
+    }
+   }
+  },
+  {
+   "id": "u10-q09",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "Week 9 Q1（重回帰）：Hours TV の係数 −0.0675、P-value 0.100255。「TV は読書スコアに<b>負の</b>影響があるか」を <b>1%</b> で検定。正しいのは？",
+   "exhibit": {
+    "reg": {
+     "title": "Week 9 Q1 — Dep: Child's reading score / Exp: Hours TV, Mother's reading score",
+     "stats": [
+      [
+       "Multiple R",
+       "0.508079123"
+      ],
+      [
+       "R Square",
+       "0.258144396"
+      ],
+      [
+       "Adjusted R Square",
+       "0.257401426"
+      ],
+      [
+       "Standard Error",
+       "21.01279642"
+      ],
+      [
+       "Observations",
+       "2000"
+      ]
+     ],
+     "coef": [
+      [
+       "Intercept",
+       "12.72815481",
+       "1.528828788",
+       "8.325429",
+       "1.54E-16",
+       "9.7298883",
+       "15.726421"
+      ],
+      [
+       "Hours TV",
+       "!-0.0674604",
+       "0.041024838",
+       "-1.64438",
+       "!0.100255",
+       "-0.147916",
+       "0.0129956"
+      ],
+      [
+       "Mother's Reading Score",
+       "0.581618505",
+       "0.023262854",
+       "25.00203",
+       "2.9E-120",
+       "0.5359965",
+       "0.6272405"
+      ]
+     ]
+    }
+   },
+   "options": [
+    "p = 0.100255 ÷ 2 ≈ 0.0501 &gt; 0.01 → do not reject H<sub>0</sub>",
+    "p = 0.100255 ÷ 2 ≈ 0.0501 &lt; 0.05 → reject H<sub>0</sub>",
+    "p = 0.100255 &gt; 0.01 なので片側でも両側でも reject",
+    "係数がマイナスなので検定しなくても reject"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "W09 Tutorial exercise - Part 2 (solution).pdf",
+    "where": "Q1(ii)"
+   },
+   "feedback": {
+    "correct": "正解。α は 1%。0.0501 &gt; 0.01 → 負の影響の十分な証拠はない。",
+    "wrong": {
+     "1": "問題の α は 0.01（1%）。0.05 と比べてはいけない。",
+     "2": "p &gt; α なら棄却しない。",
+     "3": "符号が同じ向きでも、p 値と α を比べるまで結論は出ない。"
+    },
+    "thinking": [
+     "① negative → H<sub>1</sub>: β<sub>1</sub> &lt; 0",
+     "② 係数マイナス（同じ向き）→ ÷2 ≈ 0.0501",
+     "③ α = 0.01 と比較 → do not reject"
+    ],
+    "mistakes": [
+     "問題の α ではなく習慣で 0.05 を使う"
+    ],
+    "related": {
+     "lesson": "u10-l2",
+     "answerType": "test"
+    }
+   }
+  },
+  {
+   "id": "u10-q10",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "p 値が α より大きかったときの書き方として正しいのは？",
+   "options": [
+    "We do not reject H<sub>0</sub>. There is insufficient evidence that …",
+    "We accept H<sub>0</sub>. X has no effect on Y.",
+    "We reject H<sub>1</sub>, so H<sub>0</sub> is true.",
+    "The result proves that X does not affect Y."
+   ],
+   "answer": 0,
+   "source": {
+    "file": "seed/answer-types.json",
+    "where": "rules: accept H0 と書かない"
+   },
+   "feedback": {
+    "correct": "正解。棄却できない＝「証拠が足りない」。H<sub>0</sub> が正しいとは言えない。",
+    "wrong": {
+     "1": "accept H<sub>0</sub> は減点。do not reject H<sub>0</sub> と書く。",
+     "2": "H<sub>0</sub> が正しいとは言えない。",
+     "3": "統計は証明しない。insufficient evidence と書く。"
+    },
+    "thinking": [
+     "① p &gt; α",
+     "② do not reject H<sub>0</sub>",
+     "③ insufficient evidence ＋ 文脈"
+    ],
+    "related": {
+     "answerType": "test"
+    }
+   }
+  },
+  {
+   "id": "u10-q11",
+   "level": 3,
+   "kind": "fillChips",
+   "prompt": "Sample 1 Q2(b)(ii)：「下位20% は平均以上に成長の恩恵を受けるか」。係数 0.0393、P-value 0.4169、α = 0.05。",
+   "template": "This is a [1] test with H1: β1 > 0. The p-value is 0.4169 / 2 = [2]. Since [2] [3] 0.05, we do not reject H0. There is [4] evidence that the poorest 20% benefit more than average.",
+   "chips": {
+    "1": [
+     "one-sided",
+     "two-sided"
+    ],
+    "2": [
+     "0.2085",
+     "0.4169",
+     "0.8338"
+    ],
+    "3": [
+     ">",
+     "<"
+    ],
+    "4": [
+     "insufficient",
+     "sufficient"
+    ]
+   },
+   "answer": {
+    "1": "one-sided",
+    "2": "0.2085",
+    "3": ">",
+    "4": "insufficient"
+   },
+   "source": {
+    "file": "Sample paper 1 solution.pdf",
+    "where": "Q2(b)(ii)"
+   },
+   "feedback": {
+    "correct": "正解。公式解答の「0.2085 &lt; alpha」は誤り（§8.3）。正しくは &gt;。",
+    "wrong": {
+     "3:<": "0.2085 は 0.05 より大きい。公式解答の「0.2085 &lt; alpha」は誤記なので写さない。",
+     "2:0.4169": "片側検定なので ÷2。",
+     "2:0.8338": "×2 ではなく ÷2。",
+     "1:two-sided": "「more than average」→ 向きがある → 片側。",
+     "4:sufficient": "棄却できないときは insufficient evidence。"
+    },
+    "thinking": [
+     "① more than → &gt; 0 → 片側",
+     "② 係数 +0.0393 → ÷2 = 0.2085",
+     "③ 0.2085 &gt; 0.05 → do not reject → insufficient"
+    ],
+    "related": {
+     "sample": "s1q2b2",
+     "answerType": "test"
+    }
+   }
+  },
+  {
+   "id": "u10-q12",
+   "level": 2,
+   "kind": "tapCell",
+   "prompt": "Week 8 Part 1：<b>critical value 法</b>で検定するとき、臨界値（両側 5% なら ±1.979）と比べる値をタップしよう。",
+   "exhibit": {
+    "ref": "u10-l1"
+   },
+   "answer": "coef:1:2",
+   "source": {
+    "file": "ETW1001_Week 8_Excel Solution.xlsx",
+    "where": "Part 1 (b) Step 3"
+   },
+   "feedback": {
+    "correct": "正解。t Stat = −0.6958。|−0.696| &lt; 1.979 → do not reject。",
+    "wrong": {
+     "coef:1:3": "それは P-value（p 値法で使う）。critical value 法では t Stat。",
+     "coef:1:0": "それは係数。t Stat は係数 ÷ SE。",
+     "coef:1:1": "それは SE。"
+    },
+    "thinking": [
+     "① critical value 法 → t Stat を使う",
+     "② 両側なので絶対値で比べる"
+    ],
+    "related": {
+     "lesson": "u10-l2"
+    }
+   }
+  },
+  {
+   "id": "u10-q13",
+   "level": 5,
+   "kind": "written",
+   "marks": 4,
+   "marksEstimated": true,
+   "prompt": "The Phillips Curve posits a trade-off between inflation and unemployment: a decrease in the unemployment rate is accompanied by a higher inflation rate. Using the regression of the inflation rate on the unemployment rate, perform a one-sided hypothesis test at the 5% level of significance to test whether the Australian data supports a Phillips Curve trade-off. Use the p-value approach.",
+   "exhibit": {
+    "ref": "u10-l1"
+   },
+   "source": {
+    "file": "ETW1001_Week 8_Excel Solution.xlsx",
+    "where": "Part 2（公式は critical value 法。p 値法の模範解答は Claude が作成）"
+   },
+   "answerSource": "claude",
+   "modelAnswer": "<p>H<sub>0</sub>: β<sub>1</sub> = 0 (no relationship between unemployment and inflation; no Phillips Curve trade-off)</p><p>H<sub>1</sub>: β<sub>1</sub> &lt; 0 (a negative relationship; a Phillips Curve trade-off exists)</p><p>α = 0.05</p><p>The estimated coefficient (−0.1151) is negative, in the direction of H<sub>1</sub>, so the one-sided p-value = 0.4878 / 2 = 0.2439.</p><p>Since p-value = 0.2439 &gt; α = 0.05, we do not reject H<sub>0</sub>. There is insufficient evidence at the 5% level of a negative relationship between the unemployment rate and the inflation rate, so the data does not support a Phillips Curve trade-off.</p>",
+   "rubric": [
+    {
+     "label": "H0: β1 = 0 / H1: β1 < 0",
+     "marks": 1,
+     "keywords": [
+      [
+       "h0"
+      ],
+      [
+       "h1",
+       "ha"
+      ],
+      [
+       "<0",
+       "negative"
+      ]
+     ]
+    },
+    {
+     "label": "α = 0.05",
+     "marks": 0.5,
+     "keywords": [
+      [
+       "0.05",
+       "5%"
+      ]
+     ]
+    },
+    {
+     "label": "片側 p 値 = 0.4878 ÷ 2 = 0.2439",
+     "marks": 1,
+     "keywords": [
+      [
+       "0.2439",
+       "0.244",
+       "/2",
+       "÷2",
+       "divided by 2"
+      ]
+     ]
+    },
+    {
+     "label": "判断：do not reject H0",
+     "marks": 0.5,
+     "keywords": [
+      [
+       "do not reject",
+       "not reject",
+       "fail to reject",
+       "cannot reject",
+       "don't reject"
+      ]
+     ]
+    },
+    {
+     "label": "結論：insufficient evidence ＋ 文脈（trade-off / negative relationship）",
+     "marks": 1,
+     "keywords": [
+      [
+       "insufficient evidence",
+       "not enough evidence",
+       "not sufficient evidence",
+       "no evidence"
+      ],
+      [
+       "trade-off",
+       "tradeoff",
+       "trade off",
+       "negative relationship",
+       "phillips"
+      ]
+     ]
+    }
+   ],
+   "forbidden": [
+    {
+     "pattern": "0.4878>0.05",
+     "message": "片側検定なので p 値は ÷2（0.2439）にしてから α と比べる"
+    }
+   ],
+   "feedback": {
+    "thinking": [
+     "① trade-off → 負 → H<sub>1</sub>: β<sub>1</sub> &lt; 0",
+     "② 係数 −0.1151 は同じ向き → p ÷ 2",
+     "③ 0.2439 &gt; 0.05",
+     "④ do not reject → insufficient evidence ＋ 文脈"
+    ],
+    "mistakes": [
+     "÷2 を忘れる",
+     "accept H0 と書く"
+    ],
+    "related": {
+     "lesson": "u10-l3",
+     "answerType": "test"
+    }
+   }
+  },
+  {
+   "id": "u10-q14",
+   "level": 5,
+   "kind": "written",
+   "marks": 4,
+   "marksEstimated": true,
+   "prompt": "Stagflation occurs when inflation and unemployment tend to move in the same direction. (a) Set up a one-sided hypothesis test for whether the Australian data supports stagflation. (b) Explain why you do not even need to calculate a test statistic or p-value to reach a conclusion.",
+   "exhibit": {
+    "ref": "u10-l1"
+   },
+   "source": {
+    "file": "ETW1001_Week 8_Excel Solution.xlsx",
+    "where": "Part 3 (a)(c)"
+   },
+   "answerSource": "official+edited",
+   "modelAnswer": "<p>(a) H<sub>0</sub>: β<sub>1</sub> = 0 (no relationship) &nbsp; H<sub>1</sub>: β<sub>1</sub> &gt; 0 (a positive relationship: inflation and unemployment move in the same direction). α = 0.05.</p><p>(b) The estimated coefficient on unemployment is negative (−0.1151), which is the opposite direction to H<sub>1</sub>. If anything, the data suggests a negative relationship, so it cannot provide evidence of a positive relationship. Therefore we do not reject H<sub>0</sub>: there is insufficient evidence of stagflation at the 5% level. (The one-sided p-value would be 1 − 0.4878/2 ≈ 0.756, far above 0.05.)</p>",
+   "rubric": [
+    {
+     "label": "H0: β1 = 0 / H1: β1 > 0",
+     "marks": 1,
+     "keywords": [
+      [
+       "h0"
+      ],
+      [
+       "h1",
+       "ha"
+      ],
+      [
+       ">0",
+       "positive"
+      ]
+     ]
+    },
+    {
+     "label": "係数がマイナス＝H1 と逆向き",
+     "marks": 1,
+     "keywords": [
+      [
+       "negative"
+      ],
+      [
+       "opposite",
+       "wrong direction",
+       "not positive",
+       "contrary"
+      ]
+     ]
+    },
+    {
+     "label": "だから do not reject H0",
+     "marks": 1,
+     "keywords": [
+      [
+       "do not reject",
+       "not reject",
+       "fail to reject",
+       "cannot reject",
+       "don't reject"
+      ]
+     ]
+    },
+    {
+     "label": "結論：stagflation の十分な証拠はない",
+     "marks": 1,
+     "keywords": [
+      [
+       "insufficient evidence",
+       "not enough evidence",
+       "no evidence",
+       "not sufficient evidence",
+       "cannot provide evidence"
+      ]
+     ]
+    }
+   ],
+   "forbidden": [
+    {
+     "pattern": "0.2439<",
+     "message": "符号が逆向きのときは ÷2 した 0.2439 を使わない"
+    }
+   ],
+   "feedback": {
+    "thinking": [
+     "① same direction → 正 → H<sub>1</sub>: β<sub>1</sub> &gt; 0",
+     "② 係数はマイナス → 逆向き",
+     "③ 計算なしで do not reject"
+    ],
+    "mistakes": [
+     "逆向きなのに p ÷ 2 = 0.2439 を使ってしまう"
+    ],
+    "related": {
+     "lesson": "u10-l3",
+     "answerType": "test"
+    }
+   }
+  },
+  {
+   "id": "u10-q15",
+   "level": 5,
+   "kind": "written",
+   "marks": 4,
+   "marksEstimated": true,
+   "prompt": "Infant mortality on real GDP per capita (133 countries). Perform a test of whether Real GDP per Capita has any impact at all on infant mortality. Use a critical value approach at the 1% level; the value from the Student's t-distribution you need is −2.614.",
+   "exhibit": {
+    "reg": {
+     "title": "Week 8 Table 1 — Dep: Infant Mortality Rate / Exp: Real GDP per capita",
+     "stats": [
+      [
+       "Multiple R",
+       "0.678561"
+      ],
+      [
+       "R Square",
+       "0.460445"
+      ],
+      [
+       "Adjusted R Square",
+       "0.456327"
+      ],
+      [
+       "Standard Error",
+       "29.22538"
+      ],
+      [
+       "Observations",
+       "133"
+      ]
+     ],
+     "anova": [
+      [
+       "Regression",
+       "1",
+       "95484.85",
+       "95484.85",
+       "111.7929",
+       "2.85E-19"
+      ],
+      [
+       "Residual",
+       "131",
+       "111890.1",
+       "854.1229"
+      ],
+      [
+       "Total",
+       "132",
+       "207375"
+      ]
+     ],
+     "coef": [
+      [
+       "Intercept",
+       "!70.7372",
+       "3.492166",
+       "20.25597",
+       "3.49E-42",
+       "63.82887",
+       "77.64553"
+      ],
+      [
+       "Real GDP per Capita",
+       "!-0.00489",
+       "0.000463",
+       "-10.5732",
+       "2.85E-19",
+       "-0.00581",
+       "-0.00398"
+      ]
+     ]
+    }
+   },
+   "source": {
+    "file": "ETW1001_W8_Tutorial.pdf",
+    "where": "Q1(b)（解答：ETW1001_Week 8_QA.pdf）"
+   },
+   "answerSource": "official+edited",
+   "warn": "Week 8 QA は「α = 0.05」と書いていますが、問題は 1% の水準です。正しくは <b>α = 0.01</b>（t<sub>crit</sub> = −2.614 も 1% の値）。",
+   "modelAnswer": "<p>H<sub>0</sub>: β<sub>1</sub> = 0 (real GDP per capita has no impact on infant mortality)</p><p>H<sub>1</sub>: β<sub>1</sub> ≠ 0 (real GDP per capita has an impact on infant mortality)</p><p>α = 0.01</p><p>t-stat = −10.573, t-crit = ±2.614</p><p>Since |t-stat| = 10.573 &gt; 2.614, we reject H<sub>0</sub>. There is sufficient evidence at the 1% level that real GDP per capita has an impact on infant mortality.</p>",
+   "rubric": [
+    {
+     "label": "H0: β1 = 0 / H1: β1 ≠ 0",
+     "marks": 1,
+     "keywords": [
+      [
+       "h0"
+      ],
+      [
+       "h1",
+       "ha"
+      ],
+      [
+       "≠",
+       "not equal",
+       "!=",
+       "two-sided",
+       "two sided"
+      ]
+     ]
+    },
+    {
+     "label": "α = 0.01",
+     "marks": 0.5,
+     "keywords": [
+      [
+       "0.01",
+       "1%"
+      ]
+     ]
+    },
+    {
+     "label": "t Stat −10.573 と臨界値 2.614 を比較",
+     "marks": 1,
+     "keywords": [
+      [
+       "10.57"
+      ],
+      [
+       "2.614"
+      ]
+     ]
+    },
+    {
+     "label": "判断：reject H0",
+     "marks": 0.5,
+     "keywords": [
+      [
+       "reject"
+      ]
+     ]
+    },
+    {
+     "label": "結論：sufficient evidence ＋ 文脈",
+     "marks": 1,
+     "keywords": [
+      [
+       "sufficient evidence",
+       "enough evidence"
+      ],
+      [
+       "gdp",
+       "infant"
+      ]
+     ]
+    }
+   ],
+   "forbidden": [
+    {
+     "pattern": "α=0.05",
+     "message": "問題は 1% の水準 → α = 0.01"
+    }
+   ],
+   "feedback": {
+    "thinking": [
+     "① any impact → 両側",
+     "② α = 0.01",
+     "③ |t| と |t<sub>crit</sub>| を比べる",
+     "④ 大きい → reject ＋ 文脈"
+    ],
+    "related": {
+     "lesson": "u10-l2",
+     "answerType": "test"
+    }
+   }
+  },
+  {
+   "id": "u10-q16",
+   "level": 5,
+   "kind": "written",
+   "marks": 4,
+   "marksEstimated": true,
+   "prompt": "Y = child's reading score out of 100, X1 = hours of screen time in an average week, X2 = mother's reading score out of 100. Perform a hypothesis test to confirm a negative impact of hours of watching TV on the child's reading score, at the 1% level of significance. Use the p-value approach.",
+   "exhibit": {
+    "ref": "u10-q09"
+   },
+   "source": {
+    "file": "ETW1001_W9_Tutorial.pdf",
+    "where": "Q1(b)（解答：W09 Tutorial exercise - Part 2 (solution).pdf）"
+   },
+   "answerSource": "official+edited",
+   "modelAnswer": "<p>H<sub>0</sub>: β<sub>1</sub> = 0 (watching extra hours of TV has no impact on the child's reading score)</p><p>H<sub>1</sub>: β<sub>1</sub> &lt; 0 (watching extra hours of TV has a negative impact on the child's reading score)</p><p>α = 0.01</p><p>The coefficient (−0.0675) is negative, in the direction of H<sub>1</sub>, so the one-sided p-value = 0.100255 / 2 = 0.0501.</p><p>Since p-value = 0.0501 &gt; α = 0.01, we do not reject H<sub>0</sub>. There is insufficient evidence at the 1% level that watching extra hours of TV has a negative impact on the child's reading score, holding the mother's reading score constant.</p>",
+   "rubric": [
+    {
+     "label": "H0: β1 = 0 / H1: β1 < 0",
+     "marks": 1,
+     "keywords": [
+      [
+       "h0"
+      ],
+      [
+       "h1",
+       "ha"
+      ],
+      [
+       "<0",
+       "negative"
+      ]
+     ]
+    },
+    {
+     "label": "α = 0.01",
+     "marks": 0.5,
+     "keywords": [
+      [
+       "0.01",
+       "1%"
+      ]
+     ]
+    },
+    {
+     "label": "片側 p 値 = 0.100255 ÷ 2 ≈ 0.0501",
+     "marks": 1,
+     "keywords": [
+      [
+       "0.0501",
+       "0.050",
+       "/2",
+       "÷2",
+       "divided by 2"
+      ]
+     ]
+    },
+    {
+     "label": "判断：do not reject H0",
+     "marks": 0.5,
+     "keywords": [
+      [
+       "do not reject",
+       "not reject",
+       "fail to reject",
+       "cannot reject",
+       "don't reject"
+      ]
+     ]
+    },
+    {
+     "label": "結論：insufficient evidence ＋ 文脈",
+     "marks": 1,
+     "keywords": [
+      [
+       "insufficient evidence",
+       "not enough evidence",
+       "not sufficient evidence",
+       "no evidence"
+      ],
+      [
+       "tv",
+       "screen"
+      ]
+     ]
+    }
+   ],
+   "forbidden": [
+    {
+     "pattern": "0.0501<0.01",
+     "message": "0.0501 は 0.01 より大きい"
+    }
+   ],
+   "feedback": {
+    "thinking": [
+     "① negative → H<sub>1</sub>: β<sub>1</sub> &lt; 0",
+     "② 係数マイナス → ÷2",
+     "③ α = 0.01 と比較",
+     "④ do not reject → insufficient evidence"
+    ],
+    "mistakes": [
+     "α = 0.05 と比べて reject してしまう"
+    ],
+    "related": {
+     "lesson": "u10-l2",
+     "answerType": "test"
+    }
+   }
+  }
+ ]
+}

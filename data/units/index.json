@@ -1,0 +1,154 @@
+{
+ "priority": [
+  "unit-09",
+  "unit-10",
+  "unit-12",
+  "unit-11",
+  "unit-13",
+  "unit-05",
+  "unit-02",
+  "unit-01",
+  "unit-03",
+  "unit-04",
+  "unit-08",
+  "unit-07",
+  "unit-00",
+  "unit-06"
+ ],
+ "units": [
+  {
+   "id": "unit-00",
+   "n": 0,
+   "title": "試験の全体像と統計の基本",
+   "slot": [
+    "H"
+   ],
+   "ready": false
+  },
+  {
+   "id": "unit-01",
+   "n": 1,
+   "title": "中心の指標",
+   "slot": [
+    "A"
+   ],
+   "ready": false
+  },
+  {
+   "id": "unit-02",
+   "n": 2,
+   "title": "散らばりの指標",
+   "slot": [
+    "A"
+   ],
+   "ready": true
+  },
+  {
+   "id": "unit-03",
+   "n": 3,
+   "title": "分布の形とグラフ",
+   "slot": [
+    "B"
+   ],
+   "ready": false
+  },
+  {
+   "id": "unit-04",
+   "n": 4,
+   "title": "散布図と相関",
+   "slot": [
+    "B"
+   ],
+   "ready": false
+  },
+  {
+   "id": "unit-05",
+   "n": 5,
+   "title": "確率とクロス表",
+   "slot": [
+    "C"
+   ],
+   "ready": true
+  },
+  {
+   "id": "unit-06",
+   "n": 6,
+   "title": "正規分布と標本平均",
+   "slot": [
+    "J"
+   ],
+   "ready": false
+  },
+  {
+   "id": "unit-07",
+   "n": 7,
+   "title": "信頼区間",
+   "slot": [
+    "J"
+   ],
+   "ready": false
+  },
+  {
+   "id": "unit-08",
+   "n": 8,
+   "title": "仮説検定の考え方",
+   "slot": [
+    "G"
+   ],
+   "ready": false
+  },
+  {
+   "id": "unit-09",
+   "n": 9,
+   "title": "単回帰①：出力の読み方と解釈",
+   "slot": [
+    "D"
+   ],
+   "ready": true
+  },
+  {
+   "id": "unit-10",
+   "n": 10,
+   "title": "単回帰②：係数の検定",
+   "slot": [
+    "D"
+   ],
+   "ready": true
+  },
+  {
+   "id": "unit-11",
+   "n": 11,
+   "title": "重回帰",
+   "slot": [
+    "F"
+   ],
+   "ready": true
+  },
+  {
+   "id": "unit-12",
+   "n": 12,
+   "title": "ダミー変数",
+   "slot": [
+    "E"
+   ],
+   "ready": true
+  },
+  {
+   "id": "unit-13",
+   "n": 13,
+   "title": "モデルの評価と応用",
+   "slot": [
+    "F",
+    "I"
+   ],
+   "ready": true
+  },
+  {
+   "id": "unit-14",
+   "n": 14,
+   "title": "本番演習",
+   "slot": [],
+   "ready": false
+  }
+ ]
+}

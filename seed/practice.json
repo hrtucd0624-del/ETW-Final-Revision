@@ -1,0 +1,1547 @@
+[
+ {
+  "paper": "類題",
+  "id": "p",
+  "title": "本番の残り3割に備える練習問題",
+  "intro": "サンプルの出題形式に合わせて作った<b>練習用の架空データ</b>です（大学の資料ではありません）。数値はすべて内部で整合するように作ってあります。まず自分で英語の答案を書いてから解答を開いてください。",
+  "questions": [
+   {
+    "q": "P1 記述統計",
+    "marks": null,
+    "parts": [
+     {
+      "id": "p1a",
+      "label": "P1(a)",
+      "types": [
+       "desc"
+      ],
+      "prompt": "Weekly spending on food delivery (RM) was recorded for 150 students living on campus and 150 living off campus. Using the table, compare the two groups in terms of central tendency, spread and shape.",
+      "exhibit": {
+       "desc": {
+        "cols": [
+         "",
+         "On-campus",
+         "Off-campus"
+        ],
+        "rows": [
+         [
+          "Mean",
+          "!62.4",
+          "!48.9"
+         ],
+         [
+          "Median",
+          "!55.0",
+          "!49.5"
+         ],
+         [
+          "Mode",
+          "50",
+          "45"
+         ],
+         [
+          "Standard Deviation",
+          "!28.1",
+          "!15.2"
+         ],
+         [
+          "First Quartile",
+          "42",
+          "38"
+         ],
+         [
+          "Third Quartile",
+          "76",
+          "60"
+         ],
+         [
+          "Interquartile Range",
+          "!34",
+          "!22"
+         ],
+         [
+          "Coefficient of Variation",
+          "!45.0%",
+          "!31.1%"
+         ],
+         [
+          "Skewness",
+          "!1.35",
+          "!-0.12"
+         ],
+         [
+          "Minimum",
+          "12",
+          "8"
+         ],
+         [
+          "Maximum",
+          "180",
+          "92"
+         ],
+         [
+          "Count",
+          "150",
+          "150"
+         ]
+        ]
+       }
+      },
+      "answer": "<p><b>Central tendency:</b> On-campus students spend more on food delivery on average (mean RM62.40 vs RM48.90 per week). However, the medians are much closer (RM55.00 vs RM49.50): the on-campus mean is pulled up by a few heavy spenders.</p>\n<p><b>Spread:</b> On-campus spending is far more variable. Its standard deviation is RM28.10, so weekly spending deviates from the mean by about RM28 on average, compared with RM15.20 off campus. Its IQR is also larger (RM34 vs RM22), and its range is much wider (RM12–180 vs RM8–92). Because the means differ, the CV is the better comparison: 45.0% vs 31.1%, so on-campus spending is also more variable relative to its mean.</p>\n<p><b>Shape:</b> On-campus spending is positively skewed (skewness 1.35; mean &gt; median), with a long right tail of students spending up to RM180 per week. Off-campus spending is roughly symmetric (skewness −0.12; mean ≈ median).</p>",
+      "jp": "Sample 1 Q1(a) と Sample 2 Q1(b) を合体させた形。平均の差が大きいときは「median は近い → 平均は外れ値に引っ張られている」まで言えると高評価。"
+     },
+     {
+      "id": "p1b",
+      "label": "P1(b)",
+      "types": [
+       "desc"
+      ],
+      "prompt": "One on-campus student who spent RM180 is found to be a data entry error and is removed. Without calculating, explain what happens to the mean, median, standard deviation and IQR of on-campus spending.",
+      "answer": "<p>The mean and standard deviation will fall noticeably, because RM180 is the largest value and far above the mean, so it pulls the mean up and adds a lot to the spread. The median and IQR will barely change, because they depend only on the middle values and the quartiles, so they are robust to one extreme observation.</p>",
+      "jp": "Week 3 の CEO 問題と同じ論理（robust かどうか）。"
+     }
+    ]
+   },
+   {
+    "q": "P2 クロス表と確率",
+    "marks": null,
+    "parts": [
+     {
+      "id": "p2a",
+      "label": "P2(a)–(d)",
+      "types": [
+       "prob"
+      ],
+      "prompt": "400 students were classified by year of study and preferred payment method. (a) P(prefers TNG eWallet)? (b) P(Year 3 AND prefers Card)? (c) P(prefers Card | Year 3)? (d) P(prefers Card | Year 1)?",
+      "exhibit": {
+       "pivot": {
+        "cols": [
+         "Payment",
+         "Year 1",
+         "Year 2",
+         "Year 3",
+         "Total"
+        ],
+        "rows": [
+         [
+          "TNG eWallet",
+          "!90",
+          "70",
+          "40",
+          "!200"
+         ],
+         [
+          "Card",
+          "30",
+          "40",
+          "!50",
+          "!120"
+         ],
+         [
+          "Cash",
+          "40",
+          "20",
+          "20",
+          "80"
+         ],
+         [
+          "Total",
+          "!160",
+          "130",
+          "!110",
+          "!400"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>(a) 200/400 = 0.5 (marginal)</p><p>(b) 50/400 = 0.125 (joint)</p><p>(c) 50/110 ≈ 0.45 (conditional)</p><p>(d) 30/160 ≈ 0.19 (conditional)</p>",
+      "jp": "(b) は and → ÷400、(c)(d) は given → ÷ その学年の合計。"
+     },
+     {
+      "id": "p2b",
+      "label": "P2(e)",
+      "types": [
+       "prob"
+      ],
+      "prompt": "Are the events 'Year 1' and 'prefers TNG eWallet' mutually exclusive? Explain.",
+      "exhibit": {
+       "pivot": {
+        "cols": [
+         "Payment",
+         "Year 1",
+         "Year 2",
+         "Year 3",
+         "Total"
+        ],
+        "rows": [
+         [
+          "TNG eWallet",
+          "!90",
+          "70",
+          "40",
+          "!200"
+         ],
+         [
+          "Card",
+          "30",
+          "40",
+          "!50",
+          "!120"
+         ],
+         [
+          "Cash",
+          "40",
+          "20",
+          "20",
+          "80"
+         ],
+         [
+          "Total",
+          "!160",
+          "130",
+          "!110",
+          "!400"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>No. They can occur together: 90 students are in Year 1 and prefer TNG eWallet, so P(Year 1 and TNG) = 90/400 ≠ 0.</p>",
+      "jp": "排反＝同時に起こらない（セルが0）。"
+     },
+     {
+      "id": "p2c",
+      "label": "P2(f)",
+      "types": [
+       "prob",
+       "report"
+      ],
+      "prompt": "Write a short report on whether preferred payment method depends on year of study.",
+      "exhibit": {
+       "pivot": {
+        "cols": [
+         "Payment",
+         "Year 1",
+         "Year 2",
+         "Year 3",
+         "Total"
+        ],
+        "rows": [
+         [
+          "TNG eWallet",
+          "!90",
+          "70",
+          "40",
+          "!200"
+         ],
+         [
+          "Card",
+          "30",
+          "40",
+          "!50",
+          "!120"
+         ],
+         [
+          "Cash",
+          "40",
+          "20",
+          "20",
+          "80"
+         ],
+         [
+          "Total",
+          "!160",
+          "130",
+          "!110",
+          "!400"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>If payment method were independent of year of study, the probability of preferring each method would be the same in every year and equal to its marginal probability. The marginal probability of preferring a card is P(Card) = 120/400 = 0.30. However, P(Card | Year 1) = 30/160 ≈ 0.19, P(Card | Year 2) = 40/130 ≈ 0.31 and P(Card | Year 3) = 50/110 ≈ 0.45. Similarly, P(TNG | Year 1) = 90/160 ≈ 0.56 compared with P(TNG) = 0.50 and P(TNG | Year 3) = 40/110 ≈ 0.36.</p>\n<p>Since the conditional probabilities differ clearly from the marginal probabilities, payment method is not independent of year of study: senior students are more likely to pay by card and less likely to use TNG eWallet than first-year students.</p>",
+      "jp": "Sample 2 Q2(h) と同じ型。①独立ならどうなるか ②数値比較 ③結論。"
+     }
+    ]
+   },
+   {
+    "q": "P3 単回帰",
+    "marks": null,
+    "parts": [
+     {
+      "id": "p3a",
+      "label": "P3(a)(b)",
+      "types": [
+       "slr"
+      ],
+      "prompt": "A regression of final exam score on weekly study hours was estimated for 60 students. (a) Write down the estimated equation. (b) Interpret both coefficients.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Final exam score (out of 100) / Exp: Study hours per week",
+        "stats": [
+         [
+          "Multiple R",
+          "0.445"
+         ],
+         [
+          "R Square",
+          "!0.198"
+         ],
+         [
+          "Adjusted R Square",
+          "0.184"
+         ],
+         [
+          "Standard Error",
+          "!9.40"
+         ],
+         [
+          "Observations",
+          "60"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "1",
+          "1265.2",
+          "1265.2",
+          "14.32",
+          "0.00036"
+         ],
+         [
+          "Residual",
+          "58",
+          "5124.9",
+          "88.36"
+         ],
+         [
+          "Total",
+          "59",
+          "6390.1"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!42.50",
+          "3.80",
+          "11.18",
+          "2.1E-16",
+          "34.89",
+          "50.11"
+         ],
+         [
+          "Study hours",
+          "!2.35",
+          "0.62",
+          "3.79",
+          "!0.00036",
+          "!1.109",
+          "!3.591"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>(a) Score-hat<sub>i</sub> = 42.50 + 2.35 StudyHours<sub>i</sub></p>\n<p>(b) <b>Intercept:</b> The model predicts that a student who does not study at all scores 42.50 out of 100, on average.</p>\n<p><b>Study hours:</b> The model predicts that each additional hour of study per week is associated with a 2.35-mark increase in the final exam score, on average.</p>",
+      "jp": "ハット付きの式＋単位（marks, hour per week）＋on average。"
+     },
+     {
+      "id": "p3b",
+      "label": "P3(c)",
+      "types": [
+       "test"
+      ],
+      "prompt": "Test whether study hours have a positive effect on exam score at the 5% level, using the p-value approach.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Final exam score (out of 100) / Exp: Study hours per week",
+        "stats": [
+         [
+          "Multiple R",
+          "0.445"
+         ],
+         [
+          "R Square",
+          "!0.198"
+         ],
+         [
+          "Adjusted R Square",
+          "0.184"
+         ],
+         [
+          "Standard Error",
+          "!9.40"
+         ],
+         [
+          "Observations",
+          "60"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "1",
+          "1265.2",
+          "1265.2",
+          "14.32",
+          "0.00036"
+         ],
+         [
+          "Residual",
+          "58",
+          "5124.9",
+          "88.36"
+         ],
+         [
+          "Total",
+          "59",
+          "6390.1"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!42.50",
+          "3.80",
+          "11.18",
+          "2.1E-16",
+          "34.89",
+          "50.11"
+         ],
+         [
+          "Study hours",
+          "!2.35",
+          "0.62",
+          "3.79",
+          "!0.00036",
+          "!1.109",
+          "!3.591"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>H<sub>0</sub>: β<sub>1</sub> = 0 &nbsp; H<sub>1</sub>: β<sub>1</sub> &gt; 0 &nbsp; α = 0.05</p><p>p-value = 0.00036 / 2 = 0.00018</p>\n<p>Since 0.00018 &lt; 0.05, we reject H<sub>0</sub>. There is sufficient evidence at the 5% level that study hours have a positive effect on exam scores.</p>",
+      "jp": "positive → 片側 → ÷2。"
+     },
+     {
+      "id": "p3c",
+      "label": "P3(d)",
+      "types": [
+       "ci"
+      ],
+      "prompt": "State and interpret the 95% confidence interval for the slope.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Final exam score (out of 100) / Exp: Study hours per week",
+        "stats": [
+         [
+          "Multiple R",
+          "0.445"
+         ],
+         [
+          "R Square",
+          "!0.198"
+         ],
+         [
+          "Adjusted R Square",
+          "0.184"
+         ],
+         [
+          "Standard Error",
+          "!9.40"
+         ],
+         [
+          "Observations",
+          "60"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "1",
+          "1265.2",
+          "1265.2",
+          "14.32",
+          "0.00036"
+         ],
+         [
+          "Residual",
+          "58",
+          "5124.9",
+          "88.36"
+         ],
+         [
+          "Total",
+          "59",
+          "6390.1"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!42.50",
+          "3.80",
+          "11.18",
+          "2.1E-16",
+          "34.89",
+          "50.11"
+         ],
+         [
+          "Study hours",
+          "!2.35",
+          "0.62",
+          "3.79",
+          "!0.00036",
+          "!1.109",
+          "!3.591"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>[1.109, 3.591]. We are 95% confident that each additional hour of study per week increases the true average exam score by between 1.11 and 3.59 marks. Since the interval does not include 0, this is consistent with a significant positive effect.</p>",
+      "jp": "Lower / Upper 95% をそのまま読む。0 を含まない ⇔ 両側5%で有意。"
+     },
+     {
+      "id": "p3d",
+      "label": "P3(e)",
+      "types": [
+       "fit"
+      ],
+      "prompt": "Interpret the R Square and the Standard Error. Is this a good model for predicting an individual student's score?",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Final exam score (out of 100) / Exp: Study hours per week",
+        "stats": [
+         [
+          "Multiple R",
+          "0.445"
+         ],
+         [
+          "R Square",
+          "!0.198"
+         ],
+         [
+          "Adjusted R Square",
+          "0.184"
+         ],
+         [
+          "Standard Error",
+          "!9.40"
+         ],
+         [
+          "Observations",
+          "60"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "1",
+          "1265.2",
+          "1265.2",
+          "14.32",
+          "0.00036"
+         ],
+         [
+          "Residual",
+          "58",
+          "5124.9",
+          "88.36"
+         ],
+         [
+          "Total",
+          "59",
+          "6390.1"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!42.50",
+          "3.80",
+          "11.18",
+          "2.1E-16",
+          "34.89",
+          "50.11"
+         ],
+         [
+          "Study hours",
+          "!2.35",
+          "0.62",
+          "3.79",
+          "!0.00036",
+          "!1.109",
+          "!3.591"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>R² = 0.198: 19.8% of the variation in exam scores is explained by study hours. The remaining 80% is due to other factors (ability, attendance, sleep, etc.).</p>\n<p>The standard error of 9.40 means the model's predictions are typically in error by about 9.4 marks. That is large on a 100-mark exam, so the model is not very accurate for predicting an individual student's score, even though study hours have a significant effect.</p>",
+      "jp": "有意でも R² が低い＝個人の予測には不十分、という対比がポイント。"
+     },
+     {
+      "id": "p3e",
+      "label": "P3(f)",
+      "types": [
+       "errors"
+      ],
+      "prompt": "Which type of error could have been made in part (c)? Explain in context.",
+      "answer": "<p>A Type I error, because we rejected H<sub>0</sub>. It would mean concluding that studying more raises exam scores when, in the population, study hours actually have no positive effect.</p>",
+      "jp": "reject → Type I。"
+     }
+    ]
+   },
+   {
+    "q": "P4 重回帰＋ダミー",
+    "marks": null,
+    "parts": [
+     {
+      "id": "p4a",
+      "label": "P4(a)",
+      "types": [
+       "mlr"
+      ],
+      "prompt": "Monthly rent (RM) of 120 rooms near campus is regressed on size, furnished, distance and location dummies (base: Bandar Sunway). Write an equation for the predicted rent of a furnished 900 sq ft unit in Petaling Jaya, 3 km from campus.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Monthly rent (RM) / base location = Bandar Sunway",
+        "stats": [
+         [
+          "Multiple R",
+          "0.787"
+         ],
+         [
+          "R Square",
+          "!0.620"
+         ],
+         [
+          "Adjusted R Square",
+          "0.603"
+         ],
+         [
+          "Standard Error",
+          "!260"
+         ],
+         [
+          "Observations",
+          "120"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "5",
+          "12,573,600",
+          "2,514,720",
+          "37.20",
+          "1.1E-22"
+         ],
+         [
+          "Residual",
+          "114",
+          "7,706,400",
+          "67,600"
+         ],
+         [
+          "Total",
+          "119",
+          "20,280,000"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "650",
+          "120",
+          "5.42",
+          "3.2E-07",
+          "412.3",
+          "887.7"
+         ],
+         [
+          "Size (sq ft)",
+          "!0.95",
+          "0.12",
+          "7.92",
+          "!1.6E-12",
+          "0.712",
+          "1.188"
+         ],
+         [
+          "Furnished (=1)",
+          "!220",
+          "75",
+          "2.93",
+          "!0.0041",
+          "71.4",
+          "368.6"
+         ],
+         [
+          "Distance to campus (km)",
+          "!-45",
+          "24",
+          "-1.88",
+          "!0.063",
+          "-92.5",
+          "2.5"
+         ],
+         [
+          "Subang Jaya (=1)",
+          "-80",
+          "70",
+          "-1.14",
+          "!0.256",
+          "-218.7",
+          "58.7"
+         ],
+         [
+          "Petaling Jaya (=1)",
+          "!150",
+          "72",
+          "2.08",
+          "!0.0396",
+          "7.4",
+          "292.6"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>Rent-hat = 650 + 0.95(900) + 220(1) − 45(3) − 80(0) + 150(1)</p>",
+      "jp": "Subang Jaya は 0、PJ は 1。計算は不要。"
+     },
+     {
+      "id": "p4b",
+      "label": "P4(b)",
+      "types": [
+       "mlr",
+       "dummy"
+      ],
+      "prompt": "Interpret the coefficients on Size, Furnished and Petaling Jaya.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Monthly rent (RM) / base location = Bandar Sunway",
+        "stats": [
+         [
+          "Multiple R",
+          "0.787"
+         ],
+         [
+          "R Square",
+          "!0.620"
+         ],
+         [
+          "Adjusted R Square",
+          "0.603"
+         ],
+         [
+          "Standard Error",
+          "!260"
+         ],
+         [
+          "Observations",
+          "120"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "5",
+          "12,573,600",
+          "2,514,720",
+          "37.20",
+          "1.1E-22"
+         ],
+         [
+          "Residual",
+          "114",
+          "7,706,400",
+          "67,600"
+         ],
+         [
+          "Total",
+          "119",
+          "20,280,000"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "650",
+          "120",
+          "5.42",
+          "3.2E-07",
+          "412.3",
+          "887.7"
+         ],
+         [
+          "Size (sq ft)",
+          "!0.95",
+          "0.12",
+          "7.92",
+          "!1.6E-12",
+          "0.712",
+          "1.188"
+         ],
+         [
+          "Furnished (=1)",
+          "!220",
+          "75",
+          "2.93",
+          "!0.0041",
+          "71.4",
+          "368.6"
+         ],
+         [
+          "Distance to campus (km)",
+          "!-45",
+          "24",
+          "-1.88",
+          "!0.063",
+          "-92.5",
+          "2.5"
+         ],
+         [
+          "Subang Jaya (=1)",
+          "-80",
+          "70",
+          "-1.14",
+          "!0.256",
+          "-218.7",
+          "58.7"
+         ],
+         [
+          "Petaling Jaya (=1)",
+          "!150",
+          "72",
+          "2.08",
+          "!0.0396",
+          "7.4",
+          "292.6"
+         ]
+        ]
+       }
+      },
+      "answer": "<p><b>Size:</b> Holding all other variables constant, each additional square foot is associated with RM0.95 higher monthly rent, on average (about RM95 per 100 sq ft).</p>\n<p><b>Furnished:</b> Take two units that are identical except that one is furnished. The model predicts the furnished unit rents for RM220 more per month, on average.</p>\n<p><b>Petaling Jaya:</b> Holding other variables constant, a unit in Petaling Jaya is predicted to rent for RM150 more per month than an otherwise identical unit in Bandar Sunway (the base location), on average.</p>",
+      "jp": "Size は 1 sq ft あたりなので、100 sq ft あたりに直すと実感が湧く（W8 の GDP と同じ工夫）。"
+     },
+     {
+      "id": "p4c",
+      "label": "P4(c)",
+      "types": [
+       "mlr",
+       "test"
+      ],
+      "prompt": "Which variables are significant? Comment on how your conclusion depends on the significance level.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Monthly rent (RM) / base location = Bandar Sunway",
+        "stats": [
+         [
+          "Multiple R",
+          "0.787"
+         ],
+         [
+          "R Square",
+          "!0.620"
+         ],
+         [
+          "Adjusted R Square",
+          "0.603"
+         ],
+         [
+          "Standard Error",
+          "!260"
+         ],
+         [
+          "Observations",
+          "120"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "5",
+          "12,573,600",
+          "2,514,720",
+          "37.20",
+          "1.1E-22"
+         ],
+         [
+          "Residual",
+          "114",
+          "7,706,400",
+          "67,600"
+         ],
+         [
+          "Total",
+          "119",
+          "20,280,000"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "650",
+          "120",
+          "5.42",
+          "3.2E-07",
+          "412.3",
+          "887.7"
+         ],
+         [
+          "Size (sq ft)",
+          "!0.95",
+          "0.12",
+          "7.92",
+          "!1.6E-12",
+          "0.712",
+          "1.188"
+         ],
+         [
+          "Furnished (=1)",
+          "!220",
+          "75",
+          "2.93",
+          "!0.0041",
+          "71.4",
+          "368.6"
+         ],
+         [
+          "Distance to campus (km)",
+          "!-45",
+          "24",
+          "-1.88",
+          "!0.063",
+          "-92.5",
+          "2.5"
+         ],
+         [
+          "Subang Jaya (=1)",
+          "-80",
+          "70",
+          "-1.14",
+          "!0.256",
+          "-218.7",
+          "58.7"
+         ],
+         [
+          "Petaling Jaya (=1)",
+          "!150",
+          "72",
+          "2.08",
+          "!0.0396",
+          "7.4",
+          "292.6"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>At the 1% level, Size (p = 1.6E-12) and Furnished (p = 0.0041) are significant.</p><p>At the 5% level, Petaling Jaya (p = 0.0396) is also significant.</p><p>At the 10% level, Distance (p = 0.063) becomes significant as well.</p><p>Subang Jaya (p = 0.256) is not significant at any usual level, so there is no evidence that rents in Subang Jaya differ from Bandar Sunway, holding the other variables constant.</p>",
+      "jp": "Sample 1 Q5(b) と同じ。α を 3段階で整理。"
+     },
+     {
+      "id": "p4d",
+      "label": "P4(d)",
+      "types": [
+       "test"
+      ],
+      "prompt": "A student claims that rent falls as distance from campus increases. Test this claim at the 5% level.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Monthly rent (RM) / base location = Bandar Sunway",
+        "stats": [
+         [
+          "Multiple R",
+          "0.787"
+         ],
+         [
+          "R Square",
+          "!0.620"
+         ],
+         [
+          "Adjusted R Square",
+          "0.603"
+         ],
+         [
+          "Standard Error",
+          "!260"
+         ],
+         [
+          "Observations",
+          "120"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "5",
+          "12,573,600",
+          "2,514,720",
+          "37.20",
+          "1.1E-22"
+         ],
+         [
+          "Residual",
+          "114",
+          "7,706,400",
+          "67,600"
+         ],
+         [
+          "Total",
+          "119",
+          "20,280,000"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "650",
+          "120",
+          "5.42",
+          "3.2E-07",
+          "412.3",
+          "887.7"
+         ],
+         [
+          "Size (sq ft)",
+          "!0.95",
+          "0.12",
+          "7.92",
+          "!1.6E-12",
+          "0.712",
+          "1.188"
+         ],
+         [
+          "Furnished (=1)",
+          "!220",
+          "75",
+          "2.93",
+          "!0.0041",
+          "71.4",
+          "368.6"
+         ],
+         [
+          "Distance to campus (km)",
+          "!-45",
+          "24",
+          "-1.88",
+          "!0.063",
+          "-92.5",
+          "2.5"
+         ],
+         [
+          "Subang Jaya (=1)",
+          "-80",
+          "70",
+          "-1.14",
+          "!0.256",
+          "-218.7",
+          "58.7"
+         ],
+         [
+          "Petaling Jaya (=1)",
+          "!150",
+          "72",
+          "2.08",
+          "!0.0396",
+          "7.4",
+          "292.6"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>H<sub>0</sub>: β<sub>3</sub> = 0 &nbsp; H<sub>1</sub>: β<sub>3</sub> &lt; 0 &nbsp; α = 0.05</p><p>The coefficient (−45) is negative, in the direction of H<sub>1</sub>, so the one-sided p-value = 0.063 / 2 = 0.0315.</p>\n<p>Since 0.0315 &lt; 0.05, we reject H<sub>0</sub>. There is sufficient evidence at the 5% level that rent falls as distance from campus increases (by about RM45 per km, holding other variables constant).</p>",
+      "jp": "<b>罠</b>：両側の p = 0.063 だけ見ると「5%で有意でない」と判断しがち。片側の主張なので ÷2 して 0.0315 → 棄却。"
+     },
+     {
+      "id": "p4e",
+      "label": "P4(e)",
+      "types": [
+       "mlr"
+      ],
+      "prompt": "Are the signs of Size, Furnished and Distance as you would expect? Explain.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Monthly rent (RM) / base location = Bandar Sunway",
+        "stats": [
+         [
+          "Multiple R",
+          "0.787"
+         ],
+         [
+          "R Square",
+          "!0.620"
+         ],
+         [
+          "Adjusted R Square",
+          "0.603"
+         ],
+         [
+          "Standard Error",
+          "!260"
+         ],
+         [
+          "Observations",
+          "120"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "5",
+          "12,573,600",
+          "2,514,720",
+          "37.20",
+          "1.1E-22"
+         ],
+         [
+          "Residual",
+          "114",
+          "7,706,400",
+          "67,600"
+         ],
+         [
+          "Total",
+          "119",
+          "20,280,000"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "650",
+          "120",
+          "5.42",
+          "3.2E-07",
+          "412.3",
+          "887.7"
+         ],
+         [
+          "Size (sq ft)",
+          "!0.95",
+          "0.12",
+          "7.92",
+          "!1.6E-12",
+          "0.712",
+          "1.188"
+         ],
+         [
+          "Furnished (=1)",
+          "!220",
+          "75",
+          "2.93",
+          "!0.0041",
+          "71.4",
+          "368.6"
+         ],
+         [
+          "Distance to campus (km)",
+          "!-45",
+          "24",
+          "-1.88",
+          "!0.063",
+          "-92.5",
+          "2.5"
+         ],
+         [
+          "Subang Jaya (=1)",
+          "-80",
+          "70",
+          "-1.14",
+          "!0.256",
+          "-218.7",
+          "58.7"
+         ],
+         [
+          "Petaling Jaya (=1)",
+          "!150",
+          "72",
+          "2.08",
+          "!0.0396",
+          "7.4",
+          "292.6"
+         ]
+        ]
+       }
+      },
+      "answer": "<p><b>Size (+):</b> Expected. Larger units offer more space, so tenants pay more.</p><p><b>Furnished (+):</b> Expected. Tenants save on buying furniture, so landlords can charge more.</p><p><b>Distance (−):</b> Expected. Units further from campus mean more travel time and transport costs for students, so demand and rents are lower.</p>",
+      "jp": "符号＋理由のセット。"
+     },
+     {
+      "id": "p4f",
+      "label": "P4(f)",
+      "types": [
+       "fit"
+      ],
+      "prompt": "The mean rent in the sample is RM1,850. Interpret the R Square and Standard Error and comment on the model's accuracy.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Monthly rent (RM) / base location = Bandar Sunway",
+        "stats": [
+         [
+          "Multiple R",
+          "0.787"
+         ],
+         [
+          "R Square",
+          "!0.620"
+         ],
+         [
+          "Adjusted R Square",
+          "0.603"
+         ],
+         [
+          "Standard Error",
+          "!260"
+         ],
+         [
+          "Observations",
+          "120"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "5",
+          "12,573,600",
+          "2,514,720",
+          "37.20",
+          "1.1E-22"
+         ],
+         [
+          "Residual",
+          "114",
+          "7,706,400",
+          "67,600"
+         ],
+         [
+          "Total",
+          "119",
+          "20,280,000"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "650",
+          "120",
+          "5.42",
+          "3.2E-07",
+          "412.3",
+          "887.7"
+         ],
+         [
+          "Size (sq ft)",
+          "!0.95",
+          "0.12",
+          "7.92",
+          "!1.6E-12",
+          "0.712",
+          "1.188"
+         ],
+         [
+          "Furnished (=1)",
+          "!220",
+          "75",
+          "2.93",
+          "!0.0041",
+          "71.4",
+          "368.6"
+         ],
+         [
+          "Distance to campus (km)",
+          "!-45",
+          "24",
+          "-1.88",
+          "!0.063",
+          "-92.5",
+          "2.5"
+         ],
+         [
+          "Subang Jaya (=1)",
+          "-80",
+          "70",
+          "-1.14",
+          "!0.256",
+          "-218.7",
+          "58.7"
+         ],
+         [
+          "Petaling Jaya (=1)",
+          "!150",
+          "72",
+          "2.08",
+          "!0.0396",
+          "7.4",
+          "292.6"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>R² = 0.620: 62% of the variation in monthly rent is explained by the model. This is fairly high.</p><p>The standard error of RM260 means the predicted rents are typically in error by about RM260 per month. Compared with the mean rent of RM1,850 (about 14%), the predictions are reasonably but not highly accurate.</p>",
+      "jp": "SE を Y の平均と比べる（Sample 1 Q5(e) と同じ）。"
+     }
+    ]
+   },
+   {
+    "q": "P5 正規分布（電卓なし）",
+    "marks": null,
+    "parts": [
+     {
+      "id": "p5a",
+      "label": "P5(a)–(c)",
+      "types": [
+       "normal"
+      ],
+      "prompt": "Weekly study time of Monash Malaysia students is normally distributed with mean 18 hours and standard deviation 4 hours. Write expressions (no need to calculate) for: (a) P(a student studies more than 25 hours); (b) the 90th percentile of study time (z = 1.2816); (c) P(the mean of a random sample of 16 students exceeds 20 hours).",
+      "answer": "<p>(a) X ~ N(18, 4). P(X &gt; 25) = P(Z &gt; (25 − 18)/4) = P(Z &gt; 1.75) = 1 − P(Z &lt; 1.75)</p>\n<p>(b) x = 18 + 1.2816 × 4</p>\n<p>(c) X̄ ~ N(18, 4/√16 = 1). P(X̄ &gt; 20) = P(Z &gt; (20 − 18)/1) = P(Z &gt; 2) = 1 − P(Z &lt; 2)</p>",
+      "jp": "(c) は σ ではなく <b>σ/√n</b>。数値を入れた式で止めれば満点の形式。"
+     }
+    ]
+   },
+   {
+    "q": "P6 平均の検定と信頼区間",
+    "marks": null,
+    "parts": [
+     {
+      "id": "p6a",
+      "label": "P6(a)",
+      "types": [
+       "test"
+      ],
+      "prompt": "A café near campus claims its average waiting time is less than 8 minutes. A sample of 36 orders gives x̄ = 7.4 minutes and s = 1.8 minutes. Test the claim at the 5% level (critical t with 35 df = −1.690).",
+      "answer": "<p>H<sub>0</sub>: μ = 8 &nbsp; H<sub>1</sub>: μ &lt; 8 &nbsp; α = 0.05</p>\n<p>t = (7.4 − 8) / (1.8/√36) = −0.6 / 0.3 = −2.0</p>\n<p>Decision rule: reject H<sub>0</sub> if t &lt; −1.690. Since −2.0 &lt; −1.690, we reject H<sub>0</sub>. There is sufficient evidence at the 5% level that the café's average waiting time is less than 8 minutes.</p>",
+      "jp": "主張（less than 8）を H1 に置く。W7 のピザ問題と同じ型だが、今回は棄却になる。"
+     },
+     {
+      "id": "p6b",
+      "label": "P6(b)",
+      "types": [
+       "ci"
+      ],
+      "prompt": "Write the 95% confidence interval for the mean waiting time (t with 35 df = 2.030) and interpret it. The interval includes 8 minutes, yet the test in (a) rejected H0. Explain why.",
+      "answer": "<p>7.4 ± 2.030 × 1.8/√36 = 7.4 ± 2.030 × 0.3, i.e. about [6.79, 8.01] minutes. We are 95% confident that the true mean waiting time is between 6.79 and 8.01 minutes.</p>\n<p>A 95% confidence interval matches a <b>two-sided</b> test at 5%, which puts 2.5% in each tail. The test in (a) was one-sided, with all 5% in the lower tail, so its critical value (−1.690) is less extreme than −2.030. A sample result can therefore be significant in the one-sided test while the two-sided interval still just includes 8.</p>",
+      "jp": "上級の理解問題。CI ⇔ 両側検定、という対応関係を説明できれば十分。"
+     }
+    ]
+   },
+   {
+    "q": "P7 用語とサンプリング",
+    "marks": null,
+    "parts": [
+     {
+      "id": "p7a",
+      "label": "P7(a)–(c)",
+      "types": [
+       "concept"
+      ],
+      "prompt": "A student club wants to know how stressed Monash Malaysia students are before finals. It posts a poll on its Instagram account and 220 followers respond. (a) Identify the population and the sample. (b) Is the average stress score from the poll a parameter or a statistic? (c) Explain two reasons why the results may be biased.",
+      "answer": "<p>(a) Population: all Monash Malaysia students before finals. Sample: the 220 followers who answered the poll.</p>\n<p>(b) A statistic, because it is calculated from a sample; it is used to estimate the population parameter (the true mean stress level of all students).</p>\n<p>(c) Selection bias: only the club's followers can see the poll, and they may differ systematically from other students (e.g. more socially active). Non-response / self-selection bias: students who choose to answer may be those who feel most stressed (or have most free time), so the sample is not representative and the average may be biased.</p>",
+      "jp": "定義＋文脈の具体例。「なぜ偏るか」の理由まで書く。"
+     },
+     {
+      "id": "p7b",
+      "label": "P7(d)",
+      "types": [
+       "concept"
+      ],
+      "prompt": "Classify each variable: (i) stress level on a 1–5 scale; (ii) faculty; (iii) hours of sleep last night; (iv) number of units enrolled.",
+      "answer": "<p>(i) Qualitative, ordinal (ordered categories). (ii) Qualitative, nominal. (iii) Quantitative, continuous. (iv) Quantitative, discrete.</p>",
+      "jp": "Sample 2 Q2(a) の型。"
+     }
+    ]
+   },
+   {
+    "q": "P8 ダミー回帰のレポート",
+    "marks": null,
+    "parts": [
+     {
+      "id": "p8a",
+      "label": "P8(a)",
+      "types": [
+       "dummy",
+       "report"
+      ],
+      "prompt": "Monthly spending (RM) of 300 students is regressed on two dummies: Shared condo (=1) and Family home (=1); the base is On-campus residence. Using the coefficients and p-values, write a short report on how spending differs by accommodation type.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Monthly spending (RM) / base = On-campus residence",
+        "stats": [
+         [
+          "Multiple R",
+          "0.458"
+         ],
+         [
+          "R Square",
+          "0.210"
+         ],
+         [
+          "Adjusted R Square",
+          "0.205"
+         ],
+         [
+          "Standard Error",
+          "380"
+         ],
+         [
+          "Observations",
+          "300"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "2",
+          "11,400,300",
+          "5,700,150",
+          "39.47",
+          "5.4E-16"
+         ],
+         [
+          "Residual",
+          "297",
+          "42,886,800",
+          "144,400"
+         ],
+         [
+          "Total",
+          "299",
+          "54,287,100"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!1450",
+          "45",
+          "32.22",
+          "3E-80",
+          "1361.4",
+          "1538.6"
+         ],
+         [
+          "Shared condo (=1)",
+          "!320",
+          "62",
+          "5.16",
+          "!5.1E-07",
+          "198.0",
+          "442.0"
+         ],
+         [
+          "Family home (=1)",
+          "!-410",
+          "70",
+          "-5.86",
+          "!1.4E-08",
+          "-547.8",
+          "-272.2"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>Students living in on-campus residences (the base group) are predicted to spend RM1,450 per month on average (intercept), which is significantly greater than zero (p ≈ 0).</p>\n<p>Students in shared condos are predicted to spend RM320 more per month than on-campus students, on average (about RM1,770). This difference is statistically significant (p = 5.1E-07).</p>\n<p>Students living in their family home are predicted to spend RM410 less per month than on-campus students, on average (about RM1,040). This difference is also significant (p = 1.4E-08).</p>\n<p>So spending is highest for shared-condo students, followed by on-campus students, and lowest for students living with family. There is strong evidence that accommodation type is related to monthly spending, possibly because condo residents pay more for rent and transport, while students at home share family resources. However, R² = 0.21, so accommodation explains only 21% of the variation in spending.</p>",
+      "jp": "Sample 1 Q6(a)（10点）と同じ型。基準 → 各ダミーの差＋有意性 → 順位 → 結論。"
+     },
+     {
+      "id": "p8b",
+      "label": "P8(b)",
+      "types": [
+       "test",
+       "dummy"
+      ],
+      "prompt": "Test whether students living in a family home spend less than on-campus students, at the 1% level.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Monthly spending (RM) / base = On-campus residence",
+        "stats": [
+         [
+          "Multiple R",
+          "0.458"
+         ],
+         [
+          "R Square",
+          "0.210"
+         ],
+         [
+          "Adjusted R Square",
+          "0.205"
+         ],
+         [
+          "Standard Error",
+          "380"
+         ],
+         [
+          "Observations",
+          "300"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "2",
+          "11,400,300",
+          "5,700,150",
+          "39.47",
+          "5.4E-16"
+         ],
+         [
+          "Residual",
+          "297",
+          "42,886,800",
+          "144,400"
+         ],
+         [
+          "Total",
+          "299",
+          "54,287,100"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!1450",
+          "45",
+          "32.22",
+          "3E-80",
+          "1361.4",
+          "1538.6"
+         ],
+         [
+          "Shared condo (=1)",
+          "!320",
+          "62",
+          "5.16",
+          "!5.1E-07",
+          "198.0",
+          "442.0"
+         ],
+         [
+          "Family home (=1)",
+          "!-410",
+          "70",
+          "-5.86",
+          "!1.4E-08",
+          "-547.8",
+          "-272.2"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>H<sub>0</sub>: β<sub>2</sub> = 0 &nbsp; H<sub>1</sub>: β<sub>2</sub> &lt; 0 &nbsp; α = 0.01</p><p>p-value = 1.4E-08 / 2 = 7E-09</p><p>Since 7E-09 &lt; 0.01, we reject H<sub>0</sub>. There is sufficient evidence at the 1% level that students living in a family home spend less per month than on-campus students.</p>",
+      "jp": "ダミー係数の検定＝「基準グループとの差が0か」の検定。"
+     },
+     {
+      "id": "p8c",
+      "label": "P8(c)",
+      "types": [
+       "nonlin"
+      ],
+      "prompt": "An on-campus student currently spends RM1,450 per month. If prices rise by 4% per year, write an expression for the predicted monthly spending in 3 years.",
+      "answer": "<p>Predicted spending = 1,450 × (1.04)<sup>3</sup></p>",
+      "jp": "複利（Sample 1 Q6(b)(i) と同じ）。"
+     }
+    ]
+   }
+  ]
+ }
+]

@@ -1,0 +1,3163 @@
+{
+ "_note": "Sample 1：seed の points（公式配点）に対応するキーワード（points の順）。Sample 2・類題：公式配点が無いので rubric ごと推定（marksEstimated）。keywords は AND（外側）の中に OR（内側）。",
+ "s1q1a": {
+  "keywords": [
+   [
+    [
+     "mean"
+    ],
+    [
+     "1.73",
+     "0.0173"
+    ],
+    [
+     "1.58",
+     "0.0158"
+    ]
+   ],
+   [
+    [
+     "median"
+    ],
+    [
+     "1.77",
+     "0.0177"
+    ],
+    [
+     "1.76",
+     "0.0176"
+    ]
+   ],
+   [
+    [
+     "mode"
+    ],
+    [
+     "continuous",
+     "no mode",
+     "#n/a",
+     "n/a",
+     "repeat",
+     "does not exist",
+     "no value"
+    ]
+   ],
+   [
+    [
+     "standard deviation",
+     "sd",
+     "s.d"
+    ],
+    [
+     "5.49",
+     "0.0549"
+    ],
+    [
+     "4.21",
+     "0.0421"
+    ],
+    [
+     "on average",
+     "deviate",
+     "variab",
+     "spread",
+     "dispersion"
+    ]
+   ],
+   [
+    [
+     "range"
+    ],
+    [
+     "0.41",
+     "0.4129",
+     "41.3",
+     "41.29"
+    ],
+    [
+     "0.31",
+     "0.3126",
+     "31.3",
+     "31.26"
+    ],
+    [
+     "min",
+     "-24.3",
+     "-0.2429",
+     "max",
+     "17.0",
+     "0.17"
+    ]
+   ],
+   [
+    [
+     "negative",
+     "left"
+    ],
+    [
+     "skew"
+    ]
+   ]
+  ]
+ },
+ "s1q1b1": {
+  "keywords": [
+   [
+    [
+     "negative",
+     "left"
+    ],
+    [
+     "skew",
+     "tail"
+    ]
+   ]
+  ]
+ },
+ "s1q1b2": {
+  "keywords": [
+   [
+    [
+     "bin",
+     "class interval",
+     "class width",
+     "interval",
+     "width"
+    ]
+   ],
+   [
+    [
+     "right",
+     "left",
+     "second",
+     "first"
+    ],
+    [
+     "better"
+    ]
+   ],
+   [
+    [
+     "because",
+     "detail",
+     "narrower",
+     "more information",
+     "shape",
+     "since"
+    ]
+   ]
+  ]
+ },
+ "s1q1c1": {
+  "keywords": [
+   [
+    [
+     "positive"
+    ]
+   ],
+   [
+    [
+     "increase",
+     "higher",
+     "rise",
+     "upward",
+     "go up",
+     "goes up"
+    ]
+   ],
+   [
+    [
+     "linear",
+     "straight line"
+    ]
+   ],
+   [
+    [
+     "straight line",
+     "no curv",
+     "not curved",
+     "curvature",
+     "no obvious curve",
+     "no clear curve"
+    ]
+   ]
+  ]
+ },
+ "s1q1c2": {
+  "keywords": [
+   [
+    [
+     "linear"
+    ],
+    [
+     "correlation",
+     "regression"
+    ]
+   ]
+  ]
+ },
+ "s1q1c3": {
+  "keywords": [
+   [
+    [
+     "positive"
+    ]
+   ],
+   [
+    [
+     "strong"
+    ]
+   ]
+  ]
+ },
+ "s1q1c4": {
+  "keywords": [
+   [
+    [
+     "covariance"
+    ],
+    [
+     "mean",
+     "x̄",
+     "x-bar",
+     "xbar",
+     "below"
+    ],
+    [
+     "product",
+     "both negative",
+     "negative",
+     "positive"
+    ]
+   ]
+  ]
+ },
+ "s1q2a1": {
+  "rubric": [
+   {
+    "label": "Slope = 0：影響なし（貧困層は成長の恩恵を受けない）",
+    "marks": 1,
+    "keywords": [
+     [
+      "slope=0",
+      "slope = 0",
+      "= 0",
+      "=0",
+      "zero"
+     ],
+     [
+      "no effect",
+      "not benefit",
+      "no impact",
+      "no relationship",
+      "do not benefit",
+      "does not affect",
+      "unaffected"
+     ]
+    ]
+   },
+   {
+    "label": "0 < Slope < 1：貧困層の伸びは平均より小さい → 格差拡大",
+    "marks": 1,
+    "keywords": [
+     [
+      "less than 1",
+      "<1",
+      "between 0 and 1",
+      "0<slope<1"
+     ],
+     [
+      "inequality increase",
+      "increase in inequality",
+      "inequality rises",
+      "more unequal",
+      "inequality widen",
+      "slower",
+      "less than average",
+      "by less"
+     ]
+    ]
+   },
+   {
+    "label": "Slope = 1：同じ率で成長 → 格差は変わらない",
+    "marks": 1,
+    "keywords": [
+     [
+      "=1",
+      "equal to 1",
+      "slope = 1",
+      "slope=1",
+      "one"
+     ],
+     [
+      "same rate",
+      "unchanged",
+      "equiproportionate",
+      "same proportion",
+      "no change in inequality",
+      "equally"
+     ]
+    ]
+   },
+   {
+    "label": "Slope > 1：貧困層の方が速く伸びる → 格差縮小",
+    "marks": 1,
+    "keywords": [
+     [
+      ">1",
+      "greater than 1",
+      "more than 1"
+     ],
+     [
+      "inequality decrease",
+      "inequality falls",
+      "reduce",
+      "less unequal",
+      "faster",
+      "more than average",
+      "decrease"
+     ]
+    ]
+   }
+  ]
+ },
+ "s1q2a2": {
+  "keywords": [
+   [
+    [
+     "1.039",
+     "1.04"
+    ],
+    [
+     "percentage point"
+    ],
+    [
+     "on average"
+    ]
+   ]
+  ]
+ },
+ "s1q2a3": {
+  "keywords": [
+   [
+    [
+     "95% confident",
+     "95 % confident"
+    ]
+   ],
+   [
+    [
+     "zero",
+     "= 0",
+     "=0",
+     "no overall",
+     "is 0"
+    ]
+   ],
+   [
+    [
+     "-0.00348",
+     "-0.0035",
+     "-0.35"
+    ],
+    [
+     "0.00506",
+     "0.0051",
+     "0.51"
+    ]
+   ],
+   [
+    [
+     "per year",
+     "p.a",
+     "per annum",
+     "% ",
+     "%",
+     "percent"
+    ]
+   ]
+  ]
+ },
+ "s1q2b1": {
+  "keywords": [
+   [
+    [
+     "1 smaller",
+     "one smaller",
+     "smaller by 1",
+     "smaller by one",
+     "1 less",
+     "one less",
+     "1.039 - 1",
+     "1.039-1",
+     "minus 1",
+     "exactly 1",
+     "reduced by 1"
+    ]
+   ],
+   [
+    [
+     "makes sense",
+     "make sense",
+     "reasonable",
+     "sensible",
+     "expected",
+     "logical"
+    ]
+   ],
+   [
+    [
+     "difference",
+     "gap",
+     "subtract"
+    ]
+   ]
+  ]
+ },
+ "s1q2b2": {
+  "keywords": [
+   [
+    [
+     "one-sided",
+     "one sided",
+     "one-tailed",
+     "one tailed",
+     "upper-tail",
+     "upper tail",
+     "right-tail",
+     "right tail",
+     "right-tailed"
+    ]
+   ],
+   [
+    [
+     "h0"
+    ],
+    [
+     "h1",
+     "ha"
+    ]
+   ],
+   [
+    [
+     "0.05",
+     "5%"
+    ]
+   ],
+   [
+    [
+     "/2",
+     "÷2",
+     "divided by 2",
+     "divide by 2",
+     "halve",
+     "0.2085"
+    ]
+   ],
+   [
+    [
+     "do not reject",
+     "not reject",
+     "fail to reject",
+     "cannot reject",
+     "don't reject",
+     "failed to reject"
+    ]
+   ],
+   [
+    [
+     "insufficient evidence",
+     "not sufficient evidence",
+     "not enough evidence",
+     "no sufficient evidence",
+     "no evidence",
+     "not significant"
+    ]
+   ]
+  ],
+  "forbidden": [
+   {
+    "pattern": "0.4169>0.05",
+    "message": "片側検定なので p 値は ÷2（0.4169 / 2 = 0.2085）にしてから α と比べる"
+   },
+   {
+    "pattern": "0.4169>α",
+    "message": "片側検定なので p 値は ÷2（0.4169 / 2 = 0.2085）にしてから α と比べる"
+   },
+   {
+    "pattern": "0.2085<",
+    "message": "0.2085 は 0.05 より大きい（公式解答の誤りを写さない）"
+   }
+  ]
+ },
+ "s1q3a1": {
+  "keywords": [
+   [
+    [
+     "21/109",
+     "21 / 109",
+     "0.19",
+     "0.193"
+    ]
+   ]
+  ]
+ },
+ "s1q3a2": {
+  "keywords": [
+   [
+    [
+     "0/109",
+     "= 0",
+     "=0",
+     "zero",
+     "is 0"
+    ]
+   ]
+  ],
+  "forbidden": [
+   {
+    "pattern": "0/27",
+    "message": "同時確率の分母は総数 109（0/27 は公式解答の誤り。値は同じ 0）"
+   }
+  ]
+ },
+ "s1q3a3": {
+  "rubric": [
+   {
+    "label": "P(Medium | SSA) = 11/27",
+    "marks": 1,
+    "keywords": [
+     [
+      "11/27",
+      "0.41",
+      "0.407"
+     ]
+    ]
+   },
+   {
+    "label": "P(Medium | ECA) = 17/40",
+    "marks": 1,
+    "keywords": [
+     [
+      "17/40",
+      "0.43",
+      "0.425"
+     ]
+    ]
+   }
+  ]
+ },
+ "s1q3a4": {
+  "keywords": [
+   [
+    [
+     "independent"
+    ],
+    [
+     "does not change",
+     "does not affect",
+     "doesn't affect",
+     "doesn't change",
+     "no relationship",
+     "not affect",
+     "not change",
+     "unaffected",
+     "no effect"
+    ]
+   ],
+   [
+    [
+     "p(a|b)=p(a)",
+     "p(a | b) = p(a)",
+     "conditional probability equals",
+     "conditional probabilities equal",
+     "equal to the marginal",
+     "equals the marginal",
+     "same as the marginal"
+    ]
+   ],
+   [
+    [
+     "64/109",
+     "0.59",
+     "0.587"
+    ]
+   ],
+   [
+    [
+     "not independent",
+     "depend",
+     "wrong",
+     "incorrect",
+     "related",
+     "dependent"
+    ]
+   ]
+  ]
+ },
+ "s1q3a5": {
+  "keywords": [
+   [
+    [
+     "bias",
+     "representative",
+     "not random"
+    ]
+   ],
+   [
+    [
+     "missing",
+     "systematic",
+     "differ",
+     "poorer",
+     "conflict",
+     "excluded",
+     "left out"
+    ]
+   ],
+   [
+    [
+     "for example",
+     "e.g",
+     "such as",
+     "north america",
+     "only 2"
+    ]
+   ]
+  ]
+ },
+ "s1q4a": {
+  "keywords": [
+   [
+    [
+     "1.42",
+     "0.0142"
+    ],
+    [
+     "medium",
+     "high",
+     "not low",
+     "other"
+    ],
+    [
+     "on average"
+    ]
+   ],
+   [
+    [
+     "1.11",
+     "0.0111"
+    ],
+    [
+     "percentage point"
+    ],
+    [
+     "higher",
+     "more",
+     "greater"
+    ],
+    [
+     "low"
+    ]
+   ]
+  ]
+ },
+ "s1q4b": {
+  "keywords": [
+   [
+    [
+     "h0"
+    ],
+    [
+     "h1",
+     "ha"
+    ]
+   ],
+   [
+    [
+     "0.05",
+     "5%"
+    ]
+   ],
+   [
+    [
+     "/2",
+     "÷2",
+     "divided by 2",
+     "divide by 2",
+     "halve",
+     "0.0636"
+    ]
+   ],
+   [
+    [
+     "do not reject",
+     "not reject",
+     "fail to reject",
+     "cannot reject",
+     "don't reject"
+    ]
+   ],
+   [
+    [
+     "insufficient evidence",
+     "not sufficient evidence",
+     "not enough evidence",
+     "no sufficient evidence",
+     "no evidence"
+    ],
+    [
+     "low",
+     "stronger",
+     "higher",
+     "growth"
+    ]
+   ]
+  ],
+  "forbidden": [
+   {
+    "pattern": "0.1272>0.05",
+    "message": "片側検定なので p 値は ÷2（0.1272 / 2 = 0.0636）にしてから α と比べる"
+   }
+  ]
+ },
+ "s1q4c1": {
+  "rubric": [
+   {
+    "label": "Type I：H0 が正しいのに棄却する",
+    "marks": 1,
+    "keywords": [
+     [
+      "type i"
+     ],
+     [
+      "reject"
+     ],
+     [
+      "true"
+     ]
+    ]
+   },
+   {
+    "label": "Type II：H0 が誤りなのに棄却しない",
+    "marks": 1,
+    "keywords": [
+     [
+      "type ii"
+     ],
+     [
+      "not reject",
+      "fail to reject",
+      "do not reject",
+      "don't reject",
+      "not rejecting",
+      "failing to reject"
+     ],
+     [
+      "false"
+     ]
+    ]
+   }
+  ]
+ },
+ "s1q4c2": {
+  "keywords": [
+   [
+    [
+     "type ii"
+    ],
+    [
+     "did not reject",
+     "not reject",
+     "failed to reject",
+     "fail to reject",
+     "do not reject",
+     "didn't reject"
+    ]
+   ],
+   [
+    [
+     "low"
+    ],
+    [
+     "actually",
+     "in fact",
+     "really",
+     "true",
+     "in reality"
+    ]
+   ]
+  ]
+ },
+ "s1q5a": {
+  "keywords": [
+   [
+    [
+     "-0.0328"
+    ],
+    [
+     "0.978244",
+     "0.9782",
+     "0.978"
+    ],
+    [
+     "0.02"
+    ],
+    [
+     "0.004895",
+     "0.0049"
+    ],
+    [
+     "0.000305",
+     "0.0003"
+    ],
+    [
+     "100"
+    ]
+   ]
+  ]
+ },
+ "s1q5b": {
+  "rubric": [
+   {
+    "label": "5%で有意①：Overall income growth",
+    "marks": 1,
+    "keywords": [
+     [
+      "overall"
+     ]
+    ]
+   },
+   {
+    "label": "5%で有意②：Population growth",
+    "marks": 1,
+    "keywords": [
+     [
+      "population"
+     ]
+    ]
+   },
+   {
+    "label": "5%で有意③：Primary school enrolment",
+    "marks": 1,
+    "keywords": [
+     [
+      "enrol",
+      "school"
+     ]
+    ]
+   },
+   {
+    "label": "理由：p 値 < 0.05",
+    "marks": 0.5,
+    "keywords": [
+     [
+      "less than 0.05",
+      "<0.05",
+      "below 0.05",
+      "smaller than 0.05",
+      "< α",
+      "<α",
+      "less than α"
+     ]
+    ]
+   },
+   {
+    "label": "10% ではすべて有意",
+    "marks": 1,
+    "keywords": [
+     [
+      "10%",
+      "0.10",
+      "0.1"
+     ],
+     [
+      "all"
+     ]
+    ]
+   },
+   {
+    "label": "理由：すべての p 値 < 0.10（1% の言及はプラス評価）",
+    "marks": 0.5,
+    "keywords": [
+     [
+      "0.10",
+      "0.1",
+      "10%"
+     ],
+     [
+      "less than",
+      "<",
+      "below"
+     ]
+    ]
+   }
+  ]
+ },
+ "s1q5c": {
+  "rubric": [
+   {
+    "label": "Overall income growth（+）：期待どおり＋理由",
+    "marks": 2,
+    "keywords": [
+     [
+      "overall"
+     ],
+     [
+      "expected",
+      "makes sense",
+      "as expected",
+      "reasonable"
+     ]
+    ]
+   },
+   {
+    "label": "Inflation（−）：期待どおり＋理由",
+    "marks": 2,
+    "keywords": [
+     [
+      "inflation"
+     ],
+     [
+      "real income",
+      "purchasing power",
+      "prices",
+      "expected"
+     ]
+    ]
+   },
+   {
+    "label": "Population growth（+）：予想外（理由つき）",
+    "marks": 2,
+    "keywords": [
+     [
+      "population"
+     ],
+     [
+      "unexpected",
+      "not expected",
+      "surprising",
+      "negative",
+      "dependants",
+      "dependents"
+     ]
+    ]
+   },
+   {
+    "label": "Primary school enrolment（+）：期待どおり＋理由",
+    "marks": 2,
+    "keywords": [
+     [
+      "enrol",
+      "school",
+      "education"
+     ],
+     [
+      "skill",
+      "job",
+      "expected",
+      "human capital",
+      "productiv"
+     ]
+    ]
+   }
+  ]
+ },
+ "s1q5d": {
+  "keywords": [
+   [
+    [
+     "65.1",
+     "0.6513",
+     "0.651"
+    ],
+    [
+     "variation"
+    ],
+    [
+     "explained"
+    ]
+   ],
+   [
+    [
+     "good",
+     "high",
+     "reasonabl",
+     "fairly",
+     "well"
+    ]
+   ]
+  ]
+ },
+ "s1q5e": {
+  "keywords": [
+   [
+    [
+     "0.0327",
+     "0.03268",
+     "3.27"
+    ],
+    [
+     "percentage point",
+     "error",
+     "prediction"
+    ]
+   ],
+   [
+    [
+     "not accurate",
+     "not very accurate",
+     "inaccurate",
+     "imprecise",
+     "not precise",
+     "large"
+    ]
+   ],
+   [
+    [
+     "1.73",
+     "0.0173",
+     "mean",
+     "average growth"
+    ]
+   ]
+  ]
+ },
+ "s1q6a": {
+  "keywords": [
+   [
+    [
+     "0.499",
+     "0.50",
+     "0.5%"
+    ],
+    [
+     "high"
+    ]
+   ],
+   [
+    [
+     "1.19e-05",
+     "significant",
+     "greater than zero",
+     "different from zero"
+    ]
+   ],
+   [
+    [
+     "1.99"
+    ],
+    [
+     "percentage point"
+    ],
+    [
+     "low"
+    ]
+   ],
+   [
+    [
+     "1.37e-22",
+     "significant"
+    ]
+   ],
+   [
+    [
+     "0.84"
+    ],
+    [
+     "percentage point"
+    ],
+    [
+     "medium"
+    ]
+   ],
+   [
+    [
+     "9.86e-10",
+     "significant"
+    ]
+   ],
+   [
+    [
+     "1.99>0.84",
+     "1.99 > 0.84",
+     "higher than medium",
+     "more than medium",
+     "greater than medium",
+     "low-income countries have the highest",
+     "highest"
+    ]
+   ],
+   [
+    [
+     "highest",
+     "followed by",
+     "then high",
+     "lowest",
+     "rank"
+    ]
+   ],
+   [
+    [
+     "negative relationship",
+     "negatively related",
+     "higher income",
+     "richer",
+     "inverse"
+    ]
+   ]
+  ]
+ },
+ "s1q6b1": {
+  "keywords": [
+   [
+    [
+     "1.2"
+    ],
+    [
+     "1.025"
+    ],
+    [
+     "10"
+    ]
+   ]
+  ]
+ },
+ "s1q6b2": {
+  "keywords": [
+   [
+    [
+     "overestimate",
+     "over-estimate",
+     "too high",
+     "overstate",
+     "over estimate",
+     "too large"
+    ]
+   ],
+   [
+    [
+     "medium"
+    ],
+    [
+     "lower",
+     "slow",
+     "less",
+     "1.15"
+    ]
+   ],
+   [
+    [
+     "lower growth rate",
+     "1.35",
+     "dummy",
+     "dummies",
+     "recent",
+     "adjust",
+     "reduce the growth",
+     "smaller growth"
+    ]
+   ]
+  ]
+ },
+ "s2q1a": {
+  "rubric": [
+   {
+    "label": "Table の mode は生データ（ungrouped）で最も多い値",
+    "marks": 1,
+    "keywords": [
+     [
+      "raw",
+      "ungrouped",
+      "individual",
+      "single value",
+      "most often",
+      "most frequent"
+     ]
+    ]
+   },
+   {
+    "label": "多角形の山は階級（grouped / modal class）",
+    "marks": 1,
+    "keywords": [
+     [
+      "class",
+      "group",
+      "interval",
+      "bin"
+     ]
+    ]
+   }
+  ]
+ },
+ "s2q1b": {
+  "rubric": [
+   {
+    "label": "SD：絶対的な散らばり、NR 24.26 > SR 17.70",
+    "marks": 2,
+    "keywords": [
+     [
+      "standard deviation",
+      "sd",
+      "std"
+     ],
+     [
+      "24.26"
+     ],
+     [
+      "17.7"
+     ]
+    ]
+   },
+   {
+    "label": "IQR：真ん中50%・外れ値に強い、NR 36 > SR 21",
+    "marks": 2,
+    "keywords": [
+     [
+      "iqr",
+      "interquartile"
+     ],
+     [
+      "36"
+     ],
+     [
+      "21"
+     ],
+     [
+      "middle 50",
+      "middle half",
+      "outlier",
+      "extreme",
+      "q3",
+      "quartile"
+     ]
+    ]
+   },
+   {
+    "label": "CV：平均が違うので CV で比べる、NR 27.7% < SR 29.8%",
+    "marks": 2,
+    "keywords": [
+     [
+      "cv",
+      "coefficient of variation"
+     ],
+     [
+      "27.7"
+     ],
+     [
+      "29.8"
+     ],
+     [
+      "mean",
+      "relative"
+     ]
+    ]
+   }
+  ]
+ },
+ "s2q1c": {
+  "rubric": [
+   {
+    "label": "North：unimodal",
+    "marks": 1,
+    "keywords": [
+     [
+      "unimodal",
+      "one peak",
+      "single peak"
+     ]
+    ]
+   },
+   {
+    "label": "South：bimodal",
+    "marks": 1,
+    "keywords": [
+     [
+      "bimodal",
+      "two peaks"
+     ]
+    ]
+   },
+   {
+    "label": "両方とも positively skewed",
+    "marks": 1,
+    "keywords": [
+     [
+      "positive",
+      "right"
+     ],
+     [
+      "skew"
+     ]
+    ]
+   },
+   {
+    "label": "根拠：mean > median",
+    "marks": 1,
+    "keywords": [
+     [
+      "mean"
+     ],
+     [
+      "median"
+     ]
+    ]
+   }
+  ]
+ },
+ "s2q2a": {
+  "rubric": [
+   {
+    "label": "Department は qualitative / nominal、Age group は ordinal",
+    "marks": 1,
+    "keywords": [
+     [
+      "nominal"
+     ],
+     [
+      "ordinal"
+     ]
+    ]
+   }
+  ]
+ },
+ "s2q2b": {
+  "rubric": [
+   {
+    "label": "年齢と部署の関係を問う研究課題（疑問文）",
+    "marks": 1,
+    "keywords": [
+     [
+      "age"
+     ],
+     [
+      "department"
+     ],
+     [
+      "relationship",
+      "influence",
+      "affect",
+      "effect",
+      "related",
+      "depend",
+      "associat"
+     ]
+    ]
+   }
+  ]
+ },
+ "s2q2cd": {
+  "rubric": [
+   {
+    "label": "(c) P(<30) = 108/300 = 0.36",
+    "marks": 1,
+    "keywords": [
+     [
+      "108/300",
+      "0.36"
+     ]
+    ]
+   },
+   {
+    "label": "(d) P(Production) = 160/300 = 0.533",
+    "marks": 1,
+    "keywords": [
+     [
+      "160/300",
+      "0.533"
+     ]
+    ]
+   }
+  ]
+ },
+ "s2q2e": {
+  "rubric": [
+   {
+    "label": "65/108 または 0.217/0.360",
+    "marks": 1,
+    "keywords": [
+     [
+      "65/108",
+      "0.217/0.36",
+      "0.217/0.360"
+     ]
+    ]
+   }
+  ]
+ },
+ "s2q2fg": {
+  "rubric": [
+   {
+    "label": "(f) 同時確率 29/300 = 0.097",
+    "marks": 1,
+    "keywords": [
+     [
+      "29/300",
+      "0.097"
+     ]
+    ]
+   },
+   {
+    "label": "(g) 条件付き確率 35/78 = 0.449",
+    "marks": 1,
+    "keywords": [
+     [
+      "35/78",
+      "0.449"
+     ]
+    ]
+   }
+  ]
+ },
+ "s2q2h": {
+  "rubric": [
+   {
+    "label": "条件付き確率を引用して年齢ごとの違いを説明（0.602 / 0.581 / 0.556 など）",
+    "marks": 1,
+    "keywords": [
+     [
+      "0.602",
+      "0.581",
+      "0.556",
+      "0.317"
+     ]
+    ]
+   },
+   {
+    "label": "結論：年齢は部署に影響する（独立でない）",
+    "marks": 1,
+    "keywords": [
+     [
+      "effect",
+      "not independent",
+      "depend",
+      "related",
+      "influence"
+     ]
+    ]
+   }
+  ]
+ },
+ "s2q3a": {
+  "rubric": [
+   {
+    "label": "推定式（ハット付き、43.842 + 1.681 Time）",
+    "marks": 1,
+    "keywords": [
+     [
+      "43.84"
+     ],
+     [
+      "1.68"
+     ]
+    ]
+   },
+   {
+    "label": "切片：時間ゼロのとき RM43.84",
+    "marks": 1,
+    "keywords": [
+     [
+      "no time",
+      "zero",
+      "0 min",
+      "0 minute",
+      "without",
+      "does not spend",
+      "doesn't spend"
+     ],
+     [
+      "43.84"
+     ]
+    ]
+   },
+   {
+    "label": "傾き：1分あたり RM1.68 増",
+    "marks": 1,
+    "keywords": [
+     [
+      "additional minute",
+      "one minute",
+      "1 minute",
+      "extra minute",
+      "each minute",
+      "every minute",
+      "one more minute",
+      "one additional",
+      "additional"
+     ],
+     [
+      "1.68"
+     ],
+     [
+      "increase"
+     ]
+    ]
+   },
+   {
+    "label": "on average と単位（RM）",
+    "marks": 1,
+    "keywords": [
+     [
+      "on average"
+     ],
+     [
+      "rm"
+     ]
+    ]
+   }
+  ],
+  "forbidden": [
+   {
+    "pattern": "+ e",
+    "message": "推定式には誤差項 e を書かない"
+   }
+  ]
+ },
+ "s2q3b": {
+  "rubric": [
+   {
+    "label": "H0: β1 = 0 / H1: β1 > 0（片側）",
+    "marks": 1,
+    "keywords": [
+     [
+      "h0"
+     ],
+     [
+      "h1",
+      "ha"
+     ],
+     [
+      ">0",
+      "> 0",
+      "positive"
+     ]
+    ]
+   },
+   {
+    "label": "α = 0.01",
+    "marks": 0.5,
+    "keywords": [
+     [
+      "0.01",
+      "1%"
+     ]
+    ]
+   },
+   {
+    "label": "p 値 ÷2（3.42E-07 / 2）",
+    "marks": 1,
+    "keywords": [
+     [
+      "/2",
+      "÷2",
+      "divided by 2",
+      "halve",
+      "1.71e-07"
+     ]
+    ]
+   },
+   {
+    "label": "判断：reject H0（p < α）",
+    "marks": 0.5,
+    "keywords": [
+     [
+      "reject"
+     ]
+    ]
+   },
+   {
+    "label": "結論：sufficient evidence ＋ 文脈（time → sales）",
+    "marks": 1,
+    "keywords": [
+     [
+      "sufficient evidence",
+      "enough evidence",
+      "significant"
+     ],
+     [
+      "sales",
+      "time"
+     ]
+    ]
+   }
+  ]
+ },
+ "s2q4a": {
+  "rubric": [
+   {
+    "label": "推定式（53.33 + 1.81 Time − 0.14 Pages − 14.14 IE − 8.39 Firefox）",
+    "marks": 1,
+    "keywords": [
+     [
+      "53.33"
+     ],
+     [
+      "1.81"
+     ],
+     [
+      "0.14"
+     ],
+     [
+      "14.14"
+     ],
+     [
+      "8.39"
+     ]
+    ]
+   },
+   {
+    "label": "切片：Chrome 利用者・時間0・ページ0",
+    "marks": 1,
+    "keywords": [
+     [
+      "chrome"
+     ],
+     [
+      "0 min",
+      "zero",
+      "no time",
+      "0 pages",
+      "no pages",
+      "without"
+     ]
+    ]
+   },
+   {
+    "label": "RM53.33、on average",
+    "marks": 1,
+    "keywords": [
+     [
+      "53.33"
+     ],
+     [
+      "on average"
+     ]
+    ]
+   }
+  ],
+  "forbidden": [
+   {
+    "pattern": "14.41",
+    "message": "出力表の値は −14.14（14.41 は公式解答の誤り）"
+   },
+   {
+    "pattern": "8.99",
+    "message": "出力表の値は −8.39（8.99 は公式解答の誤り）"
+   }
+  ]
+ },
+ "s2q4b": {
+  "rubric": [
+   {
+    "label": "他を一定（holding … constant）",
+    "marks": 1,
+    "keywords": [
+     [
+      "holding",
+      "constant",
+      "identical",
+      "same"
+     ]
+    ]
+   },
+   {
+    "label": "1ページあたり RM0.14 減、on average",
+    "marks": 1,
+    "keywords": [
+     [
+      "0.14"
+     ],
+     [
+      "decrease",
+      "less",
+      "lower",
+      "fall",
+      "reduce"
+     ],
+     [
+      "on average"
+     ]
+    ]
+   },
+   {
+    "label": "符号：期待はプラス → 予想外（理由つき）",
+    "marks": 1,
+    "keywords": [
+     [
+      "expect",
+      "unexpected",
+      "not as expected",
+      "surpris"
+     ]
+    ]
+   }
+  ]
+ },
+ "s2q4c": {
+  "rubric": [
+   {
+    "label": "Firefox と Chrome（基準）の比較、他は同じ",
+    "marks": 1,
+    "keywords": [
+     [
+      "chrome"
+     ],
+     [
+      "same",
+      "identical",
+      "holding",
+      "constant",
+      "except"
+     ]
+    ]
+   },
+   {
+    "label": "RM8.39 少ない、on average",
+    "marks": 1,
+    "keywords": [
+     [
+      "8.39"
+     ],
+     [
+      "less",
+      "lower",
+      "decrease",
+      "fewer"
+     ],
+     [
+      "on average"
+     ]
+    ]
+   }
+  ],
+  "forbidden": [
+   {
+    "pattern": "8.99",
+    "message": "出力表の値は −8.39（8.99 は公式解答の誤り）"
+   }
+  ]
+ },
+ "s2q4d": {
+  "rubric": [
+   {
+    "label": "H0: β2 = 0 / H1: β2 ≠ 0（両側）",
+    "marks": 1,
+    "keywords": [
+     [
+      "h0"
+     ],
+     [
+      "h1",
+      "ha"
+     ],
+     [
+      "≠",
+      "not equal",
+      "!=",
+      "two-sided",
+      "two sided",
+      "two-tailed"
+     ]
+    ]
+   },
+   {
+    "label": "α = 0.01",
+    "marks": 0.5,
+    "keywords": [
+     [
+      "0.01",
+      "1%"
+     ]
+    ]
+   },
+   {
+    "label": "p 値 0.81（両側なのでそのまま）",
+    "marks": 1,
+    "keywords": [
+     [
+      "0.81"
+     ]
+    ]
+   },
+   {
+    "label": "判断：do not reject H0",
+    "marks": 0.5,
+    "keywords": [
+     [
+      "do not reject",
+      "not reject",
+      "fail to reject",
+      "cannot reject",
+      "don't reject"
+     ]
+    ]
+   },
+   {
+    "label": "結論：insufficient evidence ＋ 文脈（pages → sales）",
+    "marks": 1,
+    "keywords": [
+     [
+      "insufficient evidence",
+      "not enough evidence",
+      "not sufficient evidence",
+      "no evidence",
+      "not significant",
+      "insignificant"
+     ],
+     [
+      "page"
+     ]
+    ]
+   }
+  ]
+ },
+ "s2q5a": {
+  "rubric": [
+   {
+    "label": "定義：研究対象のすべての個体・要素の集まり",
+    "marks": 1,
+    "keywords": [
+     [
+      "all",
+      "entire",
+      "whole",
+      "every"
+     ]
+    ]
+   },
+   {
+    "label": "具体例",
+    "marks": 1,
+    "keywords": [
+     [
+      "e.g",
+      "example",
+      "for instance",
+      "such as"
+     ]
+    ]
+   }
+  ]
+ },
+ "s2q5b": {
+  "rubric": [
+   {
+    "label": "母集団から計算 → parameter（標本からは statistic）",
+    "marks": 1,
+    "keywords": [
+     [
+      "population"
+     ],
+     [
+      "sample"
+     ]
+    ]
+   },
+   {
+    "label": "parameter の例を2つ（μ、σ など）",
+    "marks": 2,
+    "keywords": [
+     [
+      "μ",
+      "mu",
+      "population mean"
+     ],
+     [
+      "σ",
+      "sigma",
+      "population standard deviation",
+      "population variance",
+      "proportion",
+      "beta"
+     ]
+    ]
+   }
+  ]
+ },
+ "s2q5c": {
+  "rubric": [
+   {
+    "label": "primary：自分の研究目的で自分で集める",
+    "marks": 1,
+    "keywords": [
+     [
+      "primary"
+     ],
+     [
+      "own",
+      "researcher",
+      "collected by",
+      "first-hand",
+      "yourself",
+      "themselves"
+     ]
+    ]
+   },
+   {
+    "label": "primary の例",
+    "marks": 1,
+    "keywords": [
+     [
+      "questionnaire",
+      "survey",
+      "interview",
+      "experiment"
+     ]
+    ]
+   },
+   {
+    "label": "secondary：他人が別の目的で集めたもの",
+    "marks": 1,
+    "keywords": [
+     [
+      "secondary"
+     ],
+     [
+      "someone else",
+      "other",
+      "another",
+      "different purpose",
+      "already"
+     ]
+    ]
+   },
+   {
+    "label": "secondary の例",
+    "marks": 1,
+    "keywords": [
+     [
+      "census",
+      "world bank",
+      "government",
+      "department of statistics",
+      "published",
+      "database",
+      "abs",
+      "dosm"
+     ]
+    ]
+   }
+  ]
+ },
+ "s2q5d": {
+  "rubric": [
+   {
+    "label": "回答しない人（拒否・連絡がつかない）",
+    "marks": 1,
+    "keywords": [
+     [
+      "not respond",
+      "do not respond",
+      "don't respond",
+      "non-respon",
+      "refuse",
+      "no contact",
+      "cannot be contacted",
+      "fail to respond"
+     ]
+    ]
+   },
+   {
+    "label": "回答者と系統的に違う → 結果に偏り",
+    "marks": 1,
+    "keywords": [
+     [
+      "differ",
+      "systematic",
+      "bias",
+      "representative"
+     ]
+    ]
+   }
+  ]
+ },
+ "p1a": {
+  "rubric": [
+   {
+    "label": "中心：mean 62.40 vs 48.90、median は近い（55.0 vs 49.5）",
+    "marks": 2,
+    "keywords": [
+     [
+      "mean"
+     ],
+     [
+      "62.4"
+     ],
+     [
+      "48.9"
+     ],
+     [
+      "median"
+     ]
+    ]
+   },
+   {
+    "label": "散らばり：SD 28.10 vs 15.20 ＋ 意味（on average）",
+    "marks": 2,
+    "keywords": [
+     [
+      "standard deviation",
+      "sd"
+     ],
+     [
+      "28.1"
+     ],
+     [
+      "15.2"
+     ],
+     [
+      "on average"
+     ]
+    ]
+   },
+   {
+    "label": "IQR / range も比較",
+    "marks": 1,
+    "keywords": [
+     [
+      "iqr",
+      "interquartile",
+      "range"
+     ]
+    ]
+   },
+   {
+    "label": "平均が違うので CV（45.0% vs 31.1%）",
+    "marks": 1,
+    "keywords": [
+     [
+      "cv",
+      "coefficient of variation"
+     ],
+     [
+      "45"
+     ],
+     [
+      "31.1"
+     ]
+    ]
+   },
+   {
+    "label": "形：on-campus は positively skewed、off-campus はほぼ対称",
+    "marks": 2,
+    "keywords": [
+     [
+      "positive",
+      "right"
+     ],
+     [
+      "symmetric"
+     ]
+    ]
+   }
+  ]
+ },
+ "p1b": {
+  "rubric": [
+   {
+    "label": "mean と SD は下がる",
+    "marks": 1,
+    "keywords": [
+     [
+      "mean"
+     ],
+     [
+      "standard deviation",
+      "sd"
+     ],
+     [
+      "fall",
+      "decrease",
+      "lower",
+      "drop",
+      "reduce",
+      "smaller"
+     ]
+    ]
+   },
+   {
+    "label": "理由：最大の値・平均から遠い",
+    "marks": 1,
+    "keywords": [
+     [
+      "largest",
+      "extreme",
+      "far",
+      "outlier",
+      "maximum"
+     ]
+    ]
+   },
+   {
+    "label": "median と IQR はほぼ変わらない（robust）",
+    "marks": 2,
+    "keywords": [
+     [
+      "median"
+     ],
+     [
+      "iqr",
+      "interquartile"
+     ],
+     [
+      "barely",
+      "little",
+      "hardly",
+      "not change",
+      "unchanged",
+      "robust",
+      "same",
+      "slightly"
+     ]
+    ]
+   }
+  ]
+ },
+ "p2a": {
+  "rubric": [
+   {
+    "label": "(a) 200/400",
+    "marks": 1,
+    "keywords": [
+     [
+      "200/400",
+      "0.5"
+     ]
+    ]
+   },
+   {
+    "label": "(b) 50/400（同時）",
+    "marks": 1,
+    "keywords": [
+     [
+      "50/400",
+      "0.125"
+     ]
+    ]
+   },
+   {
+    "label": "(c) 50/110（条件付き）",
+    "marks": 1,
+    "keywords": [
+     [
+      "50/110",
+      "0.45"
+     ]
+    ]
+   },
+   {
+    "label": "(d) 30/160（条件付き）",
+    "marks": 1,
+    "keywords": [
+     [
+      "30/160",
+      "0.19"
+     ]
+    ]
+   }
+  ]
+ },
+ "p2b": {
+  "rubric": [
+   {
+    "label": "No（排反ではない）",
+    "marks": 1,
+    "keywords": [
+     [
+      "no",
+      "not mutually exclusive"
+     ]
+    ]
+   },
+   {
+    "label": "理由：同時に起こる（90人）",
+    "marks": 1,
+    "keywords": [
+     [
+      "90"
+     ]
+    ]
+   }
+  ]
+ },
+ "p2c": {
+  "rubric": [
+   {
+    "label": "独立なら条件付き確率＝周辺確率",
+    "marks": 1,
+    "keywords": [
+     [
+      "independent"
+     ],
+     [
+      "marginal"
+     ]
+    ]
+   },
+   {
+    "label": "周辺確率を示す（P(Card) = 0.30 など）",
+    "marks": 1,
+    "keywords": [
+     [
+      "120/400",
+      "0.30",
+      "0.3",
+      "200/400",
+      "0.5"
+     ]
+    ]
+   },
+   {
+    "label": "条件付き確率を比較（0.19 / 0.31 / 0.45 など）",
+    "marks": 1,
+    "keywords": [
+     [
+      "30/160",
+      "0.19",
+      "50/110",
+      "0.45",
+      "90/160",
+      "0.56"
+     ]
+    ]
+   },
+   {
+    "label": "結論：独立でない（学年で支払い方法が違う）",
+    "marks": 1,
+    "keywords": [
+     [
+      "not independent",
+      "depend",
+      "related",
+      "differ"
+     ]
+    ]
+   }
+  ]
+ },
+ "p3a": {
+  "rubric": [
+   {
+    "label": "推定式 42.50 + 2.35 StudyHours",
+    "marks": 1,
+    "keywords": [
+     [
+      "42.5"
+     ],
+     [
+      "2.35"
+     ]
+    ]
+   },
+   {
+    "label": "切片：勉強0時間で 42.50 点",
+    "marks": 1,
+    "keywords": [
+     [
+      "not study",
+      "no study",
+      "zero",
+      "0 hour",
+      "does not study",
+      "doesn't study"
+     ],
+     [
+      "42.5"
+     ]
+    ]
+   },
+   {
+    "label": "傾き：1時間あたり 2.35 点増",
+    "marks": 1,
+    "keywords": [
+     [
+      "additional hour",
+      "extra hour",
+      "each hour",
+      "every hour",
+      "one hour",
+      "1 hour",
+      "one more hour"
+     ],
+     [
+      "2.35"
+     ]
+    ]
+   },
+   {
+    "label": "on average",
+    "marks": 1,
+    "keywords": [
+     [
+      "on average"
+     ]
+    ]
+   }
+  ]
+ },
+ "p3b": {
+  "rubric": [
+   {
+    "label": "H0: β1 = 0 / H1: β1 > 0",
+    "marks": 1,
+    "keywords": [
+     [
+      "h0"
+     ],
+     [
+      "h1",
+      "ha"
+     ],
+     [
+      ">0",
+      "positive"
+     ]
+    ]
+   },
+   {
+    "label": "α = 0.05",
+    "marks": 0.5,
+    "keywords": [
+     [
+      "0.05",
+      "5%"
+     ]
+    ]
+   },
+   {
+    "label": "p ÷2",
+    "marks": 1,
+    "keywords": [
+     [
+      "/2",
+      "÷2",
+      "divided by 2",
+      "halve",
+      "0.00018"
+     ]
+    ]
+   },
+   {
+    "label": "reject H0",
+    "marks": 0.5,
+    "keywords": [
+     [
+      "reject"
+     ]
+    ]
+   },
+   {
+    "label": "sufficient evidence ＋ 文脈",
+    "marks": 1,
+    "keywords": [
+     [
+      "sufficient evidence",
+      "enough evidence"
+     ],
+     [
+      "study",
+      "score"
+     ]
+    ]
+   }
+  ]
+ },
+ "p3c": {
+  "rubric": [
+   {
+    "label": "区間 [1.109, 3.591]",
+    "marks": 1,
+    "keywords": [
+     [
+      "1.109",
+      "1.11"
+     ],
+     [
+      "3.591",
+      "3.59"
+     ]
+    ]
+   },
+   {
+    "label": "We are 95% confident that the true …",
+    "marks": 1,
+    "keywords": [
+     [
+      "95% confident"
+     ]
+    ]
+   },
+   {
+    "label": "文脈：1時間あたりの点数の増加",
+    "marks": 1,
+    "keywords": [
+     [
+      "hour"
+     ],
+     [
+      "mark",
+      "score"
+     ]
+    ]
+   }
+  ]
+ },
+ "p3d": {
+  "rubric": [
+   {
+    "label": "R² = 0.198：19.8% の変動が説明される",
+    "marks": 1,
+    "keywords": [
+     [
+      "19.8"
+     ],
+     [
+      "variation"
+     ],
+     [
+      "explained"
+     ]
+    ]
+   },
+   {
+    "label": "SE 9.40：予測の典型的な誤差",
+    "marks": 1,
+    "keywords": [
+     [
+      "9.4"
+     ],
+     [
+      "error",
+      "typically",
+      "on average"
+     ]
+    ]
+   },
+   {
+    "label": "個人の予測には不正確（理由つき）",
+    "marks": 1,
+    "keywords": [
+     [
+      "not very accurate",
+      "not accurate",
+      "inaccurate",
+      "imprecise",
+      "not good",
+      "large",
+      "poor"
+     ]
+    ]
+   }
+  ]
+ },
+ "p3e": {
+  "rubric": [
+   {
+    "label": "Type I（reject したから）",
+    "marks": 1,
+    "keywords": [
+     [
+      "type i"
+     ],
+     [
+      "reject"
+     ]
+    ]
+   },
+   {
+    "label": "文脈での説明",
+    "marks": 1,
+    "keywords": [
+     [
+      "study"
+     ],
+     [
+      "no effect",
+      "no positive effect",
+      "actually",
+      "in fact",
+      "true"
+     ]
+    ]
+   }
+  ]
+ },
+ "p4a": {
+  "rubric": [
+   {
+    "label": "係数と値を代入した式",
+    "marks": 2,
+    "keywords": [
+     [
+      "650"
+     ],
+     [
+      "0.95"
+     ],
+     [
+      "900"
+     ],
+     [
+      "220"
+     ],
+     [
+      "45"
+     ],
+     [
+      "3"
+     ],
+     [
+      "150"
+     ]
+    ]
+   }
+  ]
+ },
+ "p4b": {
+  "rubric": [
+   {
+    "label": "Size：他を一定、1 sq ft あたり RM0.95、on average",
+    "marks": 2,
+    "keywords": [
+     [
+      "0.95"
+     ],
+     [
+      "holding",
+      "constant",
+      "identical"
+     ],
+     [
+      "on average"
+     ]
+    ]
+   },
+   {
+    "label": "Furnished：家具付きは RM220 高い",
+    "marks": 2,
+    "keywords": [
+     [
+      "220"
+     ],
+     [
+      "furnished"
+     ]
+    ]
+   },
+   {
+    "label": "Petaling Jaya：基準（Bandar Sunway）より RM150 高い",
+    "marks": 2,
+    "keywords": [
+     [
+      "150"
+     ],
+     [
+      "bandar sunway",
+      "base"
+     ]
+    ]
+   }
+  ]
+ },
+ "p4c": {
+  "rubric": [
+   {
+    "label": "1%：Size と Furnished",
+    "marks": 1,
+    "keywords": [
+     [
+      "1%",
+      "0.01"
+     ],
+     [
+      "size"
+     ],
+     [
+      "furnished"
+     ]
+    ]
+   },
+   {
+    "label": "5%：Petaling Jaya も",
+    "marks": 1,
+    "keywords": [
+     [
+      "5%",
+      "0.05"
+     ],
+     [
+      "petaling"
+     ]
+    ]
+   },
+   {
+    "label": "10%：Distance も",
+    "marks": 1,
+    "keywords": [
+     [
+      "10%",
+      "0.1"
+     ],
+     [
+      "distance"
+     ]
+    ]
+   },
+   {
+    "label": "Subang Jaya はどの水準でも有意でない",
+    "marks": 1,
+    "keywords": [
+     [
+      "subang"
+     ],
+     [
+      "not significant",
+      "insignificant"
+     ]
+    ]
+   }
+  ]
+ },
+ "p4d": {
+  "rubric": [
+   {
+    "label": "H0: β3 = 0 / H1: β3 < 0",
+    "marks": 1,
+    "keywords": [
+     [
+      "h0"
+     ],
+     [
+      "h1",
+      "ha"
+     ],
+     [
+      "<0",
+      "negative"
+     ]
+    ]
+   },
+   {
+    "label": "α = 0.05",
+    "marks": 0.5,
+    "keywords": [
+     [
+      "0.05",
+      "5%"
+     ]
+    ]
+   },
+   {
+    "label": "符号が H1 と同じ → p ÷2 = 0.0315",
+    "marks": 1,
+    "keywords": [
+     [
+      "/2",
+      "÷2",
+      "divided by 2",
+      "halve",
+      "0.0315"
+     ]
+    ]
+   },
+   {
+    "label": "reject H0",
+    "marks": 0.5,
+    "keywords": [
+     [
+      "reject"
+     ]
+    ]
+   },
+   {
+    "label": "結論：sufficient evidence ＋ 文脈",
+    "marks": 1,
+    "keywords": [
+     [
+      "sufficient evidence",
+      "enough evidence"
+     ],
+     [
+      "distance",
+      "rent"
+     ]
+    ]
+   }
+  ]
+ },
+ "p4e": {
+  "rubric": [
+   {
+    "label": "Size（+）：期待どおり＋理由",
+    "marks": 1,
+    "keywords": [
+     [
+      "size"
+     ],
+     [
+      "expected",
+      "space",
+      "larger"
+     ]
+    ]
+   },
+   {
+    "label": "Furnished（+）：期待どおり＋理由",
+    "marks": 1,
+    "keywords": [
+     [
+      "furnished",
+      "furniture"
+     ],
+     [
+      "expected",
+      "save",
+      "more"
+     ]
+    ]
+   },
+   {
+    "label": "Distance（−）：期待どおり＋理由",
+    "marks": 1,
+    "keywords": [
+     [
+      "distance",
+      "further",
+      "farther"
+     ],
+     [
+      "travel",
+      "transport",
+      "expected",
+      "less"
+     ]
+    ]
+   }
+  ]
+ },
+ "p4f": {
+  "rubric": [
+   {
+    "label": "R² = 0.620：62% の変動が説明される",
+    "marks": 1,
+    "keywords": [
+     [
+      "62"
+     ],
+     [
+      "variation"
+     ],
+     [
+      "explained"
+     ]
+    ]
+   },
+   {
+    "label": "SE RM260：予測の典型的な誤差",
+    "marks": 1,
+    "keywords": [
+     [
+      "260"
+     ],
+     [
+      "error",
+      "typically",
+      "on average"
+     ]
+    ]
+   },
+   {
+    "label": "平均 RM1,850 と比べて精度を評価",
+    "marks": 1,
+    "keywords": [
+     [
+      "1850",
+      "mean",
+      "14%"
+     ]
+    ]
+   }
+  ]
+ },
+ "p5a": {
+  "rubric": [
+   {
+    "label": "(a) P(Z > (25 − 18)/4)",
+    "marks": 1,
+    "keywords": [
+     [
+      "(25-18)/4",
+      "1.75"
+     ]
+    ]
+   },
+   {
+    "label": "(b) x = 18 + z × 4（z = 1.2816 など）",
+    "marks": 1,
+    "keywords": [
+     [
+      "18+"
+     ],
+     [
+      "×4",
+      "*4",
+      "x 4",
+      "1.28"
+     ]
+    ]
+   },
+   {
+    "label": "(c) σ/√n = 4/√16 = 1 と P(Z > (20 − 18)/1)",
+    "marks": 2,
+    "keywords": [
+     [
+      "√16",
+      "sqrt(16)",
+      "sqrt 16",
+      "/4=1",
+      "= 1",
+      "=1"
+     ],
+     [
+      "(20-18)",
+      "z>2",
+      "= 2",
+      "=2"
+     ]
+    ]
+   }
+  ]
+ },
+ "p6a": {
+  "rubric": [
+   {
+    "label": "H0: μ = 8 / H1: μ < 8",
+    "marks": 1,
+    "keywords": [
+     [
+      "h0"
+     ],
+     [
+      "h1",
+      "ha"
+     ],
+     [
+      "<8"
+     ]
+    ]
+   },
+   {
+    "label": "t = (7.4 − 8)/(1.8/√36)",
+    "marks": 1,
+    "keywords": [
+     [
+      "7.4-8"
+     ],
+     [
+      "1.8/√36",
+      "1.8/sqrt",
+      "1.8/6",
+      "0.3"
+     ]
+    ]
+   },
+   {
+    "label": "棄却域（t < −1.690）と比較",
+    "marks": 1,
+    "keywords": [
+     [
+      "1.690",
+      "1.69"
+     ]
+    ]
+   },
+   {
+    "label": "reject H0 ＋ 文脈の結論",
+    "marks": 1,
+    "keywords": [
+     [
+      "reject"
+     ],
+     [
+      "sufficient evidence",
+      "enough evidence"
+     ]
+    ]
+   }
+  ]
+ },
+ "p6b": {
+  "rubric": [
+   {
+    "label": "7.4 ± 2.030 × 1.8/√36",
+    "marks": 1,
+    "keywords": [
+     [
+      "7.4"
+     ],
+     [
+      "2.03"
+     ],
+     [
+      "1.8"
+     ]
+    ]
+   },
+   {
+    "label": "95% confident の解釈",
+    "marks": 1,
+    "keywords": [
+     [
+      "95% confident"
+     ]
+    ]
+   },
+   {
+    "label": "片側検定と両側（CI）の違いで説明",
+    "marks": 2,
+    "keywords": [
+     [
+      "one-sided",
+      "one sided",
+      "one-tailed",
+      "one tail"
+     ],
+     [
+      "two-sided",
+      "two sided",
+      "two-tailed",
+      "both tails",
+      "2.5%"
+     ]
+    ]
+   }
+  ]
+ },
+ "p7a": {
+  "rubric": [
+   {
+    "label": "(a) 母集団と標本",
+    "marks": 1,
+    "keywords": [
+     [
+      "population"
+     ],
+     [
+      "sample"
+     ]
+    ]
+   },
+   {
+    "label": "(b) statistic（標本から計算）",
+    "marks": 1,
+    "keywords": [
+     [
+      "statistic"
+     ]
+    ]
+   },
+   {
+    "label": "(c) bias の種類と理由",
+    "marks": 2,
+    "keywords": [
+     [
+      "bias"
+     ],
+     [
+      "follower",
+      "self-select",
+      "volunteer",
+      "non-response",
+      "choose",
+      "not representative"
+     ]
+    ]
+   }
+  ]
+ },
+ "p7b": {
+  "rubric": [
+   {
+    "label": "(i) ordinal",
+    "marks": 1,
+    "keywords": [
+     [
+      "ordinal"
+     ]
+    ]
+   },
+   {
+    "label": "(ii) nominal",
+    "marks": 1,
+    "keywords": [
+     [
+      "nominal"
+     ]
+    ]
+   },
+   {
+    "label": "(iii) continuous",
+    "marks": 1,
+    "keywords": [
+     [
+      "continuous"
+     ]
+    ]
+   },
+   {
+    "label": "(iv) discrete",
+    "marks": 1,
+    "keywords": [
+     [
+      "discrete"
+     ]
+    ]
+   }
+  ]
+ },
+ "p8a": {
+  "rubric": [
+   {
+    "label": "基準（on-campus）：RM1,450",
+    "marks": 1,
+    "keywords": [
+     [
+      "1450"
+     ],
+     [
+      "on-campus",
+      "on campus",
+      "base"
+     ]
+    ]
+   },
+   {
+    "label": "Shared condo：RM320 多い（基準と比較）＋有意",
+    "marks": 2,
+    "keywords": [
+     [
+      "320"
+     ],
+     [
+      "more",
+      "higher"
+     ],
+     [
+      "significant"
+     ]
+    ]
+   },
+   {
+    "label": "Family home：RM410 少ない（基準と比較）＋有意",
+    "marks": 2,
+    "keywords": [
+     [
+      "410"
+     ],
+     [
+      "less",
+      "lower"
+     ]
+    ]
+   },
+   {
+    "label": "順位づけ・結論",
+    "marks": 1,
+    "keywords": [
+     [
+      "highest",
+      "lowest",
+      "followed by"
+     ]
+    ]
+   }
+  ]
+ },
+ "p8b": {
+  "rubric": [
+   {
+    "label": "H0: β2 = 0 / H1: β2 < 0",
+    "marks": 1,
+    "keywords": [
+     [
+      "h0"
+     ],
+     [
+      "h1",
+      "ha"
+     ],
+     [
+      "<0",
+      "negative",
+      "less"
+     ]
+    ]
+   },
+   {
+    "label": "α = 0.01",
+    "marks": 0.5,
+    "keywords": [
+     [
+      "0.01",
+      "1%"
+     ]
+    ]
+   },
+   {
+    "label": "p ÷2",
+    "marks": 1,
+    "keywords": [
+     [
+      "/2",
+      "÷2",
+      "divided by 2",
+      "halve",
+      "7e-09"
+     ]
+    ]
+   },
+   {
+    "label": "reject H0",
+    "marks": 0.5,
+    "keywords": [
+     [
+      "reject"
+     ]
+    ]
+   },
+   {
+    "label": "結論 ＋ 文脈",
+    "marks": 1,
+    "keywords": [
+     [
+      "sufficient evidence",
+      "enough evidence"
+     ],
+     [
+      "family",
+      "spend"
+     ]
+    ]
+   }
+  ]
+ },
+ "p8c": {
+  "rubric": [
+   {
+    "label": "1,450 × (1.04)^3",
+    "marks": 2,
+    "keywords": [
+     [
+      "1450"
+     ],
+     [
+      "1.04"
+     ],
+     [
+      "3"
+     ]
+    ]
+   }
+  ]
+ }
+}

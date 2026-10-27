@@ -1,0 +1,350 @@
+{
+ "categories": {
+  "desc": "記述統計",
+  "shape": "分布の形",
+  "scatter": "散布図・相関",
+  "prob": "確率",
+  "normal": "正規分布",
+  "ci": "信頼区間",
+  "test": "仮説検定",
+  "errors": "過誤",
+  "slr": "単回帰",
+  "mlr": "重回帰",
+  "dummy": "ダミー",
+  "fit": "R²・SE",
+  "nonlin": "非線形・成長",
+  "concept": "用語"
+ },
+ "cards": [
+  {
+   "cat": "desc",
+   "front": "Skewness が負（−0.79）。形は？ mean と median の関係は？",
+   "back": "Negatively (left) skewed：左に長い裾。mean < median。"
+  },
+  {
+   "cat": "desc",
+   "front": "Skewness が正。英語で直感的な説明は？",
+   "back": "A few very large values push up the mean, so mean > median and there is a long tail to the right."
+  },
+  {
+   "cat": "desc",
+   "front": "SD = 5.49 percentage points の解釈（定型文）",
+   "back": "[Variable] deviates from the mean by about 5.49 percentage points, on average."
+  },
+  {
+   "cat": "desc",
+   "front": "平均が大きく違う2グループのバラつきを比べるのに適した指標は？",
+   "back": "Coefficient of variation（CV = SD / mean × 100%）。相対的なバラつき。"
+  },
+  {
+   "cat": "desc",
+   "front": "外れ値に強い（robust）指標を3つ",
+   "back": "Median、Mode、IQR。（弱い：Mean, SD, Range, CV）"
+  },
+  {
+   "cat": "desc",
+   "front": "IQR とは？",
+   "back": "Q3 − Q1。データの真ん中50%の幅。外れ値の影響を受けない。"
+  },
+  {
+   "cat": "desc",
+   "front": "Mode が #N/A になるのはなぜ？",
+   "back": "連続データで同じ値が繰り返されないから（no value occurs more than once）。"
+  },
+  {
+   "cat": "desc",
+   "front": "Kurtosis が大きい（3.5〜4）とは？",
+   "back": "Peaked distribution with heavy tails：正規分布より極端な値が多い。"
+  },
+  {
+   "cat": "desc",
+   "front": "income = 0 の人を除くと SD はどうなる？",
+   "back": "小さくなる。最小の値が取り除かれ、残りの値が平均の近くに集まるから。"
+  },
+  {
+   "cat": "shape",
+   "front": "ヒストグラムを説明するときの3点セット",
+   "back": "Skewness（歪み）、Modality（山の数）、Outliers（外れ値）。"
+  },
+  {
+   "cat": "shape",
+   "front": "同じデータのヒストグラムが違って見える理由",
+   "back": "Bin（class interval）の幅や範囲の決め方が違うから。"
+  },
+  {
+   "cat": "shape",
+   "front": "表の Mode（34）と度数多角形の山（55）が違う理由",
+   "back": "Mode は生データの最頻値、図の山は grouped data の modal class（最も度数の多い階級）。"
+  },
+  {
+   "cat": "shape",
+   "front": "Bimodal とは？",
+   "back": "山が2つある分布。"
+  },
+  {
+   "cat": "scatter",
+   "front": "相関係数 0.796 を2語で",
+   "back": "Strong, positive（linear relationship）。"
+  },
+  {
+   "cat": "scatter",
+   "front": "なぜ関係が線形か確認するのか？",
+   "back": "相関係数と線形回帰は直線関係しか測れないから。曲線だと r が誤解を招く。"
+  },
+  {
+   "cat": "scatter",
+   "front": "左下の外れ値2つを含めると相関が上がる理由",
+   "back": "(Xi − X̄) < 0, (Yi − Ȳ) < 0 → 積が大きなプラス → 共分散 ↑ → 相関 ↑。"
+  },
+  {
+   "cat": "scatter",
+   "front": "相関 ≠ ？",
+   "back": "因果（correlation does not imply causation）。"
+  },
+  {
+   "cat": "prob",
+   "front": "同時確率 P(A and B) の分母は？",
+   "back": "総数（grand total）。"
+  },
+  {
+   "cat": "prob",
+   "front": "条件付き確率 P(A | B) の分母は？",
+   "back": "B の合計。P(A | B) = P(A and B) / P(B)。"
+  },
+  {
+   "cat": "prob",
+   "front": "独立の条件（式）",
+   "back": "P(A | B) = P(A)：条件付き確率 = 周辺確率。"
+  },
+  {
+   "cat": "prob",
+   "front": "Mutually exclusive とは？",
+   "back": "同時に起こらない：P(A and B) = 0。独立とは別の概念。"
+  },
+  {
+   "cat": "prob",
+   "front": "Column % の表の値は何の確率？",
+   "back": "列を条件とした条件付き確率（例：P(Production | <30) = 65/108）。"
+  },
+  {
+   "cat": "prob",
+   "front": "条件付き確率が2つ似ている → 独立？",
+   "back": "まだ言えない。周辺確率と比べる必要がある（Sample 1 では 0.41, 0.43 vs 0.59 → 独立でない）。"
+  },
+  {
+   "cat": "normal",
+   "front": "z の式",
+   "back": "z = (x − μ) / σ"
+  },
+  {
+   "cat": "normal",
+   "front": "標本平均の standard error",
+   "back": "σ / √n（σ 不明なら s / √n）。n ↑ で小さくなる。"
+  },
+  {
+   "cat": "normal",
+   "front": "95% と 99% の z 値（両側）",
+   "back": "1.96 と 2.576。片側 5% は 1.645、片側 1% は 2.33。"
+  },
+  {
+   "cat": "ci",
+   "front": "95% CI の解釈（定型文）",
+   "back": "We are 95% confident that the true (population) [parameter] lies between [lower] and [upper]."
+  },
+  {
+   "cat": "ci",
+   "front": "回帰係数の 95% CI は出力のどこ？",
+   "back": "Lower 95% と Upper 95% の列。"
+  },
+  {
+   "cat": "ci",
+   "front": "n を増やすと信頼区間は？",
+   "back": "狭くなる（SE = s/√n が小さくなる）。"
+  },
+  {
+   "cat": "ci",
+   "front": "信頼度を 95% → 99% にすると？",
+   "back": "広くなる（t / z の値が大きくなる）。"
+  },
+  {
+   "cat": "ci",
+   "front": "t 分布と標準正規分布の関係",
+   "back": "自由度（n）が大きくなるほど t 分布は N(0, 1) に近づく。"
+  },
+  {
+   "cat": "test",
+   "front": "H1 の向き：more / positive / stronger / exceeds",
+   "back": "H1: β1 > 0（右片側）"
+  },
+  {
+   "cat": "test",
+   "front": "H1 の向き：less / negative / underperform",
+   "back": "H1: β1 < 0（左片側）"
+  },
+  {
+   "cat": "test",
+   "front": "H1 の向き：any impact / effect / relationship / differ",
+   "back": "H1: β1 ≠ 0（両側）"
+  },
+  {
+   "cat": "test",
+   "front": "片側検定の p 値（Excel 出力から）",
+   "back": "Excel の P-value ÷ 2（係数の符号が H1 と同じ向きのとき）。逆向きなら 1 − p/2。"
+  },
+  {
+   "cat": "test",
+   "front": "p 値の意味",
+   "back": "H0 が正しいとき、検定統計量以上に H1 方向へ極端な値が得られる確率。"
+  },
+  {
+   "cat": "test",
+   "front": "棄却しないときの正しい書き方",
+   "back": "We do not reject H0 … there is insufficient evidence that …（accept H0 とは書かない）"
+  },
+  {
+   "cat": "test",
+   "front": "Critical value 法の判断（左片側）",
+   "back": "t-stat < −t-crit なら reject H0。"
+  },
+  {
+   "cat": "test",
+   "front": "回帰係数の t Stat の式",
+   "back": "t = b / SE(b)"
+  },
+  {
+   "cat": "test",
+   "front": "α を 5% → 1% にすると？",
+   "back": "棄却域が小さくなり棄却しにくくなる。Type I ↓、Type II ↑。"
+  },
+  {
+   "cat": "errors",
+   "front": "Type I error",
+   "back": "H0 が正しいのに棄却する（確率 = α）。"
+  },
+  {
+   "cat": "errors",
+   "front": "Type II error",
+   "back": "H0 が誤りなのに棄却しない。"
+  },
+  {
+   "cat": "errors",
+   "front": "do not reject H0 だった。起こりうる過誤は？",
+   "back": "Type II error。"
+  },
+  {
+   "cat": "slr",
+   "front": "傾きの解釈（定型文）",
+   "back": "The model predicts that a one-unit increase in X is associated with a b1 [unit] increase in Y, on average."
+  },
+  {
+   "cat": "slr",
+   "front": "切片の解釈",
+   "back": "X = 0 のときの Y の予測値（on average）。X = 0 が非現実的なら not meaningful。"
+  },
+  {
+   "cat": "slr",
+   "front": "推定式の書き方の注意",
+   "back": "Ŷ（ハット付き）、誤差項 e は書かない、変数名は問題の言葉で。"
+  },
+  {
+   "cat": "slr",
+   "front": "「slope > 1」（全体成長 → 下位20%成長）の意味",
+   "back": "貧困層の所得の方が速く伸びる → 格差縮小。"
+  },
+  {
+   "cat": "mlr",
+   "front": "重回帰の係数解釈で必ず入れる言葉",
+   "back": "Holding all other variables constant（または Take two … identical except …）。"
+  },
+  {
+   "cat": "mlr",
+   "front": "予測式で 2% 成長を代入するときの値は？",
+   "back": "変数の定義次第。比率なら 0.02、% なら 2。必ず変数の説明を読む。"
+  },
+  {
+   "cat": "mlr",
+   "front": "「符号は予想通りか？」の答え方",
+   "back": "符号＋経済的・常識的な理由。予想外なら考えられる理由（除外変数など）。"
+  },
+  {
+   "cat": "mlr",
+   "front": "統計的に有意 ＝ 重要？",
+   "back": "ではない。係数が小さければ実質的（practical）な影響は小さい。"
+  },
+  {
+   "cat": "dummy",
+   "front": "ダミー回帰の切片 = ？",
+   "back": "基準グループ（ダミー = 0）の平均（他の X = 0 のとき）。"
+  },
+  {
+   "cat": "dummy",
+   "front": "ダミー係数 = ？",
+   "back": "基準グループとの平均の差（compared with the base group）。"
+  },
+  {
+   "cat": "dummy",
+   "front": "3カテゴリーの変数を入れるときのダミーの数",
+   "back": "2つ（k − 1 個）。全部入れると dummy variable trap。"
+  },
+  {
+   "cat": "dummy",
+   "front": "IE と Firefox のダミーがある。基準は？",
+   "back": "Chrome（モデルに入っていないカテゴリー）。"
+  },
+  {
+   "cat": "dummy",
+   "front": "率の差は percent？ percentage points？",
+   "back": "Percentage points（1.99 percentage points higher）。"
+  },
+  {
+   "cat": "fit",
+   "front": "R² の解釈（定型文）",
+   "back": "R² × 100% of the variation in Y is explained by the model."
+  },
+  {
+   "cat": "fit",
+   "front": "回帰の Standard Error の解釈",
+   "back": "The model's predictions of Y are typically in error by about SE [units]. Y の平均と比べて精度を判断。"
+  },
+  {
+   "cat": "nonlin",
+   "front": "2次式の turning point",
+   "back": "x* = −b1 / (2b2)"
+  },
+  {
+   "cat": "nonlin",
+   "front": "年2.5%成長、10年後の人口の式",
+   "back": "Pop × (1.025)^10"
+  },
+  {
+   "cat": "nonlin",
+   "front": "Y − X を X で回帰すると傾きは？",
+   "back": "元の傾き − 1（1.039 → 0.039）。"
+  },
+  {
+   "cat": "concept",
+   "front": "Parameter と statistic の違い",
+   "back": "Parameter：母集団の値（固定・通常は未知）、例 μ, σ。Statistic：標本の値（標本ごとに変わる）、例 x̄, s。"
+  },
+  {
+   "cat": "concept",
+   "front": "Primary data と secondary data",
+   "back": "Primary：自分の研究のために集めた。Secondary：他人が別の目的で集めた。"
+  },
+  {
+   "cat": "concept",
+   "front": "Non-response bias",
+   "back": "回答しない人が回答者と系統的に違うため、標本が母集団を代表しなくなる偏り。"
+  },
+  {
+   "cat": "concept",
+   "front": "Nominal と ordinal",
+   "back": "Nominal：順序のないカテゴリー（部署）。Ordinal：順序のあるカテゴリー（年齢グループ）。"
+  },
+  {
+   "cat": "concept",
+   "front": "サンプルが代表的でないと？",
+   "back": "統計量が偏り（biased）、結論を母集団に一般化できない。"
+  }
+ ]
+}

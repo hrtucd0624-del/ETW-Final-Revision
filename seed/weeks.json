@@ -1,0 +1,823 @@
+[
+ {
+  "n": 1,
+  "title": "統計の基本とデータ",
+  "en": "Population, sample & data in Excel",
+  "stars": 1,
+  "types": [
+   "concept"
+  ],
+  "files": [
+   "ETW1001_W1_Tutorial.pdf",
+   "ETW1001_W1_ Solution.pdf"
+  ],
+  "summary": "<p><b>母集団（population）</b>は調べたい対象の全体、<b>標本（sample）</b>はその一部。標本から計算した値（statistic）で母集団の値（parameter）を推測するのが統計の基本の流れ。</p>\n<p>標本を使う理由は、全部調べるのが高すぎる・時間がかかる・不可能（破壊検査など）だから。ただし標本が母集団を<b>代表していない</b>と、統計量は母集団からズレた（biased）値になる。</p>\n<p>Excel では Freeze Panes、Filter、COUNTIF、IF、Pivot table でデータを整理する練習をした（試験では操作は出ない）。</p>",
+  "terms": [
+   [
+    "Population",
+    "母集団：関心の対象全体"
+   ],
+   [
+    "Sample",
+    "標本：母集団の一部"
+   ],
+   [
+    "Parameter",
+    "母数（μ, σ）：母集団の値"
+   ],
+   [
+    "Statistic",
+    "統計量（x̄, s）：標本から計算"
+   ],
+   [
+    "Representative sample",
+    "代表的な標本：母集団の特徴を反映"
+   ],
+   [
+    "Census",
+    "全数調査"
+   ]
+  ],
+  "cautions": [
+   "「全員分のデータ」でも、その集団自体が関心の対象なら population、もっと大きな集団について知りたいなら sample。",
+   "Sample 2 Q5、Sample 1 Q3(v) のような用語・代表性の問題はここが土台。"
+  ],
+  "qa": [
+   {
+    "q": "Sample or population? (a) A census of the entire adult population (b) 1000 randomly chosen shoppers (c) attendance records of all students in her class (d) 10 classmates' opinions (e) national-level student performance data",
+    "a": "(a) Population (b) Sample (c) Population — if her class is the group of interest (d) Sample (e) Population — if it covers all students in the country",
+    "src": "W1 Part 1 Q1"
+   },
+   {
+    "q": "Why do researchers use samples instead of the entire population?",
+    "a": "Studying the whole population is often too costly, too time-consuming, or impossible (e.g. destructive testing, or a population that keeps changing). A well-chosen random sample gives reliable estimates much more cheaply.",
+    "src": "W1 Part 1 Q2"
+   },
+   {
+    "q": "What happens when a sample is not representative of the population?",
+    "a": "The sample statistics will be biased: they systematically differ from the population parameters, so conclusions cannot be generalised to the population.",
+    "src": "W1 Part 1 Q3"
+   },
+   {
+    "q": "Credit Risk data: what percentage of the 425 respondents are married?",
+    "a": "36 of 425 = 8.5%. (241 respondents, 56.7%, have lived in the same house for 3+ years.)",
+    "src": "W1 Solution (e)(f)"
+   }
+  ],
+  "excel": "Credit Risk Data / Rental Data で Filter・COUNTIF・IF・Pivot を練習。Affordability（Low <1500, Medium 1500–2500, High）の分類は IF 関数。数値自体は試験に出ない。"
+ },
+ {
+  "n": 2,
+  "title": "グラフとクロス集計",
+  "en": "Data visualisation & cross-tabulation",
+  "stars": 2,
+  "types": [
+   "shape",
+   "scatter",
+   "prob"
+  ],
+  "files": [
+   "W2T.pdf",
+   "ETW1001_W2_QA.xlsx",
+   "ETW1001_W2T data.xlsx"
+  ],
+  "summary": "<p><b>データの種類に合ったグラフ</b>を選ぶのがこの週の核。</p>\n<ul><li>質的変数1つ：bar / column chart、pie chart（全体に占める割合）</li><li>質的変数2つ：clustered または stacked bar chart（pie は1変数用なので不向き）</li><li>時系列：line chart</li><li>量的変数1つ：histogram、boxplot</li><li>量的変数2つ：scatter plot（関係の強さは correlation）</li></ul>\n<p>良いグラフの条件：タイトル、軸ラベル（単位付き）、凡例、読めるデータラベル。</p>\n<p><b>クロス集計（pivot table）</b>は total %（同時確率）、row %、column %（条件付き確率）の3種類。Week 4 の確率に直結する。</p>",
+  "terms": [
+   [
+    "Clustered / stacked bar chart",
+    "2つの質的変数を比べる棒グラフ"
+   ],
+   [
+    "Histogram",
+    "量的変数の度数分布"
+   ],
+   [
+    "Scatter plot",
+    "2つの量的変数の関係"
+   ],
+   [
+    "Cross-tabulation",
+    "クロス集計表"
+   ],
+   [
+    "Row % / Column %",
+    "行の割合 / 列の割合（＝条件付き確率）"
+   ],
+   [
+    "Percentile / Quartile",
+    "百分位 / 四分位（PERCENTILE, QUARTILE 関数）"
+   ]
+  ],
+  "cautions": [
+   "Pie chart は1つの質的変数専用。教育レベル×婚姻状況なら pie を6個作ることになる → clustered / stacked bar が適切。",
+   "Sample 1 Q1(b) のヒストグラム比較、Q1(c) の散布図、Sample 2 Q2 のクロス表（Table B, C, D）はこの週の延長。"
+  ],
+  "qa": [
+   {
+    "q": "Q1: What is a suitable chart for gender and number of employees in different employment categories? How can the given charts be improved?",
+    "a": "A clustered bar (column) chart, because we display two qualitative variables in one chart. Improvements: correct spelling and clear axis titles with units, a proper chart title, a legend for every series (remove unlabelled clusters), and data labels that do not overlap (e.g. horizontal labels).",
+    "src": "W2 QA Excel, Question 1 b"
+   },
+   {
+    "q": "Q2: Summarise US–China trade from the line chart. How can it be improved?",
+    "a": "US exports to China rose slowly from a very low level in 1990, mainly after 2000. US imports from China increased much more steeply and continuously, so the gap widened over time, showing a growing trade imbalance in China's favour. Improvement: add axis titles with units and a proper chart title.",
+    "src": "W2 QA Excel, Question 2"
+   },
+   {
+    "q": "Q3: Is a pie chart appropriate for marital status by education level?",
+    "a": "No. A pie chart displays one qualitative variable; here we would need six pie charts, one per education level, which are hard to compare. A clustered or stacked bar chart is better for two qualitative variables.",
+    "src": "W2 QA Excel, Question 3"
+   },
+   {
+    "q": "Q4: Cross-tabs of the Cell Phone Survey — what might you conclude?",
+    "a": "AT&T is the most preferred carrier (about 50% of respondents) and T-Mobile the least. About 41% of respondents use a smartphone, and most smartphone users use it very heavily.",
+    "src": "W2 QA Excel, Question 4"
+   },
+   {
+    "q": "Q5: Do customers with a longer association with the bank have more assets?",
+    "a": "No. The scatter chart of months as a customer against combined checking + savings shows no clear pattern, and the correlation is weak, so there does not appear to be a strong relationship.",
+    "src": "W2 QA Excel, Question 5a/5b"
+   }
+  ],
+  "excel": "QA ファイルの各シートに解答テキストがある。Extra：Internet Usage（35–44歳が最もネット利用、55歳以上は低い、学歴が高いほど利用）、Restaurant Sales（並べ替えると売上の高い曜日が見やすい）。"
+ },
+ {
+  "n": 3,
+  "title": "記述統計",
+  "en": "Descriptive statistics",
+  "stars": 3,
+  "types": [
+   "desc",
+   "shape"
+  ],
+  "files": [
+   "ETW1001_W3_Tutorial.pdf",
+   "ETW1001_W3_Tutorial_QA.pdf",
+   "ETW1001_W3_Tutorial_QA_only Question 1.xlsx",
+   "CEO Remuneration.xlsx",
+   "Extra Questions_Self Study.pdf"
+  ],
+  "summary": "<p><b>中心（central tendency）</b>：mean（外れ値に弱い）、median（真ん中の値、外れ値に強い）、mode（最頻値、連続データではあまり意味がない）。</p>\n<p><b>散らばり（spread）</b>：range（Max − Min、外れ値に弱い）、variance / SD（平均からの典型的なズレ）、IQR（Q3 − Q1、外れ値に強い）、CV（SD / mean、平均が違うグループの比較用）。</p>\n<p><b>形（shape）</b>：skewness（+ は右に裾＝mean > median、− は左に裾＝mean < median）、modality（山の数）、outliers。</p>\n<p>外れ値を1つ変えると mean・SD・range・CV は大きく動くが、median・mode・IQR は動かない（<b>robust</b>）。</p>",
+  "terms": [
+   [
+    "Mean / Median / Mode",
+    "平均 / 中央値 / 最頻値"
+   ],
+   [
+    "Standard deviation",
+    "標準偏差：平均からの平均的なズレ"
+   ],
+   [
+    "Interquartile range",
+    "四分位範囲（Q3 − Q1）"
+   ],
+   [
+    "Coefficient of variation",
+    "変動係数（SD / mean）"
+   ],
+   [
+    "Skewness",
+    "歪度（+ 右裾、− 左裾）"
+   ],
+   [
+    "Robust",
+    "外れ値の影響を受けにくい"
+   ]
+  ],
+  "cautions": [
+   "SD の解釈：[変数] deviates from the mean by about [SD + 単位] on average。単位（'000 Rupiah など）を必ず付ける。",
+   "正の歪み → mean > median。「少数の非常に大きな値が平均を引き上げる」が直感的な説明。",
+   "0 を取り除く → 最も小さい値がなくなる → 残りが近づく → SD は小さくなる。"
+  ],
+  "qa": [
+   {
+    "q": "CEO pay (12 CEOs, $000s): comment on the mean, median and mode as a typical value.",
+    "a": "Mean = 4,060.5 is pulled up by the one unusually large value (9,020), so it is higher than a typical value. Median = 3,745 is a reasonable typical value. Mode = 3,424 is not useful: two values happen to be equal by chance, which could occur anywhere in the data.",
+    "src": "W3 QA Q1(b)"
+   },
+   {
+    "q": "The highest-paid CEO now receives $25 million. What happens to mode, median, mean, range and IQR?",
+    "a": "Mode (3,424), median (3,745) and IQR (672.5) are unchanged. The mean rises to 5,392.2, the range to 22,488, the SD to 6,201.34 and the CV to about 115%. Median, mode and IQR are robust to extreme values; mean, range, SD and CV are strongly influenced by them.",
+    "src": "W3 QA Q1(c)(d)"
+   },
+   {
+    "q": "Describe the histogram of CEO pay.",
+    "a": "Positively (right) skewed: most values are on the left with a tail to the right. Unimodal, with a peak in the 4,012–4,512 bin. One potential outlier in the 9,012–9,512 bin. Always report in $000s.",
+    "src": "W3 QA Q1(e)"
+   },
+   {
+    "q": "Indonesia income ('000 Rupiah): interpret the median (262.0).",
+    "a": "Half of the adults earned less than (and half more than) 262,016 Rupiah per month. The median is the middle value after ordering observations from lowest to highest.",
+    "src": "W3 QA Q2 A(a)"
+   },
+   {
+    "q": "Why is the mean of a positively skewed distribution usually bigger than the median?",
+    "a": "A positively skewed distribution has a few observations much larger than the rest. These large values push up the mean, but they do not affect the median, which only depends on the middle value.",
+    "src": "W3 QA Q2 A(b)"
+   },
+   {
+    "q": "Mode = 0 Rupiah. Why is the mode usually not useful, and why is it interesting here?",
+    "a": "For continuous data values rarely repeat, so the mode is usually not meaningful. Here income is strictly non-negative, and the mode of 0 shows that the most common monthly income is zero, i.e. many adults are unemployed (non-participation).",
+    "src": "W3 QA Q2 A(d)"
+   },
+   {
+    "q": "Interpret SD = 1,043.569 and what happens if people with income = 0 are removed.",
+    "a": "An adult's income deviates from the mean by about 1,043,569 Rupiah per month, on average. Removing the zeros removes the lowest values, so the remaining observations are closer together and the SD decreases.",
+    "src": "W3 QA Q2 B"
+   },
+   {
+    "q": "Extra Q1: Interviewers only visit mothers between 9am and 5pm. Which group is omitted and why is it a problem?",
+    "a": "Working mothers are omitted, as they are usually out between 9am and 5pm. Their children may be in after-school care and watch less TV, so the sample is not representative (sample selection bias).",
+    "src": "Extra Questions Q1(a)"
+   },
+   {
+    "q": "Extra Q2: Salesperson A mean $38,354.84 (SD $14,639.41), B mean $47,405.33 (SD $17,378.42). Interpret.",
+    "a": "B sells more per client on average, so B appears to perform better. B's sales to each client vary from the mean by about $17,378 on average, more than A's $14,639, suggesting B's clients differ more in how much they spend. Average (not total) sales are compared because one salesperson may have more clients or work longer hours.",
+    "src": "Extra Questions Q2"
+   }
+  ],
+  "excel": "Data Analysis → Descriptive Statistics の出力表の読み方がそのまま試験に出る（Sample 1 Q1(a)、Sample 2 Q1）。CV = SD / mean、IQR = QUARTILE(3) − QUARTILE(1)。"
+ },
+ {
+  "n": 4,
+  "title": "確率",
+  "en": "Probability: joint, marginal, conditional",
+  "stars": 3,
+  "types": [
+   "prob"
+  ],
+  "files": [
+   "ETW1001_W4_Tutorial_Q.pdf",
+   "W4TS - S2 2026.pdf",
+   "W4T Pearl Bay.xlsx",
+   "ETW1001_W4_Q2 Solution (Pearl Bay).xlsx"
+  ],
+  "summary": "<p>度数表を総数で割ると<b>同時確率の表</b>になり、行・列の合計が<b>周辺確率</b>。</p>\n<p><b>条件付き確率</b> P(A | B) = P(A and B) / P(B)：「B の中で A の割合」。</p>\n<p><b>独立</b>：P(A | B) = P(A)。条件を付けても確率が変わらない。<b>排反</b>：A と B が同時に起こらない（P(A and B) = 0）。独立と排反は別の概念。</p>\n<p>独立性のチェックは、1つのカテゴリーだけでなく<b>他のカテゴリーも確認</b>する（Pearl Bay：speeding は性別で差がないが、serious crash は差がある → 全体としては dependent）。</p>",
+  "terms": [
+   [
+    "Joint probability",
+    "同時確率 P(A and B)"
+   ],
+   [
+    "Marginal probability",
+    "周辺確率 P(A)"
+   ],
+   [
+    "Conditional probability",
+    "条件付き確率 P(A | B)"
+   ],
+   [
+    "Independent",
+    "独立：P(A | B) = P(A)"
+   ],
+   [
+    "Mutually exclusive",
+    "排反：同時に起こらない"
+   ],
+   [
+    "Complement (Ā)",
+    "余事象"
+   ]
+  ],
+  "cautions": [
+   "同時確率の分母は総数、条件付きの分母は条件側の合計。",
+   "「似ている」で独立と判断するときは、周辺確率と比べる。",
+   "平均の表（Average of Sales）から割合を出すときは、平均 × 件数で合計に戻す（W4 Q4 v）。"
+  ],
+  "qa": [
+   {
+    "q": "Warranty table (2,000 invoices): R&W 420, R&W̄ 1140, R̄&W 280, R̄&W̄ 160. Find P(R), P(R̄ and W), P(W), P(R̄ | W).",
+    "a": "Joint table: 0.21, 0.57, 0.14, 0.08. P(R) = 0.78; P(R̄ and W) = 0.14; P(W) = 0.35; P(R̄ | W) = 0.14 / 0.35 = 0.4.",
+    "src": "W4 Solution Q1(a)(b)"
+   },
+   {
+    "q": "Are R and W mutually exclusive? Are R̄ and W independent?",
+    "a": "Not mutually exclusive: both can occur on the same invoice (420 retail-price purchases included a warranty). Not independent: P(R̄ | W) = 0.4 ≠ P(R̄) = 0.22.",
+    "src": "W4 Solution Q1(c)(d)"
+   },
+   {
+    "q": "Pearl Bay (220 offences): P(Female), P(Speeding), P(Male and Speeding), P(Female and Crash)?",
+    "a": "P(F) = 119/220 = 0.541; P(M) = 0.459; P(Speeding) = 56/220 = 0.255; P(Crash) = 0.236; P(M and Speeding) = 26/220 = 0.118; P(F and Crash) = 21/220 = 0.095.",
+    "src": "Pearl Bay solution Q3"
+   },
+   {
+    "q": "Do offence types depend on gender?",
+    "a": "P(Speeding | F) = 0.252 and P(Speeding | M) = 0.257 are close to P(Speeding) = 0.255, so speeding looks independent of gender. But P(Crash | F) = 0.176 and P(Crash | M) = 0.307 differ from P(Crash) = 0.236. So overall, gender and offence type are dependent (except for speeding). You must check more than one offence type.",
+    "src": "Pearl Bay solution Q3"
+   },
+   {
+    "q": "Salesperson B: does performance vary by client gender?",
+    "a": "P(B) = 0.58, P(B | F) = 0.570, P(B | M) = 0.588. The conditional probabilities are almost equal to the marginal, so it is difficult to say B's performance varies by client gender.",
+    "src": "Pearl Bay solution Q4"
+   }
+  ],
+  "excel": "Pivot table を Count / % of Grand Total / % of Row or Column で3つ作る練習。% of Column ＝ 列の条件付き確率。Sample 2 の Table A〜D はまさにこの形。"
+ },
+ {
+  "n": 5,
+  "title": "正規分布",
+  "en": "Normal distribution & sampling distribution",
+  "stars": 1,
+  "types": [
+   "normal"
+  ],
+  "files": [
+   "Week 5 Tutorial.pdf",
+   "Tutorial 5 solution.pdf",
+   "W5T- Question 1.xlsx",
+   "W5T_Q1_Solution.xlsx"
+  ],
+  "summary": "<p>X ~ N(μ, σ) のとき、z = (x − μ) / σ で標準正規分布に直して確率を求める。</p>\n<p>パーセンタイルは逆算：x = μ + zσ（99th → z ≈ 2.33、1st → −2.33、5th → −1.645、50th は平均そのもの）。</p>\n<p>標本平均 x̄ の分布：平均 μ、標準偏差（standard error）σ / √n。n が大きいほどバラつきが小さい。</p>",
+  "terms": [
+   [
+    "Normal distribution",
+    "正規分布（左右対称・釣鐘型）"
+   ],
+   [
+    "Standard normal Z",
+    "標準正規分布 N(0, 1)"
+   ],
+   [
+    "Percentile",
+    "百分位点"
+   ],
+   [
+    "Expected value",
+    "期待値＝平均"
+   ],
+   [
+    "Standard error",
+    "標本平均の標準偏差 σ/√n"
+   ]
+  ],
+  "cautions": [
+   "試験は電卓なしなので、z の式を書いて止める形になる可能性が高い。",
+   "サンプルには直接出ていないが、SE や CI（Week 6）の土台。"
+  ],
+  "qa": [
+   {
+    "q": "Prenatal care ~ N(400, 100). Expected value?",
+    "a": "$400. On average, new mothers spend $400 on prenatal care.",
+    "src": "W5 Q1(e)"
+   },
+   {
+    "q": "Tyre life ~ N(65,107, 2,582). Proportion failing before the 60,000 km warranty?",
+    "a": "P(X < 60,000) = P(Z < (60,000 − 65,107)/2,582) = P(Z < −1.98) ≈ 0.0239, about 2.4%.",
+    "src": "W5 Solution Q2(a)(i)"
+   },
+   {
+    "q": "50th and 99th percentile of tyre life?",
+    "a": "50th = 65,107 km (for a normal distribution the median equals the mean: half the tyres last less than 65,107 km). 99th = 65,107 + 2.33 × 2,582 ≈ 71,123 km.",
+    "src": "W5 Solution Q2(b)(c)"
+   },
+   {
+    "q": "Bert claims his tyre lasted 145,000 km. Respond.",
+    "a": "z = (145,000 − 65,107)/2,582 ≈ 30.9, so P(X ≥ 145,000) is practically zero. Bert's claim is very dubious.",
+    "src": "W5 Solution Q2(d)"
+   },
+   {
+    "q": "Calls ~ N(4.3, 0.6). Sample of 5 calls: P(x̄ > 5)?",
+    "a": "SE = 0.6/√5 = 0.268. P(X̄ > 5) = P(Z > (5 − 4.3)/0.268) = P(Z > 2.62) = 0.0044.",
+    "src": "W5 Solution Q3(d)"
+   }
+  ],
+  "excel": "NORM.DIST / NORM.INV で確率と逆算。W5T_QA.xlsm は実は Week 6（信頼区間）の解答ファイル。"
+ },
+ {
+  "n": 6,
+  "title": "推定と信頼区間",
+  "en": "Point estimation & confidence intervals",
+  "stars": 2,
+  "types": [
+   "ci"
+  ],
+  "files": [
+   "ETW1001_W6_Tutorial.pdf",
+   "ETW1001_W6T_Excel.xlsm",
+   "ETW1001_W5T_QA.xlsm（解答）"
+  ],
+  "summary": "<p>点推定：x̄ が μ の推定値。標本が変われば x̄ も変わる。</p>\n<p>信頼区間：x̄ ± t × s / √n（σ 不明なので t 分布、自由度 n − 1）。</p>\n<p>n が大きい → SE が小さい → 区間が狭い（より正確）。信頼度を上げる（95% → 99%）→ 区間が広い。</p>\n<p>t 分布は自由度が大きくなるほど標準正規分布に近づく（n=10 で ±2.262、無限大で ±1.96）。</p>",
+  "terms": [
+   [
+    "Point estimate",
+    "点推定値"
+   ],
+   [
+    "Confidence interval",
+    "信頼区間"
+   ],
+   [
+    "Margin of error",
+    "誤差の幅 t × SE"
+   ],
+   [
+    "Degrees of freedom",
+    "自由度 n − 1"
+   ],
+   [
+    "Student's t distribution",
+    "t 分布"
+   ]
+  ],
+  "cautions": [
+   "s の解釈と s/√n の解釈は別物。両方とも on average と文脈が必須（採点ノートに明記）。",
+   "区間に基準値が入っていれば「その値の可能性を否定できない」。"
+  ],
+  "qa": [
+   {
+    "q": "Auditor, 10 days: point estimate, interpret s = 2.27 and s/√n = 0.7188.",
+    "a": "Point estimate x̄ = 6.5%. s: from one day to the next, the % of transactions with errors varies from the mean by about 2.27 percentage points, on average. s/√n: if all possible samples of 10 days were taken, the sample means would vary from the true mean by about 0.72 percentage points, on average.",
+    "src": "W6 solution Q1(b)–(d)"
+   },
+   {
+    "q": "99% CI with n = 10, and should the records be audited (rule: more than 8%)?",
+    "a": "[4.16%, 8.84%]. The auditor is 99% confident the true mean daily % of transactions with errors lies between 4.16% and 8.84%. Since the interval includes 8% (and values above it), the auditor is likely to recommend a full audit.",
+    "src": "W6 solution Q1(e)"
+   },
+   {
+    "q": "With 20 days the 99% CI is [4.88%, 7.52%]. Why different?",
+    "a": "The point estimate (6.2%) differs because each sample gives a different x̄. The SE falls from 0.72 to 0.46 because SE = s/√n and n is larger. The interval is narrower and entirely below 8%, so no full audit is recommended. Intuitively, more data gives more information about μ, so there is less error.",
+    "src": "W6 solution Q2"
+   },
+   {
+    "q": "Relationship between the standard normal and t distribution?",
+    "a": "The t distribution converges to the standard normal N(0, 1) as the degrees of freedom (sample size) increase: t critical values shrink towards ±1.96.",
+    "src": "W6 solution Q3"
+   },
+   {
+    "q": "Light bulbs: n = 324, x̄ = 680, s = 36. SE and 99% CI. Is mean life ≥ 650 days?",
+    "a": "SE = 36/√324 = 36/18 = 2. 99% CI = 680 ± 2.576 × 2 ≈ [674.8, 685.2] days. The whole interval is above 650, so it is very likely the mean lifespan is greater than the 650-day claim.",
+    "src": "W6 Q4（解答ファイルなし：自作解答）"
+   }
+  ],
+  "excel": "Question One / Two シートに Mean, SD, SE, Margin of Error, Lower / Upper bound の計算。"
+ },
+ {
+  "n": 7,
+  "title": "仮説検定",
+  "en": "Hypothesis testing for a mean",
+  "stars": 3,
+  "types": [
+   "test",
+   "errors"
+  ],
+  "files": [
+   "ETW1001_W7_Tutorial.pdf",
+   "ETW1001_W7_Tutorial_QA.pdf",
+   "W7T_Excel.xlsx",
+   "ETW1001_W7_EXCEL_QA.xlsx"
+  ],
+  "summary": "<p>4ステップ：① H0 / H1 ② α ③ 検定統計量と critical value（または p 値）④ 判断と結論。</p>\n<p>主張したいこと（advertising claim など）は <b>H1</b> に置く。「証明する側」に立証責任がある。</p>\n<p>σ 既知 → z、σ 不明 → t（自由度 n − 1）。</p>\n<p>α を小さくする → 棄却域が小さくなる → Type I は減るが、棄却しにくくなる（5% で棄却でも 1% では棄却できないことがある）。</p>",
+  "terms": [
+   [
+    "Null / alternative hypothesis",
+    "帰無仮説 / 対立仮説"
+   ],
+   [
+    "Significance level α",
+    "有意水準"
+   ],
+   [
+    "Critical value",
+    "棄却限界値"
+   ],
+   [
+    "p-value",
+    "H1 方向にそれ以上極端な値が出る確率"
+   ],
+   [
+    "One-sided / two-sided",
+    "片側 / 両側"
+   ],
+   [
+    "Type I / II error",
+    "第1種 / 第2種の過誤"
+   ]
+  ],
+  "cautions": [
+   "p 値の意味：H0 が正しいとき、検定統計量以上に H1 方向へ極端な値が出る確率。",
+   "左片側の critical value はマイナス（−1.645 など）。",
+   "W7 QA の Q2(a) は「n = 50」と書いてありますが n = 8 の誤植です。"
+  ],
+  "qa": [
+   {
+    "q": "Detergent: n = 100, x̄ = 514.4, σ = 76.2. Support for the claim of more than 500 g at 5%?",
+    "a": "H0: μ = 500, H1: μ > 500. z = (514.4 − 500)/(76.2/√100) = 14.4/7.62 = 1.89. Critical value 1.645. Since 1.89 > 1.645, reject H0: there is support at the 5% level that boxes contain more than 500 g on average.",
+    "src": "W7 QA Q1(a)"
+   },
+   {
+    "q": "Type I and II errors and their consequences in the detergent case.",
+    "a": "Type I: concluding mean contents exceed 500 g when they do not → consumers may get less than they paid for. Type II: concluding the mean is 500 g or less when it is actually more → the manufacturer wastes detergent or loses a chance to advertise. Errors can only be eliminated by measuring the whole population.",
+    "src": "W7 QA Q1(b)"
+   },
+   {
+    "q": "n = 8, x̄ = 75, s = 50. Is μ < 100 at 10%? Repeat with σ = 50 known.",
+    "a": "(a) t = (75 − 100)/(50/√8) = −1.414; critical t (7 df) = −1.415; −1.414 > −1.415 → do not reject (insufficient evidence). (b) z = −1.414; critical z = −1.282; −1.414 < −1.282 → reject. The statistics are the same but the t distribution has fatter tails, so its critical value is more extreme.",
+    "src": "W7 QA Q2"
+   },
+   {
+    "q": "Pizza: n = 50, x̄ = 11.74, s = 2.04. Is waiting time less than 12 min at 5%?",
+    "a": "H0: μ = 12, H1: μ < 12. t = (11.74 − 12)/(2.04/√50) = −0.901. Critical ≈ −1.676. −0.901 > −1.676 → do not reject. Insufficient evidence that the mean wait is less than 12 minutes.",
+    "src": "W7 QA Q3"
+   },
+   {
+    "q": "Portfolio vs S&P 500 (0.95%): t = −2.14, p = 0.0196. Conclusion at 5% and 1%? Why different?",
+    "a": "At 5%: −2.14 < −1.69 (p = 0.0196 < 0.05) → reject: the portfolio underperforms. At 1%: −2.14 > −2.43 (p > 0.01) → do not reject. A smaller α means a smaller rejection region (less Type I error), so stronger evidence is needed.",
+    "src": "W7 Excel QA Question 4"
+   },
+   {
+    "q": "Newspaper weight: x̄ = 1.0925 kg, s = 0.330, n = 100. Mean > 1 kg at 1%?",
+    "a": "t = (1.0925 − 1)/(0.330/√100) = 2.802 > 2.365 → reject H0. Sufficient evidence that mean weekly newspaper collection exceeds 1 kg.",
+    "src": "W7 Excel QA Question 5"
+   }
+  ],
+  "excel": "Excel QA のテキストボックスに 4ステップの穴埋め解答あり（Step 4a critical value 法 / 4b p 値法）。"
+ },
+ {
+  "n": 8,
+  "title": "単回帰と係数の検定",
+  "en": "Simple linear regression & testing β",
+  "stars": 3,
+  "types": [
+   "slr",
+   "test",
+   "fit"
+  ],
+  "files": [
+   "ETW1001_W8_Tutorial.pdf",
+   "ETW1001_Week 8_QA.pdf",
+   "W8T Regression Hypothesis (1).xlsx",
+   "ETW1001_Week 8_Excel Solution.xlsx"
+  ],
+  "summary": "<p>Excel の SUMMARY OUTPUT を読む：<b>Coefficients</b>（b0, b1）、<b>Standard Error</b>、<b>t Stat</b> = b / SE、<b>P-value</b>（両側）、<b>Lower / Upper 95%</b>、上の <b>R Square</b> と <b>Standard Error</b>（回帰の SE）。</p>\n<p>傾きの検定：H0: β1 = 0。理論から向きが分かるときは片側（Phillips curve → β1 < 0、stagflation → β1 > 0）。片側の p = 両側 p / 2。</p>\n<p>係数の符号が H1 と逆なら、片側検定は棄却できないことが最初から分かる（Part 3）。</p>",
+  "terms": [
+   [
+    "Intercept / slope",
+    "切片 / 傾き"
+   ],
+   [
+    "Coefficient",
+    "係数"
+   ],
+   [
+    "t Stat",
+    "t 値 = 係数 / 標準誤差"
+   ],
+   [
+    "R Square",
+    "決定係数"
+   ],
+   [
+    "Standard error of regression",
+    "回帰の標準誤差（予測誤差の大きさ）"
+   ],
+   [
+    "Practical significance",
+    "実質的な重要性"
+   ]
+  ],
+  "cautions": [
+   "GDP の係数 −0.00489 は「$1 あたり」。$1000 あたりに直すと 4.89 人減。単位換算で分かりやすくする。",
+   "統計的に有意でも係数が小さければ実質的な影響は小さい（読書スコア −0.331 点/時間）。",
+   "W8 QA Q1(b) の α は 0.01（0.05 は消し忘れ）。"
+  ],
+  "qa": [
+   {
+    "q": "Infant mortality on GDP per capita: interpret b0 = 70.74 and b1 = −0.00489.",
+    "a": "Intercept: a country with $0 real GDP per capita is predicted to have 70.74 infant deaths per 1,000 live births. Slope: for every additional $1,000 of real GDP per capita, infant mortality is predicted to fall by 4.89 deaths per 1,000 live births, on average.",
+    "src": "W8 QA Q1(a)"
+   },
+   {
+    "q": "Does GDP have any impact on infant mortality? Critical value approach at 1% (t-crit = −2.614).",
+    "a": "H0: β1 = 0, H1: β1 ≠ 0, α = 0.01. t = −10.573. Since |−10.573| > 2.614, reject H0. Sufficient evidence that real GDP per capita affects infant mortality.",
+    "src": "W8 QA Q1(b)"
+   },
+   {
+    "q": "Reading score on hours of TV: equation and interpretation. Is the effect important?",
+    "a": "Score-hat = 43.921 − 0.331 HoursTV. A child who watches no TV is predicted to score 43.921 on average; each extra hour per week lowers the score by 0.331 marks on average. The effect is very small, so it is not very important in practice. Test (p = 4.36E-16 < 0.05): screen time has a significant effect.",
+    "src": "W8 QA Q2"
+   },
+   {
+    "q": "Inflation on unemployment (Australia, 128 quarters): interpret and test at 5%.",
+    "a": "Inflation-hat = 5.77 − 0.115 Unemployment. If unemployment were 0%, inflation would be 5.77%; each 1 percentage point rise in unemployment lowers inflation by 0.12 percentage points on average. Two-sided: |t| = 0.696 < 1.979 (p = 0.488) → do not reject: no evidence of a relationship.",
+    "src": "W8 Excel Part 1"
+   },
+   {
+    "q": "Phillips curve (H1: β1 < 0) and stagflation (H1: β1 > 0) at 5%.",
+    "a": "Phillips: t = −0.696 > −1.657, one-sided p = 0.244 → do not reject: no evidence of a trade-off. Stagflation: t = −0.696 < 1.657, p = 0.756 → do not reject. We did not even need the test: the estimated slope is negative, so it cannot give evidence of a positive relationship.",
+    "src": "W8 Excel Part 2–3"
+   }
+  ],
+  "excel": "Part 1–3 のテキストボックスに解答。=T.DIST で p 値を確認する練習。片側の p は両側 ÷ 2、逆向きなら 1 − p/2（0.756）。"
+ },
+ {
+  "n": 9,
+  "title": "重回帰",
+  "en": "Multiple linear regression",
+  "stars": 3,
+  "types": [
+   "mlr",
+   "test"
+  ],
+  "files": [
+   "ETW1001_W9_Tutorial.pdf",
+   "W09 Tutorial exercise - Part 2 (solution).pdf",
+   "ETW1001_W9T_Excel .xlsx",
+   "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx"
+  ],
+  "summary": "<p>重回帰の係数は「<b>他の説明変数を一定</b>にしたときの効果」。解釈は holding … constant または Take two … identical except … の型。</p>\n<p>予測は係数に値を代入するだけ。極端な値（平均 ± 2SD）を入れると予測は大きく変わる。</p>\n<p>係数の大きさの比較は、変数の単位や SD（取りうる範囲）も考える（教育1年 vs 経験1年）。</p>",
+  "terms": [
+   [
+    "Holding other variables constant",
+    "他の変数を一定として"
+   ],
+   [
+    "Ceteris paribus",
+    "他の条件が同じなら"
+   ],
+   [
+    "Prediction",
+    "予測値 ŷ"
+   ],
+   [
+    "Omitted variable",
+    "除外された変数"
+   ]
+  ],
+  "cautions": [
+   "切片が意味を持たない場合（寝室0・浴室0の家、教育0・経験0で所得マイナス）は「not meaningful」と一言添える。",
+   "W9 Excel の切片解釈文は −1,877 と書いていますが、係数は −1,896.55 です。"
+  ],
+  "qa": [
+   {
+    "q": "Child reading on TV hours and mother's reading score: interpret b2 = 0.582. Expected?",
+    "a": "Take two children who watch the same amount of TV, but one child's mother scored one mark higher. The model predicts that child scores 0.582 marks more on average. A positive value below one is expected: genetics and home environment matter, but only partly.",
+    "src": "W9 solution Q1(i)"
+   },
+   {
+    "q": "Test a negative impact of TV hours at 1% (p = 0.100255).",
+    "a": "H0: β1 = 0, H1: β1 < 0, α = 0.01. One-sided p = 0.100255/2 = 0.0501 > 0.01 → do not reject. Insufficient evidence that TV hours have a negative impact once mother's reading score is controlled for. (In Week 8 alone it was significant: an omitted variable effect.)",
+    "src": "W9 solution Q1(ii)"
+   },
+   {
+    "q": "Rent = 195.7 + 190.4 beds + 113.7 baths. Interpret intercept and beds.",
+    "a": "Intercept: $195.7 per week for a property with zero bedrooms and bathrooms; not meaningful, since every home has at least one of each. Beds: holding the number of bathrooms fixed, each extra bedroom raises weekly rent by $190.4 on average.",
+    "src": "W9 solution Q2(i)(ii)"
+   },
+   {
+    "q": "1-bed 1-bath vs 2-bed 1-bath renting out a room for $150. Which is cheaper?",
+    "a": "(1) 195.7 + 190.4(1) + 113.7(1) = 499.8. (2) 195.7 + 190.4(2) + 113.7(1) − 150 = 540.1. Option 1 is cheaper.",
+    "src": "W9 solution Q2(iii)"
+   },
+   {
+    "q": "South Africa income on education and experience: interpret.",
+    "a": "Income-hat = −1,896.55 + 288.16 Educ + 91.11 Exper. Holding experience constant, one extra year of education raises monthly income by about R288 on average; holding education constant, one extra year of experience raises it by about R91. Both are significant (p ≈ 0). The intercept is negative and not meaningful.",
+    "src": "W9 Excel Part 2"
+   },
+   {
+    "q": "Predictions at mean education (8.37) with experience at mean, +2SD, −2SD.",
+    "a": "−1,896.55 + 288.162(8.37) + 91.11(17.66) ≈ R2,125; with experience 32.09 ≈ R3,439; with 3.24 ≈ R810. Education has the bigger effect per year, but experience varies much more (SD 7.2 vs 3.8), so it has more potential to raise income.",
+    "src": "W9 Excel Part 3"
+   }
+  ],
+  "excel": "AVERAGEIF でグループ平均：教育10年以上 R3,105 vs 9年以下 R1,252（約2.5倍）、経験10年以上 R2,262 vs 未満 R1,375。"
+ },
+ {
+  "n": 10,
+  "title": "ダミー変数と非線形",
+  "en": "Dummy variables & non-linear terms",
+  "stars": 3,
+  "types": [
+   "dummy",
+   "nonlin",
+   "fit"
+  ],
+  "files": [
+   "W10 Tutorial Excel exercise.xlsx",
+   "W10 Tutorial Excel exercise (solution).xlsx",
+   "Week 10 SevenYO.xlsx（データのみ）"
+  ],
+  "summary": "<p><b>Engel's Law</b>：所得が高いほど食費の割合が下がる。</p>\n<p>ダミーだけの回帰では、切片＝基準グループの平均、ダミー係数＝基準との平均の差。<b>予測値はグループ平均と完全に一致</b>する。</p>\n<p>2次の項（income²）を入れると曲線関係を表せる。係数は単独で解釈できず、形と turning point（−b1 / 2b2）で説明する。</p>",
+  "terms": [
+   [
+    "Dummy variable",
+    "ダミー変数（0/1）"
+   ],
+   [
+    "Base / reference category",
+    "基準カテゴリー"
+   ],
+   [
+    "Dummy variable trap",
+    "全カテゴリーを入れると推定できない"
+   ],
+   [
+    "Quadratic term",
+    "2次の項"
+   ],
+   [
+    "Turning point",
+    "極値（向きが変わる点）"
+   ]
+  ],
+  "cautions": [
+   "Metro + Rural + Regional = 1 なので、ダミーは2つだけ入れる（Metro が基準）。",
+   "Food share は「割合」なので、差は percentage points（5.20 percentage points less）。"
+  ],
+  "qa": [
+   {
+    "q": "Food share on Rural and Regional (base Metro): interpret.",
+    "a": "Intercept: metro households spend 23.29% of income on food on average. Rural: 5.20 percentage points less than metro households on average. Regional: 4.12 percentage points less than metro. Predicted values equal the group means (Metro 0.233, Rural 0.181, Regional 0.192).",
+    "src": "W10 solution Part 1"
+   },
+   {
+    "q": "Metro households spend the highest share on food. Reasonable?",
+    "a": "Not consistent with Engel's Law, since metro households usually have higher incomes. It may reflect affluent households spending more on eating out at expensive restaurants (food as a luxury).",
+    "src": "W10 solution Part 1 a.ii"
+   },
+   {
+    "q": "Food share on income and income²: significance and interpretation.",
+    "a": "Both are significant, so income matters, but we cannot interpret each coefficient separately because income² cannot be held constant when income changes. Food share falls as income rises up to a turning point, then rises.",
+    "src": "W10 solution Part 2 b.ii"
+   },
+   {
+    "q": "R² = 0.8076, SE = 0.05675. Good model?",
+    "a": "80.76% of the variation in food share is explained by the model. Predictions are typically in error by about 5.7 percentage points. The fit looks good, but not surprising since the dependent variable is defined relative to income.",
+    "src": "W10 solution Part 2 b.iii"
+   },
+   {
+    "q": "Change in food share from $40k → $50k and $70k → $80k. Turning point?",
+    "a": "$40k → $50k: falls by about 0.085 (8.5 percentage points). $70k → $80k: rises by about 0.006. Turning point = 0.0000220744 / (2 × 0.000000000151091) ≈ $73,050; above that income, food share rises.",
+    "src": "W10 solution Part 2 b.iv, c"
+   }
+  ],
+  "excel": "Notes for Markers：単位・基準変数・on average（または holding all else constant）が採点ポイント。Week 10 SevenYO.xlsx（子どもの身長・母親の身長・世帯所得・降水量）は問題文が無いデータのみ。"
+ },
+ {
+  "n": 11,
+  "title": "総合：ダミー・CI・カテゴリー変数",
+  "en": "Putting it together",
+  "stars": 3,
+  "types": [
+   "dummy",
+   "ci",
+   "test",
+   "mlr",
+   "shape"
+  ],
+  "files": [
+   "Week 11 Questions.pdf",
+   "Week 11 Solution.pdf",
+   "P 11_2.xlsx",
+   "P 11_2 Solution.xls"
+  ],
+  "summary": "<p>Sample paper に一番近い総合問題。記述統計の形 → ダミー回帰で2グループの平均 → 片側検定 → 切片の CI → 州ダミー（基準 SA）→ 年齢の解釈 → 予測式。</p>\n<p>カテゴリー変数（Chip type 3種類など）は <b>カテゴリー数 − 1</b> 個のダミーに変換する。</p>",
+  "terms": [
+   [
+    "Base category (SA)",
+    "基準の州：South Australia"
+   ],
+   [
+    "Categorical → dummies",
+    "k カテゴリー → k − 1 個のダミー"
+   ]
+  ],
+  "cautions": [
+   "Week 11 解答の DX の係数は本文が 2,612.78（正しい）、箇条書きが 2,826.13（誤り）。",
+   "予測式：rural は metropolitan = 0、VIC = 1、他の州ダミーは 0。"
+  ],
+  "qa": [
+   {
+    "q": "Mean income $1,673 > median $1,466. Shape?",
+    "a": "Positively skewed: most incomes are at the lower end, with a few households earning very high incomes forming a long right tail.",
+    "src": "W11 Solution Q1(i)"
+   },
+   {
+    "q": "Income on metropolitan dummy (b0 = 1451.77, b1 = 356.89): mean income of each group? Evidence metro earn more?",
+    "a": "Rural/small town: $1,451.77. Metro: 1,451.77 + 356.89 = $1,808.66. H0: β1 = 0, H1: β1 > 0; p = 6.23E-26/2 ≈ 0 < 0.05 → reject. Sufficient evidence that metro households earn more.",
+    "src": "W11 Solution Q1(ii)(iii)"
+   },
+   {
+    "q": "95% CI for mean income of rural households.",
+    "a": "[$1,399.83, $1,503.70]. We are 95% confident that the true mean monthly income of small town/rural households is between $1,399.83 and $1,503.70.",
+    "src": "W11 Solution Q1(iv)"
+   },
+   {
+    "q": "State dummies (base SA): lowest and highest income? Interpret age of parent (38.47).",
+    "a": "All state coefficients are positive, so SA (base) has the lowest income; NSW has the largest coefficient (309.69), so it has the highest. Age: take two households in the same state and region, but one parent is a year older; the model predicts $38.47 more monthly income on average.",
+    "src": "W11 Solution Q1(v)(vi)"
+   },
+   {
+    "q": "Predict income for a rural household in Victoria with a 30-year-old parent.",
+    "a": "Income-hat = −41.15 + 38.47(30) + 183.03(1)  (metropolitan = 0, all other state dummies = 0).",
+    "src": "W11 Solution Q1(vii)"
+   },
+   {
+    "q": "Laptop price: interpret the DX chip and Colour monitor dummies.",
+    "a": "Holding everything else constant, a laptop with a DX chip is predicted to cost $2,612.78 more than one with an SL chip (base), on average. A colour monitor adds $1,993.31 compared with a monochrome monitor, on average (the only coefficient significant at 5%, p = 0.015).",
+    "src": "W11 Solution Q2"
+   }
+  ],
+  "excel": "P 11_2 Solution.xls：カテゴリーをダミー化（DX, SX / Colour / Mouse / Help line YES）。R² = 0.68、22台。"
+ }
+]

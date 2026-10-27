@@ -1,0 +1,3178 @@
+[
+ {
+  "paper": "Sample 1",
+  "id": "s1",
+  "title": "Economic growth & inequality（成長と格差）",
+  "intro": "269件（国×5年期間）のデータ。主な変数は「年平均所得成長率（全体）」と「年平均所得成長率（下位20%）」。<b>0.02 = 年2%</b> のように小数で表されている点に注意（解答では % と percentage points に直して書く）。冒頭の注意書き：計算問題は<b>数値を入れた式を書けば満点</b>、答えの数値まで出す必要はない。",
+  "questions": [
+   {
+    "q": "Q1",
+    "marks": 22,
+    "parts": [
+     {
+      "id": "s1q1a",
+      "label": "Q1(a)",
+      "marks": 8,
+      "types": [
+       "desc"
+      ],
+      "prompt": "Below is a table of descriptive statistics for the average income growth for the poorest 20% and for overall population. Comment on similarities and differences between these two, in terms of central tendency, spread and shape.",
+      "exhibit": {
+       "desc": {
+        "cols": [
+         "",
+         "Bottom 20%",
+         "Overall"
+        ],
+        "rows": [
+         [
+          "Mean",
+          "!0.0173",
+          "!0.0158"
+         ],
+         [
+          "Standard Error",
+          "0.0033",
+          "0.0026"
+         ],
+         [
+          "Median",
+          "!0.0177",
+          "!0.0176"
+         ],
+         [
+          "Mode",
+          "#N/A",
+          "#N/A"
+         ],
+         [
+          "Standard Deviation",
+          "!0.0549",
+          "!0.0421"
+         ],
+         [
+          "Sample Variance",
+          "0.0030",
+          "0.0018"
+         ],
+         [
+          "Kurtosis",
+          "3.4975",
+          "3.9565"
+         ],
+         [
+          "Skewness",
+          "!-0.7867",
+          "!-1.0282"
+         ],
+         [
+          "Range",
+          "!0.4129",
+          "!0.3126"
+         ],
+         [
+          "Minimum",
+          "-0.2429",
+          "-0.1908"
+         ],
+         [
+          "Maximum",
+          "0.1700",
+          "0.1218"
+         ],
+         [
+          "Sum",
+          "4.6403",
+          "4.2598"
+         ],
+         [
+          "Count",
+          "269",
+          "269"
+         ]
+        ]
+       }
+      },
+      "answer": "<p><b>Central tendency.</b> The mean growth rate is slightly higher for the bottom 20% (1.73% p.a.) than overall (1.58% p.a.), while the medians are almost the same (1.77% vs 1.76% p.a.). So for both groups, at least half of the observations had income growth above about 1.7% per year. Neither variable has a mode (#N/A), which is normal for continuous data where values rarely repeat.</p>\n<p><b>Spread.</b> Income growth of the bottom 20% is more variable. Its standard deviation is 5.49 percentage points compared with 4.21 for overall growth, meaning the bottom-20% growth rates deviate from their mean by about 5.5 percentage points on average. Its range is also wider (0.41 vs 0.31): from −24.3% to +17.0% p.a., compared with −19.1% to +12.2% p.a.</p>\n<p><b>Shape.</b> Both distributions are negatively (left) skewed (skewness −0.79 and −1.03), with the mean below the median and a long tail of very negative growth rates. Overall growth is slightly more negatively skewed. Both also have high kurtosis, so there are more extreme values than a normal distribution would have.</p>",
+      "points": [
+       "Mean の比較 [1]",
+       "Median の比較 [1]",
+       "Mode が無い理由 [1]",
+       "SD の比較＋意味 [2]",
+       "Range（Max/Min も）[2]",
+       "Skewness の方向 [1]"
+      ],
+      "jp": "3つの観点（中心・散らばり・形）で<b>見出しを分けて</b>書くのが一番点が取りやすい。数値は必ず単位付きで（0.0549 → 5.49 percentage points）。中心では「平均は似ているが下位20%がやや高い」、散らばりでは「下位20%の方がバラつきが大きい＝貧困層の所得成長は不安定」、形では「両方とも左に歪んでいる（mean < median）」が核。",
+      "tip": "skewness がマイナス → negatively skewed（左裾が長い）、mean < median。プラスなら逆。"
+     },
+     {
+      "id": "s1q1b1",
+      "label": "Q1(b)(i)",
+      "marks": 2,
+      "types": [
+       "shape"
+      ],
+      "prompt": "Here are two histograms, both for the same data - average income growth of the poorest 20%. What do they tell us about the distribution of average income growth for the poorest 20%?",
+      "exhibit": {
+       "img": "hist"
+      },
+      "answer": "<p>The distribution is negatively (left) skewed. Most countries had growth of the bottom 20% between about 0 and 0.06 (0–6% p.a.), with a single peak (unimodal), but there is a long tail to the left with some very negative growth rates (down to about −25% p.a.).</p>",
+      "points": [
+       "negatively skewed [2]"
+      ],
+      "jp": "ヒストグラムの問題は「歪み（skew）・山の数（modality）・外れ値（outliers）」の3点セットで答える。左に長い裾 → negatively skewed。"
+     },
+     {
+      "id": "s1q1b2",
+      "label": "Q1(b)(ii)",
+      "marks": 2,
+      "types": [
+       "shape"
+      ],
+      "prompt": "Why do these histograms look so different? Which do you think is better, and why?",
+      "exhibit": {
+       "img": "hist"
+      },
+      "answer": "<p>They look different because the bins (class intervals) are defined differently: the left histogram uses wide intervals of 0.05, while the right one uses narrower intervals of 0.02 over a smaller range.</p>\n<p>The right histogram is better, because the narrower class intervals show the shape of the distribution in more detail (e.g. where most growth rates lie between 0 and 0.06), whereas the wide bins on the left hide most of the data in one or two bars.</p>",
+      "points": [
+       "bin（階級幅）の違い [1]",
+       "どちらが良いか [0.5]",
+       "理由 [0.5]"
+      ],
+      "jp": "答えは「bin の幅が違うから」。どちらを選ぶかは理由が妥当なら点がもらえる。右を選び「階級幅が狭く分布の細部が見える」が模範。（左は極端な値まで範囲に入っている、と左を推すのも理由次第でOK）"
+     },
+     {
+      "id": "s1q1c1",
+      "label": "Q1(c)(i)",
+      "marks": 4,
+      "types": [
+       "scatter"
+      ],
+      "prompt": "Below is a scatter diagram with average income growth for the Bottom 20% on the X axis, and Average income growth Overall, on the Y axis. Based on this diagram: Is there a relationship? What is the direction? Is the relationship linear? Give a brief explanation for each.",
+      "exhibit": {
+       "img": "scatter"
+      },
+      "answer": "<p><b>Relationship:</b> Yes. The points form a clear upward-sloping pattern rather than a random cloud.</p>\n<p><b>Direction:</b> Positive, because overall income growth tends to increase as the income growth of the bottom 20% increases.</p>\n<p><b>Linear:</b> Yes, approximately linear, because the points are scattered around a straight line with no obvious curvature.</p>",
+      "points": [
+       "positive relationship [1]",
+       "理由（X↑でY↑）[1]",
+       "linear [1]",
+       "理由（曲がっていない）[1]"
+      ],
+      "jp": "各問いに<b>「答え＋because＋理由」</b>をセットで。理由を書かないと半分しか取れない（配点が答え1・理由1）。"
+     },
+     {
+      "id": "s1q1c2",
+      "label": "Q1(c)(ii)",
+      "marks": 2,
+      "types": [
+       "scatter"
+      ],
+      "prompt": "In general, why is it important to check that the relationship between two variables be (at least approximately) linear?",
+      "answer": "<p>Because the correlation coefficient and a linear regression model only measure (or model) a <b>linear</b> relationship. If the true relationship is curved, the correlation can be misleading (it may be close to zero even when the variables are strongly related), and a straight-line regression would give poor predictions.</p>",
+      "points": [
+       "相関係数の妥当性 or 線形回帰のため [2]"
+      ],
+      "jp": "相関係数 r と線形回帰は「直線関係」しか測れない、が答えの核。"
+     },
+     {
+      "id": "s1q1c3",
+      "label": "Q1(c)(iii)",
+      "marks": 2,
+      "types": [
+       "scatter"
+      ],
+      "prompt": "The correlation between the two variables plotted in the scatter diagram is 0.796. What does this say about the relationship between these variables?",
+      "answer": "<p>There is a <b>strong, positive</b> linear relationship between overall income growth and the income growth of the bottom 20%: countries where overall incomes grow faster also tend to have faster income growth for the poorest 20%.</p>",
+      "points": [
+       "positive [1]",
+       "strong [1]"
+      ],
+      "jp": "相関係数は「向き（+/−）」と「強さ（0に近い弱い〜1に近い強い）」の2語で答える。0.796 は strong（relatively strong でも可）。"
+     },
+     {
+      "id": "s1q1c4",
+      "label": "Q1(c)(iv)",
+      "marks": 2,
+      "types": [
+       "scatter"
+      ],
+      "prompt": "There are two data points with values much smaller than the rest (X around -0.25, Y around -0.2). Excluding them, the correlation is 0.754. Why is the correlation bigger when these two data points are included?",
+      "answer": "<p>The two points lie far below both means, in the lower-left quadrant, so (X<sub>i</sub> − X̄) &lt; 0 and (Y<sub>i</sub> − Ȳ) &lt; 0. Their product (X<sub>i</sub> − X̄)(Y<sub>i</sub> − Ȳ) is therefore large and positive. Including them adds a lot to the covariance, which increases the correlation.</p>",
+      "points": [
+       "共分散の式で説明 [2]（直感的な「傾き」説明だと最大1点）"
+      ],
+      "jp": "採点基準で<b>共分散の式を使った説明だけが満点</b>と明記されている。「左下の象限 → 偏差の積がプラスで大きい → 共分散↑ → 相関↑」の流れを丸暗記。"
+     }
+    ]
+   },
+   {
+    "q": "Q2",
+    "marks": 15,
+    "parts": [
+     {
+      "id": "s1q2a1",
+      "label": "Q2(a)(i)",
+      "marks": 4,
+      "types": [
+       "slr"
+      ],
+      "prompt": "In the regression of Bottom-20% income growth on Overall income growth, what would be the implications of the following values of the slope: Slope = 0; Slope > 0 but < 1; Slope = 1; Slope > 1?",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Income growth, Bottom 20% / Exp: Income growth, Overall",
+        "stats": [
+         [
+          "Multiple R",
+          "0.796"
+         ],
+         [
+          "R Square",
+          "!0.634"
+         ],
+         [
+          "Adjusted R Square",
+          "0.633"
+         ],
+         [
+          "Standard Error",
+          "0.0333"
+         ],
+         [
+          "Observations",
+          "269"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "1",
+          "0.5126",
+          "0.5126",
+          "462.54",
+          "3.23E-60"
+         ],
+         [
+          "Residual",
+          "267",
+          "0.2959",
+          "0.0011"
+         ],
+         [
+          "Total",
+          "268",
+          "0.8085"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!0.000792",
+          "0.002169",
+          "0.365",
+          "0.7152",
+          "!-0.00348",
+          "!0.00506"
+         ],
+         [
+          "Avg Income Growth, Overall",
+          "!1.0393",
+          "0.04832",
+          "21.507",
+          "!3.23E-60",
+          "0.9441",
+          "1.1344"
+         ]
+        ]
+       }
+      },
+      "answer": "<ul><li><b>Slope = 0:</b> overall income growth has no effect on income growth of the bottom 20%; the poor do not benefit from economic growth.</li>\n<li><b>0 &lt; Slope &lt; 1:</b> the incomes of the poor grow, but by less than average incomes, so inequality increases.</li>\n<li><b>Slope = 1:</b> the incomes of the poor grow at the same rate as average incomes (equiproportionate growth), so inequality is unchanged.</li>\n<li><b>Slope &gt; 1:</b> the incomes of the poor grow faster than average incomes, so inequality decreases.</li></ul>",
+      "points": [
+       "各1点 ×4"
+      ],
+      "jp": "「傾き＝全体が1%pt成長したとき貧困層は何%pt成長するか」と読み替えると全部解ける。1より大きい＝貧困層の方が伸びる＝格差縮小。"
+     },
+     {
+      "id": "s1q2a2",
+      "label": "Q2(a)(ii)",
+      "marks": 2,
+      "types": [
+       "slr"
+      ],
+      "prompt": "Interpret the coefficient of the Overall Income Growth variable.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Income growth, Bottom 20% / Exp: Income growth, Overall",
+        "stats": [
+         [
+          "Multiple R",
+          "0.796"
+         ],
+         [
+          "R Square",
+          "!0.634"
+         ],
+         [
+          "Adjusted R Square",
+          "0.633"
+         ],
+         [
+          "Standard Error",
+          "0.0333"
+         ],
+         [
+          "Observations",
+          "269"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "1",
+          "0.5126",
+          "0.5126",
+          "462.54",
+          "3.23E-60"
+         ],
+         [
+          "Residual",
+          "267",
+          "0.2959",
+          "0.0011"
+         ],
+         [
+          "Total",
+          "268",
+          "0.8085"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!0.000792",
+          "0.002169",
+          "0.365",
+          "0.7152",
+          "!-0.00348",
+          "!0.00506"
+         ],
+         [
+          "Avg Income Growth, Overall",
+          "!1.0393",
+          "0.04832",
+          "21.507",
+          "!3.23E-60",
+          "0.9441",
+          "1.1344"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>The model predicts that a one <b>percentage point</b> increase in the overall income growth rate is associated with a 1.039 percentage point increase in the income growth rate of the bottom 20%, <b>on average</b>.</p>",
+      "points": [
+       "正しい解釈 [2]（on average が無いと最大1.5）"
+      ],
+      "jp": "定型文：<b>The model predicts that a one-unit increase in X … Y increases by b, on average.</b> 成長率の差は percent ではなく percentage point（今回は減点なしだが正確に書く）。"
+     },
+     {
+      "id": "s1q2a3",
+      "label": "Q2(a)(iii)",
+      "marks": 3,
+      "types": [
+       "ci"
+      ],
+      "prompt": "Give a 95% confidence interval for the coefficient of the Intercept, and give a non-technical interpretation of the interval, in the context of this issue.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Income growth, Bottom 20% / Exp: Income growth, Overall",
+        "stats": [
+         [
+          "Multiple R",
+          "0.796"
+         ],
+         [
+          "R Square",
+          "!0.634"
+         ],
+         [
+          "Adjusted R Square",
+          "0.633"
+         ],
+         [
+          "Standard Error",
+          "0.0333"
+         ],
+         [
+          "Observations",
+          "269"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "1",
+          "0.5126",
+          "0.5126",
+          "462.54",
+          "3.23E-60"
+         ],
+         [
+          "Residual",
+          "267",
+          "0.2959",
+          "0.0011"
+         ],
+         [
+          "Total",
+          "268",
+          "0.8085"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!0.000792",
+          "0.002169",
+          "0.365",
+          "0.7152",
+          "!-0.00348",
+          "!0.00506"
+         ],
+         [
+          "Avg Income Growth, Overall",
+          "!1.0393",
+          "0.04832",
+          "21.507",
+          "!3.23E-60",
+          "0.9441",
+          "1.1344"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>95% CI for the intercept: [−0.00348, 0.00506].</p>\n<p>We are 95% confident that, in a country where overall average income growth is zero, the true average annual income growth of the bottom 20% is between −0.35% and 0.51% per year. Because the interval contains zero, there is no evidence that the poor's incomes grow when there is no overall growth.</p>",
+      "points": [
+       "We are 95% confident that [0.5]",
+       "X = 0 のときという条件 [1]",
+       "区間の値 [1]",
+       "単位（% per year）[0.5]"
+      ],
+      "jp": "CI は Excel 出力の Lower 95% / Upper 95% をそのまま読む（計算不要）。切片の解釈なので「overall growth が 0 のとき」という条件を必ず入れる。"
+     },
+     {
+      "id": "s1q2b1",
+      "label": "Q2(b)(i)",
+      "marks": 2,
+      "types": [
+       "slr",
+       "nonlin"
+      ],
+      "prompt": "A new dependent variable Y = Bottom 20% growth minus Overall growth is regressed on Overall growth. Compare the estimated slope coefficient in this model with part a. What do you notice? Does this make sense?",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Y = Bottom 20% − Overall / Exp: Income growth, Overall",
+        "stats": [
+         [
+          "Multiple R",
+          "0.0497"
+         ],
+         [
+          "R Square",
+          "0.00247"
+         ],
+         [
+          "Adjusted R Square",
+          "-0.00127"
+         ],
+         [
+          "Standard Error",
+          "0.0333"
+         ],
+         [
+          "Observations",
+          "269"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "1",
+          "0.000733",
+          "0.000733",
+          "0.661",
+          "0.4169"
+         ],
+         [
+          "Residual",
+          "267",
+          "0.2959",
+          "0.0011"
+         ],
+         [
+          "Total",
+          "268",
+          "0.2966"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "0.000792",
+          "0.002169",
+          "0.365",
+          "0.7152",
+          "-0.00348",
+          "0.00506"
+         ],
+         [
+          "Avg Income Growth, Overall",
+          "!0.0393",
+          "0.04832",
+          "0.813",
+          "!0.4169",
+          "-0.0559",
+          "0.1344"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>The new slope (0.039) is exactly 1 smaller than the slope in part a (1.039), while the standard error is identical.</p>\n<p>This makes sense. The dependent variable is now the <b>difference</b> between bottom-20% growth and overall growth. If a 1 percentage point rise in overall growth raises bottom-20% growth by 1.039 percentage points, then the gap (bottom 20% − overall) rises by 1.039 − 1 = 0.039 percentage points.</p>",
+      "points": [
+       "ちょうど1小さい [0.5]",
+       "理にかなう [0.5]",
+       "理由 [1]"
+      ],
+      "jp": "Y から X を引いたものを X で回帰すると、傾きは「元の傾き − 1」になる。式で書くと (B − O) = b0 + (b1 − 1)O。"
+     },
+     {
+      "id": "s1q2b2",
+      "label": "Q2(b)(ii)",
+      "marks": 4,
+      "types": [
+       "test"
+      ],
+      "prompt": "Use this output to perform a hypothesis test to see if there is evidence that the poorest 20% experience more than the average benefit from overall growth. Explain the logic of your test clearly.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Y = Bottom 20% − Overall / Exp: Income growth, Overall",
+        "stats": [
+         [
+          "Multiple R",
+          "0.0497"
+         ],
+         [
+          "R Square",
+          "0.00247"
+         ],
+         [
+          "Adjusted R Square",
+          "-0.00127"
+         ],
+         [
+          "Standard Error",
+          "0.0333"
+         ],
+         [
+          "Observations",
+          "269"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "1",
+          "0.000733",
+          "0.000733",
+          "0.661",
+          "0.4169"
+         ],
+         [
+          "Residual",
+          "267",
+          "0.2959",
+          "0.0011"
+         ],
+         [
+          "Total",
+          "268",
+          "0.2966"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "0.000792",
+          "0.002169",
+          "0.365",
+          "0.7152",
+          "-0.00348",
+          "0.00506"
+         ],
+         [
+          "Avg Income Growth, Overall",
+          "!0.0393",
+          "0.04832",
+          "0.813",
+          "!0.4169",
+          "-0.0559",
+          "0.1344"
+         ]
+        ]
+       }
+      },
+      "answer": "<p><b>Logic:</b> In this model β<sub>1</sub> measures how much the gap between bottom-20% growth and overall growth changes when overall growth rises by 1 percentage point. \"The poor gain more than average\" means β<sub>1</sub> &gt; 0, so this is a one-sided (upper-tail) test.</p>\n<p>H<sub>0</sub>: β<sub>1</sub> = 0 &nbsp;&nbsp; H<sub>1</sub>: β<sub>1</sub> &gt; 0 &nbsp;&nbsp; α = 0.05</p>\n<p>One-sided p-value = 0.4169 / 2 = 0.2085 (the estimate 0.039 is positive, so we halve it).</p>\n<p>Since p-value = 0.2085 &gt; α = 0.05, we do not reject H<sub>0</sub>. There is insufficient evidence at the 5% level that the poorest 20% experience more than the average benefit from overall growth.</p>",
+      "points": [
+       "片側検定である理由 [1]",
+       "H0/H1 [1]",
+       "α [0.5]",
+       "p値÷2 と比較 [0.5]",
+       "判断 [0.5]",
+       "結論（文脈）[0.5]"
+      ],
+      "jp": "「〜より大きいか」は片側検定。Excel の P-value は両側なので<b>÷2</b>する（係数の符号が H1 の向きと同じときだけ）。",
+      "warn": "公式解答は「p-value = 0.2085 &lt; alpha」と書いていますが誤りです。正しくは 0.2085 <b>&gt;</b> 0.05（だから do not reject）。結論部分は公式解答も正しいです。"
+     }
+    ]
+   },
+   {
+    "q": "Q3",
+    "marks": 13,
+    "parts": [
+     {
+      "id": "s1q3a1",
+      "label": "Q3(a)(i)",
+      "marks": 1,
+      "types": [
+       "prob"
+      ],
+      "prompt": "The pivot table shows the locations of the 109 countries and their income category. What proportion of countries in the sample are Low-income countries?",
+      "exhibit": {
+       "pivot": {
+        "cols": [
+         "Region",
+         "Low",
+         "Medium",
+         "High",
+         "Total"
+        ],
+        "rows": [
+         [
+          "East Asia & Pacific",
+          "1",
+          "8",
+          "1",
+          "10"
+         ],
+         [
+          "Europe & Central Asia",
+          "2",
+          "!17",
+          "21",
+          "!40"
+         ],
+         [
+          "Latin America & Caribbean",
+          "",
+          "19",
+          "",
+          "19"
+         ],
+         [
+          "Middle East & N. Africa",
+          "",
+          "6",
+          "",
+          "6"
+         ],
+         [
+          "North America",
+          "",
+          "",
+          "2",
+          "2"
+         ],
+         [
+          "South Asia",
+          "2",
+          "3",
+          "",
+          "5"
+         ],
+         [
+          "Sub-Saharan Africa",
+          "16",
+          "!11",
+          "!(blank)",
+          "!27"
+         ],
+         [
+          "Grand Total",
+          "!21",
+          "!64",
+          "24",
+          "!109"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>P(Low income) = 21 / 109 (≈ 0.19)</p>",
+      "points": [
+       "21/109 [1]"
+      ],
+      "jp": "周辺確率（marginal）＝ 行または列の合計 ÷ 総数。電卓なしなので分数のままでOK。"
+     },
+     {
+      "id": "s1q3a2",
+      "label": "Q3(a)(ii)",
+      "marks": 2,
+      "types": [
+       "prob"
+      ],
+      "prompt": "What is the probability that a country in the sample is a High Income country from Sub-Saharan Africa?",
+      "exhibit": {
+       "pivot": {
+        "cols": [
+         "Region",
+         "Low",
+         "Medium",
+         "High",
+         "Total"
+        ],
+        "rows": [
+         [
+          "East Asia & Pacific",
+          "1",
+          "8",
+          "1",
+          "10"
+         ],
+         [
+          "Europe & Central Asia",
+          "2",
+          "!17",
+          "21",
+          "!40"
+         ],
+         [
+          "Latin America & Caribbean",
+          "",
+          "19",
+          "",
+          "19"
+         ],
+         [
+          "Middle East & N. Africa",
+          "",
+          "6",
+          "",
+          "6"
+         ],
+         [
+          "North America",
+          "",
+          "",
+          "2",
+          "2"
+         ],
+         [
+          "South Asia",
+          "2",
+          "3",
+          "",
+          "5"
+         ],
+         [
+          "Sub-Saharan Africa",
+          "16",
+          "!11",
+          "!(blank)",
+          "!27"
+         ],
+         [
+          "Grand Total",
+          "!21",
+          "!64",
+          "24",
+          "!109"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>P(High income AND Sub-Saharan Africa) = 0 / 109 = 0. No country in the sample is both.</p>",
+      "points": [
+       "0 [2]"
+      ],
+      "jp": "「AかつB」の同時確率（joint）は 該当セル ÷ <b>総数109</b>。",
+      "warn": "公式解答は 0/27 と書いていますが、/27 は条件付き確率の分母です。同時確率の分母は総数 109。答えはどちらも 0 なので点数は同じですが、考え方は /109 で覚えてください。"
+     },
+     {
+      "id": "s1q3a3",
+      "label": "Q3(a)(iii)",
+      "marks": 2,
+      "types": [
+       "prob"
+      ],
+      "prompt": "Work out the probability of a country being Medium Income, given it is from Sub-Saharan Africa. Then calculate the probability of being Medium Income if the country is from Europe or Central Asia.",
+      "exhibit": {
+       "pivot": {
+        "cols": [
+         "Region",
+         "Low",
+         "Medium",
+         "High",
+         "Total"
+        ],
+        "rows": [
+         [
+          "East Asia & Pacific",
+          "1",
+          "8",
+          "1",
+          "10"
+         ],
+         [
+          "Europe & Central Asia",
+          "2",
+          "!17",
+          "21",
+          "!40"
+         ],
+         [
+          "Latin America & Caribbean",
+          "",
+          "19",
+          "",
+          "19"
+         ],
+         [
+          "Middle East & N. Africa",
+          "",
+          "6",
+          "",
+          "6"
+         ],
+         [
+          "North America",
+          "",
+          "",
+          "2",
+          "2"
+         ],
+         [
+          "South Asia",
+          "2",
+          "3",
+          "",
+          "5"
+         ],
+         [
+          "Sub-Saharan Africa",
+          "16",
+          "!11",
+          "!(blank)",
+          "!27"
+         ],
+         [
+          "Grand Total",
+          "!21",
+          "!64",
+          "24",
+          "!109"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>P(Medium | Sub-Saharan Africa) = 11 / 27 (≈ 0.41)</p><p>P(Medium | Europe &amp; Central Asia) = 17 / 40 (≈ 0.43)</p>",
+      "points": [
+       "各1点"
+      ],
+      "jp": "条件付き確率 P(A|B) は「Bの行（列）だけを見る」。分母は条件側の合計（27, 40）。"
+     },
+     {
+      "id": "s1q3a4",
+      "label": "Q3(a)(iv)",
+      "marks": 5,
+      "types": [
+       "prob"
+      ],
+      "prompt": "The probabilities in part iii are fairly similar. A researcher concludes Income Level is approximately independent of Geographic Region. Explain independence, how it is shown using conditional probabilities, and show why the researcher's conclusion is wrong.",
+      "exhibit": {
+       "pivot": {
+        "cols": [
+         "Region",
+         "Low",
+         "Medium",
+         "High",
+         "Total"
+        ],
+        "rows": [
+         [
+          "East Asia & Pacific",
+          "1",
+          "8",
+          "1",
+          "10"
+         ],
+         [
+          "Europe & Central Asia",
+          "2",
+          "!17",
+          "21",
+          "!40"
+         ],
+         [
+          "Latin America & Caribbean",
+          "",
+          "19",
+          "",
+          "19"
+         ],
+         [
+          "Middle East & N. Africa",
+          "",
+          "6",
+          "",
+          "6"
+         ],
+         [
+          "North America",
+          "",
+          "",
+          "2",
+          "2"
+         ],
+         [
+          "South Asia",
+          "2",
+          "3",
+          "",
+          "5"
+         ],
+         [
+          "Sub-Saharan Africa",
+          "16",
+          "!11",
+          "!(blank)",
+          "!27"
+         ],
+         [
+          "Grand Total",
+          "!21",
+          "!64",
+          "24",
+          "!109"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>Two events are independent if the occurrence of one does not change the probability of the other, i.e. there is no relationship between them.</p>\n<p>Using conditional probabilities, A and B are independent if P(A | B) = P(A): the conditional probability equals the marginal probability. For income level to be independent of region, P(Medium | Region) must equal P(Medium) for <b>every</b> region.</p>\n<p>The researcher only compared two conditional probabilities with each other. The marginal probability is P(Medium) = 64/109 ≈ 0.59, which is clearly above 0.5, while P(Medium | SSA) ≈ 0.41 and P(Medium | ECA) ≈ 0.43 are both well below it. Other regions differ even more, e.g. P(Medium | Latin America) = 19/19 = 1. So income level depends on region and the conclusion is wrong.</p>",
+      "points": [
+       "独立の定義 [2]",
+       "P(A|B)=P(A) [1]",
+       "周辺確率 64/109 を示す [1]",
+       "条件付き確率と比較して結論 [1]"
+      ],
+      "jp": "落とし穴は「条件付き確率どうしが似ている」だけでは独立と言えないこと。<b>周辺確率（全体の割合）と比べる</b>のが正しい手順。"
+     },
+     {
+      "id": "s1q3a5",
+      "label": "Q3(a)(v)",
+      "marks": 3,
+      "types": [
+       "concept"
+      ],
+      "prompt": "There are almost 200 countries in the world, but only 109 are used due to lack of data. What impact is this likely to have on the reliability of the conclusions? Explain.",
+      "answer": "<p>The sample is not a random sample of all countries, so it may not be representative of the population of countries. Countries with missing data are likely to be systematically different (for example poorer, smaller or affected by conflict). This is a form of selection bias: our estimates may be biased and the conclusions may not apply to all countries. For example, the sample has only 2 North American countries, while 40 come from Europe &amp; Central Asia, so some regions are over-represented.</p>",
+      "points": [
+       "偏り（bias）/ 代表性がない [1]",
+       "理由の具体性 [1]",
+       "例 [1]"
+      ],
+      "jp": "「バイアスがある/ない」どちらでも根拠がしっかりしていれば満点。サンプルが母集団を代表していない → 結論を一般化できない、の論理で。"
+     }
+    ]
+   },
+   {
+    "q": "Q4",
+    "marks": 12,
+    "parts": [
+     {
+      "id": "s1q4a",
+      "label": "Q4(a)",
+      "marks": 4,
+      "types": [
+       "dummy"
+      ],
+      "prompt": "Dependent: income growth of Bottom 20%. Explanatory: Low Income (=1 if Low Income country, 0 otherwise). Interpret the coefficients of the Intercept and the Low Income variable.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Income growth, Bottom 20% / Exp: Low income dummy",
+        "stats": [
+         [
+          "Multiple R",
+          "0.0932"
+         ],
+         [
+          "R Square",
+          "0.00869"
+         ],
+         [
+          "Adjusted R Square",
+          "0.00498"
+         ],
+         [
+          "Standard Error",
+          "0.0420"
+         ],
+         [
+          "Observations",
+          "269"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "1",
+          "0.00412",
+          "0.00412",
+          "2.340",
+          "0.1272"
+         ],
+         [
+          "Residual",
+          "267",
+          "0.4705",
+          "0.00176"
+         ],
+         [
+          "Total",
+          "268",
+          "0.4746"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!0.014223",
+          "0.002768",
+          "5.139",
+          "5.35E-07",
+          "0.008774",
+          "0.019673"
+         ],
+         [
+          "Low income",
+          "!0.011121",
+          "0.007269",
+          "1.530",
+          "!0.1272",
+          "-0.00319",
+          "0.025434"
+         ]
+        ]
+       }
+      },
+      "answer": "<p><b>Intercept (0.0142):</b> The model predicts that the average annual income growth of the bottom 20% in medium- and high-income countries (Low income = 0) is 1.42% per year, on average.</p>\n<p><b>Low income (0.0111):</b> The model predicts that the average annual income growth of the bottom 20% in low-income countries is 1.11 percentage points higher than in medium- and high-income countries, on average (i.e. about 1.42% + 1.11% = 2.53% per year).</p>",
+      "points": [
+       "切片 [2]",
+       "ダミー係数 [2]"
+      ],
+      "jp": "ダミー変数の鉄則：<b>切片＝基準グループ（ダミー=0）の平均</b>、<b>ダミー係数＝基準グループとの差</b>。「〜と比べて higher/lower」と比較対象を必ず書く。"
+     },
+     {
+      "id": "s1q4b",
+      "label": "Q4(b)",
+      "marks": 4,
+      "types": [
+       "test"
+      ],
+      "prompt": "Using the p-value approach, perform a hypothesis test to investigate the opinion that Low Income countries have experienced stronger growth than medium and high income countries.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Income growth, Bottom 20% / Exp: Low income dummy",
+        "stats": [
+         [
+          "Multiple R",
+          "0.0932"
+         ],
+         [
+          "R Square",
+          "0.00869"
+         ],
+         [
+          "Adjusted R Square",
+          "0.00498"
+         ],
+         [
+          "Standard Error",
+          "0.0420"
+         ],
+         [
+          "Observations",
+          "269"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "1",
+          "0.00412",
+          "0.00412",
+          "2.340",
+          "0.1272"
+         ],
+         [
+          "Residual",
+          "267",
+          "0.4705",
+          "0.00176"
+         ],
+         [
+          "Total",
+          "268",
+          "0.4746"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!0.014223",
+          "0.002768",
+          "5.139",
+          "5.35E-07",
+          "0.008774",
+          "0.019673"
+         ],
+         [
+          "Low income",
+          "!0.011121",
+          "0.007269",
+          "1.530",
+          "!0.1272",
+          "-0.00319",
+          "0.025434"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>H<sub>0</sub>: β<sub>1</sub> = 0 &nbsp; H<sub>1</sub>: β<sub>1</sub> &gt; 0 &nbsp; (one-sided: \"stronger growth\")</p>\n<p>α = 0.05</p>\n<p>p-value = 0.1272 / 2 = 0.0636</p>\n<p>Since p-value = 0.0636 &gt; α = 0.05, we do not reject H<sub>0</sub>. At the 5% level of significance there is insufficient evidence that low-income countries experienced stronger income growth for the bottom 20% than medium- and high-income countries.</p>",
+      "points": [
+       "H0/H1 [1]",
+       "α [0.5]",
+       "p値 ÷2 [1]",
+       "判断 [0.5]",
+       "結論 [1]"
+      ],
+      "jp": "「stronger」= 片側。p ÷ 2。ちなみに α = 0.10 なら棄却できる、と一言添えると理解が伝わる。"
+     },
+     {
+      "id": "s1q4c1",
+      "label": "Q4(c)(i)",
+      "marks": 2,
+      "types": [
+       "errors"
+      ],
+      "prompt": "Explain the meaning of a Type I error and a Type II error.",
+      "answer": "<p><b>Type I error:</b> rejecting the null hypothesis when it is actually true.</p><p><b>Type II error:</b> failing to reject (not rejecting) the null hypothesis when it is actually false.</p>",
+      "points": [
+       "各1点"
+      ],
+      "jp": "Type I = 冤罪（本当はH0なのに棄却）、Type II = 見逃し（本当はH1なのに棄却しない）。"
+     },
+     {
+      "id": "s1q4c2",
+      "label": "Q4(c)(ii)",
+      "marks": 2,
+      "types": [
+       "errors"
+      ],
+      "prompt": "Which error could have been made in the test you performed in part b? Explain the error in the context of that hypothesis.",
+      "answer": "<p>A Type II error, because we did not reject H<sub>0</sub>.</p><p>In this context, it would mean that low-income countries actually did experience stronger income growth for the bottom 20% than medium- and high-income countries, but our test failed to find sufficient evidence of it.</p>",
+      "points": [
+       "Type II（棄却しなかったから）[1]",
+       "文脈での説明 [1]"
+      ],
+      "jp": "棄却した → Type I の可能性、棄却しなかった → Type II の可能性。必ず問題の文脈の言葉で説明する。"
+     }
+    ]
+   },
+   {
+    "q": "Q5",
+    "marks": 22,
+    "parts": [
+     {
+      "id": "s1q5a",
+      "label": "Q5(a)",
+      "marks": 2,
+      "types": [
+       "mlr"
+      ],
+      "prompt": "Take a country with 2% annual growth, zero inflation, 100% school enrolment and 1% pa population growth. Write an equation that calculates the model's prediction of the rate of growth in incomes of the poorest 20%.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Income growth, Bottom 20% (4 explanatory variables)",
+        "stats": [
+         [
+          "Multiple R",
+          "0.807"
+         ],
+         [
+          "R Square",
+          "!0.6513"
+         ],
+         [
+          "Adjusted R Square",
+          "0.6460"
+         ],
+         [
+          "Standard Error",
+          "!0.03268"
+         ],
+         [
+          "Observations",
+          "269"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "4",
+          "0.5266",
+          "0.1317",
+          "123.27",
+          "3.49E-59"
+         ],
+         [
+          "Residual",
+          "264",
+          "0.2819",
+          "0.00107"
+         ],
+         [
+          "Total",
+          "268",
+          "0.8086"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "-0.0328",
+          "0.013283",
+          "-2.469",
+          "0.0142",
+          "-0.05895",
+          "-0.00665"
+         ],
+         [
+          "Avg Income Growth, Overall",
+          "!0.978244",
+          "0.053324",
+          "18.345",
+          "!5E-49",
+          "0.8732",
+          "1.0832"
+         ],
+         [
+          "Inflation Rate",
+          "!-0.02204",
+          "0.013094",
+          "-1.683",
+          "!0.0935",
+          "-0.04782",
+          "0.00374"
+         ],
+         [
+          "Population Growth Rate",
+          "!0.004895",
+          "0.001857",
+          "2.636",
+          "!0.0089",
+          "0.00124",
+          "0.00855"
+         ],
+         [
+          "Primary School Enrolment (%)",
+          "!0.000305",
+          "0.000125",
+          "2.437",
+          "!0.0155",
+          "5.87E-05",
+          "0.000552"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>Predicted growth = −0.0328 + 0.978244(0.02) − 0.02204(0) + 0.004895(1) + 0.000305(100)</p>",
+      "points": [
+       "正しい式 [2]"
+      ],
+      "jp": "<b>単位の罠</b>：成長率とインフレは「比率」（2% → 0.02）、人口成長は「%」（1% → 1）、就学率も「%」（100% → 100）。変数の説明文を必ず読んで代入する。計算はしなくてよい。"
+     },
+     {
+      "id": "s1q5b",
+      "label": "Q5(b)",
+      "marks": 6,
+      "types": [
+       "mlr",
+       "test"
+      ],
+      "prompt": "Look at the P-value column, and discuss which of the explanatory variables appear to be significant. Comment on how / whether your conclusion would vary with the level of significance you choose.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Income growth, Bottom 20% (4 explanatory variables)",
+        "stats": [
+         [
+          "Multiple R",
+          "0.807"
+         ],
+         [
+          "R Square",
+          "!0.6513"
+         ],
+         [
+          "Adjusted R Square",
+          "0.6460"
+         ],
+         [
+          "Standard Error",
+          "!0.03268"
+         ],
+         [
+          "Observations",
+          "269"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "4",
+          "0.5266",
+          "0.1317",
+          "123.27",
+          "3.49E-59"
+         ],
+         [
+          "Residual",
+          "264",
+          "0.2819",
+          "0.00107"
+         ],
+         [
+          "Total",
+          "268",
+          "0.8086"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "-0.0328",
+          "0.013283",
+          "-2.469",
+          "0.0142",
+          "-0.05895",
+          "-0.00665"
+         ],
+         [
+          "Avg Income Growth, Overall",
+          "!0.978244",
+          "0.053324",
+          "18.345",
+          "!5E-49",
+          "0.8732",
+          "1.0832"
+         ],
+         [
+          "Inflation Rate",
+          "!-0.02204",
+          "0.013094",
+          "-1.683",
+          "!0.0935",
+          "-0.04782",
+          "0.00374"
+         ],
+         [
+          "Population Growth Rate",
+          "!0.004895",
+          "0.001857",
+          "2.636",
+          "!0.0089",
+          "0.00124",
+          "0.00855"
+         ],
+         [
+          "Primary School Enrolment (%)",
+          "!0.000305",
+          "0.000125",
+          "2.437",
+          "!0.0155",
+          "5.87E-05",
+          "0.000552"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>At the 5% level of significance, overall income growth (p ≈ 5E-49), population growth rate (p = 0.0089) and primary school enrolment rate (p = 0.0155) are significant, because their p-values are less than 0.05. The inflation rate is not significant at 5% (p = 0.0935 &gt; 0.05).</p>\n<p>At the 10% level of significance, all four variables are significant, since all p-values are below 0.10.</p>\n<p>At the 1% level, only overall income growth and population growth are significant; enrolment (0.0155) is no longer significant. So the conclusion for inflation and enrolment depends on the significance level chosen.</p>",
+      "points": [
+       "5%で有意な3変数 [各1]",
+       "p < 0.05 の理由 [0.5]",
+       "10%では全部 [1+0.5]",
+       "（1%の言及はプラス評価）"
+      ],
+      "jp": "p値を α（0.01, 0.05, 0.10）と並べて比較するだけ。表を作るように整理して書くと速い。"
+     },
+     {
+      "id": "s1q5c",
+      "label": "Q5(c)",
+      "marks": 8,
+      "types": [
+       "mlr"
+      ],
+      "prompt": "Consider the sign of each of the coefficients for the explanatory variables. Are the signs as you would expect? Explain your reasoning.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Income growth, Bottom 20% (4 explanatory variables)",
+        "stats": [
+         [
+          "Multiple R",
+          "0.807"
+         ],
+         [
+          "R Square",
+          "!0.6513"
+         ],
+         [
+          "Adjusted R Square",
+          "0.6460"
+         ],
+         [
+          "Standard Error",
+          "!0.03268"
+         ],
+         [
+          "Observations",
+          "269"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "4",
+          "0.5266",
+          "0.1317",
+          "123.27",
+          "3.49E-59"
+         ],
+         [
+          "Residual",
+          "264",
+          "0.2819",
+          "0.00107"
+         ],
+         [
+          "Total",
+          "268",
+          "0.8086"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "-0.0328",
+          "0.013283",
+          "-2.469",
+          "0.0142",
+          "-0.05895",
+          "-0.00665"
+         ],
+         [
+          "Avg Income Growth, Overall",
+          "!0.978244",
+          "0.053324",
+          "18.345",
+          "!5E-49",
+          "0.8732",
+          "1.0832"
+         ],
+         [
+          "Inflation Rate",
+          "!-0.02204",
+          "0.013094",
+          "-1.683",
+          "!0.0935",
+          "-0.04782",
+          "0.00374"
+         ],
+         [
+          "Population Growth Rate",
+          "!0.004895",
+          "0.001857",
+          "2.636",
+          "!0.0089",
+          "0.00124",
+          "0.00855"
+         ],
+         [
+          "Primary School Enrolment (%)",
+          "!0.000305",
+          "0.000125",
+          "2.437",
+          "!0.0155",
+          "5.87E-05",
+          "0.000552"
+         ]
+        ]
+       }
+      },
+      "answer": "<p><b>Overall income growth (+):</b> Expected. When the whole economy grows, the poorest 20% also share in that growth through more jobs and higher wages.</p>\n<p><b>Inflation (−):</b> Expected. Inflation reduces real incomes, and the poor usually have fewer assets protected from inflation and wages that adjust slowly, so their income growth falls.</p>\n<p><b>Population growth (+):</b> Not obviously expected. Faster population growth usually means more dependants per household and more people sharing resources, so we might expect a negative sign. A positive sign might reflect a growing young labour force entering work, or other factors correlated with population growth that the model leaves out. The effect is small.</p>\n<p><b>Primary school enrolment (+):</b> Expected. Higher enrolment improves skills and job opportunities for poorer families, which raises their incomes over time.</p>",
+      "points": [
+       "各変数 2点 ×4（妥当な理由なら可）"
+      ],
+      "jp": "「期待通りか？」は<b>符号＋経済的な理由</b>。予想と違う符号でも、理由づけが合理的なら満点。"
+     },
+     {
+      "id": "s1q5d",
+      "label": "Q5(d)",
+      "marks": 3,
+      "types": [
+       "fit"
+      ],
+      "prompt": "Interpret the R Square value in the regression output. Is it an indicator of a good model?",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Income growth, Bottom 20% (4 explanatory variables)",
+        "stats": [
+         [
+          "Multiple R",
+          "0.807"
+         ],
+         [
+          "R Square",
+          "!0.6513"
+         ],
+         [
+          "Adjusted R Square",
+          "0.6460"
+         ],
+         [
+          "Standard Error",
+          "!0.03268"
+         ],
+         [
+          "Observations",
+          "269"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "4",
+          "0.5266",
+          "0.1317",
+          "123.27",
+          "3.49E-59"
+         ],
+         [
+          "Residual",
+          "264",
+          "0.2819",
+          "0.00107"
+         ],
+         [
+          "Total",
+          "268",
+          "0.8086"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "-0.0328",
+          "0.013283",
+          "-2.469",
+          "0.0142",
+          "-0.05895",
+          "-0.00665"
+         ],
+         [
+          "Avg Income Growth, Overall",
+          "!0.978244",
+          "0.053324",
+          "18.345",
+          "!5E-49",
+          "0.8732",
+          "1.0832"
+         ],
+         [
+          "Inflation Rate",
+          "!-0.02204",
+          "0.013094",
+          "-1.683",
+          "!0.0935",
+          "-0.04782",
+          "0.00374"
+         ],
+         [
+          "Population Growth Rate",
+          "!0.004895",
+          "0.001857",
+          "2.636",
+          "!0.0089",
+          "0.00124",
+          "0.00855"
+         ],
+         [
+          "Primary School Enrolment (%)",
+          "!0.000305",
+          "0.000125",
+          "2.437",
+          "!0.0155",
+          "5.87E-05",
+          "0.000552"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>R² = 0.6513: 65.13% of the variation in the income growth rate of the bottom 20% is explained by the model (the four explanatory variables).</p>\n<p>This is relatively high for cross-country data, so it suggests the model fits reasonably well. However, a high R² does not by itself prove the model is correct, and most of the explanatory power comes from overall income growth (the simple model in Q2 already had R² = 0.634).</p>",
+      "points": [
+       "R² の解釈 [2]",
+       "良いモデルか＋理由 [1]"
+      ],
+      "jp": "定型文：<b>R² × 100% of the variation in Y is explained by the model.</b> 良い/悪いはどちらでも理由があればOK。"
+     },
+     {
+      "id": "s1q5e",
+      "label": "Q5(e)",
+      "marks": 3,
+      "types": [
+       "fit"
+      ],
+      "prompt": "Interpret the Standard Error of the model (0.03268). What does it say about the quality / accuracy of this model?",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Income growth, Bottom 20% (4 explanatory variables)",
+        "stats": [
+         [
+          "Multiple R",
+          "0.807"
+         ],
+         [
+          "R Square",
+          "!0.6513"
+         ],
+         [
+          "Adjusted R Square",
+          "0.6460"
+         ],
+         [
+          "Standard Error",
+          "!0.03268"
+         ],
+         [
+          "Observations",
+          "269"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "4",
+          "0.5266",
+          "0.1317",
+          "123.27",
+          "3.49E-59"
+         ],
+         [
+          "Residual",
+          "264",
+          "0.2819",
+          "0.00107"
+         ],
+         [
+          "Total",
+          "268",
+          "0.8086"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "-0.0328",
+          "0.013283",
+          "-2.469",
+          "0.0142",
+          "-0.05895",
+          "-0.00665"
+         ],
+         [
+          "Avg Income Growth, Overall",
+          "!0.978244",
+          "0.053324",
+          "18.345",
+          "!5E-49",
+          "0.8732",
+          "1.0832"
+         ],
+         [
+          "Inflation Rate",
+          "!-0.02204",
+          "0.013094",
+          "-1.683",
+          "!0.0935",
+          "-0.04782",
+          "0.00374"
+         ],
+         [
+          "Population Growth Rate",
+          "!0.004895",
+          "0.001857",
+          "2.636",
+          "!0.0089",
+          "0.00124",
+          "0.00855"
+         ],
+         [
+          "Primary School Enrolment (%)",
+          "!0.000305",
+          "0.000125",
+          "2.437",
+          "!0.0155",
+          "5.87E-05",
+          "0.000552"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>The standard error of the regression is 0.03268, so the model's predictions of the income growth rate of the bottom 20% are typically in error by about 3.27 percentage points.</p>\n<p>This is large compared with the average growth rate of the bottom 20% (1.73% p.a., from Q1), so the predictions for individual countries are not very accurate.</p>",
+      "points": [
+       "SE の解釈 [2]",
+       "不正確 [0.5]",
+       "平均 1.73% と比較 [0.5]"
+      ],
+      "jp": "回帰の Standard Error ＝ 予測の典型的な誤差の大きさ。<b>Y の平均と比べて</b>大きいか小さいかで精度を判断する。"
+     }
+    ]
+   },
+   {
+    "q": "Q6",
+    "marks": 16,
+    "parts": [
+     {
+      "id": "s1q6a",
+      "label": "Q6(a)",
+      "marks": 10,
+      "types": [
+       "dummy",
+       "report"
+      ],
+      "prompt": "Dependent: Population growth rate (%). Explanatory: Low Income dummy, Medium Income dummy (base = High Income). Using the coefficients and p-values, write a short report on the relationship between income level and population growth rate. Include the specific coefficient values in a meaningful way.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Population growth rate (%) / Exp: Low, Medium income dummies (base = High)",
+        "stats": [
+         [
+          "Multiple R",
+          "0.552"
+         ],
+         [
+          "R Square",
+          "0.3045"
+         ],
+         [
+          "Adjusted R Square",
+          "0.2993"
+         ],
+         [
+          "Standard Error",
+          "0.9225"
+         ],
+         [
+          "Observations",
+          "269"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "2",
+          "99.10",
+          "49.55",
+          "58.23",
+          "1.06E-21"
+         ],
+         [
+          "Residual",
+          "266",
+          "226.37",
+          "0.851"
+         ],
+         [
+          "Total",
+          "268",
+          "325.48"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!0.499487",
+          "0.111871",
+          "4.465",
+          "!1.19E-05",
+          "0.2792",
+          "0.7198"
+         ],
+         [
+          "Low income",
+          "!1.990311",
+          "0.185301",
+          "10.741",
+          "!1.37E-22",
+          "1.6255",
+          "2.3552"
+         ],
+         [
+          "Medium Income",
+          "!0.84497",
+          "0.133298",
+          "6.339",
+          "!9.86E-10",
+          "0.5825",
+          "1.1074"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>High-income countries (the base category) are predicted to have an average population growth rate of 0.50% per year (intercept = 0.499), and this is significantly greater than zero (p = 1.19E-05).</p>\n<p>Low-income countries are predicted to have a population growth rate 1.99 <b>percentage points</b> higher than high-income countries, on average (about 2.49% per year). This difference is statistically significant (p = 1.37E-22; even smaller for a one-sided test).</p>\n<p>Medium-income countries are predicted to have a population growth rate 0.84 percentage points higher than high-income countries, on average (about 1.34% per year), and this difference is also significant (p = 9.86E-10).</p>\n<p>Since 1.99 &gt; 0.84, low-income countries have the highest population growth, followed by medium-income and then high-income countries. Overall, there is strong evidence of a negative relationship between a country's income level and its population growth: richer countries have slower population growth.</p>",
+      "points": [
+       "High: 0.499% [1]",
+       "0より有意に大 [1]",
+       "Low: +1.99 pp [1.5]",
+       "有意 [1]",
+       "Medium: +0.84 pp [1.5]",
+       "有意 [1]",
+       "Low > Medium の比較 [1]",
+       "順位づけ [1]",
+       "結論：負の関係 [1]"
+      ],
+      "jp": "10点の「レポート」問題。<b>①基準グループの値 → ②各ダミーの差（percentage points, on average）＋有意性 → ③グループ間の順位 → ④問いへの結論</b>の4段構成で書く。percent と書くと各0.5点減点。"
+     },
+     {
+      "id": "s1q6b1",
+      "label": "Q6(b)(i)",
+      "marks": 2,
+      "types": [
+       "nonlin"
+      ],
+      "prompt": "A country's population grows at 2.5% per year on average. If the population in 2017 was 1.2 million people, write down an expression to predict the population in 2027.",
+      "answer": "<p>Predicted population in 2027 = 1.2 million × (1.025)<sup>10</sup></p>",
+      "points": [
+       "正しい式 [2]"
+      ],
+      "jp": "毎年2.5%ずつ複利で増える → (1 + 0.025) を10年分かける。1.2 × 1.25 のような単利の式は誤り。"
+     },
+     {
+      "id": "s1q6b2",
+      "label": "Q6(b)(ii)",
+      "marks": 4,
+      "types": [
+       "dummy",
+       "nonlin"
+      ],
+      "prompt": "The country has been a typical Low Income country, but will soon be classified as Medium Income. In light of part a, what impact would this have on the 10-year forecast? Suggest how you might deal with this problem.",
+      "exhibit": {
+       "reg": {
+        "title": "Dep: Population growth rate (%) / Exp: Low, Medium income dummies (base = High)",
+        "stats": [
+         [
+          "Multiple R",
+          "0.552"
+         ],
+         [
+          "R Square",
+          "0.3045"
+         ],
+         [
+          "Adjusted R Square",
+          "0.2993"
+         ],
+         [
+          "Standard Error",
+          "0.9225"
+         ],
+         [
+          "Observations",
+          "269"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "2",
+          "99.10",
+          "49.55",
+          "58.23",
+          "1.06E-21"
+         ],
+         [
+          "Residual",
+          "266",
+          "226.37",
+          "0.851"
+         ],
+         [
+          "Total",
+          "268",
+          "325.48"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!0.499487",
+          "0.111871",
+          "4.465",
+          "!1.19E-05",
+          "0.2792",
+          "0.7198"
+         ],
+         [
+          "Low income",
+          "!1.990311",
+          "0.185301",
+          "10.741",
+          "!1.37E-22",
+          "1.6255",
+          "2.3552"
+         ],
+         [
+          "Medium Income",
+          "!0.84497",
+          "0.133298",
+          "6.339",
+          "!9.86E-10",
+          "0.5825",
+          "1.1074"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>The 2.5% growth rate is based on the past 20 years, when the country was low-income. The results in part a show that medium-income countries have population growth about 1.99 − 0.84 = 1.15 percentage points lower than low-income countries. Once the country becomes medium-income, its population growth is likely to slow, so the forecast of 1.2 × 1.025<sup>10</sup> will probably <b>overestimate</b> the actual population in 2027.</p>\n<p>To deal with this, we could use a lower growth rate for the years after the country is reclassified, for example about 2.5 − 1.15 = 1.35% per year, e.g. 1.2 × 1.025<sup>k</sup> × 1.0135<sup>10−k</sup> where k is the number of years before reclassification. Alternatively, we could forecast using a regression that includes the income-group dummies, or use only recent data.</p>",
+      "points": [
+       "予測は過大になる [1]",
+       "理由（Medium の方が成長率が低い）[1]",
+       "対処法 [2]"
+      ],
+      "jp": "Low → Medium になると人口成長は 1.15%pt 下がる見込み → 2.5%で予測すると<b>過大予測</b>。対処法は「途中から成長率を下げる」など具体的に。"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "paper": "Sample 2",
+  "id": "s2",
+  "title": "Set 2（交通事故・社員構成・オンライン販売）",
+  "intro": "短めの問題が多いセット。Q1 記述統計、Q2 クロス表と確率、Q3–Q4 単回帰・重回帰（ダミー変数あり）、Q5 用語説明。",
+  "questions": [
+   {
+    "q": "Q1",
+    "marks": null,
+    "parts": [
+     {
+      "id": "s2q1a",
+      "label": "Q1(a)",
+      "marks": null,
+      "types": [
+       "shape",
+       "desc"
+      ],
+      "prompt": "Highway fatalities per 100,000 vehicles, Northern and Southern regions. Table 1 shows the mode for Southern region is 34, but in Figure 1 the peak appears to be about 55. Briefly explain why these values differ for Southern region.",
+      "exhibit": {
+       "img": "polygon",
+       "desc": {
+        "cols": [
+         "Statistic",
+         "Northern",
+         "Southern"
+        ],
+        "rows": [
+         [
+          "Mean",
+          "!87.62",
+          "!59.31"
+         ],
+         [
+          "Mode",
+          "67",
+          "!34"
+         ],
+         [
+          "Sample Variance",
+          "588.39",
+          "313.33"
+         ],
+         [
+          "Standard Deviation",
+          "!24.26",
+          "!17.70"
+         ],
+         [
+          "First Quartile",
+          "67",
+          "53"
+         ],
+         [
+          "Second Quartile (Median)",
+          "!85",
+          "!57"
+         ],
+         [
+          "Third Quartile",
+          "103",
+          "74"
+         ],
+         [
+          "Interquartile Range",
+          "!36",
+          "!21"
+         ],
+         [
+          "Coefficient of Variation",
+          "!27.7%",
+          "!29.8%"
+         ],
+         [
+          "Range",
+          "92",
+          "80"
+         ],
+         [
+          "Minimum",
+          "53",
+          "33"
+         ],
+         [
+          "Maximum",
+          "145",
+          "113"
+         ],
+         [
+          "Count",
+          "55",
+          "55"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>The mode in Table 1 (34) is calculated from the raw, ungrouped data: it is the single value that occurs most often. The frequency polygon is built from grouped data (class intervals of width 10), so its peak shows the modal <b>class</b> (around 55), the interval containing the most observations. Many different values can fall in the 50–60 class even if none of them repeats as often as 34, so the two measures can differ.</p>",
+      "jp": "<b>生データの最頻値</b>と<b>グループ化した階級の山</b>は別物、が答え。"
+     },
+     {
+      "id": "s2q1b",
+      "label": "Q1(b)",
+      "marks": null,
+      "types": [
+       "desc"
+      ],
+      "prompt": "Using the standard deviation, interquartile range and coefficient of variation, briefly comment on the different information they provide and compare the values for the Northern and Southern regions.",
+      "exhibit": {
+       "desc": {
+        "cols": [
+         "Statistic",
+         "Northern",
+         "Southern"
+        ],
+        "rows": [
+         [
+          "Mean",
+          "!87.62",
+          "!59.31"
+         ],
+         [
+          "Mode",
+          "67",
+          "!34"
+         ],
+         [
+          "Sample Variance",
+          "588.39",
+          "313.33"
+         ],
+         [
+          "Standard Deviation",
+          "!24.26",
+          "!17.70"
+         ],
+         [
+          "First Quartile",
+          "67",
+          "53"
+         ],
+         [
+          "Second Quartile (Median)",
+          "!85",
+          "!57"
+         ],
+         [
+          "Third Quartile",
+          "103",
+          "74"
+         ],
+         [
+          "Interquartile Range",
+          "!36",
+          "!21"
+         ],
+         [
+          "Coefficient of Variation",
+          "!27.7%",
+          "!29.8%"
+         ],
+         [
+          "Range",
+          "92",
+          "80"
+         ],
+         [
+          "Minimum",
+          "53",
+          "33"
+         ],
+         [
+          "Maximum",
+          "145",
+          "113"
+         ],
+         [
+          "Count",
+          "55",
+          "55"
+         ]
+        ]
+       }
+      },
+      "answer": "<p><b>Standard deviation</b> measures the average distance of the observations from the mean, in absolute units. The Northern region (24.26 fatalities per 100,000) has a larger SD than the Southern region (17.70), so in absolute terms Northern fatalities vary more.</p>\n<p><b>Interquartile range</b> is the spread of the middle 50% of the data (Q3 − Q1) and is not affected by extreme values. The Northern IQR (36) is larger than the Southern IQR (21), so the middle half of Northern values is also more spread out.</p>\n<p><b>Coefficient of variation</b> (SD / mean × 100%) measures spread relative to the mean, so it is the right measure to compare variability when the means are very different (87.62 vs 59.31). The CVs are similar, 27.7% for the North and 29.8% for the South. Relative to its mean, the Southern region is slightly more variable, even though its absolute spread is smaller.</p>",
+      "jp": "SD＝絶対的なバラつき、IQR＝真ん中50%のバラつき（外れ値に強い）、CV＝平均に対する相対的なバラつき。<b>平均が違う2グループの比較は CV が適切</b>がキーフレーズ。",
+      "warn": "公式解答に「NR is larger than NR」というタイプミスがあります（正しくは NR が SR より大きい）。"
+     },
+     {
+      "id": "s2q1c",
+      "label": "Q1(c)",
+      "marks": null,
+      "types": [
+       "shape"
+      ],
+      "prompt": "Use the percent frequency polygon (Figure 1) and the summary statistics (Table 1) to briefly describe and compare the shape of the two distributions.",
+      "exhibit": {
+       "img": "polygon",
+       "desc": {
+        "cols": [
+         "Statistic",
+         "Northern",
+         "Southern"
+        ],
+        "rows": [
+         [
+          "Mean",
+          "!87.62",
+          "!59.31"
+         ],
+         [
+          "Mode",
+          "67",
+          "!34"
+         ],
+         [
+          "Sample Variance",
+          "588.39",
+          "313.33"
+         ],
+         [
+          "Standard Deviation",
+          "!24.26",
+          "!17.70"
+         ],
+         [
+          "First Quartile",
+          "67",
+          "53"
+         ],
+         [
+          "Second Quartile (Median)",
+          "!85",
+          "!57"
+         ],
+         [
+          "Third Quartile",
+          "103",
+          "74"
+         ],
+         [
+          "Interquartile Range",
+          "!36",
+          "!21"
+         ],
+         [
+          "Coefficient of Variation",
+          "!27.7%",
+          "!29.8%"
+         ],
+         [
+          "Range",
+          "92",
+          "80"
+         ],
+         [
+          "Minimum",
+          "53",
+          "33"
+         ],
+         [
+          "Maximum",
+          "145",
+          "113"
+         ],
+         [
+          "Count",
+          "55",
+          "55"
+         ]
+        ]
+       }
+      },
+      "answer": "<p><b>Northern region:</b> unimodal, with a peak at around 65 fatalities per 100,000 and a long tail to the right (up to 145). It is positively skewed, consistent with the mean (87.62) being above the median (85).</p>\n<p><b>Southern region:</b> bimodal, with peaks at around 35 and 55 fatalities per 100,000. It is also positively skewed, with a tail to the right up to 113 and the mean (59.31) above the median (57).</p>\n<p>Overall, the Southern distribution is located further to the left (lower fatality rates) and is more concentrated, while the Northern distribution is centred higher and more spread out.</p>",
+      "jp": "形は「山の数（unimodal / bimodal）」「歪み（mean と median の大小で根拠づけ）」「位置」の3点で比較。"
+     }
+    ]
+   },
+   {
+    "q": "Q2",
+    "marks": null,
+    "parts": [
+     {
+      "id": "s2q2a",
+      "label": "Q2(a)",
+      "marks": null,
+      "types": [
+       "concept",
+       "prob"
+      ],
+      "prompt": "300 employees cross-classified by age and department (Table A). Explain the type of data that was used in Table A to derive the frequency table.",
+      "exhibit": {
+       "pivot": {
+        "cols": [
+         "Table A (count)",
+         "<30",
+         "30–50",
+         ">50",
+         "Total"
+        ],
+        "rows": [
+         [
+          "Production",
+          "!65",
+          "75",
+          "20",
+          "!160"
+         ],
+         [
+          "Sales",
+          "25",
+          "!29",
+          "8",
+          "62"
+         ],
+         [
+          "Administration",
+          "18",
+          "25",
+          "!35",
+          "!78"
+         ],
+         [
+          "Total",
+          "!108",
+          "129",
+          "63",
+          "!300"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>Two qualitative (categorical) variables are cross-classified. Department is nominal (categories with no natural order). Age group is ordinal: age is originally numerical but has been grouped into ordered categories (&lt;30, 30–50, &gt;50). The table is a cross-tabulation (contingency table) of counts.</p>",
+      "jp": "部署＝名義尺度（nominal）、年齢グループ＝順序尺度（ordinal）。"
+     },
+     {
+      "id": "s2q2b",
+      "label": "Q2(b)",
+      "marks": null,
+      "types": [
+       "concept"
+      ],
+      "prompt": "What would be the research question for the above scenario?",
+      "answer": "<p>Is there a relationship between an employee's age and the department in which they work? (Does age influence the type of department an employee is engaged in?)</p>",
+      "jp": "2変数のクロス表 → 研究課題は「AとBに関係があるか」。"
+     },
+     {
+      "id": "s2q2cd",
+      "label": "Q2(c)(d)",
+      "marks": null,
+      "types": [
+       "prob"
+      ],
+      "prompt": "(c) What is the probability that a randomly selected employee is under 30? (d) What is the marginal probability for the production department?",
+      "exhibit": {
+       "pivot": {
+        "cols": [
+         "Table A (count)",
+         "<30",
+         "30–50",
+         ">50",
+         "Total"
+        ],
+        "rows": [
+         [
+          "Production",
+          "!65",
+          "75",
+          "20",
+          "!160"
+         ],
+         [
+          "Sales",
+          "25",
+          "!29",
+          "8",
+          "62"
+         ],
+         [
+          "Administration",
+          "18",
+          "25",
+          "!35",
+          "!78"
+         ],
+         [
+          "Total",
+          "!108",
+          "129",
+          "63",
+          "!300"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>(c) P(&lt;30) = 108/300 = 0.36</p><p>(d) P(Production) = 160/300 = 0.533</p>",
+      "jp": "どちらも周辺確率＝合計 ÷ 300。"
+     },
+     {
+      "id": "s2q2e",
+      "label": "Q2(e)",
+      "marks": null,
+      "types": [
+       "prob"
+      ],
+      "prompt": "Show how 0.602 in Table C (column %) was obtained from Table A or Table B.",
+      "exhibit": {
+       "pivot": {
+        "cols": [
+         "Table C (column %)",
+         "<30",
+         "30–50",
+         ">50",
+         "Total"
+        ],
+        "rows": [
+         [
+          "Production",
+          "!0.602",
+          "0.581",
+          "0.317",
+          "0.533"
+         ],
+         [
+          "Sales",
+          "0.231",
+          "0.225",
+          "0.127",
+          "0.207"
+         ],
+         [
+          "Administration",
+          "0.167",
+          "0.194",
+          "!0.556",
+          "0.260"
+         ],
+         [
+          "Total",
+          "1",
+          "1",
+          "1",
+          "1"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>0.602 = P(Production | &lt;30) = 65/108 = 0.217/0.360</p>\n<p>It is a conditional probability: among employees under 30, the proportion who work in Production.</p>",
+      "jp": "列%（column %）＝ 列の合計で割った値 ＝ 列の条件付き確率。"
+     },
+     {
+      "id": "s2q2fg",
+      "label": "Q2(f)(g)",
+      "marks": null,
+      "types": [
+       "prob"
+      ],
+      "prompt": "(f) Probability that a randomly selected employee is 30–50 years of age and from Sales? (g) Probability that the employee is over 50, given that the employee is from Administration?",
+      "exhibit": {
+       "pivot": {
+        "cols": [
+         "Table A (count)",
+         "<30",
+         "30–50",
+         ">50",
+         "Total"
+        ],
+        "rows": [
+         [
+          "Production",
+          "!65",
+          "75",
+          "20",
+          "!160"
+         ],
+         [
+          "Sales",
+          "25",
+          "!29",
+          "8",
+          "62"
+         ],
+         [
+          "Administration",
+          "18",
+          "25",
+          "!35",
+          "!78"
+         ],
+         [
+          "Total",
+          "!108",
+          "129",
+          "63",
+          "!300"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>(f) P(30–50 AND Sales) = 29/300 = 0.097 (joint probability)</p><p>(g) P(&gt;50 | Administration) = 35/78 = 0.449 (conditional probability, from Table D row %)</p>",
+      "jp": "「and」→ 同時確率（÷300）。「given」→ 条件付き（÷ 条件側の合計78）。"
+     },
+     {
+      "id": "s2q2h",
+      "label": "Q2(h)",
+      "marks": null,
+      "types": [
+       "prob",
+       "report"
+      ],
+      "prompt": "Write a short report on whether the age of the employees has an effect on the type of department employed.",
+      "exhibit": {
+       "pivot": {
+        "cols": [
+         "Table C (column %)",
+         "<30",
+         "30–50",
+         ">50",
+         "Total"
+        ],
+        "rows": [
+         [
+          "Production",
+          "!0.602",
+          "0.581",
+          "0.317",
+          "0.533"
+         ],
+         [
+          "Sales",
+          "0.231",
+          "0.225",
+          "0.127",
+          "0.207"
+         ],
+         [
+          "Administration",
+          "0.167",
+          "0.194",
+          "!0.556",
+          "0.260"
+         ],
+         [
+          "Total",
+          "1",
+          "1",
+          "1",
+          "1"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>If age had no effect on department, the conditional probabilities of working in each department would be the same for every age group and equal to the marginal probabilities. They are not.</p>\n<p>Employees under 30 and aged 30–50 are mostly in Production (P(Production | &lt;30) = 0.602 and P(Production | 30–50) = 0.581, both above the marginal 0.533). In contrast, more than half of employees over 50 work in Administration (P(Admin | &gt;50) = 0.556 compared with the marginal 0.260), and only 0.317 of them are in Production. Sales employs a similar share of the two younger groups (0.231 and 0.225) but a smaller share of those over 50 (0.127).</p>\n<p>Since the conditional probabilities differ clearly from the marginal probabilities, age and department are not independent: the age of employees does have an effect on the department in which they are employed.</p>",
+      "jp": "レポートは<b>①独立ならどうなるか → ②条件付き確率と周辺確率の比較（数値付き） → ③結論</b>。Sample 1 Q3(iv) と同じ考え方。"
+     }
+    ]
+   },
+   {
+    "q": "Q3",
+    "marks": null,
+    "parts": [
+     {
+      "id": "s2q3a",
+      "label": "Q3(i)(ii)",
+      "marks": null,
+      "types": [
+       "slr"
+      ],
+      "prompt": "Model 1: Sales of an online product (RM) on Time (min). (i) Write down the estimated equation. (ii) Interpret BOTH the estimated coefficients.",
+      "exhibit": {
+       "reg": {
+        "title": "Model 1 — Dep: Sales (RM) / Exp: Time (min)",
+        "stats": [
+         [
+          "Multiple R",
+          "0.649"
+         ],
+         [
+          "R Square",
+          "0.421"
+         ],
+         [
+          "Adjusted R Square",
+          "0.409"
+         ],
+         [
+          "Standard Error",
+          "24.859"
+         ],
+         [
+          "Observations",
+          "50"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "1",
+          "21598.1",
+          "21598.1",
+          "34.951",
+          "3.42E-07"
+         ],
+         [
+          "Residual",
+          "48",
+          "29661.7",
+          "617.95"
+         ],
+         [
+          "Total",
+          "49",
+          "51259.8"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!43.842",
+          "5.407",
+          "8.108",
+          "1.51E-10",
+          "32.970",
+          "54.713"
+         ],
+         [
+          "Time (min)",
+          "!1.681",
+          "0.284",
+          "5.912",
+          "!3.42E-07",
+          "1.109",
+          "2.252"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>(i) Sales-hat<sub>i</sub> = 43.842 + 1.681 Time<sub>i</sub></p>\n<p>(ii) <b>Intercept:</b> The model predicts that a customer who spends no time viewing the pages generates sales of RM43.84, on average. (This is an extrapolation and may not be meaningful in practice.)</p>\n<p><b>Time:</b> The model predicts that for each additional minute a customer spends viewing the pages, sales increase by RM1.68, on average.</p>",
+      "jp": "推定式は<b>ハット（^）付き</b>で、誤差項 e は書かない。解釈は単位（RM, minute）と on average を忘れずに。"
+     },
+     {
+      "id": "s2q3b",
+      "label": "Q3(iii)",
+      "marks": null,
+      "types": [
+       "test"
+      ],
+      "prompt": "Perform a hypothesis test to check whether time spent has a positive impact on sales of the online product, using a p-value approach at the 1% level.",
+      "exhibit": {
+       "reg": {
+        "title": "Model 1 — Dep: Sales (RM) / Exp: Time (min)",
+        "stats": [
+         [
+          "Multiple R",
+          "0.649"
+         ],
+         [
+          "R Square",
+          "0.421"
+         ],
+         [
+          "Adjusted R Square",
+          "0.409"
+         ],
+         [
+          "Standard Error",
+          "24.859"
+         ],
+         [
+          "Observations",
+          "50"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "1",
+          "21598.1",
+          "21598.1",
+          "34.951",
+          "3.42E-07"
+         ],
+         [
+          "Residual",
+          "48",
+          "29661.7",
+          "617.95"
+         ],
+         [
+          "Total",
+          "49",
+          "51259.8"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!43.842",
+          "5.407",
+          "8.108",
+          "1.51E-10",
+          "32.970",
+          "54.713"
+         ],
+         [
+          "Time (min)",
+          "!1.681",
+          "0.284",
+          "5.912",
+          "!3.42E-07",
+          "1.109",
+          "2.252"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>H<sub>0</sub>: β<sub>1</sub> = 0 (time has no effect on sales)</p><p>H<sub>1</sub>: β<sub>1</sub> &gt; 0 (time has a positive effect on sales)</p><p>α = 0.01</p>\n<p>p-value = 3.42E-07 / 2 = 1.71E-07</p>\n<p>Since p-value = 1.71E-07 &lt; α = 0.01, we reject H<sub>0</sub>. There is sufficient evidence at the 1% level that time spent viewing the pages has a positive impact on sales of the online product.</p>",
+      "jp": "positive impact → 片側（>）→ p ÷ 2。E-07 は「0.000000342」の意味（とても小さい）。"
+     }
+    ]
+   },
+   {
+    "q": "Q4",
+    "marks": null,
+    "parts": [
+     {
+      "id": "s2q4a",
+      "label": "Q4(i)(ii)",
+      "marks": null,
+      "types": [
+       "mlr",
+       "dummy"
+      ],
+      "prompt": "Model 2 adds Pages viewed and browser dummies (Internet Explorer, Firefox). (i) Write down the estimated model. (ii) Interpret the estimated intercept.",
+      "exhibit": {
+       "reg": {
+        "title": "Model 2 — Dep: Sales (RM) / base browser = Chrome",
+        "stats": [
+         [
+          "Multiple R",
+          "0.666"
+         ],
+         [
+          "R Square",
+          "0.444"
+         ],
+         [
+          "Adjusted R Square",
+          "0.395"
+         ],
+         [
+          "Standard Error",
+          "25.163"
+         ],
+         [
+          "Observations",
+          "50"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "4",
+          "22767.4",
+          "5691.9",
+          "8.990",
+          "2.01E-05"
+         ],
+         [
+          "Residual",
+          "45",
+          "28492.4",
+          "633.16"
+         ],
+         [
+          "Total",
+          "49",
+          "51259.8"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!53.33",
+          "10.87",
+          "4.90",
+          "0.00",
+          "31.43",
+          "75.23"
+         ],
+         [
+          "Time (min)",
+          "1.81",
+          "0.66",
+          "2.72",
+          "0.01",
+          "0.47",
+          "3.14"
+         ],
+         [
+          "Pages Viewed",
+          "!-0.14",
+          "0.56",
+          "-0.24",
+          "!0.81",
+          "-1.26",
+          "0.99"
+         ],
+         [
+          "Internet Explorer",
+          "-14.14",
+          "10.75",
+          "-1.32",
+          "0.19",
+          "-35.79",
+          "7.51"
+         ],
+         [
+          "Firefox",
+          "!-8.39",
+          "11.56",
+          "-0.73",
+          "0.47",
+          "-31.67",
+          "14.90"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>(i) Sales-hat<sub>i</sub> = 53.33 + 1.81 Time<sub>i</sub> − 0.14 Pages<sub>i</sub> − 14.14 IE<sub>i</sub> − 8.39 Firefox<sub>i</sub></p>\n<p>(ii) Chrome is the base (omitted) category. The model predicts that a Chrome user who spends 0 minutes and views 0 pages generates sales of RM53.33, on average. This is not very meaningful, as a customer who views no pages cannot really buy online.</p>",
+      "jp": "IE と Firefox のダミーが入っている → <b>入っていない Chrome が基準</b>。切片は「全ての X = 0、かつ基準グループ」のときの予測値。",
+      "warn": "公式解答の式は −14.41 IE、−8.99 Firefox となっていますが、出力表の値は −14.14 と −8.39 です。表の値を使ってください。"
+     },
+     {
+      "id": "s2q4b",
+      "label": "Q4(iii)",
+      "marks": null,
+      "types": [
+       "mlr"
+      ],
+      "prompt": "Interpret the estimated coefficient of 'Pages Viewed'. Does it take the sign we would expect?",
+      "exhibit": {
+       "reg": {
+        "title": "Model 2 — Dep: Sales (RM) / base browser = Chrome",
+        "stats": [
+         [
+          "Multiple R",
+          "0.666"
+         ],
+         [
+          "R Square",
+          "0.444"
+         ],
+         [
+          "Adjusted R Square",
+          "0.395"
+         ],
+         [
+          "Standard Error",
+          "25.163"
+         ],
+         [
+          "Observations",
+          "50"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "4",
+          "22767.4",
+          "5691.9",
+          "8.990",
+          "2.01E-05"
+         ],
+         [
+          "Residual",
+          "45",
+          "28492.4",
+          "633.16"
+         ],
+         [
+          "Total",
+          "49",
+          "51259.8"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!53.33",
+          "10.87",
+          "4.90",
+          "0.00",
+          "31.43",
+          "75.23"
+         ],
+         [
+          "Time (min)",
+          "1.81",
+          "0.66",
+          "2.72",
+          "0.01",
+          "0.47",
+          "3.14"
+         ],
+         [
+          "Pages Viewed",
+          "!-0.14",
+          "0.56",
+          "-0.24",
+          "!0.81",
+          "-1.26",
+          "0.99"
+         ],
+         [
+          "Internet Explorer",
+          "-14.14",
+          "10.75",
+          "-1.32",
+          "0.19",
+          "-35.79",
+          "7.51"
+         ],
+         [
+          "Firefox",
+          "!-8.39",
+          "11.56",
+          "-0.73",
+          "0.47",
+          "-31.67",
+          "14.90"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>Holding time spent and browser constant, each additional page viewed is associated with a decrease in sales of RM0.14, on average.</p>\n<p>We would expect a positive sign, since viewing more pages suggests more interest in buying, so the negative sign is unexpected. However, the coefficient is very small and not statistically significant (p = 0.81), so there is no real evidence that pages viewed affects sales once time spent is controlled for. A possible reason for the negative sign is that customers who view many pages are comparing products without buying.</p>",
+      "jp": "重回帰の解釈は<b>holding other variables constant</b>（または Take two customers…）が必須。符号が予想外でも、有意でないことを指摘すると説得力が上がる。"
+     },
+     {
+      "id": "s2q4c",
+      "label": "Q4(iv)",
+      "marks": null,
+      "types": [
+       "dummy"
+      ],
+      "prompt": "Interpret the estimated coefficient of 'Firefox'.",
+      "exhibit": {
+       "reg": {
+        "title": "Model 2 — Dep: Sales (RM) / base browser = Chrome",
+        "stats": [
+         [
+          "Multiple R",
+          "0.666"
+         ],
+         [
+          "R Square",
+          "0.444"
+         ],
+         [
+          "Adjusted R Square",
+          "0.395"
+         ],
+         [
+          "Standard Error",
+          "25.163"
+         ],
+         [
+          "Observations",
+          "50"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "4",
+          "22767.4",
+          "5691.9",
+          "8.990",
+          "2.01E-05"
+         ],
+         [
+          "Residual",
+          "45",
+          "28492.4",
+          "633.16"
+         ],
+         [
+          "Total",
+          "49",
+          "51259.8"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!53.33",
+          "10.87",
+          "4.90",
+          "0.00",
+          "31.43",
+          "75.23"
+         ],
+         [
+          "Time (min)",
+          "1.81",
+          "0.66",
+          "2.72",
+          "0.01",
+          "0.47",
+          "3.14"
+         ],
+         [
+          "Pages Viewed",
+          "!-0.14",
+          "0.56",
+          "-0.24",
+          "!0.81",
+          "-1.26",
+          "0.99"
+         ],
+         [
+          "Internet Explorer",
+          "-14.14",
+          "10.75",
+          "-1.32",
+          "0.19",
+          "-35.79",
+          "7.51"
+         ],
+         [
+          "Firefox",
+          "!-8.39",
+          "11.56",
+          "-0.73",
+          "0.47",
+          "-31.67",
+          "14.90"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>Take two customers who spend the same time and view the same number of pages, but one uses Firefox and the other uses Chrome. The model predicts that the Firefox user generates RM8.39 less in sales than the Chrome user, on average.</p>",
+      "jp": "ダミー係数は<b>基準（Chrome）との差</b>。「Firefox users have RM8.39 lower sales」だけでは比較対象が無く減点。",
+      "warn": "公式解答は −8.39 と −8.99 が混在しています。出力表は −8.39。"
+     },
+     {
+      "id": "s2q4d",
+      "label": "Q4(v)",
+      "marks": null,
+      "types": [
+       "test"
+      ],
+      "prompt": "Using the p-value approach, test whether the number of pages viewed has an impact on sales, at the 1% level of significance.",
+      "exhibit": {
+       "reg": {
+        "title": "Model 2 — Dep: Sales (RM) / base browser = Chrome",
+        "stats": [
+         [
+          "Multiple R",
+          "0.666"
+         ],
+         [
+          "R Square",
+          "0.444"
+         ],
+         [
+          "Adjusted R Square",
+          "0.395"
+         ],
+         [
+          "Standard Error",
+          "25.163"
+         ],
+         [
+          "Observations",
+          "50"
+         ]
+        ],
+        "anova": [
+         [
+          "Regression",
+          "4",
+          "22767.4",
+          "5691.9",
+          "8.990",
+          "2.01E-05"
+         ],
+         [
+          "Residual",
+          "45",
+          "28492.4",
+          "633.16"
+         ],
+         [
+          "Total",
+          "49",
+          "51259.8"
+         ]
+        ],
+        "coef": [
+         [
+          "Intercept",
+          "!53.33",
+          "10.87",
+          "4.90",
+          "0.00",
+          "31.43",
+          "75.23"
+         ],
+         [
+          "Time (min)",
+          "1.81",
+          "0.66",
+          "2.72",
+          "0.01",
+          "0.47",
+          "3.14"
+         ],
+         [
+          "Pages Viewed",
+          "!-0.14",
+          "0.56",
+          "-0.24",
+          "!0.81",
+          "-1.26",
+          "0.99"
+         ],
+         [
+          "Internet Explorer",
+          "-14.14",
+          "10.75",
+          "-1.32",
+          "0.19",
+          "-35.79",
+          "7.51"
+         ],
+         [
+          "Firefox",
+          "!-8.39",
+          "11.56",
+          "-0.73",
+          "0.47",
+          "-31.67",
+          "14.90"
+         ]
+        ]
+       }
+      },
+      "answer": "<p>H<sub>0</sub>: β<sub>2</sub> = 0 (pages viewed has no impact on sales)</p><p>H<sub>1</sub>: β<sub>2</sub> ≠ 0 (pages viewed has an impact on sales)</p><p>α = 0.01</p>\n<p>p-value = 0.81 (two-sided, read directly from the output)</p>\n<p>Since p-value = 0.81 &gt; α = 0.01, we do not reject H<sub>0</sub>. There is insufficient evidence at the 1% level that the number of pages viewed has an impact on sales.</p>",
+      "jp": "「has an impact」＝向きの指定なし → 両側（≠）→ p値はそのまま使う。"
+     }
+    ]
+   },
+   {
+    "q": "Q5",
+    "marks": null,
+    "parts": [
+     {
+      "id": "s2q5a",
+      "label": "Q5(a)",
+      "marks": null,
+      "types": [
+       "concept"
+      ],
+      "prompt": "Briefly explain what a population is and give one example.",
+      "answer": "<p>A population is the entire group of individuals or items that we are interested in studying. Example: all online shoppers in Malaysia (a survey of 50 of them would be a sample).</p>",
+      "jp": "母集団＝関心の対象の全体。例は具体的に。"
+     },
+     {
+      "id": "s2q5b",
+      "label": "Q5(b)",
+      "marks": null,
+      "types": [
+       "concept"
+      ],
+      "prompt": "Why are the numerical summary figures called parameters rather than statistics? List at least two population parameters.",
+      "answer": "<p>Numerical summaries calculated from the whole population are called parameters. They are fixed values that are usually unknown. Summaries calculated from a sample are called statistics; they vary from sample to sample and are used to estimate the parameters.</p>\n<p>Examples of population parameters: the population mean μ, the population standard deviation σ (also the population proportion and the regression coefficients β<sub>0</sub>, β<sub>1</sub>).</p>",
+      "jp": "母集団の値＝parameter（μ, σ）、標本の値＝statistic（x̄, s）。"
+     },
+     {
+      "id": "s2q5c",
+      "label": "Q5(c)",
+      "marks": null,
+      "types": [
+       "concept"
+      ],
+      "prompt": "What are the differences between primary and secondary data? Give an example of each.",
+      "answer": "<p><b>Primary data</b> are collected by the researcher for their own research question, e.g. a questionnaire of Monash Malaysia students about their weekly spending.</p>\n<p><b>Secondary data</b> were collected by someone else for a different purpose, e.g. census data from the Department of Statistics Malaysia or World Bank data.</p>",
+      "jp": "一次データ＝自分で集めた、二次データ＝他人が別目的で集めた。"
+     },
+     {
+      "id": "s2q5d",
+      "label": "Q5(d)",
+      "marks": null,
+      "types": [
+       "concept"
+      ],
+      "prompt": "What is non-response bias in a survey?",
+      "answer": "<p>Non-response bias occurs when people selected for a survey do not respond (they refuse, cannot be contacted, or give incomplete answers) and the non-respondents differ systematically from those who do respond. The sample then no longer represents the population, so the results are biased. Example: interviewing mothers only between 9am and 5pm misses working mothers.</p>",
+      "jp": "回答しない人が回答した人と<b>系統的に違う</b>ときに偏りが生まれる、がポイント。"
+     }
+    ]
+   }
+  ]
+ }
+]

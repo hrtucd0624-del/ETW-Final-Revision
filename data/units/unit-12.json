@@ -1,0 +1,1393 @@
+{
+ "id": "unit-12",
+ "title": "ダミー変数",
+ "slot": [
+  "E"
+ ],
+ "goalSample": [
+  "s1q4a",
+  "s1q6a",
+  "s2q4c"
+ ],
+ "lessons": [
+  {
+   "id": "u12-l1",
+   "title": "ダミー変数ってなに？",
+   "steps": [
+    {
+     "type": "explain",
+     "body": "<p><b>ダミー変数（dummy variable）</b>は「当てはまれば 1、当てはまらなければ 0」の変数。都市に住んでいる／いない、のような<b>カテゴリー</b>を回帰に入れるために使います。</p><p>例：Week 11。Y = 世帯の月収（$）、X = metropolitan（都市なら 1、町・農村なら 0）。</p><p>Ŷ = 1451.77 + 356.89 metropolitan</p><ul><li>農村（metropolitan = 0）：Ŷ = 1451.77 ← <b>切片＝基準グループ（0 のグループ）の平均</b></li><li>都市（metropolitan = 1）：Ŷ = 1451.77 + 356.89 = 1808.66</li></ul><p>だから<b>ダミーの係数 356.89 ＝ 都市と農村の平均の差</b>。「X が1増えると…」ではなく「<b>基準グループと比べて</b>どれだけ違うか」と読みます。</p>",
+     "exhibit": {
+      "reg": {
+       "title": "Week 11 Q1 — Dep: Monthly household income ($) / Exp: metropolitan (1 = city)",
+       "stats": [
+        [
+         "Multiple R",
+         "0.169758"
+        ],
+        [
+         "R Square",
+         "0.028818"
+        ],
+        [
+         "Adjusted R Square",
+         "0.028562"
+        ],
+        [
+         "Standard Error",
+         "1005.893"
+        ],
+        [
+         "Observations",
+         "3795"
+        ]
+       ],
+       "anova": [
+        [
+         "Regression",
+         "1",
+         "113879464.8",
+         "1.14E+08",
+         "112.549",
+         "6.23301E-26"
+        ],
+        [
+         "Residual",
+         "3793",
+         "3837838875",
+         "1011821"
+        ],
+        [
+         "Total",
+         "3794",
+         "3951718339"
+        ]
+       ],
+       "coef": [
+        [
+         "Intercept",
+         "!1451.767",
+         "26.48922897",
+         "54.80592",
+         "0",
+         "!1399.832151",
+         "!1503.7012"
+        ],
+        [
+         "metropolitan",
+         "!356.8905",
+         "33.64063956",
+         "10.60891",
+         "!6.23E-26",
+         "290.9350257",
+         "422.846"
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "type": "check",
+     "question": {
+      "id": "u12-l1-c1",
+      "level": 1,
+      "kind": "choice",
+      "prompt": "上のモデルの切片 1451.77 は何？",
+      "options": [
+       "町・農村（metropolitan = 0）の世帯の平均月収の推定値",
+       "都市の世帯の平均月収の推定値",
+       "都市と農村の平均月収の差",
+       "全世帯の平均月収"
+      ],
+      "answer": 0,
+      "source": {
+       "file": "Week 11 Solution.pdf",
+       "where": "Q1(ii)"
+      },
+      "feedback": {
+       "correct": "正解。切片＝ダミーが 0 のグループ（基準グループ）の平均。",
+       "wrong": {
+        "1": "都市は 1451.77 + 356.89 = 1808.66。",
+        "2": "差はダミーの係数（356.89）。",
+        "3": "全体の平均は記述統計の Mean（1673.05）。切片とは別。"
+       },
+       "thinking": [
+        "① ダミー = 0 を代入",
+        "② 残るのは切片だけ → 基準グループの平均"
+       ],
+       "related": {
+        "answerType": "dummy"
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "u12-l2",
+   "title": "係数はグループ平均の差と一致する",
+   "steps": [
+    {
+     "type": "explain",
+     "body": "<p>Week 10（Engel's Law）：200 のひとり親世帯。Y = Food Share（収入のうち食費の割合、0.23 = 23%）。住んでいる場所は Metro / Rural / Regional の3つ。</p><p>まず Excel でグループ平均を計算すると：</p>",
+     "exhibit": {
+      "desc": {
+       "title": "Week 10 Part 1(a) — Mean Food Share by location",
+       "cols": [
+        "",
+        "Mean Food Share"
+       ],
+       "rows": [
+        [
+         "Metro",
+         "!0.232957"
+        ],
+        [
+         "Rural",
+         "!0.180985"
+        ],
+        [
+         "Regional",
+         "!0.191744"
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "type": "explain",
+     "body": "<p>次に Rural と Regional のダミーで回帰（<b>Metro が基準</b>）：</p><ul><li>切片 0.2330 ＝ Metro の平均（0.232957）</li><li>Rural 係数 −0.0520 ＝ 0.180985 − 0.232957（Rural − Metro）</li><li>Regional 係数 −0.0412 ＝ 0.191744 − 0.232957（Regional − Metro）</li></ul><p>予測値はグループ平均と<b>ぴったり一致</b>します。回帰は各グループの平均を通るからです。</p><p>Y が割合（率）なので、差は <b>percentage points</b>：Rural は Metro より平均 <b>5.20 percentage points</b> 低い。</p>",
+     "exhibit": {
+      "reg": {
+       "title": "Week 10 Part 1(b) — Dep: Food Share / Exp: Rural, Regional (base = Metro)",
+       "stats": [
+        [
+         "Multiple R",
+         "0.179115"
+        ],
+        [
+         "R Square",
+         "0.032082"
+        ],
+        [
+         "Adjusted R Square",
+         "0.022256"
+        ],
+        [
+         "Standard Error",
+         "0.127301"
+        ],
+        [
+         "Observations",
+         "200"
+        ]
+       ],
+       "anova": [
+        [
+         "Regression",
+         "2",
+         "0.105816",
+         "0.052908",
+         "3.264837",
+         "0.04028"
+        ],
+        [
+         "Residual",
+         "197",
+         "3.192471",
+         "0.016205"
+        ],
+        [
+         "Total",
+         "199",
+         "3.298287"
+        ]
+       ],
+       "coef": [
+        [
+         "Intercept",
+         "!0.232957",
+         "0.014145",
+         "16.469754",
+         "6.82E-39",
+         "0.205062",
+         "0.260851"
+        ],
+        [
+         "Rural",
+         "!-0.051972",
+         "0.022364",
+         "-2.323851",
+         "!0.021153",
+         "-0.096076",
+         "-0.007867"
+        ],
+        [
+         "Regional",
+         "!-0.041213",
+         "0.021199",
+         "-1.944125",
+         "!0.053304",
+         "-0.083018",
+         "0.000593"
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "type": "check",
+     "question": {
+      "id": "u12-l2-c1",
+      "level": 1,
+      "kind": "choice",
+      "prompt": "Regional の係数 −0.0412 の意味は？",
+      "options": [
+       "Regional の世帯は Metro の世帯より、食費の割合が平均 4.12 percentage points 低い",
+       "Regional の世帯は Rural の世帯より、食費の割合が 4.12 percentage points 低い",
+       "Regional の世帯の食費の割合は平均 −4.12%",
+       "Regional の世帯は Metro より食費の割合が 4.12% 低い（percent）"
+      ],
+      "answer": 0,
+      "source": {
+       "file": "W10 Tutorial Excel exercise (solution).xlsx",
+       "where": "Part 1 1.b.i"
+      },
+      "feedback": {
+       "correct": "正解。比べる相手は基準グループ（Metro）、単位は percentage points。",
+       "wrong": {
+        "1": "ダミーの係数は基準グループ（Metro）との差。Rural との差ではない。",
+        "2": "割合がマイナスになることはない。−0.0412 は差。Regional の平均は 0.1917（19.17%）。",
+        "3": "率の差は percentage points。percent と書くと減点される（Sample 1 Q6）。"
+       },
+       "thinking": [
+        "① 基準グループ＝式に出てこないカテゴリー（Metro）",
+        "② 係数＝Metro との差",
+        "③ Y が率 → percentage points"
+       ],
+       "related": {
+        "answerType": "dummy"
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "u12-l3",
+   "title": "複数のダミーと基準カテゴリー",
+   "steps": [
+    {
+     "type": "explain",
+     "body": "<p>カテゴリーが <b>k 個</b>あるときは、ダミーを <b>k − 1 個</b>だけ入れます。入れなかった1つが<b>基準カテゴリー（base / reference category）</b>。</p><ul><li>Week 10：Metro / Rural / Regional（3つ）→ Rural と Regional の2つ。基準は Metro。</li><li>Week 11 Q2（ノートPC）：Chip type は DX / SX / SL の3つ → DX と SX の2つ。基準は SL。Monitor は Colour / Mono の2つ → Colour の1つ。基準は Monochrome。</li><li>Sample 2 Q4：ブラウザは IE / Firefox / Chrome → IE と Firefox。基準は Chrome。</li></ul><p><b>なぜ全部入れないの？</b> Metro + Rural + Regional = 1 が全世帯で成り立つので、3つ全部入れると切片と完全に重なって推定できない（dummy variable trap）。</p>"
+    },
+    {
+     "type": "explain",
+     "body": "<p><b>どのグループが一番高い／低い？</b>（Week 11 Q1(v)、基準 = SA）</p><ul><li>係数がすべて<b>プラス</b> → どの州も SA より高い → <b>SA が一番低い</b></li><li>一番大きいプラスの係数 → NSW（309.70）→ <b>NSW が一番高い</b></li></ul><p>基準グループの係数は 0 だと考えて、<b>0 も含めて並べる</b>のがコツ。</p><p>Sample 1 Q6（基準 = High income）：Low +1.99、Medium +0.84、High 0 → 人口増加率は Low &gt; Medium &gt; High。</p>",
+     "exhibit": {
+      "reg": {
+       "title": "Week 11 Q1 — Dep: Monthly household income ($) / base state = SA",
+       "stats": [
+        [
+         "Multiple R",
+         "0.266247"
+        ],
+        [
+         "R Square",
+         "0.070888"
+        ],
+        [
+         "Adjusted R Square",
+         "0.06917"
+        ],
+        [
+         "Standard Error",
+         "984.6445"
+        ],
+        [
+         "Observations",
+         "3795"
+        ]
+       ],
+       "anova": [
+        [
+         "Regression",
+         "7",
+         "2.8E+08",
+         "40018256",
+         "41.27615",
+         "2.21E-56"
+        ],
+        [
+         "Residual",
+         "3787",
+         "3.67E+09",
+         "969524.8"
+        ],
+        [
+         "Total",
+         "3794",
+         "3.95E+09"
+        ]
+       ],
+       "coef": [
+        [
+         "Intercept",
+         "-41.1506",
+         "121.6782",
+         "-0.33819",
+         "0.735237",
+         "-279.712",
+         "197.4105"
+        ],
+        [
+         "Age of parent",
+         "38.44664",
+         "3.198763",
+         "12.01922",
+         "1.1E-32",
+         "32.17517",
+         "44.71811"
+        ],
+        [
+         "NSW",
+         "!309.6974",
+         "67.04946",
+         "4.61894",
+         "3.99E-06",
+         "178.2409",
+         "441.154"
+        ],
+        [
+         "VIC",
+         "!183.027",
+         "68.36177",
+         "2.677329",
+         "0.007453",
+         "48.99753",
+         "317.0564"
+        ],
+        [
+         "QLD",
+         "!238.8327",
+         "70.34352",
+         "3.395234",
+         "0.000693",
+         "100.9178",
+         "376.7475"
+        ],
+        [
+         "WA",
+         "!246.4551",
+         "77.78384",
+         "3.168461",
+         "0.001545",
+         "93.95281",
+         "398.9573"
+        ],
+        [
+         "TAS/NT/ACT",
+         "!197.0507",
+         "87.72541",
+         "2.246222",
+         "0.024747",
+         "25.05712",
+         "369.0444"
+        ],
+        [
+         "metropolitan",
+         "312.7948",
+         "34.03536",
+         "9.190289",
+         "6.3E-20",
+         "246.0654",
+         "379.5242"
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "type": "check",
+     "question": {
+      "id": "u12-l3-c1",
+      "level": 1,
+      "kind": "choice",
+      "prompt": "Sample 2 Q4 のブラウザは Internet Explorer / Firefox / Chrome の3種類。モデルに入れるダミーの数は？",
+      "options": [
+       "2つ（1つを基準にする）",
+       "3つ（全部）",
+       "1つ",
+       "ブラウザの数は関係ない"
+      ],
+      "answer": 0,
+      "source": {
+       "file": "Sample Paper 2_ Set2.pdf",
+       "where": "Q4 Model 2"
+      },
+      "feedback": {
+       "correct": "正解。k = 3 → k − 1 = 2。Sample 2 では Chrome が基準。",
+       "wrong": {
+        "1": "全部入れると dummy variable trap（完全な多重共線性）で推定できない。",
+        "2": "1つだと3つのグループを区別できない。",
+        "3": "カテゴリーの数 − 1 で決まる。"
+       },
+       "thinking": [
+        "① カテゴリーの数 k = 3",
+        "② ダミーは k − 1 = 2",
+        "③ 入れなかった1つ＝基準"
+       ],
+       "related": {
+        "answerType": "dummy"
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "u12-l4",
+   "title": "ダミーの解釈の型",
+   "steps": [
+    {
+     "type": "explain",
+     "body": "<p><b>切片</b>（すべてのダミーが 0）</p><div class=\"tmpl\" lang=\"en\">The model predicts that [base group] [Y], on average, is [b<sub>0</sub> + unit].</div><p style=\"margin-top:10px\"><b>ダミーの係数</b>（必ず基準グループと比べる）</p><div class=\"tmpl\" lang=\"en\">The model predicts that [group] [Y] is [|b| + unit] higher/lower than [base group], on average.</div><p style=\"margin-top:10px\"><b>他の変数もある重回帰</b>なら「他を一定」も付ける：</p><div class=\"tmpl\" lang=\"en\">Take two customers who spend the same time and view the same number of pages, but one uses Firefox and the other uses Chrome. The model predicts that the Firefox user generates RM8.39 less in sales than the Chrome user, on average.</div><p style=\"margin-top:10px\">チェックリスト：① 比べる相手（compared with / than [base]）② 差の大きさと単位（率なら percentage points）③ on average ④ 重回帰なら holding … constant</p>"
+    },
+    {
+     "type": "check",
+     "question": {
+      "id": "u12-l4-c1",
+      "level": 1,
+      "kind": "choice",
+      "prompt": "Sample 2 Q4 の Firefox の係数 −8.39（基準 Chrome）。<b>減点されない</b>解釈は？",
+      "options": [
+       "Holding time and pages viewed constant, a Firefox user generates RM8.39 less in sales than a Chrome user, on average.",
+       "A Firefox user generates RM8.39 less in sales, on average.",
+       "Holding other variables constant, a Firefox user generates RM8.99 less in sales than a Chrome user, on average.",
+       "When Firefox increases by 1, sales decrease by RM8.39."
+      ],
+      "answer": 0,
+      "source": {
+       "file": "Solution  Paper 2_Set 2.pdf",
+       "where": "Q4(iv)"
+      },
+      "feedback": {
+       "correct": "正解。比べる相手（Chrome）・他を一定・単位・on average が全部入っている。",
+       "wrong": {
+        "1": "誰と比べて少ないのか（Chrome）が無い。",
+        "2": "出力表の値は −8.39。公式解答の 8.99 は誤記（§8.3）。",
+        "3": "ダミーは「1増える」ではなく「Firefox を使う人と Chrome を使う人の違い」で書く。"
+       },
+       "thinking": [
+        "① 基準 = Chrome",
+        "② 他の変数（Time, Pages）を一定",
+        "③ RM8.39 less、on average"
+       ],
+       "related": {
+        "sample": "s2q4c",
+        "answerType": "dummy"
+       }
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "questions": [
+  {
+   "id": "u12-q01",
+   "level": 3,
+   "kind": "fillChips",
+   "prompt": "Week 11：都市（metropolitan = 1）の世帯の平均月収の推定値を式で書こう。",
+   "exhibit": {
+    "ref": "u12-l1"
+   },
+   "template": "Mean income (metropolitan) = [1] + [2] = $1,808.66",
+   "chips": {
+    "1": [
+     "1451.77",
+     "26.49",
+     "1005.89"
+    ],
+    "2": [
+     "356.89",
+     "33.64",
+     "10.61"
+    ]
+   },
+   "answer": {
+    "1": "1451.77",
+    "2": "356.89"
+   },
+   "source": {
+    "file": "Week 11 Solution.pdf",
+    "where": "Q1(ii)"
+   },
+   "feedback": {
+    "correct": "正解。基準グループの平均（切片）＋ 差（ダミーの係数）。",
+    "wrong": {
+     "1:26.49": "それは切片の Standard Error。",
+     "1:1005.89": "それは回帰の Standard Error。",
+     "2:33.64": "それは係数の Standard Error。",
+     "2:10.61": "それは t Stat。"
+    },
+    "thinking": [
+     "① ダミー = 1 を代入",
+     "② 切片 + 係数"
+    ],
+    "examTemplate": "Mean monthly income for metropolitan households is estimated at $1,451.77 + $356.89 = $1,808.66.",
+    "related": {
+     "lesson": "u12-l1",
+     "answerType": "dummy"
+    }
+   }
+  },
+  {
+   "id": "u12-q02",
+   "level": 2,
+   "kind": "tapCell",
+   "prompt": "Week 10：Rural と Metro の Food Share の<b>差</b>を表すセルをタップしよう。",
+   "exhibit": {
+    "ref": "u12-l2:2"
+   },
+   "answer": "coef:1:0",
+   "source": {
+    "file": "W10 Tutorial Excel exercise (solution).xlsx",
+    "where": "Part 1(b)"
+   },
+   "feedback": {
+    "correct": "正解。Rural の係数 −0.0520 ＝ Rural の平均 − Metro の平均。",
+    "wrong": {
+     "coef:0:0": "それは切片＝ Metro の平均。",
+     "coef:2:0": "それは Regional と Metro の差。",
+     "coef:1:3": "それは Rural の P-value（差が有意かどうか）。"
+    },
+    "thinking": [
+     "① 基準 = Metro",
+     "② Rural の行 × Coefficients"
+    ],
+    "related": {
+     "lesson": "u12-l2"
+    }
+   }
+  },
+  {
+   "id": "u12-q03",
+   "level": 1,
+   "kind": "multi",
+   "prompt": "Week 10 Part 1 の出力（Rural p = 0.0212、Regional p = 0.0533）。正しいものを<b>すべて</b>選ぼう（両側検定）。",
+   "exhibit": {
+    "ref": "u12-l2:2"
+   },
+   "options": [
+    "5% では、Rural と Metro の Food Share の差は有意",
+    "5% では、Regional と Metro の差は有意",
+    "10% なら、Regional と Metro の差も有意",
+    "1% では、Rural と Metro の差は有意",
+    "Regional の係数がマイナスなので、必ず有意"
+   ],
+   "answer": [
+    0,
+    2
+   ],
+   "source": {
+    "file": "W10 Tutorial Excel exercise (solution).xlsx",
+    "where": "Part 1(b)"
+   },
+   "feedback": {
+    "correct": "正解。有意かどうかは α の選び方で変わる。",
+    "wrong": {
+     "1": "0.0533 &gt; 0.05 なので 5% では有意でない。",
+     "3": "0.0212 &gt; 0.01 なので 1% では有意でない。",
+     "4": "符号と有意性は関係ない。p 値で判断する。",
+     "miss:0": "0.0212 &lt; 0.05 → 5% で有意。",
+     "miss:2": "0.0533 &lt; 0.10 → 10% で有意。"
+    },
+    "thinking": [
+     "① 各ダミーの P-value を読む",
+     "② α（1%, 5%, 10%）ごとに比べる"
+    ],
+    "mistakes": [
+     "1つの α だけで判断して、水準による違いに触れない（Sample 1 Q5b）"
+    ],
+    "related": {
+     "lesson": "u12-l2",
+     "answerType": "dummy"
+    }
+   }
+  },
+  {
+   "id": "u12-q04",
+   "level": 3,
+   "kind": "fillChips",
+   "prompt": "Sample 1 Q4：Low income ダミー（基準 = Medium + High income）の係数 0.0111。Y は年平均所得成長率（0.01 = 1%）。",
+   "exhibit": {
+    "reg": {
+     "title": "Sample 1 Q4 — Dep: Income growth, Bottom 20% / Exp: Low income dummy",
+     "stats": [
+      [
+       "Multiple R",
+       "0.0932"
+      ],
+      [
+       "R Square",
+       "0.00869"
+      ],
+      [
+       "Adjusted R Square",
+       "0.00498"
+      ],
+      [
+       "Standard Error",
+       "0.0420"
+      ],
+      [
+       "Observations",
+       "269"
+      ]
+     ],
+     "coef": [
+      [
+       "Intercept",
+       "0.014223",
+       "0.002768",
+       "5.139",
+       "5.35E-07",
+       "0.008774",
+       "0.019673"
+      ],
+      [
+       "Low income",
+       "!0.011121",
+       "0.007269",
+       "1.530",
+       "!0.1272",
+       "-0.00319",
+       "0.025434"
+      ]
+     ]
+    }
+   },
+   "template": "The model predicts that the income growth of the bottom 20% in low-income countries is [1] [2] [3] than in [4] countries, on average.",
+   "chips": {
+    "1": [
+     "1.11",
+     "0.0111",
+     "1.42"
+    ],
+    "2": [
+     "percentage points",
+     "percent",
+     "dollars"
+    ],
+    "3": [
+     "higher",
+     "lower"
+    ],
+    "4": [
+     "medium- and high-income",
+     "all",
+     "low-income"
+    ]
+   },
+   "answer": {
+    "1": "1.11",
+    "2": "percentage points",
+    "3": "higher",
+    "4": "medium- and high-income"
+   },
+   "source": {
+    "file": "Sample paper 1 solution.pdf",
+    "where": "Q4(a)"
+   },
+   "feedback": {
+    "correct": "正解。0.0111 → 1.11 percentage points、基準グループと比べる。",
+    "wrong": {
+     "1:0.0111": "小数のままでも間違いではないが、percentage points と書くなら 1.11。",
+     "1:1.42": "1.42% は切片（基準グループの平均）。",
+     "2:percent": "率の差は percentage points。",
+     "2:dollars": "Y は成長率。ドルではない。",
+     "3:lower": "係数はプラス → higher。",
+     "4:all": "比べる相手は基準グループ（Medium + High income）。",
+     "4:low-income": "Low income 同士では比べられない。基準グループと比べる。"
+    },
+    "thinking": [
+     "① 基準 = Low income が 0 の国（Medium と High）",
+     "② 0.0111 = 1.11 percentage points",
+     "③ プラス → higher",
+     "④ on average"
+    ],
+    "examTemplate": "The model predicts that the average annual income growth of the bottom 20% in low-income countries is 1.11 percentage points higher than in medium- and high-income countries, on average.",
+    "related": {
+     "sample": "s1q4a",
+     "answerType": "dummy"
+    }
+   }
+  },
+  {
+   "id": "u12-q05",
+   "level": 4,
+   "kind": "order",
+   "prompt": "Sample 1 Q6（基準 = High income）：人口増加率の予測が<b>高い順</b>に並べよう。切片 0.499、Low +1.990、Medium +0.845。",
+   "exhibit": {
+    "reg": {
+     "title": "Sample 1 Q6 — Dep: Population growth rate (%) / base = High income",
+     "stats": [
+      [
+       "R Square",
+       "0.3045"
+      ],
+      [
+       "Standard Error",
+       "0.9225"
+      ],
+      [
+       "Observations",
+       "269"
+      ]
+     ],
+     "coef": [
+      [
+       "Intercept",
+       "!0.499487",
+       "0.111871",
+       "4.465",
+       "1.19E-05",
+       "0.2792",
+       "0.7198"
+      ],
+      [
+       "Low income",
+       "!1.990311",
+       "0.185301",
+       "10.741",
+       "1.37E-22",
+       "1.6255",
+       "2.3552"
+      ],
+      [
+       "Medium Income",
+       "!0.84497",
+       "0.133298",
+       "6.339",
+       "9.86E-10",
+       "0.5825",
+       "1.1074"
+      ]
+     ]
+    }
+   },
+   "items": [
+    "High income（0.499 + 0）",
+    "Medium income（0.499 + 0.845）",
+    "Low income（0.499 + 1.990）"
+   ],
+   "answer": [
+    "Low income（0.499 + 1.990）",
+    "Medium income（0.499 + 0.845）",
+    "High income（0.499 + 0）"
+   ],
+   "source": {
+    "file": "Sample paper 1 solution.pdf",
+    "where": "Q6(a)"
+   },
+   "feedback": {
+    "correct": "正解。基準（High）は係数 0 として並べる → Low &gt; Medium &gt; High。所得が高いほど人口増加率が低い（負の関係）。",
+    "thinking": [
+     "① 基準グループの係数は 0",
+     "② 0、0.845、1.990 を並べる",
+     "③ 結論：所得水準と人口増加率は負の関係"
+    ],
+    "mistakes": [
+     "基準グループを並べ忘れる",
+     "順位だけ書いて「負の関係」という結論を書かない（Sample 1 Q6 で各1点）"
+    ],
+    "related": {
+     "lesson": "u12-l3",
+     "sample": "s1q6a",
+     "answerType": "dummy"
+    }
+   }
+  },
+  {
+   "id": "u12-q06",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "Week 11 Q1：州のダミー（基準 = SA）の係数はすべてプラス、最大は NSW（309.70）。年齢と都市・農村を一定にしたとき、平均月収が<b>一番低い</b>州は？",
+   "exhibit": {
+    "ref": "u12-l3"
+   },
+   "options": [
+    "SA（すべての係数がプラス＝どの州も SA より高い）",
+    "VIC（係数が一番小さい 183.03）",
+    "NSW",
+    "表からは分からない"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "Week 11 Solution.pdf",
+    "where": "Q1(v)"
+   },
+   "feedback": {
+    "correct": "正解。基準 SA は係数 0。他はすべて 0 より大きい → SA が最低、NSW が最高。",
+    "wrong": {
+     "1": "VIC も SA より 183.03 高い。基準の SA（0）を忘れている。",
+     "2": "NSW は一番高い。",
+     "3": "基準グループを 0 として並べれば分かる。"
+    },
+    "thinking": [
+     "① 基準 SA = 0",
+     "② 係数の符号を見る：全部プラス",
+     "③ 最小 = 0（SA）、最大 = 309.70（NSW）"
+    ],
+    "examTemplate": "SA appears to have the lowest average household income and NSW the highest, because all the state coefficients are positive (all states have higher incomes than SA, holding age and metro/rural status constant) and NSW has the largest coefficient ($309.70).",
+    "related": {
+     "lesson": "u12-l3",
+     "answerType": "dummy"
+    }
+   }
+  },
+  {
+   "id": "u12-q07",
+   "level": 4,
+   "kind": "buildSentence",
+   "prompt": "Sample 2 Q4(iv)：Firefox の係数（−8.39、基準 Chrome）の解釈を組み立てよう。",
+   "chips": [
+    "Take two customers who spend the same time",
+    "and view the same number of pages,",
+    "but one uses Firefox and the other uses Chrome.",
+    "The model predicts that the Firefox user generates",
+    "RM8.39 less in sales",
+    "than the Chrome user,",
+    "on average.",
+    "RM8.99 less in sales"
+   ],
+   "answer": [
+    [
+     "Take two customers who spend the same time",
+     "and view the same number of pages,",
+     "but one uses Firefox and the other uses Chrome.",
+     "The model predicts that the Firefox user generates",
+     "RM8.39 less in sales",
+     "than the Chrome user,",
+     "on average."
+    ]
+   ],
+   "source": {
+    "file": "Solution  Paper 2_Set 2.pdf",
+    "where": "Q4(iv)"
+   },
+   "feedback": {
+    "correct": "正解。「Take two … identical except …」の型。値は出力表の −8.39。",
+    "thinking": [
+     "① 他の変数を同じにする",
+     "② 違いは Firefox か Chrome（基準）か",
+     "③ 差と単位、on average"
+    ],
+    "mistakes": [
+     "公式解答の 8.99（誤記）を写す",
+     "Chrome と比べていることを書かない"
+    ],
+    "related": {
+     "lesson": "u12-l4",
+     "sample": "s2q4c",
+     "answerType": "dummy"
+    }
+   }
+  },
+  {
+   "id": "u12-q08",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "Week 10：Metro / Rural / Regional の3つのダミーを<b>全部</b>回帰に入れないのはなぜ？",
+   "options": [
+    "Metro + Rural + Regional = 1 がすべての世帯で成り立ち、切片と完全に重なって推定できないから",
+    "ダミーは2つまでしか入れられない決まりだから",
+    "Metro のデータが無いから",
+    "3つ入れると R² が下がるから"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "W10 Tutorial Excel exercise (solution).xlsx",
+    "where": "Part 1(a) の注：Metro + Rural + Regional = 1"
+   },
+   "feedback": {
+    "correct": "正解。dummy variable trap（完全な多重共線性）。1つを基準として外す。",
+    "wrong": {
+     "1": "数の決まりではなく、k − 1 個にする理由がある。",
+     "2": "Metro のデータはある（Metro が基準になっている）。",
+     "3": "R² の問題ではない。そもそも推定できない。"
+    },
+    "thinking": [
+     "① 3つの和はいつも 1",
+     "② 切片（いつも 1）と同じ情報 → 区別できない",
+     "③ 1つ外して基準にする"
+    ],
+    "related": {
+     "lesson": "u12-l3",
+     "answerType": "dummy"
+    }
+   }
+  },
+  {
+   "id": "u12-q09",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "Week 10（Engel's Law：豊かな世帯ほど収入に占める食費の割合が小さい）。Metro の世帯の食費の割合が一番高い（23.3%）。これは Engel's Law と整合する？",
+   "exhibit": {
+    "ref": "u12-l2:2"
+   },
+   "options": [
+    "整合しない。Metro の世帯は所得が高いと考えられるので、食費の割合は低いはず。外食など高い食事にお金を使っているのかもしれない",
+    "整合する。都会の方が食べ物が高いから",
+    "整合する。係数が有意だから",
+    "この出力からは何も言えない"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "W10 Tutorial Excel exercise (solution).xlsx",
+    "where": "Part 1 1.a.ii"
+   },
+   "feedback": {
+    "correct": "正解。理論と結果を比べ、理由（外食・ぜいたく品としての食事）まで書けると満点。",
+    "wrong": {
+     "1": "Engel's Law は「所得が高いほど食費の割合が小さい」。Metro（高所得）が最高なのは理論と逆。",
+     "2": "有意かどうかと、理論と整合するかは別の話。",
+     "3": "グループ平均と理論を比べれば判断できる。"
+    },
+    "thinking": [
+     "① 理論：所得↑ → 食費の割合↓",
+     "② Metro は所得が高いはず",
+     "③ でも Metro が最高 → 逆 → 理由を考える"
+    ],
+    "related": {
+     "lesson": "u12-l2",
+     "answerType": "dummy"
+    }
+   }
+  },
+  {
+   "id": "u12-q10",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "Week 11 Q2（ノートPC の価格）：Chip type は DX / SX / SL、Monitor type は Colour / Monochrome。基準を SL と Monochrome にしたとき、作るダミーは？",
+   "options": [
+    "DX、SX、Colour の3つ",
+    "DX、SX、SL、Colour、Monochrome の5つ",
+    "SL と Monochrome の2つ",
+    "Chip type の1つ"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "Week 11 Solution.pdf",
+    "where": "Q2 の注（Chip_type は DX と SX、Monitor は Colour）"
+   },
+   "feedback": {
+    "correct": "正解。Chip type：3 − 1 = 2（DX, SX）、Monitor：2 − 1 = 1（Colour）。",
+    "wrong": {
+     "1": "全部入れると dummy variable trap。各変数で k − 1 個。",
+     "2": "基準カテゴリーはダミーを作らない側。",
+     "3": "カテゴリーが3つあるので2つ必要。Monitor の分も必要。"
+    },
+    "thinking": [
+     "① 変数ごとにカテゴリー数 k を数える",
+     "② それぞれ k − 1 個",
+     "③ 基準以外のカテゴリーにダミーを作る"
+    ],
+    "related": {
+     "lesson": "u12-l3",
+     "answerType": "dummy"
+    }
+   }
+  },
+  {
+   "id": "u12-q11",
+   "level": 2,
+   "kind": "tapCell",
+   "prompt": "Week 11：町・農村の世帯の平均月収の<b>95% 信頼区間の下限</b>をタップしよう。",
+   "exhibit": {
+    "ref": "u12-l1"
+   },
+   "answer": "coef:0:4",
+   "source": {
+    "file": "Week 11 Solution.pdf",
+    "where": "Q1(iv)"
+   },
+   "feedback": {
+    "correct": "正解。切片の Lower 95% = 1399.83。農村（基準）の平均の区間は切片の区間。",
+    "wrong": {
+     "coef:1:4": "それは metropolitan の係数（差）の区間。農村の平均は切片の区間。",
+     "coef:0:5": "それは上限（1503.70）。",
+     "coef:0:0": "それは点推定（1451.77）。"
+    },
+    "thinking": [
+     "① 農村 = 基準 → 切片",
+     "② Lower 95% 列"
+    ],
+    "related": {
+     "lesson": "u12-l1"
+    }
+   }
+  },
+  {
+   "id": "u12-q12",
+   "level": 3,
+   "kind": "fillChips",
+   "prompt": "Week 11 Q1(iii)：都市の世帯は農村より収入が<b>多い</b>か（α = 0.05）。",
+   "exhibit": {
+    "ref": "u12-l1"
+   },
+   "template": "H0: β1 = 0, H1: β1 [1] 0. p-value = 6.23E-26 / [2] = 3.12E-26 [3] 0.05, so we [4] H0.",
+   "chips": {
+    "1": [
+     ">",
+     "<",
+     "≠"
+    ],
+    "2": [
+     "2",
+     "1"
+    ],
+    "3": [
+     "<",
+     ">"
+    ],
+    "4": [
+     "reject",
+     "do not reject"
+    ]
+   },
+   "answer": {
+    "1": ">",
+    "2": "2",
+    "3": "<",
+    "4": "reject"
+   },
+   "source": {
+    "file": "Week 11 Solution.pdf",
+    "where": "Q1(iii)"
+   },
+   "feedback": {
+    "correct": "正解。「earn more」→ 右片側、係数プラス → ÷2、とても小さい → reject。",
+    "wrong": {
+     "1:<": "「more」→ &gt;。",
+     "1:≠": "「more than」と向きがあるので片側。",
+     "2:1": "片側なので 2 で割る。",
+     "3:>": "3.12E-26 は 0.0000…0312 でとても小さい。",
+     "4:do not reject": "p &lt; α なら reject。"
+    },
+    "thinking": [
+     "① earn more → H<sub>1</sub>: β<sub>1</sub> &gt; 0",
+     "② 係数 +356.89 → ÷2",
+     "③ p &lt; 0.05 → reject"
+    ],
+    "examTemplate": "There is sufficient evidence at the 5% level that households in metropolitan areas earn more than those in small town / rural areas.",
+    "related": {
+     "answerType": "test"
+    }
+   }
+  },
+  {
+   "id": "u12-q13",
+   "level": 5,
+   "kind": "written",
+   "marks": 4,
+   "prompt": "The dependent variable is monthly household income (in dollars), and the explanatory variable is a dummy taking the value 1 if the household is in a metropolitan area and 0 if it is in a small town or rural area. (ii) Estimate the mean monthly income for the two groups. [3 marks] (iii) Is there evidence that those in metropolitan areas earn more than those in small town / rural areas? Show your working. [1 mark]",
+   "exhibit": {
+    "ref": "u12-l1"
+   },
+   "source": {
+    "file": "Week 11 Questions.pdf",
+    "where": "Q1(ii)(iii)（解答：Week 11 Solution.pdf）"
+   },
+   "answerSource": "official+edited",
+   "modelAnswer": "<p>(ii) Small town / rural households (metropolitan = 0): the estimated mean monthly income is the intercept, $1,451.77.</p><p>Metropolitan households (metropolitan = 1): $1,451.77 + $356.89 = $1,808.66.</p><p>(iii) H<sub>0</sub>: β<sub>1</sub> = 0, H<sub>1</sub>: β<sub>1</sub> &gt; 0, α = 0.05. The one-sided p-value = 6.23E-26 / 2 = 3.12E-26 &lt; 0.05, so we reject H<sub>0</sub>. There is sufficient evidence that households in metropolitan areas earn more than those in small town / rural areas.</p>",
+   "rubric": [
+    {
+     "label": "農村の平均 = 切片 $1,451.77",
+     "marks": 1,
+     "keywords": [
+      [
+       "1451.77",
+       "1451.8"
+      ],
+      [
+       "rural",
+       "small town"
+      ]
+     ]
+    },
+    {
+     "label": "都市の平均 = 1451.77 + 356.89",
+     "marks": 2,
+     "keywords": [
+      [
+       "356.89"
+      ],
+      [
+       "1808.66",
+       "1451.77+356.89",
+       "1451.77 + 356.89"
+      ]
+     ]
+    },
+    {
+     "label": "検定：H1: β1 > 0、p ÷ 2 < α → reject、sufficient evidence",
+     "marks": 1,
+     "keywords": [
+      [
+       "h1",
+       "ha"
+      ],
+      [
+       "/2",
+       "÷2",
+       "divided by 2",
+       "3.12e-26",
+       "3.115e-26"
+      ],
+      [
+       "reject"
+      ]
+     ]
+    }
+   ],
+   "feedback": {
+    "thinking": [
+     "① ダミー = 0 → 切片 = 農村の平均",
+     "② ダミー = 1 → 切片 + 係数",
+     "③ more → 片側 → ÷2"
+    ],
+    "related": {
+     "lesson": "u12-l1",
+     "answerType": "dummy"
+    }
+   }
+  },
+  {
+   "id": "u12-q14",
+   "level": 5,
+   "kind": "written",
+   "marks": 3,
+   "prompt": "State and interpret the 95% confidence interval for the mean income of those living in small town / rural areas. [3 marks]",
+   "exhibit": {
+    "ref": "u12-l1"
+   },
+   "source": {
+    "file": "Week 11 Questions.pdf",
+    "where": "Q1(iv)（解答：Week 11 Solution.pdf）"
+   },
+   "answerSource": "official",
+   "modelAnswer": "<p>The 95% confidence interval is [$1,399.83, $1,503.70] (the intercept's Lower 95% and Upper 95%).</p><p>We are 95% confident that the true (population) average monthly income for small town / rural households is between $1,399.83 and $1,503.70.</p>",
+   "rubric": [
+    {
+     "label": "区間 [$1,399.83, $1,503.70]",
+     "marks": 1,
+     "keywords": [
+      [
+       "1399.83",
+       "1399.8"
+      ],
+      [
+       "1503.7"
+      ]
+     ]
+    },
+    {
+     "label": "We are 95% confident that the true …",
+     "marks": 1,
+     "keywords": [
+      [
+       "95% confident"
+      ],
+      [
+       "true",
+       "population"
+      ]
+     ]
+    },
+    {
+     "label": "文脈：農村の世帯の平均月収",
+     "marks": 1,
+     "keywords": [
+      [
+       "rural",
+       "small town"
+      ],
+      [
+       "income"
+      ]
+     ]
+    }
+   ],
+   "feedback": {
+    "thinking": [
+     "① 農村 = 基準 → 切片の区間",
+     "② Lower 95% と Upper 95%",
+     "③ 定型文 ＋ 文脈"
+    ],
+    "mistakes": [
+     "metropolitan の行（差の区間）を使う",
+     "true / population を書かない"
+    ],
+    "related": {
+     "lesson": "u12-l1",
+     "answerType": "ci"
+    }
+   }
+  },
+  {
+   "id": "u12-q15",
+   "level": 5,
+   "kind": "written",
+   "marks": 3,
+   "marksEstimated": true,
+   "prompt": "Food share of income (the proportion of household income spent on food) is regressed on two location dummies, Rural and Regional (the base is Metro). Interpret the estimated coefficients.",
+   "exhibit": {
+    "ref": "u12-l2:2"
+   },
+   "source": {
+    "file": "W10 Tutorial Excel exercise (solution).xlsx",
+    "where": "Part 1 1.b.i"
+   },
+   "answerSource": "official+edited",
+   "modelAnswer": "<p><b>Intercept:</b> Households located in metro areas are estimated to spend, on average, 23.30% of their income on food.</p><p><b>Rural:</b> Households located in rural areas are estimated to spend, on average, 5.20 percentage points less of their income on food than households located in metro areas.</p><p><b>Regional:</b> Households located in regional areas are estimated to spend, on average, 4.12 percentage points less of their income on food than households located in metro areas.</p>",
+   "rubric": [
+    {
+     "label": "切片：Metro の世帯の食費の割合 23.30%",
+     "marks": 1,
+     "keywords": [
+      [
+       "23.3",
+       "0.233"
+      ],
+      [
+       "metro"
+      ]
+     ]
+    },
+    {
+     "label": "Rural：Metro より 5.20 percentage points 低い",
+     "marks": 1,
+     "keywords": [
+      [
+       "5.2",
+       "0.052"
+      ],
+      [
+       "percentage point"
+      ],
+      [
+       "less",
+       "lower"
+      ]
+     ]
+    },
+    {
+     "label": "Regional：Metro より 4.12 percentage points 低い",
+     "marks": 1,
+     "keywords": [
+      [
+       "4.12",
+       "0.0412"
+      ],
+      [
+       "less",
+       "lower"
+      ]
+     ]
+    }
+   ],
+   "forbidden": [
+    {
+     "pattern": "5.20%",
+     "message": "率の差は percentage points（5.20% ではなく 5.20 percentage points）"
+    }
+   ],
+   "feedback": {
+    "thinking": [
+     "① 切片 = 基準（Metro）の平均",
+     "② ダミー = Metro との差",
+     "③ Y は割合 → percentage points",
+     "④ on average"
+    ],
+    "mistakes": [
+     "比べる相手（Metro）を書かない",
+     "percent と percentage points を混同"
+    ],
+    "related": {
+     "lesson": "u12-l2",
+     "answerType": "dummy"
+    }
+   }
+  },
+  {
+   "id": "u12-q16",
+   "level": 5,
+   "kind": "written",
+   "marks": 3,
+   "prompt": "The model includes the metropolitan dummy, age of the parent, and dummy variables for each state/territory (base category: South Australia, SA). Based on these estimates (after controlling for age and metro/rural status), which state appears to have the lowest average household income? Which has the highest? Explain your answers. [3 marks]",
+   "exhibit": {
+    "ref": "u12-l3"
+   },
+   "source": {
+    "file": "Week 11 Questions.pdf",
+    "where": "Q1(v)（解答：Week 11 Solution.pdf）"
+   },
+   "answerSource": "official+edited",
+   "modelAnswer": "<p>SA appears to have the lowest average household income and NSW appears to have the highest.</p><p>This is because all the coefficients on the state dummies are positive, indicating that every other state has a higher average income than SA (the base category), holding age and metro/rural status constant. NSW has the largest positive coefficient ($309.70), so households in NSW earn about $309.70 more per month than otherwise identical households in SA, on average.</p>",
+   "rubric": [
+    {
+     "label": "最低：SA",
+     "marks": 1,
+     "keywords": [
+      [
+       "sa"
+      ],
+      [
+       "lowest"
+      ]
+     ]
+    },
+    {
+     "label": "最高：NSW",
+     "marks": 1,
+     "keywords": [
+      [
+       "nsw"
+      ],
+      [
+       "highest"
+      ]
+     ]
+    },
+    {
+     "label": "理由：係数がすべてプラス（SA が基準）、NSW が最大",
+     "marks": 1,
+     "keywords": [
+      [
+       "positive"
+      ],
+      [
+       "base",
+       "compared",
+       "than sa",
+       "largest"
+      ]
+     ]
+    }
+   ],
+   "feedback": {
+    "thinking": [
+     "① 基準 SA = 0",
+     "② すべてプラス → SA が最低",
+     "③ 最大の係数 → NSW が最高"
+    ],
+    "related": {
+     "lesson": "u12-l3",
+     "answerType": "dummy"
+    }
+   }
+  }
+ ]
+}
