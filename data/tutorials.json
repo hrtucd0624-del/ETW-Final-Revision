@@ -1,0 +1,368 @@
+{
+ "weeks": [
+  { "n": 1, "title": "統計の基本と Excel", "slot": "H", "note": "Part 1 には公式解答がないため、模範解答は Claude 作成。",
+    "items": [
+      { "label": "Part 1 Q1", "ref": "u00-q01" },
+      { "label": "Part 1 Q2・Q4", "ref": "u00-q10" },
+      { "label": "Part 1 Q3", "ref": "u00-q11" },
+      { "label": "Part 2 Q1 Credit Risk", "q": { "id": "w01-p2q1", "kind": "reveal", "level": 1,
+        "prompt": "Case study: Credit Risk Data.xlsx. (a) How many bank customers have applied for loans? (b) What information does the data include? (c) Describe the 3rd respondent. (e) Calculate the percentage of married respondents. (f) How many respondents have stayed in the same house for 3 years or more? (g) Highlight the current account (Cheque) column: what does the status bar show? (h) Is there only one respondent who is 73? (i) Is it true that only 23 of the 425 respondents want to borrow for education? (j) How many female respondents want to borrow to purchase a used car? What can you infer about their credit risk?",
+        "source": { "file": "ETW1001_W1_Tutorial.pdf", "where": "Part 2 Q1（解答：ETW1001_W1_ Solution.pdf）" },
+        "modelAnswer": "<p>(a) 425 customers.</p><p>(b) Loan purpose, cheque (current account) balance, savings balance, months as a customer, months employed, gender, marital status, age, housing status, years at current residence, job type and the bank's credit-risk classification.</p><p>(c) A 38-year-old single male who needs a loan for a new car; $0 in the current account and $389 in savings; a customer for 19 months, employed for 119 months; owns his house (4 years there); management staff; rated high risk.</p><p>(e) 36 of the 425 customers are married, or 8.5%.</p><p>(f) 241, or 56.7%.</p><p>(g) The average current-account balance is $1,048; the total for the 425 respondents is $445,406.</p><p>(h) Yes, only one. (i) Yes, 23.</p><p>(j) 5 of the 425 respondents are females who want to buy a used car; 3 of them are high risk (possibly due to job duration and age).</p>" } },
+      { "label": "Part 2 Q2 Rental", "q": { "id": "w01-p2q2", "kind": "reveal", "level": 1,
+        "prompt": "Case study: Rental Data. (a) Find the sum of the rental amount and the rental paid by i = 100. (b) Using COUNTIF, how many tenants pay less than RM1800? (c) Using IF, classify rents as Low (< RM1500), Medium (RM1500 to < RM2500) and High, and complete the frequency table. (d) Construct a table of how many properties are apartments, condominiums, flats, link houses, terraces and townhouses.",
+        "source": { "file": "ETW1001_W1_Tutorial.pdf", "where": "Part 2 Q2（解答：ETW1001_W1_ Solution.pdf）" },
+        "modelAnswer": "<p>(a) The sum of rent is RM3,095,300; the 100th entry pays RM9,000.</p><p>(b) 271 tenants pay less than RM1,800.</p><p>(c) Low 97, Medium 391, High 506 (total 994).</p><p>(d) Apartment 63, Condominium 867, Flats 4, Link House 2, Terrace 57, Townhouse 1 (total 994).</p>" } }
+    ] },
+  { "n": 2, "title": "データの整理とグラフ", "slot": "B",
+    "items": [
+      { "label": "Q1 EEO Employment", "q": { "id": "w02-q1", "kind": "reveal", "level": 1,
+        "prompt": "Using the 'EEO Employment Report' worksheet, (a) construct a suitable chart for gender and number of employees in different employment categories; (b) discuss how the column charts shown could be improved.",
+        "source": { "file": "W2T.pdf", "where": "Q1（解答：ETW1001_W2_QA.xlsx）" },
+        "modelAnswer": "<p>(a) A clustered bar (column) chart, because we want to display two qualitative variables (gender and employment category) in one chart.</p><p>(b) Good: there is a title, the axes are labelled (though 'Number' is misspelt) and a legend shows men and women. Can be improved: some data labels overlap (make them horizontal or remove them); in the second chart there is an unlabelled cluster of bars that should be removed, and data labels are missing.</p>" } },
+      { "label": "Q2 China Trade", "q": { "id": "w02-q2", "kind": "reveal", "level": 1,
+        "prompt": "Using the 'China Trade Data' worksheet, construct a line chart for U.S. exports to China and discuss how the visual can be improved. Provide a brief summary of China trade based on the line chart.",
+        "source": { "file": "W2T.pdf", "where": "Q2（解答：ETW1001_W2_QA.xlsx）" },
+        "modelAnswer": "<p>Improvements: add axis labels with units and a proper chart title.</p><p>Summary: US exports to China rose steadily from a very low level in 1990, especially after 2000. US imports from China rose much more steeply and continuously, so the gap between the two lines widened greatly over time, showing a growing trade imbalance in China's favour.</p>" } },
+      { "label": "Q3(a)(b) Census Education", "ref": "u03-q13" },
+      { "label": "Q4 Cell Phone Survey", "q": { "id": "w02-q4", "kind": "reveal", "level": 1,
+        "prompt": "(a) Construct cross-tabulations of (i) Gender versus Carrier and (ii) Type versus Usage from the 'Cell Phone Survey' worksheet. What might you conclude? (b) In both tables find the total, column and row percentages. What might you conclude?",
+        "source": { "file": "W2T.pdf", "where": "Q4（解答：ETW1001_W2_QA.xlsx）" },
+        "modelAnswer": "<p>AT&amp;T seems to be preferred to the other carriers (about 50% of respondents) and T-Mobile is the least preferred. Almost 41% of respondents use a smartphone, and smartphone users tend to use their phones very heavily (59% of smartphone users are very heavy users).</p>" } },
+      { "label": "Q5 Credit Risk scatter", "ref": "u04-q06" }
+    ] },
+  { "n": 3, "title": "記述統計（中心・散らばり・形）", "slot": "A",
+    "items": [
+      { "label": "Q1(a) CEO summary statistics", "q": { "id": "w03-q1a", "kind": "reveal", "level": 1,
+        "prompt": "The remuneration packages for the CEOs of 12 international companies (in $US '000s) are: 2512, 3424, 3800, 4152, 2636, 3640, 3870, 4480, 3424, 3690, 4078, 9020. Obtain the summary statistics using Excel. In addition, find the coefficient of variation and the interquartile range.",
+        "source": { "file": "ETW1001_W3_Tutorial.pdf", "where": "Q1(a)（解答：ETW1001_W3_Tutorial_QA.pdf）" },
+        "modelAnswer": "<p>Mean $4,060.50; Median $3,745.00; Mode $3,424.00; Standard deviation $1,663.43; Range $6,508 (9,020 − 2,512); Minimum $2,512; Maximum $9,020; Count 12 (all in $'000).</p><p>Q1 = 3,424, Q3 = 4,096.5, so IQR = 4,096.5 − 3,424 = 672.5.</p><p>Coefficient of variation = 1,663.43 / 4,060.50 × 100% = 40.96%.</p>" } },
+      { "label": "Q1(b)", "ref": "u01-q10" },
+      { "label": "Q1(c)(d)", "ref": "u02-q15" },
+      { "label": "Q1(e)", "ref": "u03-q10" },
+      { "label": "Q2 Part A(a)(b)", "ref": "u01-q11" },
+      { "label": "Q2 Part A(c)(d)", "ref": "u01-q12" },
+      { "label": "Q2 Part B", "ref": "u02-q14" },
+      { "label": "Q2 Part C(a)–(d)", "q": { "id": "w03-q2c", "kind": "written", "level": 5, "marks": 4, "marksEstimated": true,
+        "prompt": "Looking at the histogram of monthly income in the year 2000 ('000 Rupiah; mean 477.6, median 262.0, n = 2047): (a) What is the most frequently occurring income category and how does it compare to the mean and median? (b) Approximately, what is the probability a person earned more than 5,000,000 Rupiah per month? How many people are in this category, and what range of values does it take? (c) Work out approximately how much more a typical person in the top 20% of incomes earns compared to someone in the bottom 20%. (d) Explain what we learn from these answers about inequality in the distribution of income.",
+        "exhibit": { "img": "data/img/w3-income-hist.webp" },
+        "source": { "file": "ETW1001_W3_Tutorial.pdf", "where": "Q2 Part C（解答：ETW1001_W3_Tutorial_QA.pdf）" },
+        "answerSource": "official+edited",
+        "modelAnswer": "<p>(a) The most frequent category is 1,000–200,000 Rupiah per month, which is lower than both the mean and the median.</p><p>(b) P(X &gt; 5,000,000) ≈ 0.006 (0.6%), so roughly 0.006 × 2047 ≈ 12 people. The range of this category is 5,000,001 to 28,497,620 Rupiah per month.</p><p>(c) The bottom 20% earn 0 Rupiah. Adding up the bars, about 76.5% earn 0–600,000 Rupiah, so the top 20% earn more than about 600,000 Rupiah; the middle of the top 20% is in the 801,000–1,000,000 category. So a typical person in the top 20% earns at least about 801,000 Rupiah more than a person in the bottom 20%.</p><p>(d) The majority earn less than the mean income, a very small percentage of adults earn the highest incomes, and there is a large gap between the richest 20% and the poorest 20%, indicating a high level of inequality.</p>",
+        "rubric": [
+          { "label": "(a) 一番多いのは 1,000〜200,000 Rupiah、mean・median より低い", "marks": 1, "keywords": [["200000", "200,000", "1-200"], ["lower", "below", "less"]] },
+          { "label": "(b) 約 0.006（0.6%）、約 12 人、5,000,001〜28,497,620", "marks": 1, "keywords": [["0.006", "0.6%", "0.5%"], ["12"]] },
+          { "label": "(c) 下位20% は 0、上位20% は約 801,000 以上", "marks": 1, "keywords": [["801000", "801,000", "800,000", "600,000"]] },
+          { "label": "(d) 大きな格差（多くは平均以下・少数がとても高い）", "marks": 1, "keywords": [["inequality", "unequal", "gap"]] }
+        ] } },
+      { "label": "Extra Q1(a)", "ref": "u00-q12" },
+      { "label": "Extra Q1(b)", "ref": "u03-q11" },
+      { "label": "Extra Q1(c)", "ref": "u03-q09" },
+      { "label": "Extra Q1(d)", "ref": "u03-q12" },
+      { "label": "Extra Q1(e)", "ref": "u02-q10" },
+      { "label": "Extra Q2(i)", "q": { "id": "w03-x2i", "kind": "written", "level": 5, "marks": 3,
+        "prompt": "A large wholesale company is evaluating the performance of its two sales staff. Sales = value of merchandise sales made to the client in the current year ($). Carefully interpret the Mean figures in the output. What does this tell you about the sales performance of Salesperson A compared to Salesperson B? [3 marks]",
+        "exhibit": { "desc": { "title": "Extra Questions Q2 — Sales per client ($)", "cols": ["", "Salesperson A", "Salesperson B"], "rows": [["Mean", "!38354.84", "!47405.33"], ["Median", "38128.23", "44325.29"], ["Standard Deviation", "14639.41", "17378.42"], ["Minimum", "12441.84", "18876.32"], ["Maximum", "79481.1", "104432.8"], ["Count", "84", "116"]] } },
+        "source": { "file": "Extra Questions_Self Study.pdf", "where": "Q2(i)（解答は同ファイル末尾）" },
+        "answerSource": "official",
+        "modelAnswer": "<p>Salesperson A sells an average of $38,354.84 per client.</p><p>Salesperson B sells an average of $47,405.33 per client.</p><p>These figures suggest that Salesperson B performs better than Salesperson A.</p>",
+        "rubric": [
+          { "label": "A：1顧客あたり平均 $38,354.84", "marks": 1, "keywords": [["38354"]] },
+          { "label": "B：1顧客あたり平均 $47,405.33", "marks": 1, "keywords": [["47405"]] },
+          { "label": "B の方が成績が良い", "marks": 1, "keywords": [["better", "higher", "outperform", "more"]] }
+        ] } },
+      { "label": "Extra Q2(ii)", "ref": "u02-q13" },
+      { "label": "Extra Q2(iii)", "q": { "id": "w03-x2iii", "kind": "written", "level": 5, "marks": 2,
+        "prompt": "Why are we interested in average sales rather than the total value of sales for each salesperson in this case? [2 marks]",
+        "source": { "file": "Extra Questions_Self Study.pdf", "where": "Q2(iii)（解答は同ファイル末尾）" },
+        "answerSource": "official",
+        "modelAnswer": "<p>One salesperson may have had more clients than the other (Salesperson B has 116 clients and A has 84), or worked more hours or busier trading hours, and therefore made more total sales without necessarily being the better salesperson. Average sales per client allow a fair comparison.</p>",
+        "rubric": [
+          { "label": "顧客数（勤務時間など）が違う", "marks": 1, "keywords": [["more clients", "number of clients", "116", "84", "hours"]] },
+          { "label": "だから合計は腕の良さを表さない → 平均で公平に比べる", "marks": 1, "keywords": [["total"], ["better", "fair", "not necessarily"]] }
+        ] } }
+    ] },
+  { "n": 4, "title": "確率とクロス表", "slot": "C",
+    "items": [
+      { "label": "Q1(a) Joint & marginal table", "q": { "id": "w04-q1a", "kind": "reveal", "level": 1,
+        "prompt": "An appliance store studied 2,000 sales invoices (R: retail price, W: extended warranty purchased): retail & W 420, retail & not W 1140, sale price & W 280, sale price & not W 160. (i) Obtain a table of probabilities for all joint events. (ii) Obtain the marginal probabilities.",
+        "source": { "file": "ETW1001_W4_Tutorial_Q.pdf", "where": "Q1(a)（解答：W4TS - S2 2026.pdf）" },
+        "modelAnswer": "<p>Joint probabilities (÷ 2000): P(R and W) = 0.21, P(R and W̄) = 0.57, P(R̄ and W) = 0.14, P(R̄ and W̄) = 0.08.</p><p>Marginal probabilities: P(R) = 0.78, P(R̄) = 0.22, P(W) = 0.35, P(W̄) = 0.65 (the totals add to 1).</p>" } },
+      { "label": "Q1(b)", "ref": "u05-q13" },
+      { "label": "Q1(c)(d)", "ref": "u05-q14" },
+      { "label": "Q2(i)–(vi) Pearl Bay", "q": { "id": "w04-q2", "kind": "written", "level": 5, "marks": 6, "marksEstimated": true,
+        "prompt": "A survey of 220 highway offences in Pearl Bay (by gender and offence type). If an offence is selected at random, what is the probability that the individual: (i) is female? (ii) is male? (iii) was speeding? (iv) had a serious crash? (v) is male and was speeding? (vi) is female and had a serious crash?",
+        "exhibit": { "pivot": { "title": "Week 4 Q2 Pearl Bay — Count of offences (220)", "cols": ["Gender", "Bad Parking", "Loud Annoying Music", "Serious Crash", "Speeding", "Total"], "rows": [["Female", "41", "27", "21", "30", "119"], ["Male", "16", "28", "31", "26", "101"], ["Total", "57", "55", "52", "56", "220"]] } },
+        "source": { "file": "ETW1001_W4_Tutorial_Q.pdf", "where": "Q2(i)–(vi)（解答：ETW1001_W4_Q2 Solution (Pearl Bay).xlsx Q3 sheet）" },
+        "answerSource": "official",
+        "modelAnswer": "<p>(i) P(F) = 119/220 ≈ 0.5409</p><p>(ii) P(M) = 101/220 ≈ 0.4591</p><p>(iii) P(Speeding) = 56/220 ≈ 0.2545</p><p>(iv) P(Serious crash) = 52/220 ≈ 0.2364</p><p>(v) P(Male and Speeding) = 26/220 ≈ 0.1182</p><p>(vi) P(Female and Serious crash) = 21/220 ≈ 0.0955</p>",
+        "rubric": [
+          { "label": "(i) 119/220", "marks": 1, "keywords": [["119/220", "0.5409", "0.541"]] },
+          { "label": "(ii) 101/220", "marks": 1, "keywords": [["101/220", "0.4591", "0.459"]] },
+          { "label": "(iii) 56/220", "marks": 1, "keywords": [["56/220", "0.2545", "0.255"]] },
+          { "label": "(iv) 52/220", "marks": 1, "keywords": [["52/220", "0.2364", "0.236"]] },
+          { "label": "(v) 26/220", "marks": 1, "keywords": [["26/220", "0.1182", "0.118"]] },
+          { "label": "(vi) 21/220", "marks": 1, "keywords": [["21/220", "0.0955", "0.095"]] }
+        ] } },
+      { "label": "Q2(vii)", "ref": "u05-q15" }
+    ] },
+  { "n": 5, "title": "正規分布", "slot": "J",
+    "items": [
+      { "label": "Q1 Prenatal care", "ref": "u06-q10" },
+      { "label": "Q2(a) Tyres", "ref": "u06-q11" },
+      { "label": "Q2(b)–(d) Tyres", "q": { "id": "w05-q2bcd", "kind": "written", "level": 5, "marks": 3, "marksEstimated": true,
+        "prompt": "The lifetime of a Tyrannosaurus tyre is normally distributed with a mean of 65,107 km and a standard deviation of 2,582 km. (b) Obtain the 50th percentile of tyre life and explain, to a non-statistician, what it means. (c) Obtain (to the nearest km) the 99th percentile of tyre life. (d) Bert claims to have owned a tyre that lasted 145,000 km. Respond without performing any further calculations.",
+        "source": { "file": "Week 5 Tutorial.pdf", "where": "Q2(b)–(d)（解答：Tutorial 5 solution.pdf）" },
+        "answerSource": "official",
+        "modelAnswer": "<p>(b) 65,107 km. The mean of a normal distribution is also its median: 50% of tyres last less than 65,107 km and 50% last longer.</p><p>(c) The 99th percentile for Z is 2.33: μ + 2.33σ = 65,107 + 2,582 × 2.33 ≈ 71,123 km.</p><p>(d) 145,000 km is about (145,000 − 65,107)/2,582 ≈ 31 standard deviations above the mean, so the probability is negligible. It is practically impossible; Bert's claim is very dubious.</p>",
+        "rubric": [
+          { "label": "(b) 65,107 km：半分はこれより短く、半分は長い", "marks": 1, "keywords": [["65107"], ["50%", "half"]] },
+          { "label": "(c) 65,107 + 2.33 × 2,582", "marks": 1, "keywords": [["2.33"], ["2582"]] },
+          { "label": "(d) 平均から非常に離れている → ほぼありえない", "marks": 1, "keywords": [["negligible", "impossible", "dubious", "unlikely", "almost zero", "close to 0"]] }
+        ] } },
+      { "label": "Q3(a)(b) Phone calls", "q": { "id": "w05-q3ab", "kind": "written", "level": 5, "marks": 2, "marksEstimated": true,
+        "prompt": "The length of long-distance calls is normally distributed with mean 4.3 minutes and standard deviation 0.60 minutes. Write expressions for: (a) the probability that a call lasts more than 6 minutes; (b) the probability that a call lasts between 2.5 and 6.1 minutes.",
+        "source": { "file": "Week 5 Tutorial.pdf", "where": "Q3(a)(b)（解答：Tutorial 5 solution.pdf）" },
+        "answerSource": "official",
+        "modelAnswer": "<p>X ~ N(4.3, 0.6).</p><p>(a) P(X &gt; 6) = P(Z &gt; (6 − 4.3)/0.6) = P(Z &gt; 2.83) = 1 − 0.9977 = 0.0023.</p><p>(b) P(2.5 &lt; X &lt; 6.1) = P((2.5 − 4.3)/0.6 &lt; Z &lt; (6.1 − 4.3)/0.6) = P(−3 &lt; Z &lt; 3) = 0.9987 − 0.0013 = 0.9974.</p>",
+        "rubric": [
+          { "label": "(a) P(Z > (6 − 4.3)/0.6)", "marks": 1, "keywords": [["(6-4.3)/0.6", "2.83"]] },
+          { "label": "(b) P(−3 < Z < 3)", "marks": 1, "keywords": [["-3"], ["3"], ["2.5-4.3", "6.1-4.3", "0.9974"]] }
+        ] } },
+      { "label": "Q3(c)(d)", "ref": "u06-q12" }
+    ] },
+  { "n": 6, "title": "推定と信頼区間", "slot": "J",
+    "items": [
+      { "label": "Q1(a)(b)", "q": { "id": "w06-q1ab", "kind": "written", "level": 5, "marks": 2, "marksEstimated": true,
+        "prompt": "An auditor checks transactions on 10 random days (% transactions with errors: 4, 8, 5, 7, 6, 11, 8, 6, 7, 3). (a) Find the sample mean, the sample standard deviation and the standard error s/√n. (b) Provide a point estimate for the mean daily percentage of transactions with accounting errors for this company.",
+        "source": { "file": "ETW1001_W6_Tutorial.pdf", "where": "Q1(a)(b)（解答：ETW1001_W5T_QA.xlsm Question One）" },
+        "answerSource": "official",
+        "modelAnswer": "<p>(a) x̄ = 6.5%, s = 2.27%, s/√n = 2.27/√10 = 0.719%.</p><p>(b) The point estimate of the mean daily percentage of transactions with errors is x̄ = 6.5%.</p>",
+        "rubric": [
+          { "label": "(a) x̄ = 6.5、s = 2.27、SE = 0.719", "marks": 1, "keywords": [["6.5"], ["2.27"], ["0.719", "0.72"]] },
+          { "label": "(b) 点推定 = 6.5%", "marks": 1, "keywords": [["point estimate"], ["6.5"]] }
+        ] } },
+      { "label": "Q1(c)(d)", "ref": "u07-q10" },
+      { "label": "Q1(e)", "ref": "u07-q11" },
+      { "label": "Q2(a)–(c)", "q": { "id": "w06-q2abc", "kind": "written", "level": 5, "marks": 3, "marksEstimated": true,
+        "prompt": "The auditor now takes a larger sample of 20 days. (a) Estimate a 99% confidence interval for the true population mean error percentage (x̄ = 6.2%, s = 2.07%, s/√n = 0.462%, margin of error 1.32). (b) Provide a point estimate for the mean daily error percentage. (c) Why is this point estimate different from Question 1?",
+        "source": { "file": "ETW1001_W6_Tutorial.pdf", "where": "Q2(a)–(c)（解答：ETW1001_W5T_QA.xlsm Question Two）" },
+        "answerSource": "official+edited",
+        "modelAnswer": "<p>(a) 6.2 ± 1.32, i.e. [4.88%, 7.52%].</p><p>(b) The point estimate is x̄ = 6.2%.</p><p>(c) Both point estimates are based on the sample at hand. The x̄ we calculate is only an estimate of the parameter μ based on that particular sample; a different sample gives a different x̄. As long as the samples are random, they will all be reasonably close to the true mean.</p>",
+        "rubric": [
+          { "label": "(a) [4.88, 7.52]", "marks": 1, "keywords": [["4.88"], ["7.52"]] },
+          { "label": "(b) 6.2%", "marks": 1, "keywords": [["6.2"]] },
+          { "label": "(c) 標本が違えば x̄ も違う（推定値）", "marks": 1, "keywords": [["sample"], ["different", "estimate"]] }
+        ] } },
+      { "label": "Q2(d)–(g)", "ref": "u07-q12" },
+      { "label": "Q3 t and z", "q": { "id": "w06-q3", "kind": "written", "level": 5, "marks": 2, "marksEstimated": true,
+        "prompt": "The values of Z for which 2.5% lies in each tail are ±1.960. For the Student's t distribution the values are ±2.262 (n = 10), ±2.093 (n = 20), ±2.010 (n = 50), ±1.984 (n = 100) and ±1.962 (n = 1000). Use these values to explain the relationship between the standard normal distribution and the Student's t distribution.",
+        "source": { "file": "ETW1001_W6_Tutorial.pdf", "where": "Q3（解答：ETW1001_W5T_QA.xlsm Question Three）" },
+        "answerSource": "official+edited",
+        "modelAnswer": "<p>The t critical values are always further from zero than the Z values (the t distribution has fatter tails), but they get closer to ±1.96 as n increases. The Student's t distribution converges to the standard normal distribution N(0, 1) as the degrees of freedom (n − 1) increase, i.e. as the sample size approaches infinity.</p>",
+        "rubric": [
+          { "label": "t の値は z より大きい（裾が厚い）", "marks": 1, "keywords": [["larger", "further", "fatter", "wider", "bigger"]] },
+          { "label": "n（自由度）が大きくなると標準正規に近づく", "marks": 1, "keywords": [["converge", "approach", "closer", "get close"], ["normal", "1.96", "z"]] }
+        ] } },
+      { "label": "Q4 Light bulbs", "ref": "u07-q13" }
+    ] },
+  { "n": 7, "title": "仮説検定", "slot": "G",
+    "items": [
+      { "label": "Q1(a)", "ref": "u08-q10" },
+      { "label": "Q1(b)(i)–(iv)", "ref": "u08-q11" },
+      { "label": "Q1(b)(v)・(c)", "q": { "id": "w07-q1c", "kind": "written", "level": 5, "marks": 2, "marksEstimated": true,
+        "prompt": "(b)(v) How could we eliminate the possibility of Type I and Type II errors? (c) How important is the assumption that the box weights are normally distributed?",
+        "source": { "file": "ETW1001_W7_Tutorial.pdf", "where": "Q1(b)(v)(c)（解答：ETW1001_W7_Tutorial_QA.pdf）" },
+        "answerSource": "official",
+        "modelAnswer": "<p>(v) Only by measuring the whole population of boxes. Both error types are a consequence of using a sample to provide information about a population parameter, so when sampling is used these errors are unavoidable; we can only choose the balance of how likely each error is.</p><p>(c) Technically, the results depend on the underlying distribution being normal. However, approximately normal will do, since the sample is large (n = 100).</p>",
+        "rubric": [
+          { "label": "(v) 母集団全部を調べるしかない（標本なら避けられない）", "marks": 1, "keywords": [["whole population", "entire population", "all boxes", "every box"]] },
+          { "label": "(c) n が大きいので近似的に正規なら十分", "marks": 1, "keywords": [["large"], ["approximately", "not very important", "not important"]] }
+        ] } },
+      { "label": "Q2(a)–(c)", "q": { "id": "w07-q2", "kind": "written", "level": 5, "marks": 4, "marksEstimated": true,
+        "prompt": "(a) A random sample of 8 observations was taken from a normal population. The sample mean and standard deviation are x̄ = 75 and s = 50. Can we infer at the 10% level that the population mean is less than 100? (b) Repeat part (a) assuming that you know the population standard deviation is σ = 50. (c) Explain why the conclusions differ.",
+        "source": { "file": "ETW1001_W7_Tutorial.pdf", "where": "Q2（解答：ETW1001_W7_Tutorial_QA.pdf）" },
+        "answerSource": "official+edited",
+        "warn": "W7 QA は (a) の n を「50」と書いていますが、問題文どおり <b>n = 8</b> が正しい（計算も √8 を使っている）。",
+        "modelAnswer": "<p>H<sub>0</sub>: μ = 100, H<sub>1</sub>: μ &lt; 100 (one-sided), α = 0.10.</p><p>(a) t = (75 − 100)/(50/√8) = −25/17.68 = −1.414. Critical value: −1.415 (lower 10% tail of t with 7 df). Since −1.414 &gt; −1.415, we do not reject H<sub>0</sub>: there is insufficient evidence at the 10% level that the true mean is less than 100.</p><p>(b) z = (75 − 100)/(50/√8) = −1.414. Critical value: −1.282. Since −1.414 &lt; −1.282, we reject H<sub>0</sub>: there is sufficient evidence that the true mean is less than 100.</p><p>(c) The test statistic is the same, but in (a) σ is unknown, so we use the t distribution, whose fatter tails give a more extreme critical value (−1.415) than the normal (−1.282).</p>",
+        "rubric": [
+          { "label": "H0: μ = 100 / H1: μ < 100", "marks": 1, "keywords": [["h0"], ["h1", "ha"], ["<100"]] },
+          { "label": "(a) t = −1.414 > −1.415 → do not reject", "marks": 1, "keywords": [["1.415"], ["do not reject", "not reject", "fail to reject"]] },
+          { "label": "(b) z = −1.414 < −1.282 → reject", "marks": 1, "keywords": [["1.282"], ["reject"]] },
+          { "label": "(c) σ 不明 → t、裾が厚く臨界値がより極端", "marks": 1, "keywords": [["t distribution", "t-distribution", "unknown", "fatter", "thicker"]] }
+        ] } },
+      { "label": "Q3 Pizza", "q": { "id": "w07-q3", "kind": "written", "level": 5, "marks": 4, "marksEstimated": true,
+        "prompt": "A pizza outlet advertises that its average waiting time is less than 12 minutes. A random sample of 50 orders has a mean of 11.74 minutes and a standard deviation of 2.04 minutes. Is this sufficient evidence to support the outlet's claim at the 5% level of significance?",
+        "source": { "file": "ETW1001_W7_Tutorial.pdf", "where": "Q3（解答：ETW1001_W7_Tutorial_QA.pdf）" },
+        "answerSource": "official",
+        "modelAnswer": "<p>H<sub>0</sub>: μ = 12, H<sub>1</sub>: μ &lt; 12 (one-sided), α = 0.05.</p><p>t = (11.74 − 12)/(2.04/√50) = −0.26/0.2885 = −0.901.</p><p>Critical value: between −1.676 and −1.679 (49 df). Reject H<sub>0</sub> if t &lt; −1.676.</p><p>Since −0.901 &gt; −1.676, we do not reject H<sub>0</sub>. At the 5% level there is insufficient evidence to support the claim that the average waiting time is less than 12 minutes.</p>",
+        "rubric": [
+          { "label": "H0: μ = 12 / H1: μ < 12", "marks": 1, "keywords": [["h0"], ["h1", "ha"], ["<12"]] },
+          { "label": "t = (11.74 − 12)/(2.04/√50)", "marks": 1, "keywords": [["11.74-12", "-0.26", "0.901"]] },
+          { "label": "臨界値 −1.676 と比較", "marks": 1, "keywords": [["1.676", "1.679"]] },
+          { "label": "do not reject ＋ insufficient evidence", "marks": 1, "keywords": [["do not reject", "not reject", "fail to reject"], ["insufficient", "not enough", "not sufficient"]] }
+        ] } },
+      { "label": "Q4 Portfolio", "ref": "u08-q12" },
+      { "label": "Q5 Newspapers", "q": { "id": "w07-q5", "kind": "written", "level": 5, "marks": 4, "marksEstimated": true,
+        "prompt": "Weekly weights of newspapers (kg) collected from 100 households have a mean of 1.0925 kg and a standard deviation of 0.330 kg. Perform a test of whether the mean weekly newspaper collection from each household exceeded 1 kg, at the 1% level of significance (critical value 2.365).",
+        "source": { "file": "ETW1001_W7_EXCEL_QA.xlsx", "where": "Question 5" },
+        "answerSource": "official+edited",
+        "modelAnswer": "<p>H<sub>0</sub>: μ = 1 (the mean weekly newspaper collection is 1 kg); H<sub>1</sub>: μ &gt; 1 (greater than 1 kg). α = 0.01.</p><p>t = (x̄ − μ)/(s/√n) = (1.0925 − 1)/(0.330/√100) = 2.802.</p><p>Reject H<sub>0</sub> if t &gt; 2.365. Since 2.802 &gt; 2.365, we reject H<sub>0</sub>. There is sufficient evidence at the 1% level that the mean weekly newspaper collection from each household is greater than 1 kg.</p>",
+        "rubric": [
+          { "label": "H0: μ = 1 / H1: μ > 1", "marks": 1, "keywords": [["h0"], ["h1", "ha"], [">1"]] },
+          { "label": "t = (1.0925 − 1)/(0.330/√100) = 2.802", "marks": 1, "keywords": [["1.0925-1", "2.802"]] },
+          { "label": "2.802 > 2.365", "marks": 1, "keywords": [["2.365"]] },
+          { "label": "reject ＋ sufficient evidence", "marks": 1, "keywords": [["reject"], ["sufficient evidence", "enough evidence"]] }
+        ] } }
+    ] },
+  { "n": 8, "title": "単回帰と係数の検定", "slot": "D",
+    "items": [
+      { "label": "Q1(a)", "ref": "u09-q14" },
+      { "label": "Q1(b)", "ref": "u10-q15" },
+      { "label": "Q2(a)(b)", "ref": "u09-q15" },
+      { "label": "Q2(c)", "q": { "id": "w08-q2c", "kind": "written", "level": 5, "marks": 4, "marksEstimated": true,
+        "prompt": "Child's reading score (out of 100) on hours of TV per week (n = 2000). Perform a hypothesis test to determine whether the amount of screen time has any impact on a child's reading score, using the p-value approach.",
+        "exhibit": { "reg": { "title": "Week 8 Table 2 — Dep: Reading score / Exp: Hours TV", "stats": [["R Square", "0.025928593"], ["Standard Error", "24.07192657"], ["Observations", "2000"]], "coef": [["Intercept", "43.92091983", "1.012263583", "43.38882", "2.5E-290", "41.935717", "45.906123"], ["Hours TV", "-0.331215291", "0.045417012", "-7.29276", "!4.36E-13", "-0.420285", "-0.2421456"]] } },
+        "source": { "file": "ETW1001_W8_Tutorial.pdf", "where": "Q2(c)（解答：ETW1001_Week 8_QA.pdf）" },
+        "answerSource": "official+edited",
+        "warn": "Week 8 QA は p 値を「4.36E-16」と書いていますが、出力表の値は <b>4.36E-13</b> です。",
+        "modelAnswer": "<p>H<sub>0</sub>: β<sub>1</sub> = 0 (screen time has no impact on reading score); H<sub>1</sub>: β<sub>1</sub> ≠ 0 (screen time has an impact).</p><p>α = 0.05. p-value = 4.36E-13 (two-sided, read directly from the output).</p><p>Since the p-value &lt; α, we reject H<sub>0</sub>. There is sufficient evidence that the amount of screen time has an impact on a child's reading score.</p>",
+        "rubric": [
+          { "label": "H0: β1 = 0 / H1: β1 ≠ 0", "marks": 1, "keywords": [["h0"], ["h1", "ha"], ["≠", "not equal", "!="]] },
+          { "label": "α = 0.05", "marks": 1, "keywords": [["0.05", "5%"]] },
+          { "label": "p = 4.36E-13（両側なのでそのまま）", "marks": 1, "keywords": [["4.36e-13"]] },
+          { "label": "reject ＋ sufficient evidence", "marks": 1, "keywords": [["reject"], ["sufficient evidence", "enough evidence"]] }
+        ],
+        "forbidden": [{ "pattern": "4.36e-16", "message": "出力表の値は 4.36E-13（4.36E-16 は公式解答の誤記）" }] } },
+      { "label": "Q3 Part 1(a)", "q": { "id": "w08-p1a", "kind": "written", "level": 5, "marks": 2, "marksEstimated": true,
+        "prompt": "Quarterly inflation rate (%) is regressed on the quarterly unemployment rate (%), Australia 1978–2009. Interpret the estimated coefficients (intercept 5.767, slope −0.115).",
+        "exhibit": { "reg": { "title": "Week 8 Part 1 — Dep: Inflation rate (%) / Exp: Unemployment rate (%)", "stats": [["R Square", "0.00383"], ["Standard Error", "3.3084"], ["Observations", "128"]], "coef": [["Intercept", "!5.7667", "1.2270", "4.6997", "6.72E-06", "3.3384", "8.1949"], ["unemployment", "!-0.1151", "0.1654", "-0.6958", "0.4878", "-0.4424", "0.2122"]] } },
+        "source": { "file": "ETW1001_Week 8_Excel Solution.xlsx", "where": "Part 1(a)" },
+        "answerSource": "official+edited",
+        "warn": "Excel の解答は「for every 1% increase … decrease by 0.12%」と書いていますが、率の変化は <b>percentage point</b> で書きます。",
+        "modelAnswer": "<p>Intercept: the model predicts that if the unemployment rate were 0%, the inflation rate would be 5.77%, on average.</p><p>Slope: the model predicts that for every 1 percentage point increase in the unemployment rate, the inflation rate decreases by 0.12 percentage points, on average.</p>",
+        "rubric": [
+          { "label": "切片：失業率 0% のときインフレ率 5.77%", "marks": 1, "keywords": [["5.77"], ["0%", "zero"]] },
+          { "label": "傾き：1 pp 増で 0.12 pp 減、on average", "marks": 1, "keywords": [["0.12", "0.115"], ["percentage point"], ["on average"]] }
+        ] } },
+      { "label": "Q3 Part 1(b)", "q": { "id": "w08-p1b", "kind": "written", "level": 5, "marks": 4, "marksEstimated": true,
+        "prompt": "Perform a two-sided hypothesis test for the slope in this regression (inflation on unemployment) using a critical value approach at the 5% significance level (t-crit = ±1.979).",
+        "exhibit": { "reg": { "title": "Week 8 Part 1 — Dep: Inflation rate (%) / Exp: Unemployment rate (%)", "stats": [["Observations", "128"]], "coef": [["Intercept", "5.7667", "1.2270", "4.6997", "6.72E-06", "3.3384", "8.1949"], ["unemployment", "-0.1151", "0.1654", "!-0.6958", "0.4878", "-0.4424", "0.2122"]] } },
+        "source": { "file": "ETW1001_Week 8_Excel Solution.xlsx", "where": "Part 1(b)" },
+        "answerSource": "official",
+        "modelAnswer": "<p>H<sub>0</sub>: β<sub>1</sub> = 0 (there is no relationship between the unemployment rate and the inflation rate); H<sub>1</sub>: β<sub>1</sub> ≠ 0 (there is a relationship).</p><p>α = 0.05. t-stat = −0.696; t-crit = ±1.979.</p><p>Reject H<sub>0</sub> if |t-stat| &gt; |t-crit|. Since |−0.696| &lt; 1.979, we do not reject H<sub>0</sub>: there is insufficient evidence of a relationship between the inflation and unemployment rates at the 5% level.</p>",
+        "rubric": [
+          { "label": "H0: β1 = 0 / H1: β1 ≠ 0", "marks": 1, "keywords": [["h0"], ["h1", "ha"], ["≠", "not equal", "!="]] },
+          { "label": "α = 0.05", "marks": 1, "keywords": [["0.05", "5%"]] },
+          { "label": "|−0.696| < 1.979", "marks": 1, "keywords": [["0.696"], ["1.979"]] },
+          { "label": "do not reject ＋ insufficient evidence", "marks": 1, "keywords": [["do not reject", "not reject", "fail to reject"], ["insufficient", "not enough", "not sufficient"]] }
+        ] } },
+      { "label": "Q3 Part 2 Phillips curve", "ref": "u10-q13" },
+      { "label": "Q3 Part 3 Stagflation", "ref": "u10-q14" }
+    ] },
+  { "n": 9, "title": "重回帰", "slot": "F",
+    "items": [
+      { "label": "Q1(a)", "ref": "u11-q13" },
+      { "label": "Q1(b)", "ref": "u10-q16" },
+      { "label": "Q2(a)–(c)", "ref": "u11-q14" },
+      { "label": "Q3 Part 1 Group means", "q": { "id": "w09-p1", "kind": "written", "level": 5, "marks": 3, "marksEstimated": true,
+        "prompt": "Monthly income (Rand) of 40-year-old employed South African men: overall mean 2,124.5, SD 3,211.3. Average income: education ≥ 10 years 3,105.0; education ≤ 9 years 1,251.6; experience ≥ 10 years 2,262.5; experience ≤ 9 years 1,375.1. (SD of education 3.79 years; SD of experience 7.21 years.) What do you notice from these values? Between education and experience, which seems to have a greater impact on monthly income?",
+        "source": { "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx", "where": "Data & Part 1" },
+        "answerSource": "official+edited",
+        "modelAnswer": "<p>The average monthly income is about 2,125 Rand, and its standard deviation (3,211 Rand) is larger than the mean, which indicates a wide dispersion of incomes.</p><p>Men with less than 10 years of education earn less than half as much, on average, as those with 10 or more years (1,251.6 vs 3,105.0 Rand). Men with less than 10 years of experience also earn less than those with more experience (1,375.1 vs 2,262.5 Rand), but the gap is much smaller. So education seems to have a greater impact on monthly income.</p><p>However, these are only sample statistics; we need a hypothesis test (or regression) to see whether the differences are real.</p>",
+        "rubric": [
+          { "label": "SD が平均より大きい → 所得のばらつきが大きい", "marks": 1, "keywords": [["3211", "standard deviation"], ["larger", "wide", "dispersion", "spread"]] },
+          { "label": "教育の差（1,251.6 vs 3,105.0）の方が経験の差より大きい", "marks": 1, "keywords": [["3105", "1251"], ["2262", "1375"]] },
+          { "label": "教育の方が影響が大きそう（検定が必要）", "marks": 1, "keywords": [["education"], ["greater", "larger", "bigger", "more"]] }
+        ] } },
+      { "label": "Q3 Part 2 Equation & interpretation", "q": { "id": "w09-p2", "kind": "written", "level": 5, "marks": 4, "marksEstimated": true,
+        "prompt": "Monthly income (Rand) is regressed on years of education and years of experience: intercept −1,896.55, education 288.16, experience 91.11. (4) Write down the estimated equation. (5) Interpret each of the estimated coefficients.",
+        "source": { "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx", "where": "Part 2&3 Q4–Q5" },
+        "answerSource": "official+edited",
+        "warn": "W9 Excel の解答は切片を「−1,877 Rand」と書いていますが、出力表の係数は <b>−1,896.55</b> です。",
+        "modelAnswer": "<p>(4) Income-hat = −1896.55 + 288.16 Educ + 91.11 Exper</p><p>(5) Intercept: the model predicts that a man with no education and no working experience earns −1,896.55 Rand per month, on average. This does not make sense, because income cannot be negative (and no 40-year-old has zero of both).</p><p>Education: take two men with the same years of experience, but one has one more year of education. The model predicts that the man with the extra year of education earns 288.16 Rand more per month, on average.</p><p>Experience: take two men with the same years of education, but one has one more year of experience. The model predicts that he earns 91.11 Rand more per month, on average.</p>",
+        "rubric": [
+          { "label": "推定式", "marks": 1, "keywords": [["1896.55"], ["288.16"], ["91.11"]] },
+          { "label": "切片：教育 0・経験 0 で −1,896.55、意味がない", "marks": 1, "keywords": [["1896.55"], ["not make sense", "negative", "not meaningful", "meaningless"]] },
+          { "label": "教育：経験が同じなら1年で 288.16 Rand 多い、on average", "marks": 1, "keywords": [["288.16"], ["same", "holding", "constant"], ["on average"]] },
+          { "label": "経験：教育が同じなら1年で 91.11 Rand 多い", "marks": 1, "keywords": [["91.11"], ["same", "holding", "constant"]] }
+        ],
+        "forbidden": [{ "pattern": "1877", "message": "切片は −1,896.55（−1,877 は公式解答の誤記）" }] } },
+      { "label": "Q3 Part 2 Tests", "q": { "id": "w09-p2t", "kind": "written", "level": 5, "marks": 4, "marksEstimated": true,
+        "prompt": "(6) Test the statistical significance of 'Years of Education' on monthly income at the 5% level (two-sided, p-value approach; p-value = 2.32E-55). (7) Test whether 'Years of Education' has a positive impact on monthly income at the 5% level.",
+        "source": { "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx", "where": "Part 2&3 Q6–Q7" },
+        "answerSource": "official+edited",
+        "modelAnswer": "<p>(6) H<sub>0</sub>: β<sub>1</sub> = 0, H<sub>1</sub>: β<sub>1</sub> ≠ 0, α = 0.05. p-value = 2.32E-55 &lt; 0.05, so we reject H<sub>0</sub>: years of education has a statistically significant impact on monthly income, holding experience constant.</p><p>(7) H<sub>0</sub>: β<sub>1</sub> = 0, H<sub>1</sub>: β<sub>1</sub> &gt; 0, α = 0.05. The coefficient is positive, so the one-sided p-value = 2.32E-55 / 2 = 1.16E-55 &lt; 0.05. We reject H<sub>0</sub>: there is sufficient evidence of a positive relationship between years of education and income at the 5% level.</p>",
+        "rubric": [
+          { "label": "(6) H1: β1 ≠ 0、p < 0.05 → reject", "marks": 2, "keywords": [["≠", "not equal", "!="], ["2.32e-55"], ["reject"]] },
+          { "label": "(7) H1: β1 > 0、p ÷ 2 = 1.16E-55 → reject", "marks": 2, "keywords": [[">0"], ["/2", "÷2", "1.16e-55"], ["sufficient evidence", "positive"]] }
+        ] } },
+      { "label": "Q3 Part 3 Predictions", "ref": "u13-q15" },
+      { "label": "Q3 Part 3 Education vs experience", "q": { "id": "w09-p3", "kind": "written", "level": 5, "marks": 3, "marksEstimated": true,
+        "prompt": "(9) Why do you think the estimated coefficient on years of education (288.16) is greater than that on years of experience (91.11)? Does it mean that education is more important than working experience for monthly income? Provide some insights. (SD of education 3.79 years; SD of experience 7.21 years.)",
+        "source": { "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx", "where": "Part 2&3 Q9" },
+        "answerSource": "official+edited",
+        "modelAnswer": "<p>Both coefficients are statistically significant. For one extra year, education has a larger effect: its coefficient is about three times that of experience.</p><p>However, consider practical significance. Years of experience vary much more (SD 7.21 vs 3.79 years): education is limited to a smaller range by the education system, while experience can range from 0 to over 40 years. So, although one extra year of education is worth more than one extra year of experience, experience can take much larger values and gives workers more potential to increase their income over a career. Education is not necessarily 'more important' overall.</p>",
+        "rubric": [
+          { "label": "1年あたりでは教育の効果が大きい（約3倍）", "marks": 1, "keywords": [["one year", "1 year", "per year", "each year", "extra year", "three times", "triple"]] },
+          { "label": "経験の方がばらつく・大きな値をとる（SD 7.21 vs 3.79）", "marks": 1, "keywords": [["7.21", "range", "vary", "larger values", "standard deviation"]] },
+          { "label": "だから「教育の方が重要」とは言い切れない", "marks": 1, "keywords": [["not necessarily", "not always", "does not mean", "doesn't mean", "potential"]] }
+        ] } }
+    ] },
+  { "n": 10, "title": "ダミー変数と2次式（Engel's Law）", "slot": "E",
+    "items": [
+      { "label": "Part 1 1.a(i)(ii)", "q": { "id": "w10-1a", "kind": "written", "level": 5, "marks": 2, "marksEstimated": true,
+        "prompt": "Mean food share of income: Metro 0.233, Rural 0.181, Regional 0.192. (i) Households in which location spend the highest proportion of their income on food, on average? (ii) Does this sound reasonable in light of Engel's Law (the richer the household, the smaller the proportion of income spent on food)? Explain.",
+        "source": { "file": "W10 Tutorial Excel exercise (solution).xlsx", "where": "Part 1 1.a.i–ii" },
+        "answerSource": "official",
+        "modelAnswer": "<p>(i) Households in metro areas spend the highest proportion of their income on food, on average (23.3%).</p><p>(ii) No. This is inconsistent with Engel's Law: metro households are expected to have higher incomes than regional and rural households, so a lower proportion of their income should be spent on food. However, this may reflect that more affluent households spend a lot of their discretionary income eating out at restaurants, paying a premium for their food (food is a luxury good for metro households).</p>",
+        "rubric": [
+          { "label": "(i) Metro が一番高い", "marks": 1, "keywords": [["metro"], ["highest", "most"]] },
+          { "label": "(ii) Engel's Law と整合しない（理由つき）", "marks": 1, "keywords": [["inconsistent", "not consistent", "no", "contradict"], ["income", "richer", "affluent", "restaurant", "eating out"]] }
+        ] } },
+      { "label": "Part 1 1.b(i)", "ref": "u12-q15" },
+      { "label": "Part 1 1.b(ii)(iii)", "q": { "id": "w10-1b23", "kind": "written", "level": 5, "marks": 2, "marksEstimated": true,
+        "prompt": "(ii) Use the model (Food share-hat = 0.2330 − 0.0520 Rural − 0.0412 Regional) to predict food share for each of the 3 location groups. (iii) Compare the values with the group means you calculated in part (a).",
+        "source": { "file": "W10 Tutorial Excel exercise (solution).xlsx", "where": "Part 1 1.b.ii–iii" },
+        "answerSource": "official+edited",
+        "modelAnswer": "<p>(ii) Metro: 0.2330; Rural: 0.2330 − 0.0520 = 0.1810; Regional: 0.2330 − 0.0412 = 0.1917.</p><p>(iii) The predicted food shares are exactly equal to the mean food shares for each location. This is because a regression on dummy variables passes through the average of each group: the intercept is the base group's mean and each coefficient is the difference between that group's mean and the base group's mean.</p>",
+        "rubric": [
+          { "label": "(ii) 3つの予測（0.233、0.181、0.192）", "marks": 1, "keywords": [["0.233"], ["0.181"], ["0.191", "0.192"]] },
+          { "label": "(iii) グループ平均とぴったり一致（理由つき）", "marks": 1, "keywords": [["equal", "same", "identical"], ["mean", "average"]] }
+        ] } },
+      { "label": "Part 2 a(i)(ii) Scatter", "q": { "id": "w10-2a", "kind": "written", "level": 5, "marks": 2, "marksEstimated": true,
+        "prompt": "A scatter plot of food share of income (y) against disposable income (x) shows food share falling as income rises up to about $60,000–70,000, and then rising for richer households. (i) Describe the relationship between the two variables. (ii) Why do you think the scatter plot shows such a pattern?",
+        "source": { "file": "W10 Tutorial Excel exercise (solution).xlsx", "where": "Part 2 a.i–ii" },
+        "answerSource": "official+edited",
+        "modelAnswer": "<p>(i) The relationship is non-linear: it is quadratic (U-shaped). The proportion of income spent on food decreases as income rises, up to a minimum at around $60,000–70,000, and then increases for richer households.</p><p>(ii) As income increases, the share spent on food falls because spending on food is fairly fixed (we eat similar meals). However, high-income earners can choose more luxurious meals and are willing to spend a higher proportion of their income on fancy food, because the rest of their income is more than enough to live on.</p>",
+        "rubric": [
+          { "label": "(i) 非線形・U字（下がってから上がる）", "marks": 1, "keywords": [["non-linear", "nonlinear", "quadratic", "u-shape", "u shape", "u-shaped"]] },
+          { "label": "(ii) 食費はほぼ一定だが、高所得者はぜいたくな食事にお金を使う", "marks": 1, "keywords": [["luxur", "fancy", "restaurant", "expensive"]] }
+        ] } },
+      { "label": "Part 2 b(ii) & c", "ref": "u13-q14" },
+      { "label": "Part 2 b(iii)", "ref": "u13-q13" },
+      { "label": "Part 2 b(iv)", "q": { "id": "w10-2b4", "kind": "written", "level": 5, "marks": 2, "marksEstimated": true,
+        "prompt": "Using Food-hat = 0.896 − 0.0000221 Income + 0.000000000151 Income², the predicted food shares are 0.2550 at $40,000, 0.1702 at $50,000, 0.0913 at $70,000 and 0.0972 at $80,000. Find the estimated change in the food share when income changes from $40,000 to $50,000, and from $70,000 to $80,000. Is your answer what you expected?",
+        "source": { "file": "W10 Tutorial Excel exercise (solution).xlsx", "where": "Part 2 b.iv" },
+        "answerSource": "official+edited",
+        "modelAnswer": "<p>From $40,000 to $50,000: 0.1702 − 0.2550 = −0.0848, a fall of about 8.48 percentage points. This is what we expected from the scatter plot: the food share decreases as income increases for lower incomes.</p><p>From $70,000 to $80,000: 0.0972 − 0.0913 = +0.0059, a rise of about 0.59 percentage points. This is also coherent with what we expect for high-income households, past the turning point (about $73,050), where the food share starts to increase.</p>",
+        "rubric": [
+          { "label": "$40k→$50k：約 −0.0848（8.48 pp 減）", "marks": 1, "keywords": [["0.0848", "8.48"]] },
+          { "label": "$70k→$80k：約 +0.0059（0.59 pp 増）、予想どおり", "marks": 1, "keywords": [["0.0059", "0.59"], ["expect", "coherent", "consistent", "turning point"]] }
+        ] } }
+    ] },
+  { "n": 11, "title": "ダミーを含む重回帰", "slot": "E",
+    "items": [
+      { "label": "Q1(i)", "ref": "u01-q13" },
+      { "label": "Q1(ii)(iii)", "ref": "u12-q13" },
+      { "label": "Q1(iv)", "ref": "u12-q14" },
+      { "label": "Q1(v)", "ref": "u12-q16" },
+      { "label": "Q1(vi)(vii)", "ref": "u11-q15" },
+      { "label": "Q2 Laptop prices", "q": { "id": "w11-q2", "kind": "reveal", "level": 1,
+        "prompt": "Predict the price of a laptop from Speed (MHz), Charge (minutes the battery holds its charge), RAM (MB), Chip type (DX / SX / SL), Monitor type (Colour / Mono), Pointing device (Mouse / Trackball) and Help line (Yes / No). (i) Formulate a multiple regression model that includes all potential explanatory variables. (ii) Interpret the estimated regression equation.",
+        "source": { "file": "Week 11 Questions.pdf", "where": "Q2（解答：Week 11 Solution.pdf、P 11_2 Solution.xls）" },
+        "warn": "<b>このデータの解答は注意して読んでください。</b> P 11_2 Solution.xls のダミー列はカテゴリー名と行がずれています（例：Help_Line が NO の行に 1）。また Week 11 Solution は DX を「+2,826.13」と書いていますが、出力表は <b>+2,612.78</b> です。試験に向けては「ダミーをいくつ作るか・基準はどれか・解釈の型」を覚えるのに使ってください。",
+        "modelAnswer": "<p>(i) The categorical variables must be turned into dummies (one fewer than the number of categories): Chip type has 3 categories, so 2 dummies (DX, SX; base SL); Monitor: Colour (base Mono); Pointing device: Mouse (base Trackball); Help line: Yes (base No).</p><p>Price = β<sub>0</sub> + β<sub>1</sub>Speed + β<sub>2</sub>Charge + β<sub>3</sub>RAM + β<sub>4</sub>DX + β<sub>5</sub>SX + β<sub>6</sub>Colour + β<sub>7</sub>Mouse + β<sub>8</sub>Help + ε</p><p>(ii) Each coefficient is interpreted holding all other variables constant; each dummy coefficient is the difference in average price compared with its base category. For example: 'If the monitor type is colour, and all else remains constant, the price is $1,993.31 higher on average than for a monochrome monitor.' 'If the chip type is DX and all else remains constant, the price is $2,612.78 higher on average than for SL.'</p>" } }
+    ] }
+ ]
+}
