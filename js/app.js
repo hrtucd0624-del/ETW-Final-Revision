@@ -1,16 +1,16 @@
 // ルーティングと画面。ハッシュルーター（GitHub Pages でそのまま動く）。
 import { esc, $, $$, toast, ICONS } from './util.js';
 import * as store from './store.js';
-import { getJSON, unitIndex, loadUnit, unitQuestions, resolveExhibit, loadPapers, findQuestion, SLOTS } from './content.js';
+import { getJSON, unitIndex, loadUnit, unitQuestions, resolveExhibit, loadPapers, findQuestion, SLOTS, unitsForPart, loadTutorials, mockIndex, loadMock, mockParts } from './content.js';
 import { renderExhibit } from './render/exhibit.js';
-import { mountAuto } from './render/questions.js';
+import { mountAuto, sourceLine } from './render/questions.js';
 import { mountWritten } from './render/written.js';
 
 const app = $('#app');
 const TABS = [
-  ['home', 'ホーム', '#/home'], ['learn', '学習', '#/learn'], ['drill', '演習', '#/drill'], ['review', '復習', '#/review'], ['more', 'その他', '#/more'],
+  ['home', 'ホーム', '#/home'], ['drill', '本番演習', '#/drill'], ['learn', '単元', '#/learn'], ['review', '復習', '#/review'], ['more', 'その他', '#/more'],
 ];
-const TAB_OF = { home: 'home', learn: 'learn', unit: 'learn', lesson: 'learn', uq: 'learn', drill: 'drill', paper: 'drill', sq: 'drill', review: 'review', rq: 'review' };
+const TAB_OF = { home: 'home', learn: 'learn', unit: 'learn', lesson: 'learn', uq: 'learn', week: 'learn', wq: 'learn', drill: 'drill', paper: 'drill', sq: 'drill', mock: 'drill', review: 'review', rq: 'review' };
 
 function chrome(route) {
   const cur = TAB_OF[route] || 'more';
@@ -23,7 +23,7 @@ function chrome(route) {
 
 const routes = {
   home: viewHome, learn: viewLearn, unit: viewUnit, lesson: viewLesson, uq: viewUnitQ,
-  drill: viewDrill, paper: viewPaper, sq: viewSampleQ, review: viewReview, rq: viewReviewQ,
+  drill: viewDrill, paper: viewPaper, sq: viewSampleQ, mock: viewMock, week: viewWeek, wq: viewWeekQ, review: viewReview, rq: viewReviewQ,
   more: viewMore, types: viewTypes, glossary: viewGlossary, cards: viewCards, settings: viewSettings,
 };
 
@@ -41,7 +41,7 @@ window.addEventListener('hashchange', router);
 
 // ───────── 集計 ─────────
 async function unitStats(u) {
-  if (!u.ready) return null;
+  if (!u.ready || u.link) return null;
   const unit = await loadUnit(u.id);
   const qs = unit.questions;
   const lessonsDone = unit.lessons.filter(l => store.lessonDone(l.id)).length;
@@ -61,47 +61,76 @@ function slotStats() {
 }
 const pct = x => `${Math.round(x * 100)}%`;
 
-// ───────── ホーム ─────────
+// ───────── ホーム（Sample 中心） ─────────
+const SAMPLE_PAPERS = ['s1', 's2'];
+const qStatus = id => { const st = store.getQ(id); return !st ? 'none' : (st.score ?? (st.last === 'correct' ? 1 : 0)) >= 1 ? 'full' : 'part'; };
+
+async function sampleOrder() {
+  const { papers } = await loadPapers();
+  return papers.filter(p => SAMPLE_PAPERS.includes(p.id)).flatMap(p => p.questions.flatMap(q => q.parts.map(x => x.id)));
+}
+/** 次にやる Sample 小問：まだ解いていないもの → 満点でないもの の順 */
+async function nextSample() {
+  const ids = await sampleOrder();
+  return ids.find(id => qStatus(id) === 'none') || ids.find(id => qStatus(id) === 'part') || null;
+}
+
 async function viewHome() {
-  const idx = await unitIndex();
+  const [{ papers, byId }, idx] = await Promise.all([loadPapers(), unitIndex()]);
+  const ids = await sampleOrder();
+  const full = ids.filter(id => qStatus(id) === 'full').length, part = ids.filter(id => qStatus(id) === 'part').length;
   const due = store.dueReviews();
-  const stats = await Promise.all(idx.units.map(unitStats));
-  const order = idx.priority.map(id => idx.units.findIndex(u => u.id === id)).filter(i => i >= 0);
-  const nextI = order.find(i => stats[i] && stats[i].progress < 1);
-  const next = nextI != null ? idx.units[nextI] : null;
-  const { byId } = await loadPapers();
-  const sampleIds = Object.keys(byId).filter(id => !id.startsWith('p'));
-  const sampleDone = sampleIds.filter(id => store.getQ(id)).length;
+  const d = store.daysToExam();
+  const remaining = ids.length - full;
+  const studyDays = Math.max(d - 1, 1); // 試験前日は模試と見直しに使う
+  const target = Math.min(remaining, Math.max(1, Math.ceil(remaining / studyDays)));
+  const doneToday = store.todayDone();
+  const sampleToday = doneToday.filter(id => byId[id] && SAMPLE_PAPERS.includes(byId[id].paper)).length;
+  const next = await nextSample();
+  const nq = next && byId[next];
+  const nextUnits = nq ? await unitsForPart(nq) : [];
+
+  // 弱点スロット → そのスロットのユニット
   const ss = slotStats();
   const weak = Object.entries(ss).filter(([, v]) => v.n >= 2).sort((a, b) => a[1].sum / a[1].n - b[1].sum / b[1].n)[0];
-  const d = store.daysToExam();
+  const weakUnit = weak && idx.units.find(u => u.ready && u.slot.includes(weak[0]));
+  const stats = await Promise.all(idx.units.map(unitStats));
+  const unitsDone = stats.filter(s => s && s.progress >= 1).length, unitsReady = idx.units.filter(u => u.ready && !u.link).length;
+
+  const cta = due.length
+    ? `<a class="cta" href="#/rq/${due[0].id}"><span class="go">→</span><div class="k">まずはこれ</div><div class="t">復習 ${due.length} 問</div><div class="s">前に間違えた問題・満点でなかった記述</div></a>`
+    : nq ? `<a class="cta" href="#/sq/${nq.id}"><span class="go">→</span><div class="k">次の1問</div><div class="t">${nq.paper === 's1' ? 'Sample 1' : 'Sample 2'} ${esc(nq.label)}</div><div class="s">${nextUnits.length ? `関係する単元：${nextUnits.map(u => `Unit ${u.n}`).join('・')}` : esc(stripTags(nq.prompt).slice(0, 60)) + '…'}</div></a>`
+    : `<a class="cta" href="#/drill"><span class="go">→</span><div class="k">Sample は全部満点！</div><div class="t">予想模試に挑戦</div></a>`;
 
   app.innerHTML = `<div class="stack">
-    <div class="hero">
-      <div class="stat"><div class="n">${Math.max(d, 0)}</div><div class="l">試験（11月5日）まであと日数</div></div>
-      <div class="stat"><div class="n">${due.length}</div><div class="l">今日の復習</div></div>
-    </div>
-    <div class="card"><h2>今日やること</h2>
-      <ul class="list" style="margin-top:6px">
-        ${due.length ? `<li><a class="item" href="#/review"><span class="t">復習キュー ${due.length} 問<small>間違えた問題・満点でなかった記述</small></span><span class="chev">›</span></a></li>` : ''}
-        ${next ? `<li><a class="item" href="#/unit/${next.id}"><span class="t">Unit ${next.n}：${esc(next.title)}<small>進捗 ${pct(stats[nextI].progress)} — 配点の大きい順に進めています</small></span><span class="chev">›</span></a></li>` : ''}
-        <li><a class="item" href="#/drill"><span class="t">Sample 演習<small>${sampleDone} / ${sampleIds.length} 小問 — 本番とほぼ同じ形式</small></span><span class="chev">›</span></a></li>
+    ${cta}
+    <div class="card"><div class="row"><h2>今日やること</h2><span class="spacer"></span><span class="small muted">試験まで ${Math.max(d, 0)} 日</span></div>
+      <ul class="today" style="margin-top:4px">
+        <li><span class="ck ${due.length ? '' : 'on'}">✓</span><a href="#/review">復習キューを空にする<small>${due.length ? `あと ${due.length} 問` : '今日の分は終わり'}</small></a></li>
+        <li><span class="ck ${sampleToday >= target ? 'on' : ''}">✓</span><a href="${nq ? `#/sq/${nq.id}` : '#/drill'}">Sample を ${target} 問解く<small>今日 ${sampleToday} / ${target} 問 ・ 残り ${remaining} 問を ${studyDays} 日で終えるペース</small></a></li>
+        <li><span class="ck"></span><a href="${weakUnit ? `#/unit/${weakUnit.id}` : (nextUnits[0] ? `#/unit/${nextUnits[0].id}` : '#/learn')}">分からない所は単元で基礎から<small>${weakUnit ? `弱点：${weak[0]} ${SLOTS[weak[0]]} → Unit ${weakUnit.n}` : nextUnits[0] ? `次の Sample に関係：Unit ${nextUnits[0].n} ${esc(nextUnits[0].title)}` : '単元の一覧へ'}</small></a></li>
       </ul>
     </div>
-    <div class="card"><div class="row"><h2>スロット別の正答率</h2><span class="spacer"></span>${weak ? `<span class="pill bad">弱点：${weak[0]} ${SLOTS[weak[0]]}</span>` : ''}</div>
-      <p class="small muted" style="margin:4px 0 10px">本番の出題スロット（A〜J）ごと。記述は自己採点の得点率。</p>
-      <div class="slots">${Object.entries(SLOTS).map(([k, name]) => {
-        const v = ss[k], r = v.n ? v.sum / v.n : 0;
-        return `<div class="slot"><span class="k">${k}</span><div><div class="small">${name}</div><div class="bar${v.n && r < .6 ? ' weak' : ''}"><span style="width:${v.n ? r * 100 : 0}%"></span></div></div><span class="v">${v.n ? pct(r) : '—'}<br><span class="small">${v.n}問</span></span></div>`;
-      }).join('')}</div>
+    <div class="card"><div class="row"><h2>Sample の進み具合</h2><span class="spacer"></span><b>${full} / ${ids.length}</b></div>
+      <div class="bigbar" style="margin:10px 0 6px"><span class="g" style="width:${full / ids.length * 100}%"></span><span class="y" style="width:${part / ids.length * 100}%"></span></div>
+      <div class="legend"><span><i style="background:var(--good)"></i>満点 ${full}</span><span><i style="background:var(--hl)"></i>途中 ${part}</span><span><i style="background:var(--line)"></i>まだ ${ids.length - full - part}</span></div>
+      <div class="smap" style="margin-top:12px">${papers.filter(p => SAMPLE_PAPERS.includes(p.id)).map(p => `<div class="small" style="font-weight:700">${esc(p.paper)}</div>` + p.questions.map(q => `<div class="qrow"><span class="ql">${esc(q.q)}</span><div class="cells">${q.parts.map(x => `<a href="#/sq/${x.id}" class="${qStatus(x.id)}${x.id === next ? ' next' : ''}" title="${esc(x.label)}">${esc(x.label.replace(/^Q\d+/, '').replace(/[()]/g, '') || x.label)}</a>`).join('')}</div></div>`).join('')).join('')}</div>
     </div>
-    <div class="card"><h2>学習マップ</h2>
-      <ul class="list" style="margin-top:6px">${idx.units.map((u, i) => unitRow(u, stats[i])).join('')}</ul>
+    <div class="card"><h2>全体の進み具合</h2>
+      <div class="slots" style="margin-top:10px">
+        <div class="slot"><span class="k">S</span><div><div class="small">Sample（本番形式）</div><div class="bar"><span style="width:${full / ids.length * 100}%"></span></div></div><span class="v">${full}/${ids.length}</span></div>
+        <div class="slot"><span class="k">U</span><div><div class="small">単元（基礎）</div><div class="bar"><span style="width:${unitsReady ? unitsDone / unitsReady * 100 : 0}%"></span></div></div><span class="v">${unitsDone}/${unitsReady}</span></div>
+      </div>
+      <details class="acc" style="margin-top:12px"><summary>スロット別の正答率（A〜J）</summary><div class="in"><div class="slots">${Object.entries(SLOTS).map(([k, name]) => {
+        const v = ss[k], r = v.n ? v.sum / v.n : 0;
+        return `<div class="slot"><span class="k">${k}</span><div><div class="small">${name}</div><div class="bar${v.n && r < .6 ? ' weak' : ''}"><span style="width:${v.n ? r * 100 : 0}%"></span></div></div><span class="v">${v.n ? pct(r) : '—'}</span></div>`;
+      }).join('')}</div></div></details>
     </div>
   </div>`;
 }
 
 function unitRow(u, st) {
+  if (u.link) return `<li><a class="item" href="${u.link}"><span class="unit"><span class="num">${u.n}</span></span><span class="t">${esc(u.title)}<small>${esc(u.sub || '')}</small></span><span class="chev">›</span></a></li>`;
   const cls = !u.ready ? 'locked' : st.progress >= 1 ? 'done' : '';
   const sub = !u.ready ? '準備中' : `レッスン ${st.lessonsDone}/${st.lessons} ・ 問題 ${st.attempted}/${st.total}（正答 ${st.ok}）${st.writtenAvg != null ? ` ・ 記述平均 ${pct(st.writtenAvg)}` : ''}`;
   const inner = `<span class="unit ${cls}"><span class="num">${u.n}</span></span><span class="t">${esc(u.title)}<small>${sub}</small>${u.ready ? `<div class="bar" style="margin-top:4px"><span style="width:${st.progress * 100}%"></span></div>` : ''}</span>${u.ready ? '<span class="chev">›</span>' : ''}`;
@@ -112,9 +141,13 @@ function unitRow(u, st) {
 async function viewLearn() {
   const idx = await unitIndex();
   const stats = await Promise.all(idx.units.map(unitStats));
-  app.innerHTML = `<div class="stack"><h1>学習マップ</h1>
-    <p class="muted small">Unit 0〜14。易しい順に並んでいます。準備ができたユニットから解放されます（回帰・ダミーを優先して作成中）。</p>
-    <div class="card"><ul class="list">${idx.units.map((u, i) => unitRow(u, stats[i])).join('')}</ul></div></div>`;
+  const tut = await loadTutorials().catch(() => ({ weeks: [] }));
+  app.innerHTML = `<div class="stack"><h1>単元</h1>
+    <p class="muted small">Sample で点を落としたら、ここで基礎から。各ユニットは「学ぶ → 練習（L1〜L4）→ 本番形式（L5）」の順。</p>
+    <div class="card"><h2>単元（Unit 0〜14）</h2><ul class="list" style="margin-top:6px">${idx.units.map((u, i) => unitRow(u, stats[i])).join('')}</ul></div>
+    ${tut.weeks.length ? `<div class="card"><h2>Week 別チュートリアル（全小問）</h2><p class="small muted">Week 1〜11 のチュートリアルの問題を原文どおりに。単元と同じ問題はそちらと進捗を共有します。</p><ul class="list" style="margin-top:6px">${tut.weeks.map(w => {
+      return `<li><a class="item" href="#/week/${w.n}"><span class="unit"><span class="num">W${w.n}</span></span><span class="t">${esc(w.title)}<small>${w.items.length} 問</small></span><span class="chev">›</span></a></li>`; }).join('')}</ul></div>` : ''}
+  </div>`;
 }
 
 async function viewUnit(uid) {
@@ -200,35 +233,39 @@ async function viewUnitQ(uid, i) {
 
 function mountQ(el, q, unitId) {
   const meta = { slot: q.slot, ref: q.unitId || unitId };
-  if (q.kind === 'written') mountWritten(el, q, { unitId });
+  if (q.kind === 'reveal') mountReveal(el, q);
+  else if (q.kind === 'written') mountWritten(el, q, { unitId });
   else mountAuto(el, q, { unitId, onFinish: r => store.recordAuto(q.id, r, meta) });
 }
 
-// ───────── 演習（Sample・類題・模試） ─────────
+// ───────── 本番演習（Sample・類題・模試） ─────────
 async function viewDrill() {
-  const { papers } = await loadPapers();
-  app.innerHTML = `<div class="stack"><h1>演習</h1>
-    <p class="muted small">本番は Sample paper とほぼ同じ形式。英語で書いて、採点基準で自己採点しよう。</p>
-    <div class="card"><ul class="list">${papers.map(p => {
-      const parts = p.questions.flatMap(q => q.parts);
-      const done = parts.filter(x => store.getQ(x.id)).length;
-      const avg = parts.map(x => store.getQ(x.id)?.score).filter(x => x != null);
-      return `<li><a class="item" href="#/paper/${p.id}"><span class="t">${esc(p.paper)}：${esc(stripTags(p.title))}<small>${done} / ${parts.length} 小問${avg.length ? ` ・ 平均 ${pct(avg.reduce((a, b) => a + b, 0) / avg.length)}` : ''}${p.id === 'p' ? ' ・ 練習用の架空データ' : ''}</small></span><span class="chev">›</span></a></li>`;
-    }).join('')}
-    <li><div class="item"><span class="unit locked"><span class="num">模</span></span><span class="t">予想模試 A・B・C<small>準備中（Phase 4）</small></span></div></li>
-    </ul></div></div>`;
+  const [{ papers }, mi] = await Promise.all([loadPapers(), mockIndex().catch(() => ({ mocks: [] }))]);
+  const row = p => {
+    const parts = p.questions.flatMap(q => q.parts);
+    const full = parts.filter(x => qStatus(x.id) === 'full').length;
+    return `<li><a class="item" href="#/paper/${p.id}"><span class="t">${esc(p.paper)}：${esc(stripTags(p.title))}<small>満点 ${full} / ${parts.length} 小問${p.id === 'p' ? ' ・ 練習用の架空データ' : ''}</small><div class="bar" style="margin-top:4px"><span style="width:${full / parts.length * 100}%"></span></div></span><span class="chev">›</span></a></li>`;
+  };
+  app.innerHTML = `<div class="stack"><h1>本番演習</h1>
+    <p class="muted small">本番は Sample paper とほぼ同じ形式。英語で書いて、採点チェックリストで自己採点。点を落としたら「ここを復習」から単元へ。</p>
+    <div class="card"><h2>① Sample paper</h2><ul class="list" style="margin-top:6px">${papers.filter(p => p.id !== 'p').map(row).join('')}</ul></div>
+    <div class="card"><h2>② 予想模試（各100点）</h2><p class="small muted">チュートリアルの実データで作った本番形式の通し演習。全問書いてからまとめて答え合わせ。</p><ul class="list" style="margin-top:6px">
+      ${mi.mocks.length ? mi.mocks.map(m => { const st = store.getMock(m.id); return `<li><a class="item" href="#/mock/${m.id}"><span class="t">${esc(m.title)}<small>${esc(m.sub || '')}${st?.score != null ? ` ・ 前回 ${st.score} / 100` : ''}</small></span><span class="chev">›</span></a></li>`; }).join('') : '<li><div class="item muted">準備中</div></li>'}
+    </ul></div>
+    <div class="card"><h2>③ 類題（練習用の架空データ）</h2><ul class="list" style="margin-top:6px">${papers.filter(p => p.id === 'p').map(row).join('')}</ul></div>
+  </div>`;
 }
 
 async function viewPaper(pid) {
   const { papers } = await loadPapers();
   const p = papers.find(x => x.id === pid);
-  app.innerHTML = `<div class="stack"><div class="crumb"><a href="#/drill">演習</a> › ${esc(p.paper)}</div>
+  app.innerHTML = `<div class="stack"><div class="crumb"><a href="#/drill">本番演習</a> › ${esc(p.paper)}</div>
     <h1>${esc(p.paper)}：${p.title}</h1>
     ${p.invented ? '<div><span class="invented">練習用の架空データ</span></div>' : ''}
-    <div class="card small">${p.intro}</div>
+    <details class="acc"><summary>この試験の設定（最初に読む）</summary><div class="in small">${p.intro}</div></details>
     ${p.questions.map(q => `<div class="card"><div class="row"><h2>${esc(q.q)}</h2>${q.marks ? `<span class="pill gray">${q.marks} marks</span>` : ''}</div>
-      <ul class="list" style="margin-top:6px">${q.parts.map(x => { const st = store.getQ(x.id);
-        const b = !st ? '' : st.score >= 1 ? '<span class="pill good">満点</span>' : `<span class="pill warn">${pct(st.score)}</span>`;
+      <ul class="list" style="margin-top:6px">${q.parts.map(x => { const s = qStatus(x.id), st = store.getQ(x.id);
+        const b = s === 'none' ? '' : s === 'full' ? '<span class="pill good">満点</span>' : `<span class="pill warn">${pct(st.score || 0)}</span>`;
         return `<li><a class="item" href="#/sq/${x.id}"><span class="t">${esc(x.label)}${x.marks ? ` <span class="small muted">[${x.marks}m]</span>` : ''}<small>${esc(stripTags(x.prompt).slice(0, 90))}${stripTags(x.prompt).length > 90 ? '…' : ''}</small></span>${b}<span class="chev">›</span></a></li>`; }).join('')}</ul></div>`).join('')}
   </div>`;
 }
@@ -239,10 +276,110 @@ async function viewSampleQ(id) {
   const p = papers.find(x => x.id === q.paper);
   const ids = p.questions.flatMap(x => x.parts.map(y => y.id));
   const i = ids.indexOf(id);
-  app.innerHTML = `<div class="stack"><div class="crumb"><a href="#/drill">演習</a> › <a href="#/paper/${p.id}">${esc(p.paper)}</a> › ${esc(q.label)}</div>
+  const units = await unitsForPart(q);
+  const studyLinks = units.flatMap(u => [{ href: `#/unit/${u.id}`, label: `Unit ${u.n} ${u.title}` }]);
+  const before = units.length ? `<div class="unitchips"><span class="small muted">関係する単元：</span>${units.map(u => `<a class="pill" href="#/unit/${u.id}">Unit ${u.n} ${esc(u.title)}</a>`).join('')}${q.types?.[0] ? `<a class="pill gray" href="#/types/${q.types[0]}">解き方の型</a>` : ''}</div>` : '';
+  const nextId = ids[i + 1];
+  app.innerHTML = `<div class="stack"><div class="crumb"><a href="#/drill">本番演習</a> › <a href="#/paper/${p.id}">${esc(p.paper)}</a> › ${esc(q.label)}</div>
     <div class="card qbox"></div>
-    ${qNav(i > 0 ? `#/sq/${ids[i - 1]}` : null, i < ids.length - 1 ? `#/sq/${ids[i + 1]}` : null, `#/paper/${p.id}`, '一覧に戻る')}</div>`;
-  mountQ($('.qbox', app), q);
+    ${qNav(i > 0 ? `#/sq/${ids[i - 1]}` : null, nextId ? `#/sq/${nextId}` : null, `#/paper/${p.id}`, '一覧に戻る')}</div>`;
+  mountWritten($('.qbox', app), q, { before, studyLinks });
+}
+
+// ───────── 予想模試 ─────────
+async function viewMock(mid) {
+  const mock = await loadMock(mid);
+  const parts = mockParts(mock);
+  const st = store.getMock(mid) || {};
+  const total = parts.reduce((s, x) => s + (x.marks || 0), 0);
+  app.innerHTML = `<div class="stack"><div class="crumb"><a href="#/drill">本番演習</a> › ${esc(mock.title)}</div>
+    <h1>${esc(mock.title)}</h1>
+    <div class="card small">${mock.intro}</div>
+    <div class="card row"><div><div class="small muted">タイマー（任意）</div><div class="timer" id="mtimer">--:--</div></div><span class="spacer"></span>
+      <button class="btn" data-act="t60">60分で開始</button><button class="btn" data-act="t120">120分で開始</button></div>
+    ${mock.questions.map(q => `<div class="card"><div class="row"><h2>${esc(q.q)}：${esc(q.title || '')}</h2><span class="pill gray">${q.parts.reduce((s, x) => s + x.marks, 0)} marks</span></div>
+      ${q.intro ? `<p class="small" style="margin-top:6px">${q.intro}</p>` : ''}${q.exhibit ? renderExhibit(q.exhibit) : ''}
+      ${q.parts.map(x => `<div class="mpart" data-id="${x.id}" style="margin-top:16px;border-top:1px solid var(--line);padding-top:12px"></div>`).join('')}</div>`).join('')}
+    <div class="stickybar btnrow"><button class="btn primary block" data-act="submit">全部提出して答え合わせ（${total}点）</button></div>
+    <div class="card mresult" hidden></div>
+  </div>`;
+  const ctrls = {};
+  for (const part of parts) {
+    const el = $(`.mpart[data-id="${part.id}"]`, app);
+    ctrls[part.id] = mountWritten(el, { ...part, exhibit: part.exhibit && part.exhibit !== mock.questions.find(q => q.q === part.qLabel)?.exhibit ? part.exhibit : null },
+      { compactHeader: true, deferGrade: true, before: `<div class="row"><b>${esc(part.label)}</b><span class="pill gray">${part.marks} marks${part.marksEstimated ? '（推定）' : ''}</span></div>`,
+        onFinish: () => summarize() });
+  }
+  const summarize = () => {
+    const got = parts.map(x => ({ x, s: store.getQ(x.id) })).filter(o => o.s && o.s.date === store.today());
+    if (!got.length) return;
+    const score = Math.round(got.reduce((a, o) => a + (o.s.score || 0) * o.x.marks, 0) * 10) / 10;
+    const bySlot = {}; got.forEach(o => { const k = o.x.slot || '?'; (bySlot[k] ||= [0, 0]); bySlot[k][0] += (o.s.score || 0) * o.x.marks; bySlot[k][1] += o.x.marks; });
+    store.saveMock(mid, { score, date: store.today() });
+    const box = $('.mresult', app); box.hidden = false;
+    box.innerHTML = `<h2>結果：${score} / ${total}（確定済み ${got.length} / ${parts.length} 小問）</h2><div class="slots" style="margin-top:10px">${Object.entries(bySlot).map(([k, [a, b]]) => `<div class="slot"><span class="k">${k}</span><div><div class="small">${SLOTS[k] || ''}</div><div class="bar${a / b < .6 ? ' weak' : ''}"><span style="width:${a / b * 100}%"></span></div></div><span class="v">${Math.round(a * 10) / 10}/${b}</span></div>`).join('')}</div>`;
+  };
+  $('[data-act="submit"]', app).onclick = () => {
+    if (!confirm('全部の答案を提出して答え合わせしますか？')) return;
+    clearInterval(timer);
+    Object.values(ctrls).forEach(c => c.grade(false));
+    $('[data-act="submit"]', app).closest('.stickybar').remove();
+    toast('各小問の「この点数で確定」を押すと合計が出ます');
+  };
+  let timer;
+  const startTimer = min => {
+    clearInterval(timer); const end = Date.now() + min * 60000;
+    const tick = () => { const s = Math.max(0, Math.round((end - Date.now()) / 1000)); $('#mtimer').textContent = `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; if (!s) { clearInterval(timer); toast('時間です！'); } };
+    tick(); timer = setInterval(tick, 1000);
+    window.addEventListener('hashchange', () => clearInterval(timer), { once: true });
+  };
+  $('[data-act="t60"]', app).onclick = () => startTimer(60);
+  $('[data-act="t120"]', app).onclick = () => startTimer(120);
+  summarize();
+}
+
+// ───────── Week 別チュートリアル ─────────
+async function viewWeek(n) {
+  const tut = await loadTutorials();
+  const w = tut.weeks.find(x => String(x.n) === String(n));
+  const items = await Promise.all(w.items.map(weekItemQ));
+  app.innerHTML = `<div class="stack"><div class="crumb"><a href="#/learn">単元</a> › Week ${w.n}</div>
+    <h1>Week ${w.n}：${esc(w.title)}</h1>
+    <p class="small muted">チュートリアルの全小問（原文）。解答は公式解答をもとにしています（誤りは修正済み）。${w.note || ''}</p>
+    <div class="card"><ul class="list">${w.items.map((it, i) => { const q = items[i]; if (!q) return '';
+      const s = qStatus(q.id); const b = s === 'none' ? '' : s === 'full' ? '<span class="pill good">✓</span>' : '<span class="pill warn">途中</span>';
+      return `<li><a class="item" href="#/wq/${w.n}/${i}"><span class="t"><b>${esc(it.label)}</b> ${q.kind === 'reveal' ? '<span class="pill gray">Excel 操作</span>' : ''}<small>${esc(stripTags(q.prompt).slice(0, 90))}${stripTags(q.prompt).length > 90 ? '…' : ''}</small></span>${b}<span class="chev">›</span></a></li>`; }).join('')}</ul></div></div>`;
+}
+async function weekItemQ(it) {
+  if (it.q) return it.q;
+  const f = await findQuestion(it.ref);
+  return f && f.q;
+}
+async function viewWeekQ(n, i) {
+  i = +i;
+  const tut = await loadTutorials();
+  const w = tut.weeks.find(x => String(x.n) === String(n));
+  const it = w.items[i];
+  const f = it.q ? { q: { ...it.q, slot: it.q.slot || w.slot }, ctx: {} } : await findQuestion(it.ref);
+  app.innerHTML = `<div class="stack"><div class="crumb"><a href="#/learn">単元</a> › <a href="#/week/${w.n}">Week ${w.n}</a> › ${esc(it.label)}</div>
+    ${it.ref && f?.ctx?.unit ? `<div class="unitchips"><span class="small muted">この問題は単元にもあります：</span><a class="pill" href="#/unit/${f.ctx.unit.id}">${esc(f.ctx.unit.title)}</a></div>` : ''}
+    <div class="card qbox"></div>
+    ${qNav(i > 0 ? `#/wq/${w.n}/${i - 1}` : null, i < w.items.length - 1 ? `#/wq/${w.n}/${i + 1}` : null, `#/week/${w.n}`, 'Week の一覧へ')}</div>`;
+  if (!f) { $('.qbox', app).innerHTML = '<p class="muted">問題が見つかりません</p>'; return; }
+  mountQ($('.qbox', app), f.q, f.ctx?.unit?.id);
+}
+
+function mountReveal(el, q) {
+  el.innerHTML = `<div class="stack"><div class="q-head"><span class="pill gray">Excel 操作・確認問題</span></div>
+    <div class="q-prompt en" lang="en">${q.prompt}</div>${q.exhibit ? renderExhibit(q.exhibit) : ''}${sourceLine(q)}
+    <p class="small muted">Excel で操作する問題です。試験では操作は出ないので、答え（何が分かるか）を読んで確認しましょう。</p>
+    <div class="btnrow"><button class="btn primary block" data-act="show">答えを見る</button></div><div class="ra"></div></div>`;
+  $('[data-act="show"]', el).onclick = e => {
+    e.target.closest('.btnrow').remove();
+    $('.ra', el).innerHTML = `<div class="reveal-ans" lang="en">${q.modelAnswer}</div>${q.warn ? `<div class="warnbox" style="margin-top:10px"><b>注意：</b>${q.warn}</div>` : ''}
+      <div class="btnrow" style="margin-top:12px"><button class="btn primary" data-r="1">分かった</button><button class="btn" data-r="0">あとで見直す</button></div>`;
+    $$('[data-r]', el).forEach(b => b.onclick = () => { store.recordAuto(q.id, b.dataset.r === '1' ? 'correct' : 'wrong', { slot: q.slot }); toast(b.dataset.r === '1' ? '記録しました' : '復習キューに入れました'); });
+  };
 }
 
 // ───────── 復習 ─────────

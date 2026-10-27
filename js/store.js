@@ -3,7 +3,7 @@ const KEY = 'etw-study-v1';
 export const EXAM_DATE = '2026-11-05';
 const LAST_REVIEW_DATE = '2026-11-04'; // 試験日以降には出題しない
 
-const blank = () => ({ v: 1, q: {}, review: {}, lessons: {}, written: {}, settings: {} });
+const blank = () => ({ v: 1, q: {}, review: {}, lessons: {}, written: {}, settings: {}, daily: {}, mocks: {} });
 let state = load();
 
 function load() {
@@ -52,6 +52,7 @@ export function recordAuto(id, result, meta = {}) {
   r.last = result; r.date = today(); r.slot = meta.slot || r.slot; r.score = result === 'correct' ? 1 : 0;
   state.q[id] = r;
   updateReview(id, result === 'correct', meta);
+  bumpToday(id);
   save();
 }
 
@@ -63,12 +64,22 @@ export function recordWritten(id, text, checks, pct, meta = {}) {
   r.last = pct >= 1 ? 'correct' : 'partial'; r.date = today(); r.slot = meta.slot || r.slot; r.score = pct;
   state.q[id] = r;
   updateReview(id, pct >= 1, meta);
+  bumpToday(id);
   save();
 }
 export function saveDraft(id, text) {
   const w = state.written[id] || {};
   state.written[id] = { ...w, draft: text }; save();
 }
+
+// 今日解いた問題（ホームの「今日の目標」用）。同じ問題は1日1回だけ数える
+function bumpToday(id) {
+  const d = (state.daily ||= {})[today()] ||= [];
+  if (!d.includes(id)) d.push(id);
+}
+export const todayDone = () => (state.daily?.[today()] || []);
+export const getMock = id => state.mocks?.[id];
+export function saveMock(id, data) { (state.mocks ||= {})[id] = { ...(state.mocks[id] || {}), ...data }; save(); }
 
 // 復習キュー：不正解 → 翌日 → 正解なら3日後 → 正解なら卒業
 function updateReview(id, ok, meta) {

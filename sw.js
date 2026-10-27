@@ -1,5 +1,5 @@
 // オフライン用 service worker。ネットがあれば最新を取りに行き（network-first）、無ければキャッシュを使う。
-const CACHE = 'etw-v3';
+const CACHE = 'etw-v4';
 const SHELL = [
   './', 'index.html', 'manifest.webmanifest', 'icon.svg', 'icon-180.png', 'css/app.css',
   'js/app.js', 'js/store.js', 'js/grade.js', 'js/util.js', 'js/content.js',

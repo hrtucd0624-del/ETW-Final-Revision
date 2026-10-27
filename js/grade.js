@@ -93,7 +93,9 @@ export function highlightHTML(html, keywords) {
   const kws = [...new Set(keywords.filter(k => k && k.length >= 2))].sort((a, b) => b.length - a.length);
   if (!kws.length) return html;
   const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const re = new RegExp('(' + kws.map(esc).join('|') + ')', 'gi');
+  // 英字で始まる語は語の途中に当てない（"ha" が "than" に当たらないように）。3文字以下の英字語は語末も見る
+  const pat = k => (/^[a-z]/i.test(k) ? '(?<![A-Za-z0-9])' : '') + esc(k) + (/^[a-z]{1,3}$/i.test(k) ? '(?![A-Za-z])' : '');
+  const re = new RegExp('(' + kws.map(pat).join('|') + ')', 'gi');
   const tpl = document.createElement('template');
   tpl.innerHTML = html;
   const walker = document.createTreeWalker(tpl.content, NodeFilter.SHOW_TEXT);

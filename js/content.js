@@ -98,8 +98,12 @@ export function loadPapers() {
 export async function findQuestion(id) {
   const { byId } = await loadPapers();
   if (byId[id]) return { q: byId[id], ctx: { type: 'sample' } };
+  try {
+    const tut = await loadTutorials();
+    for (const w of tut.weeks) for (const it of w.items) if (it.q?.id === id) return { q: { ...it.q, slot: it.q.slot || w.slot }, ctx: { type: 'week', week: w.n } };
+  } catch (e) { /* no tutorials yet */ }
   const idx = await unitIndex();
-  for (const u of idx.units.filter(u => u.ready)) {
+  for (const u of idx.units.filter(u => u.ready && !u.link)) {
     const unit = await loadUnit(u.id);
     const qs = unitQuestions(unit);
     const q = qs.find(x => x.id === id);
@@ -108,4 +112,42 @@ export async function findQuestion(id) {
       return { q: { ...s.question, exhibit: resolveExhibit(s.question.exhibit, unit), slot: unit.slot[0] }, ctx: { type: 'unit', unit } };
   }
   return null;
+}
+
+// ───────── v2：導線用のヘルパー ─────────
+// 問題タイプ → そのタイプを教えるユニット（goalSample に無い Sample 小問の「ここを復習」用）
+const TYPE_UNIT = {
+  desc: 'unit-02', shape: 'unit-03', scatter: 'unit-04', prob: 'unit-05', normal: 'unit-06', ci: 'unit-07',
+  test: 'unit-10', errors: 'unit-08', slr: 'unit-09', mlr: 'unit-11', dummy: 'unit-12', fit: 'unit-13',
+  nonlin: 'unit-13', report: 'unit-12', concept: 'unit-00',
+};
+
+export async function readyUnits() {
+  const idx = await unitIndex();
+  const metas = idx.units.filter(u => u.ready && !u.link);
+  const units = await Promise.all(metas.map(m => loadUnit(m.id)));
+  return metas.map((m, i) => ({ meta: m, unit: units[i] }));
+}
+
+/** Sample / 類題の小問 → 復習すべきユニット [{id, n, title}]（goalSample を優先、無ければタイプから） */
+export async function unitsForPart(part) {
+  const all = await readyUnits();
+  let hits = all.filter(x => (x.unit.goalSample || []).includes(part.id));
+  if (!hits.length) {
+    const ids = [...new Set((part.types || []).map(t => TYPE_UNIT[t]).filter(Boolean))];
+    hits = all.filter(x => ids.includes(x.meta.id));
+  }
+  return hits.map(x => ({ id: x.meta.id, n: x.meta.n, title: x.meta.title, lessons: x.unit.lessons.map(l => ({ id: l.id, title: l.title })) }));
+}
+
+export const loadTutorials = () => getJSON('data/tutorials.json');
+export const mockIndex = () => getJSON('data/mocks/index.json');
+export const loadMock = id => getJSON(`data/mocks/${id}.json`);
+
+/** 模試の小問を written 問題の形に */
+export function mockParts(mock) {
+  return mock.questions.flatMap(q => q.parts.map(p => ({
+    level: 5, kind: 'written', ...p, qLabel: q.q, exhibit: p.exhibit || q.exhibit,
+    forbidden: [...(p.forbidden || []), ...DEFAULT_FORBIDDEN], slot: p.slot || q.slot, mock: mock.id,
+  })));
 }
