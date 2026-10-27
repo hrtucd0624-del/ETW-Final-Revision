@@ -1,0 +1,266 @@
+{
+ "id": "mock-a",
+ "title": "予想模試 A：オーストラリアの世帯所得",
+ "intro": "<p>Sample 1 と同じく、1つのテーマ（世帯の所得）で全問がつながる形式です。データは Week 11 Q1（オーストラリアの世帯、n = 3,795）、Week 3 Q2（インドネシアの成人の月収）、Week 4 Q2（Pearl Bay の交通違反）から。</p><p>問題文と模範解答は Claude 作成（元資料に解答がある部分はそれに合わせています）。配点は Sample 1 の付け方をまねた推定です。電卓は使わず、計算は式で止めてください。</p>",
+ "questions": [
+  { "q": "Q1", "title": "記述統計", "slot": "A",
+    "intro": "Descriptive statistics for monthly household income in Australia (dollars, n = 3,795) and for monthly income of Indonesian adults in 2000 (thousands of Rupiah, n = 2,047).",
+    "exhibit": { "desc": { "cols": ["", "Australia ($)", "Indonesia ('000 Rupiah)"], "rows": [["Mean", "1673.05", "477.65"], ["Median", "1466", "262.02"], ["Mode", "1907.44", "0"], ["Standard Deviation", "1020.57", "1043.57"], ["Skewness", "2.46", "13.64"], ["Minimum", "-9", "0"], ["Maximum", "9573.22", "28497.62"], ["Count", "3795", "2047"]] } },
+    "parts": [
+      { "id": "ma-q1a", "label": "Q1(a)", "marks": 6, "marksEstimated": true,
+        "prompt": "Comment on the central tendency and the shape of the distribution of Australian household income.",
+        "source": { "file": "Week 11 Questions.pdf", "where": "Q1 Descriptive statistics" }, "answerSource": "claude",
+        "modelAnswer": "<p><b>Central tendency:</b> The mean monthly household income is $1,673.05, while the median is $1,466, so half of the households earn less than $1,466 per month. The mean is well above the median.</p><p><b>Shape:</b> The distribution is positively (right) skewed (skewness 2.46): most households have incomes at the lower end, and a few households with very high incomes (up to $9,573) form a long right tail that pulls the mean above the median.</p>",
+        "rubric": [
+          { "label": "mean $1,673.05 と median $1,466（median の意味）", "marks": 2, "keywords": [["1673"], ["1466"], ["half", "50%"]] },
+          { "label": "mean > median", "marks": 1, "keywords": [["mean"], ["above", "higher", "greater", "larger", ">"]] },
+          { "label": "positively skewed（skewness 2.46）", "marks": 2, "keywords": [["positive", "right"], ["skew"]] },
+          { "label": "理由：少数の高所得が右の裾を作る", "marks": 1, "keywords": [["few"], ["tail", "high income", "very high"]] }
+        ] },
+      { "id": "ma-q1b", "label": "Q1(b)", "marks": 6, "marksEstimated": true,
+        "prompt": "Compare the shape of the Indonesian income distribution with the Australian one. What does the mode of 0 tell us about Indonesian adults?",
+        "source": { "file": "ETW1001_W3_Tutorial_QA.pdf", "where": "Q2 Part A(c)(d)" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>Both distributions are positively skewed, with the mean above the median. The Indonesian distribution is much more skewed (skewness 13.64 vs 2.46): its mean (477,645 Rupiah) is almost twice its median (262,016 Rupiah), and a few adults earn extremely high incomes (up to 28,497,620 Rupiah).</p><p>The mode is usually not useful for continuous data, because values rarely repeat. But here the most common monthly income is 0 Rupiah, which tells us that a large number of Indonesian adults are unemployed (not working).</p>",
+        "rubric": [
+          { "label": "両方とも positively skewed", "marks": 1, "keywords": [["both"], ["positive", "right"]] },
+          { "label": "インドネシアの方がずっと歪んでいる（13.64 vs 2.46）", "marks": 2, "keywords": [["13.64", "more skewed", "much more"]] },
+          { "label": "連続データでは mode は普通は役に立たない", "marks": 1, "keywords": [["continuous", "rarely repeat"]] },
+          { "label": "mode = 0 → 失業者が多い", "marks": 2, "keywords": [["unemployed", "not working", "no income", "no job"]] }
+        ] },
+      { "id": "ma-q1c", "label": "Q1(c)", "marks": 4, "marksEstimated": true,
+        "prompt": "Interpret the standard deviation of Australian household income. The minimum income is −$9. If households with zero or negative income were removed, what would you expect to happen to the standard deviation? Explain.",
+        "source": { "file": "ETW1001_W3_Tutorial_QA.pdf", "where": "Q2 Part B の考え方を応用" }, "answerSource": "claude",
+        "modelAnswer": "<p>Household monthly income deviates from the mean ($1,673.05) by about $1,020.57, on average.</p><p>The standard deviation would decrease: the zero or negative incomes are the lowest values, far below the mean, so removing them makes the remaining observations closer together.</p>",
+        "rubric": [
+          { "label": "SD $1,020.57：平均からのズレ、on average", "marks": 2, "keywords": [["1020"], ["on average"], ["mean"]] },
+          { "label": "SD は小さくなる（端の値が無くなり値が近づく）", "marks": 2, "keywords": [["decrease", "fall", "smaller", "lower", "reduce"], ["closer", "lowest", "extreme", "minimum"]] }
+        ] },
+      { "id": "ma-q1d", "label": "Q1(d)", "marks": 4, "marksEstimated": true,
+        "prompt": "Explain why the standard deviations ($1,020.57 and 1,043.57 thousand Rupiah) cannot be compared directly. Write expressions for a more appropriate measure for each country and say which distribution is relatively more variable.",
+        "source": { "file": "Solution  Paper 2_Set 2.pdf", "where": "Q1(b) の考え方を応用" }, "answerSource": "claude",
+        "modelAnswer": "<p>They are in different units (dollars vs thousands of Rupiah) and the means are very different, so the standard deviations cannot be compared directly. The coefficient of variation (CV = s / x̄ × 100%) measures spread relative to the mean.</p><p>Australia: CV = 1020.57 / 1673.05 × 100% (about 61%). Indonesia: CV = 1043.57 / 477.65 × 100% (more than 200%).</p><p>So Indonesian income is relatively much more variable.</p>",
+        "rubric": [
+          { "label": "単位と平均が違うので SD は直接比べられない", "marks": 1, "keywords": [["unit", "currency", "mean"]] },
+          { "label": "CV = s / x̄ × 100%", "marks": 1, "keywords": [["cv", "coefficient of variation"]] },
+          { "label": "2つの式（1020.57/1673.05、1043.57/477.65）", "marks": 1, "keywords": [["1020.57/1673.05"], ["1043.57/477.65"]] },
+          { "label": "インドネシアの方が相対的にばらつく", "marks": 1, "keywords": [["indonesia"], ["more variable", "relatively more", "greater", "higher", "larger"]] }
+        ] }
+    ] },
+  { "q": "Q2", "title": "都市ダミーの単回帰", "slot": "E",
+    "intro": "Monthly household income ($) is regressed on a dummy variable 'metropolitan' (= 1 if the household is in a city, 0 if in a small town or rural area).",
+    "exhibit": { "reg": { "title": "Dep: Monthly household income ($) / Exp: metropolitan", "stats": [["Multiple R", "0.169758"], ["R Square", "0.028818"], ["Adjusted R Square", "0.028562"], ["Standard Error", "1005.893"], ["Observations", "3795"]], "anova": [["Regression", "1", "113879464.8", "1.14E+08", "112.549", "6.23301E-26"], ["Residual", "3793", "3837838875", "1011821"], ["Total", "3794", "3951718339"]], "coef": [["Intercept", "1451.767", "26.48922897", "54.80592", "0", "1399.832151", "1503.7012"], ["metropolitan", "356.8905", "33.64063956", "10.60891", "6.23E-26", "290.9350257", "422.846"]] } },
+    "parts": [
+      { "id": "ma-q2a", "label": "Q2(a)", "marks": 4, "marksEstimated": true,
+        "prompt": "Interpret the intercept and the coefficient on 'metropolitan', and estimate the mean monthly income for each of the two groups.",
+        "source": { "file": "Week 11 Solution.pdf", "where": "Q1(ii)" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>Intercept: households in small towns or rural areas (metropolitan = 0) are estimated to earn $1,451.77 per month, on average.</p><p>Metropolitan: households in metropolitan areas are estimated to earn $356.89 more per month than households in small towns or rural areas, on average, i.e. $1,451.77 + $356.89 = $1,808.66.</p>",
+        "rubric": [
+          { "label": "切片：農村の平均 $1,451.77", "marks": 1, "keywords": [["1451.77"], ["rural", "small town"]] },
+          { "label": "係数：都市は農村より $356.89 多い（on average）", "marks": 2, "keywords": [["356.89"], ["more", "higher"], ["on average"]] },
+          { "label": "都市の平均 = 1,451.77 + 356.89", "marks": 1, "keywords": [["1808.66", "1451.77+356.89"]] }
+        ] },
+      { "id": "ma-q2b", "label": "Q2(b)", "marks": 5, "marksEstimated": true,
+        "prompt": "Perform a hypothesis test, at the 5% level, of whether households in metropolitan areas earn more than those in small towns or rural areas. Use the p-value approach.",
+        "source": { "file": "Week 11 Solution.pdf", "where": "Q1(iii)" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>H<sub>0</sub>: β<sub>1</sub> = 0 (no difference); H<sub>1</sub>: β<sub>1</sub> &gt; 0 (metropolitan households earn more). α = 0.05.</p><p>The coefficient is positive, so the one-sided p-value = 6.23E-26 / 2 = 3.12E-26.</p><p>Since 3.12E-26 &lt; 0.05, we reject H<sub>0</sub>. There is sufficient evidence at the 5% level that households in metropolitan areas earn more, on average, than those in small towns or rural areas.</p>",
+        "rubric": [
+          { "label": "H0: β1 = 0 / H1: β1 > 0", "marks": 1, "keywords": [["h0"], ["h1", "ha"], [">0"]] },
+          { "label": "α = 0.05", "marks": 0.5, "keywords": [["0.05", "5%"]] },
+          { "label": "p ÷ 2", "marks": 1.5, "keywords": [["/2", "÷2", "3.12e-26", "3.115e-26"]] },
+          { "label": "reject ＋ sufficient evidence（文脈）", "marks": 2, "keywords": [["reject"], ["sufficient evidence", "enough evidence"]] }
+        ] },
+      { "id": "ma-q2c", "label": "Q2(c)", "marks": 4, "marksEstimated": true,
+        "prompt": "State and interpret the 95% confidence interval for the mean income of households living in small towns or rural areas.",
+        "source": { "file": "Week 11 Solution.pdf", "where": "Q1(iv)" }, "answerSource": "official",
+        "modelAnswer": "<p>The 95% confidence interval is [$1,399.83, $1,503.70].</p><p>We are 95% confident that the true (population) average monthly income of small town / rural households is between $1,399.83 and $1,503.70.</p>",
+        "rubric": [
+          { "label": "区間 [1,399.83, 1,503.70]", "marks": 2, "keywords": [["1399.83"], ["1503.70", "1503.7"]] },
+          { "label": "We are 95% confident that the true …（文脈）", "marks": 2, "keywords": [["95% confident"], ["true", "population"], ["rural", "small town"]] }
+        ] },
+      { "id": "ma-q2d", "label": "Q2(d)", "marks": 3, "marksEstimated": true,
+        "prompt": "Interpret the R Square. Does the low R Square mean that location is unimportant for income? Explain.",
+        "source": { "file": "Week 11 Questions.pdf", "where": "Q1 出力（問題文は Claude 作成）" }, "answerSource": "claude",
+        "modelAnswer": "<p>R² = 0.0288: only 2.88% of the variation in monthly household income is explained by whether the household is in a metropolitan area.</p><p>This does not mean location is unimportant: the coefficient is highly significant and metropolitan households earn about $357 more per month on average. It means that most of the differences in income between households are due to other factors (age, state, education, etc.).</p>",
+        "rubric": [
+          { "label": "R² = 0.0288：変動の 2.88% が説明される", "marks": 1, "keywords": [["2.88", "0.0288"], ["variation"], ["explained"]] },
+          { "label": "係数は有意なので重要でないとは言えない", "marks": 1, "keywords": [["significant"]] },
+          { "label": "他の要因が多い", "marks": 1, "keywords": [["other factors", "other variables", "other reasons"]] }
+        ] },
+      { "id": "ma-q2e", "label": "Q2(e)", "marks": 2, "marksEstimated": true,
+        "prompt": "Which type of error could you have made in part (b)? Explain what it would mean in this context.",
+        "source": { "file": "Sample paper 1 solution.pdf", "where": "Q4(c)(ii) の考え方を応用" }, "answerSource": "claude",
+        "modelAnswer": "<p>A Type I error, because we rejected H<sub>0</sub>. It would mean concluding that metropolitan households earn more than rural households when, in the population, they actually do not.</p>",
+        "rubric": [
+          { "label": "Type I（reject したから）", "marks": 1, "keywords": [["type i"], ["reject"]] },
+          { "label": "文脈：本当は差がないのに都市の方が多いと結論", "marks": 1, "keywords": [["metropolitan", "city"], ["actually", "in fact", "not", "true"]] }
+        ] }
+    ] },
+  { "q": "Q3", "title": "年齢・州・都市の重回帰", "slot": "F",
+    "intro": "Monthly household income ($) is regressed on the age of the parent, state dummies (base category: South Australia, SA) and the metropolitan dummy. The mean monthly household income in the sample is $1,673.05.",
+    "exhibit": { "reg": { "title": "Dep: Monthly household income ($) / base state = SA", "stats": [["Multiple R", "0.266247"], ["R Square", "0.070888"], ["Adjusted R Square", "0.06917"], ["Standard Error", "984.6445"], ["Observations", "3795"]], "anova": [["Regression", "7", "2.8E+08", "40018256", "41.27615", "2.21E-56"], ["Residual", "3787", "3.67E+09", "969524.8"], ["Total", "3794", "3.95E+09"]], "coef": [["Intercept", "-41.1506", "121.6782", "-0.33819", "0.735237", "-279.712", "197.4105"], ["Age of parent", "38.44664", "3.198763", "12.01922", "1.1E-32", "32.17517", "44.71811"], ["NSW", "309.6974", "67.04946", "4.61894", "3.99E-06", "178.2409", "441.154"], ["VIC", "183.027", "68.36177", "2.677329", "0.007453", "48.99753", "317.0564"], ["QLD", "238.8327", "70.34352", "3.395234", "0.000693", "100.9178", "376.7475"], ["WA", "246.4551", "77.78384", "3.168461", "0.001545", "93.95281", "398.9573"], ["TAS/NT/ACT", "197.0507", "87.72541", "2.246222", "0.024747", "25.05712", "369.0444"], ["metropolitan", "312.7948", "34.03536", "9.190289", "6.3E-20", "246.0654", "379.5242"]] } },
+    "parts": [
+      { "id": "ma-q3a", "label": "Q3(a)", "marks": 3, "marksEstimated": true,
+        "prompt": "Write down the estimated equation.",
+        "source": { "file": "Week 11 Questions.pdf", "where": "Q1 重回帰の出力" }, "answerSource": "claude",
+        "modelAnswer": "<p>Income-hat = −41.15 + 38.45 Age + 309.70 NSW + 183.03 VIC + 238.83 QLD + 246.46 WA + 197.05 TAS/NT/ACT + 312.79 Metropolitan</p>",
+        "rubric": [
+          { "label": "切片と年齢（−41.15、38.45）", "marks": 1, "keywords": [["-41.15"], ["38.4"]] },
+          { "label": "州ダミー5つ", "marks": 1, "keywords": [["309.7"], ["183.03"], ["238.83"], ["246.46"], ["197.05"]] },
+          { "label": "都市ダミー 312.79、ハット付き", "marks": 1, "keywords": [["312.79"]] }
+        ] },
+      { "id": "ma-q3b", "label": "Q3(b)", "marks": 3,
+        "prompt": "After controlling for age and metro/rural status, which state appears to have the lowest average household income, and which the highest? Explain.",
+        "source": { "file": "Week 11 Solution.pdf", "where": "Q1(v)" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>SA appears to have the lowest average household income and NSW the highest. All the coefficients on the state dummies are positive, so every other state has a higher average income than SA (the base category), holding age and metro/rural status constant; NSW has the largest positive coefficient ($309.70).</p>",
+        "rubric": [
+          { "label": "最低：SA", "marks": 1, "keywords": [["sa"], ["lowest"]] },
+          { "label": "最高：NSW", "marks": 1, "keywords": [["nsw"], ["highest"]] },
+          { "label": "理由：係数がすべてプラス、NSW が最大", "marks": 1, "keywords": [["positive"], ["largest", "base"]] }
+        ] },
+      { "id": "ma-q3c", "label": "Q3(c)", "marks": 3,
+        "prompt": "Interpret the coefficient of 'Age of parent'.",
+        "source": { "file": "Week 11 Solution.pdf", "where": "Q1(vi)" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>Take two households from the same state and region (metropolitan or rural), but one has a parent who is one year older than the other. The model predicts that the household with the older parent has a monthly income $38.45 higher, on average.</p>",
+        "rubric": [
+          { "label": "他を一定（同じ州・地域）", "marks": 1, "keywords": [["same state", "holding", "constant", "identical"]] },
+          { "label": "1歳あたり $38.45", "marks": 1, "keywords": [["38.4"], ["year"]] },
+          { "label": "on average", "marks": 1, "keywords": [["on average"]] }
+        ],
+        "forbidden": [{ "pattern": "38.47", "message": "出力表の値は 38.45（38.47 は公式解答の誤記）" }] },
+      { "id": "ma-q3d", "label": "Q3(d)", "marks": 2,
+        "prompt": "Take a rural household located in Victoria, with a parent who is 30 years old. Write an equation for the model's predicted income (do not calculate it).",
+        "source": { "file": "Week 11 Solution.pdf", "where": "Q1(vii)" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>Income-hat = −41.15 + 38.45(30) + 183.03(1) + 312.79(0)</p>",
+        "rubric": [
+          { "label": "−41.15 + 38.45(30)", "marks": 1, "keywords": [["-41.15"], ["(30)", "×30", "*30", "x 30", "× 30"]] },
+          { "label": "+ 183.03(1)、metropolitan = 0", "marks": 1, "keywords": [["183.03"], ["312.79(0)", "312.79×0", "312.79 × 0"]] }
+        ] },
+      { "id": "ma-q3e", "label": "Q3(e)", "marks": 4, "marksEstimated": true,
+        "prompt": "Interpret the coefficient on 'metropolitan' in this model. Why is it smaller than the coefficient in Q2 ($356.89)?",
+        "source": { "file": "Week 11 Questions.pdf", "where": "Q1 両方の出力（問題文は Claude 作成）" }, "answerSource": "claude",
+        "modelAnswer": "<p>Take two households with parents of the same age in the same state, but one is in a metropolitan area and the other in a small town or rural area. The model predicts that the metropolitan household earns $312.79 more per month, on average.</p><p>It is smaller than $356.89 because the simple regression did not hold age and state constant. Part of the city–rural gap in Q2 reflected differences in age and state (e.g. cities are concentrated in higher-income states), which is now captured by the other variables.</p>",
+        "rubric": [
+          { "label": "他を一定（年齢・州が同じ）＋ $312.79 多い", "marks": 2, "keywords": [["312.79"], ["same", "holding", "constant"]] },
+          { "label": "単回帰では年齢・州を一定にしていない（除外変数）", "marks": 2, "keywords": [["age", "state"], ["not held", "not hold", "did not", "omitted", "captured", "reflect"]] }
+        ] },
+      { "id": "ma-q3f", "label": "Q3(f)", "marks": 4, "marksEstimated": true,
+        "prompt": "Which variables are statistically significant at the 1% level? How would your answer change at the 5% level?",
+        "source": { "file": "Week 11 Questions.pdf", "where": "Q1 重回帰の出力" }, "answerSource": "claude",
+        "modelAnswer": "<p>At the 1% level, Age (p = 1.1E-32), NSW (3.99E-06), VIC (0.0075), QLD (0.0007), WA (0.0015) and metropolitan (6.3E-20) are significant, because their p-values are less than 0.01. TAS/NT/ACT (p = 0.0247) is not significant at 1%.</p><p>At the 5% level, TAS/NT/ACT is also significant (0.0247 &lt; 0.05), so all the variables are significant.</p>",
+        "rubric": [
+          { "label": "1%：TAS/NT/ACT 以外は有意（p < 0.01）", "marks": 2, "keywords": [["1%", "0.01"], ["tas"]] },
+          { "label": "TAS/NT/ACT の p = 0.0247", "marks": 1, "keywords": [["0.0247", "0.025"]] },
+          { "label": "5% ではすべて有意", "marks": 1, "keywords": [["5%", "0.05"], ["all"]] }
+        ] },
+      { "id": "ma-q3g", "label": "Q3(g)", "marks": 4, "marksEstimated": true,
+        "prompt": "Interpret the R Square and the Standard Error of this regression. Would this model be useful for predicting an individual household's income?",
+        "source": { "file": "Week 11 Questions.pdf", "where": "Q1 重回帰の出力" }, "answerSource": "claude",
+        "modelAnswer": "<p>R² = 0.0709: only 7.09% of the variation in monthly household income is explained by the model.</p><p>The standard error is $984.64: the model's predictions of household income are typically in error by about $985 per month. This is large compared with the mean income of $1,673, so the model would not be accurate for predicting an individual household's income, even though the variables are significant.</p>",
+        "rubric": [
+          { "label": "R² 7.09% の変動が説明される", "marks": 1, "keywords": [["7.09", "0.0709"], ["variation"]] },
+          { "label": "SE：予測は典型的に $984.64 外れる", "marks": 1, "keywords": [["984"], ["error", "typically"]] },
+          { "label": "平均 $1,673 と比べて大きい → 個別の予測は不正確", "marks": 2, "keywords": [["1673"], ["not accurate", "inaccurate", "not useful", "large", "poor"]] }
+        ] },
+      { "id": "ma-q3h", "label": "Q3(h)", "marks": 7, "marksEstimated": true,
+        "prompt": "Write a short report on how average household income differs across states, holding age and metropolitan status constant. Include the specific coefficient values in a meaningful way.",
+        "source": { "file": "Week 11 Questions.pdf", "where": "Q1 重回帰の出力（Sample 1 Q6(a) の形式）" }, "answerSource": "claude",
+        "modelAnswer": "<p>South Australia (SA) is the base category. Holding the age of the parent and metropolitan status constant, households in every other state are predicted to earn more than households in SA, on average.</p><p>NSW households earn the most: $309.70 more per month than otherwise identical SA households, on average (p = 3.99E-06). WA ($246.46) and QLD ($238.83) follow, then TAS/NT/ACT ($197.05) and VIC ($183.03).</p><p>All these differences are significant at the 5% level, and all except TAS/NT/ACT (p = 0.025) are significant at the 1% level. So the ranking is NSW &gt; WA &gt; QLD &gt; TAS/NT/ACT &gt; VIC &gt; SA.</p><p>Overall, there is strong evidence that household income differs across states, with SA the lowest and NSW the highest.</p>",
+        "rubric": [
+          { "label": "基準 SA、他を一定", "marks": 1, "keywords": [["sa"], ["base"], ["holding", "constant", "identical"]] },
+          { "label": "NSW が一番高い（$309.70、on average）", "marks": 1.5, "keywords": [["nsw"], ["309.7"], ["on average"]] },
+          { "label": "他の州の差（WA・QLD・TAS/NT/ACT・VIC）", "marks": 1.5, "keywords": [["246.46"], ["238.83"], ["197.05"], ["183.03"]] },
+          { "label": "有意性（5%・1%）", "marks": 1, "keywords": [["significant"]] },
+          { "label": "順位づけ", "marks": 1, "keywords": [[">", "followed", "ranking", "then"]] },
+          { "label": "結論：州で所得が違う（SA 最低・NSW 最高）", "marks": 1, "keywords": [["differ", "evidence"], ["lowest"]] }
+        ] }
+    ] },
+  { "q": "Q4", "title": "確率とクロス表", "slot": "C",
+    "intro": "A survey of 220 highway offences in Pearl Bay classified each offence by type and by the offender's gender.",
+    "exhibit": { "pivot": { "cols": ["Gender", "Bad Parking", "Loud Annoying Music", "Serious Crash", "Speeding", "Total"], "rows": [["Female", "41", "27", "21", "30", "119"], ["Male", "16", "28", "31", "26", "101"], ["Total", "57", "55", "52", "56", "220"]] } },
+    "parts": [
+      { "id": "ma-q4a", "label": "Q4(a)", "marks": 2, "marksEstimated": true,
+        "prompt": "Explain the type of data used to construct this table.",
+        "source": { "file": "Solution  Paper 2_Set 2.pdf", "where": "Q2(a) の形式" }, "answerSource": "claude",
+        "modelAnswer": "<p>Both variables are qualitative (categorical) and nominal: gender (female, male) and offence type (bad parking, loud music, serious crash, speeding) have no natural order. The table is a cross-tabulation (contingency table) of counts.</p>",
+        "rubric": [
+          { "label": "qualitative（カテゴリー）", "marks": 1, "keywords": [["qualitative", "categorical"]] },
+          { "label": "nominal（順序なし）", "marks": 1, "keywords": [["nominal"]] }
+        ] },
+      { "id": "ma-q4b", "label": "Q4(b)", "marks": 3, "marksEstimated": true,
+        "prompt": "If an offence is selected at random, what is the probability that (i) the offender is female; (ii) the offender is male and was speeding?",
+        "source": { "file": "ETW1001_W4_Q2 Solution (Pearl Bay).xlsx", "where": "Q3 sheet (i)(v)" }, "answerSource": "official",
+        "modelAnswer": "<p>(i) P(Female) = 119/220 ≈ 0.541 (marginal probability).</p><p>(ii) P(Male and Speeding) = 26/220 ≈ 0.118 (joint probability).</p>",
+        "rubric": [
+          { "label": "(i) 119/220", "marks": 1.5, "keywords": [["119/220", "0.541"]] },
+          { "label": "(ii) 26/220", "marks": 1.5, "keywords": [["26/220", "0.118"]] }
+        ] },
+      { "id": "ma-q4c", "label": "Q4(c)", "marks": 4, "marksEstimated": true,
+        "prompt": "Find the probability that an offence was a serious crash, given that the offender is (i) male; (ii) female.",
+        "source": { "file": "ETW1001_W4_Q2 Solution (Pearl Bay).xlsx", "where": "Q3 sheet (vii)" }, "answerSource": "official",
+        "modelAnswer": "<p>(i) P(Crash | Male) = 31/101 ≈ 0.307.</p><p>(ii) P(Crash | Female) = 21/119 ≈ 0.176.</p>",
+        "rubric": [
+          { "label": "(i) 31/101", "marks": 2, "keywords": [["31/101", "0.307"]] },
+          { "label": "(ii) 21/119", "marks": 2, "keywords": [["21/119", "0.176", "0.1765"]] }
+        ] },
+      { "id": "ma-q4d", "label": "Q4(d)", "marks": 2, "marksEstimated": true,
+        "prompt": "Are the events 'Female' and 'Speeding' mutually exclusive? Explain.",
+        "source": { "file": "W4TS - S2 2026.pdf", "where": "Q1(c) の考え方を応用" }, "answerSource": "claude",
+        "modelAnswer": "<p>No. They can occur together: 30 offences were speeding by female offenders, so P(Female and Speeding) = 30/220 ≠ 0.</p>",
+        "rubric": [
+          { "label": "排反ではない", "marks": 1, "keywords": [["not mutually exclusive", "no"]] },
+          { "label": "30 件が両方", "marks": 1, "keywords": [["30"]] }
+        ] },
+      { "id": "ma-q4e", "label": "Q4(e)", "marks": 6, "marksEstimated": true,
+        "prompt": "Write a short report on whether the type of offence depends on the gender of the offender.",
+        "source": { "file": "ETW1001_W4_Q2 Solution (Pearl Bay).xlsx", "where": "Q3 sheet (vii)" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>If offence type did not depend on gender, the conditional probability of each offence type would be the same for females and males and equal to its marginal probability.</p><p>For speeding this is roughly true: P(Speeding | Female) = 30/119 ≈ 0.252 and P(Speeding | Male) = 26/101 ≈ 0.257, close to P(Speeding) = 56/220 ≈ 0.255.</p><p>But for serious crashes, P(Crash | Male) ≈ 0.307 is much higher than P(Crash | Female) ≈ 0.176, compared with P(Crash) = 52/220 ≈ 0.236. Bad parking is much more common among females (41/119 ≈ 0.345) than males (16/101 ≈ 0.158).</p><p>Since several conditional probabilities differ clearly from the marginal probabilities, offence type and gender are not independent: the type of offence depends on gender (except speeding).</p>",
+        "rubric": [
+          { "label": "基準：独立なら条件付き = 周辺", "marks": 1, "keywords": [["marginal"], ["independent", "same"]] },
+          { "label": "スピード違反はほぼ同じ（数値）", "marks": 1.5, "keywords": [["0.252", "30/119"], ["0.257", "26/101"]] },
+          { "label": "重大事故は男性が多い（数値）", "marks": 1.5, "keywords": [["0.307", "31/101"], ["0.176", "21/119"]] },
+          { "label": "駐車違反など他の違い", "marks": 1, "keywords": [["parking"]] },
+          { "label": "結論：独立ではない", "marks": 1, "keywords": [["not independent", "depend"]] }
+        ] }
+    ] },
+  { "q": "Q5", "title": "用語とデータの扱い", "slot": "H",
+    "parts": [
+      { "id": "ma-q5a", "label": "Q5(a)", "marks": 3, "marksEstimated": true,
+        "prompt": "In the Australian household survey (n = 3,795), identify the population and the sample.",
+        "source": { "file": "Solution  Paper 2_Set 2.pdf", "where": "Q5(a) の形式" }, "answerSource": "claude",
+        "modelAnswer": "<p>The population is all households in the states of Australia covered by the survey (the entire group we want to learn about). The sample is the 3,795 households that were actually surveyed, a subset of the population.</p>",
+        "rubric": [
+          { "label": "母集団：対象のすべての世帯", "marks": 1.5, "keywords": [["population"], ["all"]] },
+          { "label": "標本：調査した 3,795 世帯", "marks": 1.5, "keywords": [["sample"], ["3795"]] }
+        ] },
+      { "id": "ma-q5b", "label": "Q5(b)", "marks": 3, "marksEstimated": true,
+        "prompt": "Is the mean income of $1,673.05 a parameter or a statistic? Explain, and name the corresponding population value.",
+        "source": { "file": "Solution  Paper 2_Set 2.pdf", "where": "Q5(b) の考え方" }, "answerSource": "claude",
+        "modelAnswer": "<p>It is a statistic, because it is calculated from the sample of 3,795 households, not from the whole population. It is used to estimate the corresponding parameter, the population mean income μ, which is fixed but unknown.</p>",
+        "rubric": [
+          { "label": "statistic", "marks": 1, "keywords": [["statistic"]] },
+          { "label": "理由：標本から計算", "marks": 1, "keywords": [["sample"]] },
+          { "label": "対応する parameter：母平均 μ", "marks": 1, "keywords": [["μ", "mu", "population mean"]] }
+        ] },
+      { "id": "ma-q5c", "label": "Q5(c)", "marks": 5, "marksEstimated": true,
+        "prompt": "Some households report zero or negative income (the minimum is −$9). If these households were removed, what would happen to the mean, the median and the standard deviation? Should they be removed?",
+        "source": { "file": "ETW1001_W3_Tutorial_QA.pdf", "where": "Q2 Part B(b) の考え方を応用" }, "answerSource": "claude",
+        "modelAnswer": "<p>The mean would increase, because the lowest values (below the mean) are removed. The median would increase slightly, because a few observations at the bottom are removed and the middle position moves up a little. The standard deviation would decrease, because the remaining observations are closer together.</p><p>Whether to remove them depends on the research question: zero incomes may be real (e.g. unemployed households) and removing them would make the sample unrepresentative; negative values may be data errors and could be removed.</p>",
+        "rubric": [
+          { "label": "mean は上がる", "marks": 1, "keywords": [["mean"], ["increase", "rise", "higher"]] },
+          { "label": "median は少し上がる", "marks": 1, "keywords": [["median"], ["slightly", "little", "small"]] },
+          { "label": "SD は下がる（値が近くなる）", "marks": 1, "keywords": [["standard deviation", "sd"], ["decrease", "fall", "smaller", "lower"]] },
+          { "label": "除くべきか：研究課題次第（0 は本物の場合も）", "marks": 2, "keywords": [["unemployed", "real", "genuine", "error", "representative", "depends"]] }
+        ] },
+      { "id": "ma-q5d", "label": "Q5(d)", "marks": 4, "marksEstimated": true,
+        "prompt": "What is non-response bias? Explain how it could affect the results of this household income survey.",
+        "source": { "file": "Solution  Paper 2_Set 2.pdf", "where": "Q5(d) の形式" }, "answerSource": "claude",
+        "modelAnswer": "<p>Non-response bias occurs when people selected for a survey do not respond (they refuse or cannot be contacted) and the non-respondents differ systematically from those who do respond.</p><p>For example, very high-income households (or very busy working households) may be less willing to report their income. If they do not respond, the sample under-represents them, and the estimated mean income would be biased (too low).</p>",
+        "rubric": [
+          { "label": "定義：選ばれた人が答えない", "marks": 1, "keywords": [["not respond", "do not respond", "refuse", "non-respon", "cannot be contacted"]] },
+          { "label": "答えない人が系統的に違う", "marks": 1, "keywords": [["systematic", "differ"]] },
+          { "label": "この調査での例", "marks": 1, "keywords": [["income", "household"]] },
+          { "label": "結果が偏る（平均が低すぎ／高すぎ）", "marks": 1, "keywords": [["bias", "too low", "too high", "underestimate", "overestimate"]] }
+        ] }
+    ] }
+ ]
+}

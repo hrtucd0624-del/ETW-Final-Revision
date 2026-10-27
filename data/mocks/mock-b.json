@@ -1,0 +1,251 @@
+{
+ "id": "mock-b",
+ "title": "予想模試 B：南アフリカの教育と所得 ＋ Engel's Law",
+ "intro": "<p>データは Week 9（南アフリカの 40 歳男性の月収、子どもの読書スコア）と Week 10（ひとり親世帯の食費の割合）から。問題文と模範解答は Claude 作成（元資料に解答がある部分はそれに合わせています）。配点は推定です。電卓は使わず、計算は式で止めてください。</p>",
+ "questions": [
+  { "q": "Q1", "title": "所得の記述統計", "slot": "A",
+    "intro": "Monthly income (Rand) of 2,000 employed 40-year-old South African men: mean 2,124.51, standard deviation 3,211.30. Average income by group: education ≥ 10 years 3,104.95; education ≤ 9 years 1,251.56; experience ≥ 10 years 2,262.50; experience ≤ 9 years 1,375.13.",
+    "parts": [
+      { "id": "mb-q1a", "label": "Q1(a)", "marks": 4,
+        "prompt": "Interpret the standard deviation of monthly income. What does the fact that it is larger than the mean suggest about the distribution?",
+        "source": { "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx", "where": "Data & Part 1" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>Monthly income deviates from the mean (2,124.51 Rand) by about 3,211.30 Rand, on average.</p><p>Since the standard deviation is larger than the mean and income cannot fall much below zero, the incomes are very widely dispersed and the distribution is likely to be positively skewed, with a few men earning very high incomes.</p>",
+        "rubric": [
+          { "label": "SD の解釈（平均から 3,211.30、on average）", "marks": 2, "keywords": [["3211"], ["on average"]] },
+          { "label": "ばらつきがとても大きい", "marks": 1, "keywords": [["wide", "dispersion", "spread", "variable", "variation"]] },
+          { "label": "positively skewed（少数の高所得）", "marks": 1, "keywords": [["positive", "right"]] }
+        ] },
+      { "id": "mb-q1b", "label": "Q1(b)", "marks": 6,
+        "prompt": "Compare the average incomes of the groups. Between education and experience, which seems to have a greater impact on monthly income?",
+        "source": { "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx", "where": "Data & Part 1" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>Men with 10 or more years of education earn 3,104.95 Rand per month on average, more than twice as much as those with 9 years or less (1,251.56 Rand).</p><p>Men with 10 or more years of experience earn 2,262.50 Rand on average compared with 1,375.13 Rand for those with less experience; this gap is much smaller.</p><p>So education seems to have a greater impact on monthly income than experience.</p>",
+        "rubric": [
+          { "label": "教育：3,104.95 vs 1,251.56（2倍以上）", "marks": 2, "keywords": [["3104"], ["1251"]] },
+          { "label": "経験：2,262.50 vs 1,375.13", "marks": 2, "keywords": [["2262"], ["1375"]] },
+          { "label": "教育の方が影響が大きそう", "marks": 2, "keywords": [["education"], ["greater", "larger", "bigger", "more"]] }
+        ] },
+      { "id": "mb-q1c", "label": "Q1(c)", "marks": 2,
+        "prompt": "Can we conclude from these group means alone that education raises income in the population? Explain.",
+        "source": { "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx", "where": "Data & Part 1 のテキスト" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>No. These are only sample statistics, and the differences could partly be due to chance or to other factors (e.g. experience). We need a hypothesis test, for example in a regression that holds the other variable constant, to see whether the difference is statistically significant in the population.</p>",
+        "rubric": [
+          { "label": "標本の統計量にすぎない（偶然・他の要因）", "marks": 1, "keywords": [["sample", "chance", "other factors"]] },
+          { "label": "検定・回帰が必要", "marks": 1, "keywords": [["hypothesis test", "test", "regression"]] }
+        ] },
+      { "id": "mb-q1d", "label": "Q1(d)", "marks": 4,
+        "prompt": "Write an expression for the coefficient of variation of monthly income and explain what it measures.",
+        "source": { "file": "seed/answer-types.json", "where": "formulas: Coefficient of variation" }, "answerSource": "claude",
+        "modelAnswer": "<p>CV = s / x̄ × 100% = 3,211.30 / 2,124.51 × 100% (about 151%).</p><p>It measures the spread of income relative to its mean: the standard deviation is about one and a half times the mean, which shows very high relative variability.</p>",
+        "rubric": [
+          { "label": "CV = 3,211.30 / 2,124.51 × 100%", "marks": 2, "keywords": [["3211.30/2124.51", "3211.3/2124.51", "3211/2124"]] },
+          { "label": "平均に対する散らばり", "marks": 2, "keywords": [["relative"], ["mean"]] }
+        ] }
+    ] },
+  { "q": "Q2", "title": "教育と経験の重回帰", "slot": "F",
+    "exhibit": { "reg": { "title": "Dep: Monthly income (Rand) / Exp: Years Education, Years Experience", "stats": [["Multiple R", "0.36967"], ["R Square", "0.136656"], ["Adjusted R Square", "0.135792"], ["Standard Error", "2985.315848"], ["Observations", "2000"]], "anova": [["Regression", "2", "2817114445", "1408557222", "158.04979", "1.90E-64"], ["Residual", "1997", "17797485097", "8912110.714"], ["Total", "1999", "20614599542"]], "coef": [["Intercept", "-1896.54886", "247.877047", "-7.651168", "3.08E-14", "-2382.673578", "-1410.424141"], ["Years Education", "288.161957", "17.82137", "16.169461", "2.32E-55", "253.21153", "323.112384"], ["Years Experience", "91.105048", "9.363191", "9.730128", "6.81E-22", "72.7424", "109.467695"]] } },
+    "parts": [
+      { "id": "mb-q2a", "label": "Q2(a)", "marks": 3,
+        "prompt": "Write down the estimated equation.",
+        "source": { "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx", "where": "Part 2&3 Q4" }, "answerSource": "official",
+        "modelAnswer": "<p>Income-hat = −1896.55 + 288.16 Educ + 91.11 Exper</p>",
+        "rubric": [
+          { "label": "−1896.55", "marks": 1, "keywords": [["-1896.55"]] },
+          { "label": "288.16 Educ", "marks": 1, "keywords": [["288.16"]] },
+          { "label": "91.11 Exper", "marks": 1, "keywords": [["91.11"]] }
+        ] },
+      { "id": "mb-q2b", "label": "Q2(b)", "marks": 3,
+        "prompt": "Interpret the intercept. Is it meaningful?",
+        "source": { "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx", "where": "Part 2&3 Q5" }, "answerSource": "official+edited",
+        "warn": "W9 Excel の解答は切片を「−1,877 Rand」と書いていますが、出力表は −1,896.55 です。",
+        "modelAnswer": "<p>The model predicts that a man with no education and no work experience earns −1,896.55 Rand per month, on average. This is not meaningful: income cannot be negative, and no 40-year-old in the sample has zero education and zero experience, so it is an extrapolation.</p>",
+        "rubric": [
+          { "label": "教育 0・経験 0 で −1,896.55", "marks": 1, "keywords": [["1896.55"], ["no education", "zero"]] },
+          { "label": "on average", "marks": 1, "keywords": [["on average"]] },
+          { "label": "意味がない（所得はマイナスにならない）", "marks": 1, "keywords": [["not meaningful", "negative", "not make sense", "meaningless", "extrapolation"]] }
+        ],
+        "forbidden": [{ "pattern": "1877", "message": "切片は −1,896.55" }] },
+      { "id": "mb-q2c", "label": "Q2(c)", "marks": 3,
+        "prompt": "Interpret the coefficient on Years Education.",
+        "source": { "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx", "where": "Part 2&3 Q5" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>Take two men with the same years of experience, but one has one more year of education than the other. The model predicts that the man with the extra year of education earns 288.16 Rand more per month, on average.</p>",
+        "rubric": [
+          { "label": "他を一定（経験が同じ）", "marks": 1, "keywords": [["same", "holding", "constant"]] },
+          { "label": "1年で 288.16 Rand 多い", "marks": 1, "keywords": [["288.16"]] },
+          { "label": "on average", "marks": 1, "keywords": [["on average"]] }
+        ] },
+      { "id": "mb-q2d", "label": "Q2(d)", "marks": 3,
+        "prompt": "Interpret the coefficient on Years Experience.",
+        "source": { "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx", "where": "Part 2&3 Q5" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>Holding years of education constant, each additional year of work experience is associated with a 91.11 Rand increase in monthly income, on average.</p>",
+        "rubric": [
+          { "label": "他を一定（教育が同じ）", "marks": 1, "keywords": [["same", "holding", "constant"]] },
+          { "label": "1年で 91.11 Rand", "marks": 1, "keywords": [["91.11"]] },
+          { "label": "on average", "marks": 1, "keywords": [["on average"]] }
+        ] },
+      { "id": "mb-q2e", "label": "Q2(e)", "marks": 5,
+        "prompt": "Perform a hypothesis test to confirm a positive impact of years of education on monthly income at the 5% level. Use the p-value approach.",
+        "source": { "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx", "where": "Part 2&3 Q7" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>H<sub>0</sub>: β<sub>1</sub> = 0; H<sub>1</sub>: β<sub>1</sub> &gt; 0. α = 0.05.</p><p>The coefficient is positive, so the one-sided p-value = 2.32E-55 / 2 = 1.16E-55.</p><p>Since 1.16E-55 &lt; 0.05, we reject H<sub>0</sub>. There is sufficient evidence at the 5% level that years of education has a positive impact on monthly income, holding experience constant.</p>",
+        "rubric": [
+          { "label": "H0: β1 = 0 / H1: β1 > 0", "marks": 1, "keywords": [["h0"], ["h1", "ha"], [">0"]] },
+          { "label": "α = 0.05", "marks": 0.5, "keywords": [["0.05", "5%"]] },
+          { "label": "p ÷ 2 = 1.16E-55", "marks": 1.5, "keywords": [["/2", "÷2", "1.16e-55"]] },
+          { "label": "reject ＋ sufficient evidence（文脈）", "marks": 2, "keywords": [["reject"], ["sufficient evidence", "enough evidence"], ["education"]] }
+        ] },
+      { "id": "mb-q2f", "label": "Q2(f)", "marks": 4,
+        "prompt": "Mean education is 8.37 years and mean experience is 17.66 years (SD of experience 7.21 years). Write expressions for the predicted monthly income of (i) a man with average education and experience, and (ii) a man with average education and experience 2 standard deviations above the average.",
+        "source": { "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx", "where": "Part 2&3 Q8" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>(i) Income-hat = −1896.55 + 288.16(8.37) + 91.11(17.66)</p><p>(ii) Income-hat = −1896.55 + 288.16(8.37) + 91.11(17.66 + 2 × 7.21) = −1896.55 + 288.16(8.37) + 91.11(32.09)</p>",
+        "rubric": [
+          { "label": "(i) 平均を代入", "marks": 2, "keywords": [["8.37"], ["17.66"]] },
+          { "label": "(ii) 経験 = 17.66 + 2 × 7.21", "marks": 2, "keywords": [["32.09", "17.66+2"]] }
+        ] },
+      { "id": "mb-q2g", "label": "Q2(g)", "marks": 4,
+        "prompt": "Interpret the R Square and the Standard Error. Is this a good model for predicting an individual's income?",
+        "source": { "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx", "where": "Part 2&3 出力" }, "answerSource": "claude",
+        "modelAnswer": "<p>R² = 0.137: 13.7% of the variation in monthly income is explained by education and experience.</p><p>The standard error is 2,985.32 Rand: predictions are typically in error by about 2,985 Rand. This is larger than the mean income (2,124.51 Rand), so the model is not good for predicting an individual's income, even though both variables are significant.</p>",
+        "rubric": [
+          { "label": "R² 13.7% が説明される", "marks": 1, "keywords": [["13.7", "0.137"], ["variation"]] },
+          { "label": "SE：予測は典型的に 2,985 外れる", "marks": 1, "keywords": [["2985"], ["error", "typically"]] },
+          { "label": "平均より大きい → 個人の予測は不正確", "marks": 2, "keywords": [["2124", "mean"], ["not good", "not accurate", "inaccurate", "poor", "larger"]] }
+        ] },
+      { "id": "mb-q2h", "label": "Q2(h)", "marks": 5,
+        "prompt": "The coefficient on education is about three times that on experience. Does this mean education is more important than experience for income? Discuss.",
+        "source": { "file": "W9 Tutorial Exercise - part 1-3 (solution) (3).xlsx", "where": "Part 2&3 Q9" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>Both coefficients are statistically significant, and for one extra year, education has the larger effect (288.16 vs 91.11 Rand per month).</p><p>However, years of experience vary much more than years of education (SD 7.21 vs 3.79 years): schooling is limited by the education system, while experience can range from 0 to more than 40 years. So over a working life, experience can add a lot to income.</p><p>Therefore, education is more valuable per year, but it does not necessarily mean education is more important overall.</p>",
+        "rubric": [
+          { "label": "両方有意、1年あたりでは教育が大きい", "marks": 1, "keywords": [["significant"], ["per year", "one year", "1 year", "extra year", "each year"]] },
+          { "label": "経験の方がばらつく・大きな値をとる", "marks": 2, "keywords": [["7.21", "range", "vary", "larger values"]] },
+          { "label": "結論：「教育の方が重要」とは言い切れない", "marks": 2, "keywords": [["not necessarily", "does not mean", "doesn't mean", "not always"]] }
+        ] }
+    ] },
+  { "q": "Q3", "title": "立地ダミーと Engel's Law", "slot": "E",
+    "intro": "Engel's Law says that the richer the household, the smaller the proportion of income spent on food. Food share of income (0.23 = 23%) for 200 single-parent households is regressed on location dummies Rural and Regional (base: Metro).",
+    "exhibit": { "reg": { "title": "Dep: Food share / Exp: Rural, Regional (base = Metro)", "stats": [["Multiple R", "0.179115"], ["R Square", "0.032082"], ["Adjusted R Square", "0.022256"], ["Standard Error", "0.127301"], ["Observations", "200"]], "anova": [["Regression", "2", "0.105816", "0.052908", "3.264837", "0.04028"], ["Residual", "197", "3.192471", "0.016205"], ["Total", "199", "3.298287"]], "coef": [["Intercept", "0.232957", "0.014145", "16.469754", "6.82E-39", "0.205062", "0.260851"], ["Rural", "-0.051972", "0.022364", "-2.323851", "0.021153", "-0.096076", "-0.007867"], ["Regional", "-0.041213", "0.021199", "-1.944125", "0.053304", "-0.083018", "0.000593"]] } },
+    "parts": [
+      { "id": "mb-q3a", "label": "Q3(a)", "marks": 6,
+        "prompt": "Interpret the estimated coefficients.",
+        "source": { "file": "W10 Tutorial Excel exercise (solution).xlsx", "where": "Part 1 1.b.i" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>Intercept: households in metro areas are estimated to spend 23.30% of their income on food, on average.</p><p>Rural: households in rural areas are estimated to spend 5.20 percentage points less of their income on food than households in metro areas, on average.</p><p>Regional: households in regional areas are estimated to spend 4.12 percentage points less of their income on food than households in metro areas, on average.</p>",
+        "rubric": [
+          { "label": "切片：Metro 23.30%", "marks": 2, "keywords": [["23.3", "0.233"], ["metro"]] },
+          { "label": "Rural：Metro より 5.20 pp 低い", "marks": 2, "keywords": [["5.2", "0.052"], ["percentage point"], ["less", "lower"]] },
+          { "label": "Regional：Metro より 4.12 pp 低い", "marks": 2, "keywords": [["4.12", "0.041"], ["less", "lower"]] }
+        ] },
+      { "id": "mb-q3b", "label": "Q3(b)", "marks": 3,
+        "prompt": "Write expressions for the predicted food share of each location group. How do they relate to the group means?",
+        "source": { "file": "W10 Tutorial Excel exercise (solution).xlsx", "where": "Part 1 1.b.ii–iii" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>Metro: 0.2330. Rural: 0.2330 − 0.0520. Regional: 0.2330 − 0.0412.</p><p>The predicted values are exactly equal to the mean food share of each location group, because a regression on dummy variables passes through each group's average.</p>",
+        "rubric": [
+          { "label": "3つの式", "marks": 2, "keywords": [["0.233"], ["0.0520", "0.052"], ["0.0412", "0.041"]] },
+          { "label": "グループ平均とぴったり一致", "marks": 1, "keywords": [["equal", "same", "identical"], ["mean", "average"]] }
+        ] },
+      { "id": "mb-q3c", "label": "Q3(c)", "marks": 5,
+        "prompt": "Are the differences between locations statistically significant? Comment on how your conclusion depends on the significance level (two-sided tests).",
+        "source": { "file": "W10 Tutorial Excel exercise (solution).xlsx", "where": "Part 1 出力" }, "answerSource": "claude",
+        "modelAnswer": "<p>Rural (p = 0.0212) is significantly different from Metro at the 5% and 10% levels, but not at the 1% level.</p><p>Regional (p = 0.0533) is not significant at the 5% level, but it is significant at the 10% level.</p><p>So whether the location differences are 'significant' depends on the chosen α.</p>",
+        "rubric": [
+          { "label": "Rural：5%・10% で有意、1% では有意でない", "marks": 2, "keywords": [["rural"], ["0.0212", "0.021"]] },
+          { "label": "Regional：5% では有意でない、10% で有意", "marks": 2, "keywords": [["regional"], ["0.0533", "0.053"]] },
+          { "label": "結論は α 次第", "marks": 1, "keywords": [["depends", "significance level", "α"]] }
+        ] },
+      { "id": "mb-q3d", "label": "Q3(d)", "marks": 5,
+        "prompt": "Test whether rural households spend a smaller share of their income on food than metro households, at the 1% level. Use the p-value approach.",
+        "source": { "file": "W10 Tutorial Excel exercise (solution).xlsx", "where": "Part 1 出力（問題文は Claude 作成）" }, "answerSource": "claude",
+        "modelAnswer": "<p>H<sub>0</sub>: β<sub>1</sub> = 0; H<sub>1</sub>: β<sub>1</sub> &lt; 0 (rural households spend a smaller share than metro households). α = 0.01.</p><p>The coefficient (−0.0520) is negative, in the direction of H<sub>1</sub>, so the one-sided p-value = 0.0212 / 2 = 0.0106.</p><p>Since 0.0106 &gt; 0.01, we do not reject H<sub>0</sub>. There is insufficient evidence at the 1% level that rural households spend a smaller share of their income on food than metro households.</p>",
+        "rubric": [
+          { "label": "H0: β1 = 0 / H1: β1 < 0", "marks": 1, "keywords": [["h0"], ["h1", "ha"], ["<0"]] },
+          { "label": "α = 0.01", "marks": 0.5, "keywords": [["0.01", "1%"]] },
+          { "label": "p ÷ 2 = 0.0106", "marks": 1.5, "keywords": [["0.0106", "/2", "÷2"]] },
+          { "label": "do not reject ＋ insufficient evidence", "marks": 2, "keywords": [["do not reject", "not reject", "fail to reject"], ["insufficient", "not enough", "not sufficient"]] }
+        ],
+        "forbidden": [{ "pattern": "0.0106<0.01", "message": "0.0106 は 0.01 より大きい" }] },
+      { "id": "mb-q3e", "label": "Q3(e)", "marks": 5,
+        "prompt": "Are these results consistent with Engel's Law? Explain.",
+        "source": { "file": "W10 Tutorial Excel exercise (solution).xlsx", "where": "Part 1 1.a.ii" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>No. Metro households are expected to have higher incomes than rural and regional households, so under Engel's Law they should spend a smaller share of their income on food. Instead, metro households spend the highest share (23.3%).</p><p>This may be because more affluent metro households spend a lot of their discretionary income eating out at restaurants and paying a premium for food (food is like a luxury good for them). Also, the regression does not control for income, so location may be picking up other differences.</p>",
+        "rubric": [
+          { "label": "整合しない", "marks": 1, "keywords": [["no", "not consistent", "inconsistent", "contradict"]] },
+          { "label": "理由：Metro は所得が高いはず → 割合は低いはず", "marks": 2, "keywords": [["metro"], ["higher income", "richer", "affluent", "income"]] },
+          { "label": "考えられる説明（外食・所得を一定にしていない）", "marks": 2, "keywords": [["restaurant", "eating out", "luxury", "control", "premium"]] }
+        ] }
+    ] },
+  { "q": "Q4", "title": "2次式", "slot": "I",
+    "exhibit": { "reg": { "title": "Dep: Food share / Exp: Income, Income²", "stats": [["Multiple R", "0.898682"], ["R Square", "0.807628"], ["Adjusted R Square", "0.805675"], ["Standard Error", "0.056752"], ["Observations", "200"]], "coef": [["Intercept", "0.896201", "0.0345966", "25.9043", "2.34E-65", "0.827974", "0.964428"], ["Disposable income ($)", "-2.20744E-05", "1.46307E-06", "-15.0877", "1.08E-34", "-2.49597E-05", "-1.91891E-05"], ["Disposable income sq", "1.51091E-10", "1.49215E-11", "10.1257", "1.14E-19", "1.21665E-10", "1.80518E-10"]] } },
+    "parts": [
+      { "id": "mb-q4a", "label": "Q4(a)", "marks": 4,
+        "prompt": "Why does the model include income squared? Can the coefficient on income be interpreted on its own in the usual way? Explain.",
+        "source": { "file": "W10 Tutorial Excel exercise (solution).xlsx", "where": "Part 2 a.ii, b.ii" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>The scatter plot shows a non-linear (U-shaped) relationship: the food share falls as income rises and then rises again for richer households. Income squared allows the model to capture this curve.</p><p>No. We cannot interpret the income coefficient on its own, because we cannot hold income squared constant while income changes; the effect of income depends on the level of income.</p>",
+        "rubric": [
+          { "label": "非線形（U字）の関係を表すため", "marks": 2, "keywords": [["non-linear", "nonlinear", "u-shape", "u shape", "curve", "quadratic"]] },
+          { "label": "個別に解釈できない（Income² を一定にできない）", "marks": 2, "keywords": [["cannot", "can't", "no"], ["constant", "squared"]] }
+        ] },
+      { "id": "mb-q4b", "label": "Q4(b)", "marks": 5,
+        "prompt": "Describe the shape of the estimated relationship and write down an expression for the income at which the food share starts to increase.",
+        "source": { "file": "W10 Tutorial Excel exercise (solution).xlsx", "where": "Part 2 c" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>The coefficient on income is negative and the coefficient on income squared is positive, so the relationship is U-shaped: the food share decreases as income rises, up to a turning point, and then increases.</p><p>Turning point: −0.0000220744 + 2(0.000000000151091) Income = 0, so Income = 0.0000220744 / (2 × 0.000000000151091) ≈ $73,050.</p>",
+        "rubric": [
+          { "label": "符号から U字（下がってから上がる）", "marks": 2, "keywords": [["u-shape", "u shape", "u-shaped", "decrease", "falls"], ["increase", "rise"]] },
+          { "label": "折り返し点 = b1 / (2 × b2)", "marks": 2, "keywords": [["0.0000220744/(2", "/(2×", "/(2*", "/(2 ×"]] },
+          { "label": "約 $73,050", "marks": 1, "keywords": [["73050"]] }
+        ] },
+      { "id": "mb-q4c", "label": "Q4(c)", "marks": 4,
+        "prompt": "Interpret the R Square and the Standard Error of this regression.",
+        "source": { "file": "W10 Tutorial Excel exercise (solution).xlsx", "where": "Part 2 b.iii" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>R² = 0.8076: 80.76% of the variation in the food share of income is explained by the model.</p><p>The standard error is 0.0568: the model's predictions of the food share are typically in error by about 5.68 percentage points.</p>",
+        "rubric": [
+          { "label": "R² 80.76% が説明される", "marks": 2, "keywords": [["80.76", "0.8076"], ["variation"], ["explained"]] },
+          { "label": "SE：典型的に 5.68 pp 外れる", "marks": 2, "keywords": [["0.0568", "5.68", "0.05675"], ["error", "typically"]] }
+        ] },
+      { "id": "mb-q4d", "label": "Q4(d)", "marks": 2,
+        "prompt": "Why is the high R Square not surprising here?",
+        "source": { "file": "W10 Tutorial Excel exercise (solution).xlsx", "where": "Part 2 b.iii" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>Because the dependent variable (food expenditure divided by income) is itself calculated from income, so income is bound to be highly correlated with it and to explain much of its variation.</p>",
+        "rubric": [
+          { "label": "Y（食費 ÷ 所得）が所得から計算されている", "marks": 2, "keywords": [["divided by income", "calculated from income", "proportion of income", "share of income", "itself"]] }
+        ] }
+    ] },
+  { "q": "Q5", "title": "テレビと読書スコア", "slot": "F",
+    "intro": "Child's reading score (out of 100) on hours of TV per week: simple regression slope −0.331 (p = 4.36E-13). When the mother's reading score is added, the model becomes:",
+    "exhibit": { "reg": { "title": "Dep: Child's reading score / Exp: Hours TV, Mother's reading score", "stats": [["Multiple R", "0.508079123"], ["R Square", "0.258144396"], ["Adjusted R Square", "0.257401426"], ["Standard Error", "21.01279642"], ["Observations", "2000"]], "coef": [["Intercept", "12.72815481", "1.528828788", "8.325429", "1.54E-16", "9.7298883", "15.726421"], ["Hours TV", "-0.0674604", "0.041024838", "-1.64438", "0.100255", "-0.147916", "0.0129956"], ["Mother's Reading Score", "0.581618505", "0.023262854", "25.00203", "2.9E-120", "0.5359965", "0.6272405"]] } },
+    "parts": [
+      { "id": "mb-q5a", "label": "Q5(a)", "marks": 5,
+        "prompt": "The coefficient on Hours TV changes from −0.331 to −0.067 when the mother's reading score is added. Explain why.",
+        "source": { "file": "ETW1001_W9_Tutorial.pdf", "where": "Q1 と ETW1001_W8_Tutorial.pdf Q2 の比較（解答は Claude 作成）" }, "answerSource": "claude",
+        "modelAnswer": "<p>In the multiple regression, the TV coefficient measures the effect of TV holding the mother's reading score constant. In the simple regression, the mother's reading score was omitted. Children who watch more TV tend to have mothers with lower reading scores, and the mother's score strongly affects the child's score (0.582 marks per mark, p = 2.9E-120). So part of the effect of the mother's reading ability was wrongly attributed to TV (omitted variable bias). Once it is held constant, the effect of TV itself is much smaller.</p>",
+        "rubric": [
+          { "label": "重回帰では母親のスコアを一定にしている", "marks": 1, "keywords": [["holding", "constant"], ["mother"]] },
+          { "label": "単回帰では母親のスコアが抜けていた（除外変数）", "marks": 2, "keywords": [["omitted"]] },
+          { "label": "TV と母親のスコアが関係し、母親のスコアが子どもに強く影響", "marks": 2, "keywords": [["related", "correlated", "tend to"], ["0.582", "strongly", "affect"]] }
+        ] },
+      { "id": "mb-q5b", "label": "Q5(b)", "marks": 5,
+        "prompt": "Perform a hypothesis test to confirm a negative impact of hours of TV on the child's reading score, at the 1% level. Use the p-value approach.",
+        "source": { "file": "W09 Tutorial exercise - Part 2 (solution).pdf", "where": "Q1(ii)" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>H<sub>0</sub>: β<sub>1</sub> = 0; H<sub>1</sub>: β<sub>1</sub> &lt; 0. α = 0.01.</p><p>The coefficient is negative, so the one-sided p-value = 0.100255 / 2 = 0.0501.</p><p>Since 0.0501 &gt; 0.01, we do not reject H<sub>0</sub>. There is insufficient evidence at the 1% level that watching extra hours of TV has a negative impact on the child's reading score.</p>",
+        "rubric": [
+          { "label": "H0: β1 = 0 / H1: β1 < 0", "marks": 1, "keywords": [["h0"], ["h1", "ha"], ["<0"]] },
+          { "label": "α = 0.01", "marks": 0.5, "keywords": [["0.01", "1%"]] },
+          { "label": "p ÷ 2 = 0.0501", "marks": 1.5, "keywords": [["0.0501", "/2", "÷2"]] },
+          { "label": "do not reject ＋ insufficient evidence", "marks": 2, "keywords": [["do not reject", "not reject", "fail to reject"], ["insufficient", "not enough", "not sufficient"]] }
+        ] },
+      { "id": "mb-q5c", "label": "Q5(c)", "marks": 3,
+        "prompt": "Interpret the coefficient of Mother's Reading Score.",
+        "source": { "file": "W09 Tutorial exercise - Part 2 (solution).pdf", "where": "Q1(i)" }, "answerSource": "official+edited",
+        "modelAnswer": "<p>Take two children who watch the same amount of TV per week, but one child's mother scored one mark more on her reading test than the other mother. The model predicts that this child scores 0.582 marks more on their reading test, on average.</p>",
+        "rubric": [
+          { "label": "他を一定（TV が同じ）", "marks": 1, "keywords": [["same", "holding", "constant"]] },
+          { "label": "母親 +1 点 → 子ども +0.582 点", "marks": 1, "keywords": [["0.58"]] },
+          { "label": "on average", "marks": 1, "keywords": [["on average"]] }
+        ] },
+      { "id": "mb-q5d", "label": "Q5(d)", "marks": 2,
+        "prompt": "Which type of error could you have made in part (b)? Explain in context.",
+        "source": { "file": "Sample paper 1 solution.pdf", "where": "Q4(c)(ii) の考え方を応用" }, "answerSource": "claude",
+        "modelAnswer": "<p>A Type II error, because we did not reject H<sub>0</sub>. It would mean that watching more TV actually does lower children's reading scores (holding the mother's score constant), but our test failed to find sufficient evidence of it.</p>",
+        "rubric": [
+          { "label": "Type II（reject しなかったから）", "marks": 1, "keywords": [["type ii"], ["not reject", "did not reject", "failed"]] },
+          { "label": "文脈：本当は TV が読書スコアを下げている", "marks": 1, "keywords": [["tv"], ["actually", "in fact", "really", "true"]] }
+        ] }
+    ] }
+ ]
+}
