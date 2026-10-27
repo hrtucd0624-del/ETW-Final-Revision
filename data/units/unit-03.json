@@ -1,0 +1,896 @@
+{
+ "id": "unit-03",
+ "title": "分布の形とグラフ",
+ "slot": [
+  "B"
+ ],
+ "goalSample": [
+  "s1q1b1",
+  "s1q1b2",
+  "s2q1c"
+ ],
+ "lessons": [
+  {
+   "id": "u03-l1",
+   "title": "分布の形を言う3点セット",
+   "steps": [
+    {
+     "type": "explain",
+     "body": "<p>ヒストグラムや度数多角形を見て「Describe the distribution」と聞かれたら、<b>3点セット</b>で答えます（W3 Q1(e) の解答と同じ型）。</p><ol><li><b>Skewness（歪み）</b>：裾が右に長い → <b>positively（right）skewed</b>、mean &gt; median。左に長い → <b>negatively（left）skewed</b>、mean &lt; median。表の Skewness の符号でも分かる（+ / −）。</li><li><b>Modality（山の数）</b>：山1つ → <b>unimodal</b>、2つ → <b>bimodal</b></li><li><b>Outliers（外れ値）</b>：離れたところに1本だけある棒など</li></ol><p>例：Sample 1 Q1(b)。下位20% の所得成長率のヒストグラム。左に長い裾 → negatively skewed、山は1つ（0〜0.06）、とても低い成長率（−25% 前後）がある。</p>",
+     "exhibit": {
+      "img": "hist"
+     }
+    },
+    {
+     "type": "check",
+     "question": {
+      "id": "u03-l1-c1",
+      "level": 1,
+      "kind": "choice",
+      "prompt": "Skewness = −0.79、mean 0.0173 &lt; median 0.0177。分布の形は？",
+      "options": [
+       "negatively（left）skewed：左に長い裾",
+       "positively（right）skewed：右に長い裾",
+       "左右対称",
+       "bimodal"
+      ],
+      "answer": 0,
+      "source": {
+       "file": "Sample paper 1 solution.pdf",
+       "where": "Q1(a) Shape"
+      },
+      "feedback": {
+       "correct": "正解。マイナス → 左（negative）。mean &lt; median とも一致。",
+       "wrong": {
+        "1": "符号が逆。マイナスは negative（左）。",
+        "2": "skewness がはっきり 0 でない。",
+        "3": "skewness からは山の数は分からない。"
+       },
+       "thinking": [
+        "① skewness の符号",
+        "② mean と median で確認"
+       ],
+       "related": {
+        "answerType": "shape"
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "u03-l2",
+   "title": "ヒストグラムと階級幅（bin）",
+   "steps": [
+    {
+     "type": "explain",
+     "body": "<p>同じデータでも、<b>階級幅（bin / class interval）</b>の決め方でヒストグラムの見た目は大きく変わります（Sample 1 Q1(b)(ii)）。</p><ul><li>幅が<b>広すぎる</b> → ほとんどのデータが1〜2本の棒に入って形が見えない</li><li>幅が<b>狭め</b> → 形の細かいところ（どこに集中しているか）が見える</li></ul><p>「どちらが良いか」は<b>理由が妥当なら点</b>になる。模範は「右（幅 0.02）の方が良い。幅が狭く、分布の形が詳しく分かるから」。</p><p><b>度数多角形（frequency polygon）</b>は各階級の度数を点で結んだもの。2つのグループを重ねて比べるのに便利（Sample 2 Q1）。</p>",
+     "exhibit": {
+      "img": "polygon"
+     }
+    },
+    {
+     "type": "check",
+     "question": {
+      "id": "u03-l2-c1",
+      "level": 1,
+      "kind": "choice",
+      "prompt": "Sample 2 Q1 の度数多角形。South の分布の山の数は？",
+      "exhibit": {
+       "img": "polygon"
+      },
+      "options": [
+       "bimodal（35 前後と 55 前後に山）",
+       "unimodal",
+       "山はない",
+       "表からしか分からない"
+      ],
+      "answer": 0,
+      "source": {
+       "file": "seed/samples.json",
+       "where": "s2q1c（Sample 2 Q1(c)）"
+      },
+      "feedback": {
+       "correct": "正解。South は bimodal、North は unimodal。どちらも右に裾 → positively skewed。",
+       "wrong": {
+        "1": "South には山が2つある。",
+        "2": "多角形の頂点が山。",
+        "3": "図から読み取れる。"
+       },
+       "thinking": [
+        "① 多角形の頂点を数える"
+       ],
+       "related": {
+        "sample": "s2q1c",
+        "answerType": "shape"
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "u03-l3",
+   "title": "階級（グループ）データから読む",
+   "steps": [
+    {
+     "type": "explain",
+     "body": "<p>Extra Questions Q1：1,126 人の 12 歳の子どもが1週間にテレビを見る時間（階級データ）。</p><ul><li><b>Range</b> ≈ Max − Min = 40 − 0 = 40 時間</li><li><b>Median</b>：1126 / 2 = 563 → 563〜564 番目。累積度数は 0 時間 100、1〜5 時間で 450、6〜10 時間で 625 → <b>6〜10 時間の階級</b>に入る → median は約 8 時間</li><li><b>形</b>：右に長い裾（30 時間超もいる）→ positively skewed</li><li><b>Mode</b>：1〜5 時間の階級が一番多いが、350 人が 1,2,3,4,5 時間に均等に散らばっていれば、1つの値としては 21〜25 時間（250 人が全員同じ値かもしれない）の方が多いこともある → <b>mode が 1〜5 時間とは限らない</b></li></ul>",
+     "exhibit": {
+      "pivot": {
+       "title": "Extra Questions Q1 — Hours of TV per week (12-year-olds)",
+       "cols": [
+        "Hours per week",
+        "Frequency"
+       ],
+       "rows": [
+        [
+         "0",
+         "100"
+        ],
+        [
+         "1–5",
+         "!350"
+        ],
+        [
+         "6–10",
+         "!175"
+        ],
+        [
+         "11–15",
+         "150"
+        ],
+        [
+         "16–20",
+         "50"
+        ],
+        [
+         "21–25",
+         "!250"
+        ],
+        [
+         "26–30",
+         "50"
+        ],
+        [
+         "31–35",
+         "0"
+        ],
+        [
+         "36–40",
+         "1"
+        ],
+        [
+         "Total",
+         "1126"
+        ]
+       ]
+      }
+     }
+    },
+    {
+     "type": "check",
+     "question": {
+      "id": "u03-l3-c1",
+      "level": 1,
+      "kind": "choice",
+      "prompt": "上の表で median が入る階級は？",
+      "options": [
+       "6〜10 時間（累積 450 → 625 の間に 563 番目がある）",
+       "1〜5 時間（一番多い階級だから）",
+       "11〜15 時間（真ん中の行だから）",
+       "21〜25 時間"
+      ],
+      "answer": 0,
+      "source": {
+       "file": "Extra Questions_Self Study.pdf",
+       "where": "Q1(b) 解答"
+      },
+      "feedback": {
+       "correct": "正解。累積度数で 563 番目を探す。",
+       "wrong": {
+        "1": "一番多い階級は mode の階級。median は真ん中の人。",
+        "2": "表の行の真ん中ではなく、人数の真ん中。",
+        "3": "累積で見るともっと手前。"
+       },
+       "thinking": [
+        "① n / 2 = 563",
+        "② 累積度数：100 → 450 → 625",
+        "③ 450 &lt; 563 ≤ 625 → 6〜10"
+       ],
+       "related": {
+        "answerType": "shape"
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "u03-l4",
+   "title": "グラフの選び方",
+   "steps": [
+    {
+     "type": "explain",
+     "body": "<p>Week 2 のまとめ：データの種類でグラフを選ぶ。</p><table class=\"plain\"><tr><td>1つの数量データの分布</td><td>histogram、boxplot</td></tr><tr><td>時間の流れ（時系列）</td><td>line chart</td></tr><tr><td>2つの数量データの関係</td><td>scatter plot</td></tr><tr><td>カテゴリーの割合（1変数）</td><td>pie chart、bar chart</td></tr><tr><td>カテゴリー × カテゴリー（2変数）</td><td>clustered bar / stacked bar</td></tr></table><p style=\"margin-top:10px\">例：W2 Q3「学歴別の婚姻状況」を pie chart で描くと、学歴ごとに6つも円グラフが必要になる → <b>不適切</b>。clustered か stacked の bar chart が良い。</p><p>良いグラフの条件：<b>タイトル、軸ラベル（単位つき）、凡例</b>、ラベルが重ならないこと（W2 Q1）。</p>"
+    },
+    {
+     "type": "check",
+     "question": {
+      "id": "u03-l4-c1",
+      "level": 1,
+      "kind": "choice",
+      "prompt": "W2 Q2：1990〜2022 年の米国の対中輸出・輸入額を見せるのに最も良いグラフは？",
+      "options": [
+       "line chart（時系列の変化を見る）",
+       "pie chart",
+       "histogram",
+       "scatter plot"
+      ],
+      "answer": 0,
+      "source": {
+       "file": "ETW1001_W2_QA.xlsx",
+       "where": "Question 2"
+      },
+      "feedback": {
+       "correct": "正解。年ごとの変化（トレンド）は line chart。輸出と輸入の差が広がっていく様子が分かる。",
+       "wrong": {
+        "1": "pie chart は1時点の割合。時間の変化は見せられない。",
+        "2": "histogram は1つの変数の分布。",
+        "3": "scatter は2つの変数の関係。"
+       },
+       "thinking": [
+        "① X 軸が時間 → line chart"
+       ],
+       "related": {
+        "answerType": "shape"
+       }
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "questions": [
+  {
+   "id": "u03-q01",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "Sample 1 Q1(b)(i)：この2つのヒストグラム（同じデータ）から分かる分布の形は？",
+   "exhibit": {
+    "img": "hist"
+   },
+   "options": [
+    "negatively skewed、unimodal、とても低い値の長い左の裾",
+    "positively skewed、bimodal",
+    "左右対称の正規分布",
+    "uniform（どこも同じくらい）"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "Sample paper 1 solution.pdf",
+    "where": "Q1(b)(i)"
+   },
+   "feedback": {
+    "correct": "正解。左に長い裾 → negatively skewed（2点）。",
+    "wrong": {
+     "1": "裾は左（とても低い成長率）に伸びている。",
+     "2": "左右で形が違う。",
+     "3": "0〜0.06 に集中している。"
+    },
+    "thinking": [
+     "① 裾の向き",
+     "② 山の数",
+     "③ 外れ値"
+    ],
+    "related": {
+     "lesson": "u03-l1",
+     "sample": "s1q1b1",
+     "answerType": "shape"
+    }
+   }
+  },
+  {
+   "id": "u03-q02",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "Sample 1 Q1(b)(ii)：2つのヒストグラムの見た目が違うのはなぜ？",
+   "exhibit": {
+    "img": "hist"
+   },
+   "options": [
+    "階級（bin）の幅と範囲の決め方が違うから（左は 0.05、右は 0.02）",
+    "データが違うから",
+    "左は度数、右は割合だから",
+    "右は外れ値を除いたから"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "Sample paper 1 solution.pdf",
+    "where": "Q1(b)(ii)"
+   },
+   "feedback": {
+    "correct": "正解。同じデータでも bin の幅で形の見え方が変わる。",
+    "wrong": {
+     "1": "問題文に「同じデータ」とある。",
+     "2": "どちらも度数。",
+     "3": "データは同じ。"
+    },
+    "thinking": [
+     "① 同じデータ → 違いは描き方",
+     "② 横軸の区切りを比べる"
+    ],
+    "related": {
+     "lesson": "u03-l2",
+     "sample": "s1q1b2",
+     "answerType": "shape"
+    }
+   }
+  },
+  {
+   "id": "u03-q03",
+   "level": 3,
+   "kind": "fillChips",
+   "prompt": "Extra Q1：テレビ時間の range と median の求め方を完成させよう。",
+   "exhibit": {
+    "ref": "u03-l3"
+   },
+   "template": "Range = [1] − 0 = 40 hours. The median is at observation 1126 / 2 = [2], which falls in the [3] hours class, so the median is roughly 8 hours.",
+   "chips": {
+    "1": [
+     "40",
+     "36",
+     "350"
+    ],
+    "2": [
+     "563",
+     "1126",
+     "450"
+    ],
+    "3": [
+     "6–10",
+     "1–5",
+     "21–25"
+    ]
+   },
+   "answer": {
+    "1": "40",
+    "2": "563",
+    "3": "6–10"
+   },
+   "source": {
+    "file": "Extra Questions_Self Study.pdf",
+    "where": "Q1(b) 解答"
+   },
+   "feedback": {
+    "correct": "正解。",
+    "wrong": {
+     "1:36": "最大は 36〜40 時間の階級の上端 40。",
+     "1:350": "350 は度数。",
+     "2:1126": "1126 は総数。真ん中は半分。",
+     "2:450": "450 は 1〜5 時間までの累積度数。",
+     "3:1–5": "累積 450 &lt; 563 なので 1〜5 時間ではない。",
+     "3:21–25": "累積で見るとずっと手前。"
+    },
+    "thinking": [
+     "① range = max − min",
+     "② median = n/2 番目",
+     "③ 累積度数で階級を探す"
+    ],
+    "related": {
+     "lesson": "u03-l3",
+     "answerType": "shape"
+    }
+   }
+  },
+  {
+   "id": "u03-q04",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "Extra Q1：ヒストグラムでは 1〜5 時間の階級が一番高い。でも mode が 1〜5 時間とは限らない。なぜ？",
+   "exhibit": {
+    "ref": "u03-l3"
+   },
+   "options": [
+    "350 人が 1,2,3,4,5 時間に分かれているかもしれず、21〜25 時間の 250 人は全員同じ値かもしれないから",
+    "ヒストグラムは mode を表さないから",
+    "mode は median と同じだから",
+    "350 は割合だから"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "Extra Questions_Self Study.pdf",
+    "where": "Q1(d) 解答（解答では e）"
+   },
+   "feedback": {
+    "correct": "正解。階級の度数と、1つの値の度数は別。",
+    "wrong": {
+     "1": "ヒストグラムの一番高い棒は modal class（mode の階級）を表すが、mode の値そのものではない。",
+     "2": "mode と median は別の指標。",
+     "3": "350 は人数。"
+    },
+    "thinking": [
+     "① 階級には複数の値が入る",
+     "② 1つの値として一番多いかは分からない"
+    ],
+    "related": {
+     "lesson": "u03-l3",
+     "answerType": "shape"
+    }
+   }
+  },
+  {
+   "id": "u03-q05",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "W2 Q3：学歴（6区分）別の婚姻状況を pie chart で表すのは適切？",
+   "options": [
+    "適切ではない。pie chart は1つのカテゴリー変数用。2変数なら clustered / stacked bar chart",
+    "適切。割合を見せるのは pie chart だから",
+    "適切。6つの円を並べれば比べやすい",
+    "line chart が一番良い"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "ETW1001_W2_QA.xlsx",
+    "where": "Question 3"
+   },
+   "feedback": {
+    "correct": "正解。2つのカテゴリー変数 → clustered bar か stacked bar。",
+    "wrong": {
+     "1": "1つの円で表せるのは1つの変数だけ。",
+     "2": "6つの円は比べにくい（解答も不適切としている）。",
+     "3": "時間の変化ではないので line chart は合わない。"
+    },
+    "thinking": [
+     "① 変数はいくつ？ → 2つ（学歴・婚姻状況）",
+     "② 両方カテゴリー → bar chart"
+    ],
+    "related": {
+     "lesson": "u03-l4",
+     "answerType": "shape"
+    }
+   }
+  },
+  {
+   "id": "u03-q06",
+   "level": 4,
+   "kind": "order",
+   "prompt": "「Describe the distribution（histogram）」の答え方を正しい順に並べよう。",
+   "answer": [
+    "Skewness：裾の向き → positively / negatively skewed（mean と median で裏付け）",
+    "Modality：山の数 → unimodal / bimodal、山の位置",
+    "Outliers：離れた値があるか",
+    "文脈で一言（例：多くの子は少なめ、少数がとても長時間）"
+   ],
+   "source": {
+    "file": "ETW1001_W3_Tutorial_QA.pdf",
+    "where": "Q1(e) の解答の構成"
+   },
+   "feedback": {
+    "correct": "正解。歪み → 山 → 外れ値 → 文脈。",
+    "thinking": [
+     "① skew → ② modality → ③ outliers → ④ context"
+    ],
+    "related": {
+     "lesson": "u03-l1",
+     "answerType": "shape"
+    }
+   }
+  },
+  {
+   "id": "u03-q07",
+   "level": 1,
+   "kind": "choice",
+   "prompt": "Sample 2 Q1(c)：North（mean 87.62、median 85）と South（mean 59.31、median 57）の形について正しいのは？",
+   "exhibit": {
+    "img": "polygon"
+   },
+   "options": [
+    "どちらも mean &gt; median で positively skewed。North は unimodal、South は bimodal",
+    "どちらも negatively skewed",
+    "North は bimodal、South は unimodal",
+    "どちらも左右対称"
+   ],
+   "answer": 0,
+   "source": {
+    "file": "Solution  Paper 2_Set 2.pdf",
+    "where": "Q1(c)"
+   },
+   "feedback": {
+    "correct": "正解。図（山の数）と表（mean vs median）の両方を使う。",
+    "wrong": {
+     "1": "どちらも mean &gt; median → positive。",
+     "2": "逆。山が2つあるのは South。",
+     "3": "mean と median の差がある。"
+    },
+    "thinking": [
+     "① 図から山の数",
+     "② 表から mean と median → 歪みの向き"
+    ],
+    "related": {
+     "lesson": "u03-l2",
+     "sample": "s2q1c",
+     "answerType": "shape"
+    }
+   }
+  },
+  {
+   "id": "u03-q08",
+   "level": 2,
+   "kind": "tapCell",
+   "prompt": "Extra Q1：一番多い<b>階級</b>（modal class）の度数をタップしよう。",
+   "exhibit": {
+    "ref": "u03-l3"
+   },
+   "answer": "1:0",
+   "source": {
+    "file": "Extra Questions_Self Study.pdf",
+    "where": "Q1 table"
+   },
+   "feedback": {
+    "correct": "正解。1〜5 時間の 350 人。ただしこれは階級で、mode の値そのものではない。",
+    "wrong": {
+     "5:0": "21〜25 時間（250）は2番目。",
+     "2:0": "6〜10 時間（175）は median の階級。",
+     "9:0": "それは合計。"
+    },
+    "thinking": [
+     "① 度数が一番大きい行"
+    ],
+    "related": {
+     "lesson": "u03-l3"
+    }
+   }
+  },
+  {
+   "id": "u03-q09",
+   "level": 4,
+   "kind": "buildSentence",
+   "prompt": "Extra Q1：分布を非専門家向けに説明する文を組み立てよう。",
+   "exhibit": {
+    "ref": "u03-l3"
+   },
+   "chips": [
+    "12-year-old children watch between 0 and 40 hours of TV per week.",
+    "Around half of them watch more than 8 hours per week.",
+    "Most children watch fewer hours,",
+    "while a few watch a very large amount (more than 30 hours).",
+    "Most children watch more than 30 hours."
+   ],
+   "answer": [
+    [
+     "12-year-old children watch between 0 and 40 hours of TV per week.",
+     "Around half of them watch more than 8 hours per week.",
+     "Most children watch fewer hours,",
+     "while a few watch a very large amount (more than 30 hours)."
+    ]
+   ],
+   "source": {
+    "file": "Extra Questions_Self Study.pdf",
+    "where": "Q1(c) 解答（解答では d）"
+   },
+   "feedback": {
+    "correct": "正解。範囲 → median → 歪み（多くは少なめ・少数が極端）の順。",
+    "thinking": [
+     "① range",
+     "② median（半分）",
+     "③ 形を言葉で"
+    ],
+    "related": {
+     "lesson": "u03-l3",
+     "answerType": "shape"
+    }
+   }
+  },
+  {
+   "id": "u03-q10",
+   "level": 5,
+   "kind": "written",
+   "marks": 3,
+   "marksEstimated": true,
+   "prompt": "The remuneration packages for 12 CEOs ($US '000) are summarised in the frequency table below (class intervals of 500). Describe the distribution.",
+   "exhibit": {
+    "pivot": {
+     "title": "Week 3 Q1 — CEO remuneration ($US '000), class width 500",
+     "cols": [
+      "Class",
+      "Frequency"
+     ],
+     "rows": [
+      [
+       "2,512 – 3,012",
+       "2"
+      ],
+      [
+       "3,012 – 3,512",
+       "2"
+      ],
+      [
+       "3,512 – 4,012",
+       "4"
+      ],
+      [
+       "4,012 – 4,512",
+       "3"
+      ],
+      [
+       "4,512 – 9,012",
+       "0"
+      ],
+      [
+       "9,012 – 9,512",
+       "!1"
+      ],
+      [
+       "Total",
+       "12"
+      ]
+     ]
+    },
+    "note": "（12 社の値から Claude が階級に分けて作った表。元の問題は Excel でヒストグラムを作る）"
+   },
+   "source": {
+    "file": "ETW1001_W3_Tutorial.pdf",
+    "where": "Q1(e)（解答：ETW1001_W3_Tutorial_QA.pdf）"
+   },
+   "answerSource": "official+edited",
+   "modelAnswer": "<p><b>Skewness:</b> The distribution is right-skewed (positively skewed): most of the remuneration packages are concentrated between $2.5 and $4.5 million, with a tail extending to the right (skewness 2.72; mean $4,060.5 thousand &gt; median $3,745 thousand).</p><p><b>Modality:</b> The distribution is unimodal, with one clear peak.</p><p><b>Outliers:</b> There is a potential outlier in the highest class ($9,012–9,512 thousand): a single CEO with a much higher package ($9.02 million) than the rest.</p>",
+   "rubric": [
+    {
+     "label": "positively（right）skewed",
+     "marks": 1,
+     "keywords": [
+      [
+       "positive",
+       "right"
+      ],
+      [
+       "skew"
+      ]
+     ]
+    },
+    {
+     "label": "unimodal（山は1つ）",
+     "marks": 1,
+     "keywords": [
+      [
+       "unimodal",
+       "one peak",
+       "single peak"
+      ]
+     ]
+    },
+    {
+     "label": "外れ値：9,020（1人だけ飛び抜けて高い）",
+     "marks": 1,
+     "keywords": [
+      [
+       "outlier",
+       "extreme",
+       "unusual"
+      ],
+      [
+       "9020",
+       "9,020",
+       "9.02",
+       "one ceo",
+       "single ceo",
+       "9012"
+      ]
+     ]
+    }
+   ],
+   "feedback": {
+    "thinking": [
+     "① skew（mean &gt; median、skewness +）",
+     "② 山の数",
+     "③ 外れ値",
+     "④ 単位 '000"
+    ],
+    "mistakes": [
+     "'000 を付けずに金額を書く"
+    ],
+    "related": {
+     "lesson": "u03-l1",
+     "answerType": "shape"
+    }
+   }
+  },
+  {
+   "id": "u03-q11",
+   "level": 5,
+   "kind": "written",
+   "marks": 4,
+   "marksEstimated": true,
+   "prompt": "The table shows grouped data for the amount of time spent watching television by 12-year-old children (1,126 children). Write down the approximate (to the nearest integer) values of the Range and Median for the number of hours of TV watched per week. Show any working you use. Describe the distribution of the data.",
+   "exhibit": {
+    "ref": "u03-l3"
+   },
+   "source": {
+    "file": "Extra Questions_Self Study.pdf",
+    "where": "Q1(b)（解答は同ファイル末尾）"
+   },
+   "answerSource": "official+edited",
+   "modelAnswer": "<p>Range = Max − Min = 40 − 0 = 40 hours.</p><p>The median is at observation 1126 / 2 = 563 (between observations 563 and 564). Cumulative frequencies: 0 hours: 100; 1–5 hours: 450; 6–10 hours: 625. So the 563.5th observation falls in the 6–10 hours class, and the median is roughly 8 hours.</p><p>The distribution is positively skewed: most children watch fewer hours of TV, with a long tail to the right of a few children who watch a very large amount.</p>",
+   "rubric": [
+    {
+     "label": "Range = 40 − 0 = 40 hours",
+     "marks": 1,
+     "keywords": [
+      [
+       "40"
+      ],
+      [
+       "range"
+      ]
+     ]
+    },
+    {
+     "label": "median の位置：1126/2 = 563",
+     "marks": 1,
+     "keywords": [
+      [
+       "563"
+      ]
+     ]
+    },
+    {
+     "label": "累積度数で 6〜10 時間の階級 → 約 8 時間",
+     "marks": 1,
+     "keywords": [
+      [
+       "6-10",
+       "6–10",
+       "6 to 10"
+      ],
+      [
+       "8"
+      ]
+     ]
+    },
+    {
+     "label": "形：positively skewed",
+     "marks": 1,
+     "keywords": [
+      [
+       "positive",
+       "right"
+      ],
+      [
+       "skew"
+      ]
+     ]
+    }
+   ],
+   "feedback": {
+    "thinking": [
+     "① range",
+     "② n/2",
+     "③ 累積度数",
+     "④ 形"
+    ],
+    "related": {
+     "lesson": "u03-l3",
+     "answerType": "shape"
+    }
+   }
+  },
+  {
+   "id": "u03-q12",
+   "level": 5,
+   "kind": "written",
+   "marks": 2,
+   "marksEstimated": true,
+   "prompt": "Based on the histogram, our best guess is that the Mode is somewhere in the range of 1–5 hours per week. Explain why this is not necessarily the case.",
+   "exhibit": {
+    "ref": "u03-l3"
+   },
+   "source": {
+    "file": "Extra Questions_Self Study.pdf",
+    "where": "Q1(d)（解答では e）"
+   },
+   "answerSource": "official",
+   "modelAnswer": "<p>The 350 children in the 1–5 hours category may be evenly spread across each of the integers 1, 2, 3, 4 and 5 hours (about 70 each). Whereas in the second highest category, 21–25 hours, all 250 children in that category may have the same integer value. So the single most common value could be outside the 1–5 hours class.</p>",
+   "rubric": [
+    {
+     "label": "1〜5 時間の 350 人は複数の値に分かれているかもしれない",
+     "marks": 1,
+     "keywords": [
+      [
+       "350"
+      ],
+      [
+       "spread",
+       "split",
+       "evenly",
+       "different values",
+       "1, 2, 3"
+      ]
+     ]
+    },
+    {
+     "label": "21〜25 時間の 250 人は全員同じ値かもしれない",
+     "marks": 1,
+     "keywords": [
+      [
+       "21-25",
+       "21–25",
+       "250"
+      ],
+      [
+       "same"
+      ]
+     ]
+    }
+   ],
+   "feedback": {
+    "thinking": [
+     "① 階級の度数 ≠ 1つの値の度数",
+     "② 具体的な数で説明"
+    ],
+    "related": {
+     "lesson": "u03-l3",
+     "answerType": "shape"
+    }
+   }
+  },
+  {
+   "id": "u03-q13",
+   "level": 5,
+   "kind": "written",
+   "marks": 2,
+   "marksEstimated": true,
+   "prompt": "(a) Is a pie chart an appropriate way to display marital status by education level? Discuss any issues that arise. (b) What would be a better chart to display marital status with education?",
+   "source": {
+    "file": "W2T.pdf",
+    "where": "Q3（解答：ETW1001_W2_QA.xlsx）"
+   },
+   "answerSource": "official+edited",
+   "modelAnswer": "<p>(a) No. A pie chart is suitable for displaying one qualitative variable. Here there are two qualitative variables, so we would need six separate pie charts, one for each education category, which are hard to compare.</p><p>(b) When displaying two qualitative variables, the best chart is a clustered bar chart or a stacked bar chart.</p>",
+   "rubric": [
+    {
+     "label": "(a) 不適切：pie chart は1つの変数用（6つ必要）",
+     "marks": 1,
+     "keywords": [
+      [
+       "no",
+       "not appropriate",
+       "not suitable",
+       "inappropriate"
+      ],
+      [
+       "one",
+       "single",
+       "six",
+       "6"
+      ]
+     ]
+    },
+    {
+     "label": "(b) clustered / stacked bar chart",
+     "marks": 1,
+     "keywords": [
+      [
+       "bar"
+      ],
+      [
+       "clustered",
+       "stacked"
+      ]
+     ]
+    }
+   ],
+   "feedback": {
+    "thinking": [
+     "① 変数の数と種類",
+     "② 2つのカテゴリー変数 → clustered / stacked bar"
+    ],
+    "related": {
+     "lesson": "u03-l4",
+     "answerType": "shape"
+    }
+   }
+  }
+ ]
+}
